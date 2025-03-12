@@ -1,6 +1,6 @@
 CC := g++
 CXXFLAGS := -O3
-LDFLAGS := -lmraa -lyaml-cpp
+LDFLAGS := -lmraa -lyaml-cpp -lgpiod
 
 all: test test_yaml
 

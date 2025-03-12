@@ -11,10 +11,7 @@
 
 #define ICM20948_USER_CTRL_BANK             0
 
-#define ICM20948_LP_CONFIG_BANK             0
-
 #define ICM20948_PWR_MGMT_1_BANK            0
-#define ICM20948_PWR_MGMT_2_BANK            0
 
 #define ICM20948_INT_PIN_CFG_BANK           0
 
@@ -24,13 +21,7 @@
 #define ICM20948_GYRO_OUT_BANK              0
 #define ICM20948_TEMP_OUT_BANK              0
 #define ICM20948_EXT_SLV_SENS_DATA_00_BANK  0
-#define ICM20948_INT_ENABLE_BANK            0
-#define ICM20948_INT_ENABLE_1_BANK          0
-#define ICM20948_INT_ENABLE_2_BANK          0
-#define ICM20948_INT_ENABLE_3_BANK          0
-
-#define ICM20948_INT_STATUS_BANK            0
-
+#define ICM20948_INT_ENABLE_BANK                     0
 
 // Bank 2
 #define ICM20948_GYRO_SMPLRT_DIV_BANK       2
@@ -38,8 +29,6 @@
 #define ICM20948_ACCEL_SMPLRT_DIV_1_BANK    2
 #define ICM20948_ACCEL_SMPLRT_DIV_2_BANK    2
 #define ICM20948_ACCEL_CONFIG_1_BANK        2
-#define ICM20948_ACCEL_INTEL_CTRL_BANK      2
-#define ICM20948_ACCEL_WOM_THR_BANK         2
 
 // Bank 3
 #define ICM20948_I2C_MST_CTRL_BANK          3
@@ -62,10 +51,7 @@
 
 #define ICM20948_USER_CTRL_ADDR             0x03
 
-#define ICM20948_LP_CONFIG_ADDR             0x05
-
 #define ICM20948_PWR_MGMT_1_ADDR            0x06
-#define ICM20948_PWR_MGMT_2_ADDR            0x07
 
 #define ICM20948_INT_PIN_CFG_ADDR           0x0F
 
@@ -90,8 +76,8 @@
 
 #define ICM20948_EXT_SLV_SENS_DATA_00_ADDR  0x3B
 
-#define ICM20948_INT_ENABLE_ADDR            0x10
-#define ICM20948_INT_STATUS_ADDR            0x19
+#define ICM20948_INT_ENABLE                 0xF2
+#define ICM20948_MOTION_DET_STATUS          0x62
 
 // Addresses: Bank 2
 #define ICM20948_GYRO_SMPLRT_DIV_ADDR       0x00
@@ -99,9 +85,6 @@
 #define ICM20948_ACCEL_SMPLRT_DIV_1_ADDR    0x10
 #define ICM20948_ACCEL_SMPLRT_DIV_2_ADDR    0x11
 #define ICM20948_ACCEL_CONFIG_1_ADDR        0x14
-
-#define ICM20948_ACCEL_INTEL_CTRL_ADDR      0x12
-#define ICM20948_ACCEL_WOM_THR_ADDR         0x13
 
 // Addresses: Bank 3
 #define ICM20948_I2C_MST_CTRL_ADDR          0x01
@@ -131,10 +114,7 @@
 #define AK09916_CNTL2_ADDR  0x31
 
 // Interrupt registers
-#define ICM20948_INT_ENABLE_ADDR 0x10
-#define ICM20948_INT_ENABLE_1_ADDR 0x11
-#define ICM20948_INT_ENABLE_2_ADDR 0x12
-#define ICM20948_INT_ENABLE_3_ADDR 0x13
+
 
 #endif
 

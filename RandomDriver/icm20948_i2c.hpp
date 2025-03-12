@@ -26,6 +26,7 @@ namespace icm20948
             bool _read_block_bytes(const uint8_t bank, const uint8_t start_reg, uint8_t *bytes, const int length);
             bool _write_mag_byte(const uint8_t mag_reg, const uint8_t byte);
             bool _read_mag_byte(const uint8_t mag_reg, uint8_t &byte);
+            bool _read_int_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte);
 
             bool _set_bank(uint8_t bank);
             bool _set_accel_sample_rate_div();
@@ -38,8 +39,10 @@ namespace icm20948
             bool _magnetometer_set_mode();
             bool _magnetometer_configured();
             bool _magnetometer_set_readout();
+            bool _disable_magnetometer();
 
             bool _chip_i2c_master_reset();
+
 
         public:
             // Contains linear acceleration in m/s^2
@@ -143,6 +146,16 @@ namespace icm20948
              * @return bool Returns true if the magnetometer data was successfully read and processed. Returns false if the read operation fails.
              */
             bool read_magn();
+
+            
+            bool enable_wom_interrupt(uint8_t threshold);
+            bool check_wom_interrupt();
+
+            bool enable_DRDY_INT();
+            bool check_DRDY_INT();
+
+        
+            
     };
 }
 

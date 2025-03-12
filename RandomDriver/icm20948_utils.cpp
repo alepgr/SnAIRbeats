@@ -1,4 +1,5 @@
 #include "icm20948_utils.hpp"
+#include "icm20948_defs.hpp"
 
 #include <stdexcept>
 #include <string>
