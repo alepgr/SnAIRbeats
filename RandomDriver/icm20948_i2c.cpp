@@ -18,6 +18,8 @@
 
 #define MAGN_SCALE_FACTOR 0.149975574f
 
+uint8_t int_status;
+
 
 namespace icm20948
 {
@@ -43,10 +45,16 @@ namespace icm20948
         success &= reset();
         success &= wake();
         success &= set_settings();
+        _write_byte(0, ICM20948_LP_CONFIG_ADDR, 0x20);
+        success &= enable_wom_interrupt(0x20);
+
+    
+        //success &= _disable_magnetometer();
 
         // Magnetometer init stage may fail once
         // Try at least 3 times before calling it off
-        bool magn_initialized = false;
+        
+        /*bool magn_initialized = false;
         for(int i = 0; i < 3; i++)
         {
             magn_initialized = _magnetometer_init();
@@ -54,8 +62,11 @@ namespace icm20948
                 break;
         }
         success &= magn_initialized;
-        
+
+        */
         return success;
+
+       
     }
 
 
@@ -528,6 +539,92 @@ namespace icm20948
         {
             success &= _read_byte(ICM20948_I2C_SLV4_DI_BANK, ICM20948_I2C_SLV4_DI_ADDR, byte);
         }
+
+        return success;
+    }
+
+    //Initialise Interrupt Registers
+    bool ICM20948_I2C::enable_wom_interrupt(uint8_t threshold){
+        bool success = true;
+
+        //Bank 0
+        success &= _set_bank(0);
+
+        //Enable WOM Interupt on Bit 3
+        success &= _write_byte(0, ICM20948_INT_ENABLE_ADDR, 0x20);
+
+        //Accel in low power
+        success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR, 0x20);
+
+        //bank 2
+        success &= _set_bank(2);
+        success &= _write_byte(2, ICM20948_ACCEL_WOM_THR_ADDR, threshold);
+
+        success &= _write_byte(2, ICM20948_ACCEL_INTEL_CTRL_ADDR, 0x03);
+
+        return success;
+    }
+
+    bool ICM20948_I2C::check_wom_interrupt(){
+        if(!_read_int_byte(0, ICM20948_INT_STATUS_ADDR, int_status)){
+            std::cerr << "Couldn't read the INT_STATUS register" << std::endl;
+            return false;
+        }
+
+        //std::cout << "[DEBUG] INT_STATUS Register: 0x" << std::hex << (int)int_status << std::endl;
+        
+        //Bit 3 refers to Wake on Motion, if int_status is the same, return true - run callback
+        return (int_status & 0x08) != 0; //Bit 5 (WOM_INT) is set if motion detected
+
+    }
+
+    bool ICM20948_I2C::enable_DRDY_INT(){
+        bool success = true;
+
+        success &= _set_bank(0);
+
+        success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR,0x20);
+
+        success &= _write_byte(0,ICM20948_INT_ENABLE_ADDR,0x20);
+
+        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x30);
+
+        return success;
+    }
+
+    bool ICM20948_I2C::check_DRDY_INT(){
+        uint8_t int_status;
+
+        if (!_read_byte(0, ICM20948_INT_STATUS_ADDR, int_status)) {
+            std::cerr << "[ERROR] Failed to read INT_STATUS" << std::endl;
+            return false;
+        }
+
+        std::cout << "[DEBUG] INT_STATUS: 0x" <<std::hex << (int)int_status <<std::endl;
+
+        return (int_status & 0x20) != 0;
+    }
+
+    bool ICM20948_I2C::_read_int_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte)
+    {
+        uint8_t ret;
+        bool success = _set_bank(bank);
+        
+        if(success)
+        {
+            try
+            {
+                ret = _i2c.readReg(reg);
+            }
+            catch(const std::invalid_argument &exc)
+            {
+                success = false;
+            }
+        }
+
+        if(success)
+            byte = (uint8_t)ret;
+            int_status = ret;
 
         return success;
     }
