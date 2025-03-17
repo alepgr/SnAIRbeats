@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <iostream>
 #include <bitset>
+#include <gpiod.h>
+
 
 #include "icm20948_i2c.hpp"
 #include "icm20948_defs.hpp"
@@ -19,6 +21,12 @@
 #define MAGN_SCALE_FACTOR 0.149975574f
 
 uint8_t int_status;
+bool running = true;
+
+gpiod_chip* chip = gpiod_chip_open_by_name("gpiochip0");
+int lineNumber = 17;
+    gpiod_line* line = gpiod_chip_get_line(chip, lineNumber);
+
 
 
 namespace icm20948
@@ -47,6 +55,12 @@ namespace icm20948
         success &= set_settings();
         _write_byte(0, ICM20948_LP_CONFIG_ADDR, 0x20);
         success &= enable_wom_interrupt(0x20);
+
+        if (gpiod_line_request_falling_edge_events(line, "ICM20948Worker") < 0) {
+            std::cerr << "Error requesting falling edge events on GPIO line " << lineNumber << std::endl;
+            // Handle error as needed...
+        }
+
 
     
         //success &= _disable_magnetometer();
@@ -551,7 +565,7 @@ namespace icm20948
         success &= _set_bank(0);
 
         //Enable WOM Interupt on Bit 3
-        success &= _write_byte(0, ICM20948_INT_ENABLE_ADDR, 0x20);
+        success &= _write_byte(0, ICM20948_INT_ENABLE_ADDR, 0x08);
 
         //Accel in low power
         success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR, 0x20);
@@ -561,6 +575,8 @@ namespace icm20948
         success &= _write_byte(2, ICM20948_ACCEL_WOM_THR_ADDR, threshold);
 
         success &= _write_byte(2, ICM20948_ACCEL_INTEL_CTRL_ADDR, 0x03);
+
+        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x90);
 
         return success;
     }
@@ -585,9 +601,9 @@ namespace icm20948
 
         success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR,0x20);
 
-        success &= _write_byte(0,ICM20948_INT_ENABLE_ADDR,0x20);
+        success &= _write_byte(0,ICM20948_INT_ENABLE_ADDR,0x08);
 
-        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x30);
+        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x80);
 
         return success;
     }
@@ -622,10 +638,40 @@ namespace icm20948
             }
         }
 
-        if(success)
+        if(success){
             byte = (uint8_t)ret;
             int_status = ret;
+        }
 
         return success;
     }
+
+    void ICM20948_I2C::Worker(){
+        while(running) {
+            // Block indefinitely until an event occurs.
+            //std::cout << "Start of Loop" << std::endl;
+            int ret = gpiod_line_event_wait(line, nullptr);
+            if(ret < 0) {
+                std::cerr << "Error waiting for event" << std::endl;
+                continue;
+            }
+            if(ret > 0) {
+                struct gpiod_line_event event;
+                if(gpiod_line_event_read(line, &event) < 0) {
+                    std::cerr << "Error reading event" << std::endl;
+                    continue;
+                }
+                // Process only falling edge events (i.e. when the pin goes LOW)
+                if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
+                    //Check WOM clears interrupt latch, by reading INT_STATUS
+                    if(check_wom_interrupt()) {
+                        //replace with Callbacks
+                        std::cout << "Output" << std::endl;
+                    }
+                }
+            }
+        }
+    }
+    
+
 }

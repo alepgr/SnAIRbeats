@@ -154,6 +154,8 @@ namespace icm20948
             bool enable_DRDY_INT();
             bool check_DRDY_INT();
 
+            void Worker();
+
         
             
     };
