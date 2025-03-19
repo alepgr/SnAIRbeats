@@ -6,6 +6,8 @@
 #include <iostream>
 #include <bitset>
 #include <gpiod.h>
+#include <iostream>
+#include <cstdlib>
 
 
 #include "icm20948_i2c.hpp"
@@ -665,8 +667,10 @@ namespace icm20948
                 if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
                     //Check WOM clears interrupt latch, by reading INT_STATUS
                     if(check_wom_interrupt()) {
-                        //replace with Callbacks
-                        std::cout << "Output" << std::endl;
+                        int status = system("mpg123 -q snare-112754.mp3");
+                        if (status != 0) {
+                            std::cerr << "Error playing sound file" << std::endl;
+                        }
                     }
                 }
             }
