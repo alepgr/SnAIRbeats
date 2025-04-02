@@ -30,6 +30,8 @@ gpiod_line* line = gpiod_chip_get_line(chip, lineNumber);
 int LEDpin = 27;
 gpiod_line* LEDLine = gpiod_chip_get_line(chip, LEDpin);
 
+int Counter = 0;
+
 
 
 namespace icm20948
@@ -129,6 +131,7 @@ namespace icm20948
         bool success = true;
 
         success &= _set_accel_sample_rate_div();
+        //success &= _write_byte(ICM20948_ACCEL_CONFIG_1_BANK, ICM20948_ACCEL_CONFIG_1_ADDR,0x0F);
         success &= _set_accel_range_dlpf();
         success &= _set_gyro_sample_rate_div();
         success &= _set_gyro_range_dlpf();
@@ -233,14 +236,28 @@ namespace icm20948
     bool ICM20948_I2C::_set_accel_sample_rate_div()
     {
         uint8_t lsb, msb;
-        lsb =  settings.accel.sample_rate_div & 0xff;
-        msb = (settings.accel.sample_rate_div >> 8) & 0x0f;
+        settings.accel.sample_rate_div = 9;
+        lsb =  settings.accel.sample_rate_div & 0xFF;
+        msb = (settings.accel.sample_rate_div >> 8) & 0x0F;
+
+        // std::cout << settings.accel.sample_rate_div << std::endl;
+        //lsb = 0xFF;
+        //msb = 0x0F;
+
+        fprintf(stderr,"div=%x, lsb=%x, msb=%x\n",settings.accel.sample_rate_div,lsb,msb);
 
         bool success = true;
 
         success &= _write_byte(ICM20948_ACCEL_SMPLRT_DIV_1_BANK, ICM20948_ACCEL_SMPLRT_DIV_1_ADDR, msb);
         success &= _write_byte(ICM20948_ACCEL_SMPLRT_DIV_2_BANK, ICM20948_ACCEL_SMPLRT_DIV_2_ADDR, lsb);
 
+        success &= _read_int_byte(ICM20948_ACCEL_SMPLRT_DIV_1_BANK, ICM20948_ACCEL_SMPLRT_DIV_1_ADDR,int_status);
+
+        fprintf(stderr, "msb=%x\n",int_status);
+
+        success &= _read_int_byte(ICM20948_ACCEL_SMPLRT_DIV_2_BANK, ICM20948_ACCEL_SMPLRT_DIV_2_ADDR,int_status);
+
+        fprintf(stderr, "lsb=%x\n",int_status);
         return success;
     }
 
@@ -248,6 +265,8 @@ namespace icm20948
     bool ICM20948_I2C::_set_accel_range_dlpf()
     {
         uint8_t byte = 0;
+
+        settings.accel.dlpf_enable = 1; //Enable ACCEL_FChoice
 
         byte |= !!((uint8_t)settings.accel.dlpf_enable);
         byte |= ((uint8_t)settings.accel.scale) << 1;
@@ -574,7 +593,7 @@ namespace icm20948
         success &= _write_byte(0, ICM20948_INT_ENABLE_ADDR, 0x08);
 
         //Accel in low power
-        success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR, 0x20);
+        success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR, 0x00);
 
         //bank 2
         success &= _set_bank(2);
@@ -605,11 +624,11 @@ namespace icm20948
 
         success &= _set_bank(0);
 
-        success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR,0x20);
+        success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR,0x00);
 
-        success &= _write_byte(0,ICM20948_INT_ENABLE_ADDR,0x08);
+        success &= _write_byte(0,ICM20948_INT_ENABLE_1_ADDR,0x01);
 
-        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x80);
+        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x10);
 
         return success;
     }
@@ -674,7 +693,11 @@ namespace icm20948
                         //replace with Callbacks
                         //std::cout << "Output" << std::endl;
                         LightLED(LEDLine);
-                        std::cout << "Hello" << std::endl;
+                        //std::cout << "Hello" << std::endl;
+
+                        Counter ++;
+
+                        std::cout << Counter << " Hits have been detected" << std::endl;
 
                     }
                 }

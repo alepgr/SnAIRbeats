@@ -20,15 +20,17 @@ namespace icm20948
             float _accel_scale_factor, _gyro_scale_factor, _magn_scale_factor;
 
             bool _write_byte(const uint8_t bank, const uint8_t reg, const uint8_t byte);
+            bool _read_int_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte);
             bool _read_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte);
+            bool _set_bank(uint8_t bank);            
             bool _write_bit(const uint8_t bank, const uint8_t reg, const uint8_t bit_pos, const bool bit);
             bool _read_bit(const uint8_t bank, const uint8_t reg, const uint8_t bit_pos, bool &bit);
             bool _read_block_bytes(const uint8_t bank, const uint8_t start_reg, uint8_t *bytes, const int length);
             bool _write_mag_byte(const uint8_t mag_reg, const uint8_t byte);
             bool _read_mag_byte(const uint8_t mag_reg, uint8_t &byte);
-            bool _read_int_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte);
+            
 
-            bool _set_bank(uint8_t bank);
+            
             bool _set_accel_sample_rate_div();
             bool _set_accel_range_dlpf();
             bool _set_gyro_sample_rate_div();
@@ -45,6 +47,7 @@ namespace icm20948
 
 
         public:
+
             // Contains linear acceleration in m/s^2
             float accel[3];
             // Contains angular velocities in rad/s

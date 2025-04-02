@@ -91,6 +91,7 @@
 #define ICM20948_EXT_SLV_SENS_DATA_00_ADDR  0x3B
 
 #define ICM20948_INT_ENABLE_ADDR            0x10
+#define ICM20948_INT_ENABLE_1_ADDR            0x11
 #define ICM20948_INT_STATUS_ADDR            0x19
 
 // Addresses: Bank 2

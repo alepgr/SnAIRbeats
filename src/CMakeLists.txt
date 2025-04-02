@@ -1,7 +1,14 @@
 add_subdirectory(libs/GPIO) 
 add_subdirectory(libs/I2C)
+add_subdirectory(libs/cam2opencv)
+#add_subdirectory(libs/DataCollection)
 
-find_package(PkgConfig REQUIRED)    
+find_package(PkgConfig REQUIRED)
+
+# pkg_check_modules(QWT REQUIRED qwt)
+# include_directories(${QWT_INCLUDE_DIRS})
+
+find_package(Qt5 5.9 COMPONENTS Core Widgets REQUIRED)
 
 pkg_check_modules(MRAA REQUIRED mraa)
 include_directories(${MRAA_INCLUDE_DIRS})
@@ -17,6 +24,11 @@ add_executable(SnairBeat main.cpp)
 target_link_libraries(SnairBeat PRIVATE 
     GPIO 
     I2C 
+    #DataCollection
+    cam2opencv
     ${MRAA_LIBRARIES} 
     ${LIBGPIOD_LIBRARIES} 
-    yaml-cpp)
+    yaml-cpp
+    Qt5::Widgets)
+
+    
