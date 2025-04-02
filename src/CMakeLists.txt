@@ -2,6 +2,7 @@ add_subdirectory(libs/GPIO)
 add_subdirectory(libs/I2C)
 add_subdirectory(libs/cam2opencv)
 #add_subdirectory(libs/DataCollection)
+add_subdirectory(libs/ALSAAudio)
 
 find_package(PkgConfig REQUIRED)
 
@@ -16,6 +17,10 @@ include_directories(${MRAA_INCLUDE_DIRS})
 pkg_check_modules(LIBGPIOD REQUIRED libgpiod)
 include_directories(${LIBGPIOD_INCLUDE_DIRS})
 
+pkg_check_modules(ALSA REQUIRED alsa)
+include_directories(${ALSA_INCLUDE_DIRS})
+
+
 find_package(yaml-cpp REQUIRED)
 
 
@@ -26,8 +31,10 @@ target_link_libraries(SnairBeat PRIVATE
     I2C 
     #DataCollection
     cam2opencv
+    ALSAAudio
     ${MRAA_LIBRARIES} 
     ${LIBGPIOD_LIBRARIES} 
+    ${ALSA_LIBRARIES}
     yaml-cpp
     Qt5::Widgets)
 
