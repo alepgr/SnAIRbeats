@@ -1,0 +1,6 @@
+[submodule "src/libs/Camera/src/libs/Camera/libcamera2opencv"]
+	path = src/libs/Camera/src/libs/Camera/libcamera2opencv
+	url = https://github.com/berndporr/libcamera2opencv.git
+[submodule "src/libs/Camera/libcamera2opencv"]
+	path = src/libs/Camera/libcamera2opencv
+	url = https://github.com/berndporr/libcamera2opencv.git
