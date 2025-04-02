@@ -1,37 +1,50 @@
-// Custom headers to define communication with the IMU sensor
 #include "libs/I2C/include/icm20948_i2c.hpp"
 #include "libs/I2C/include/icm20948_defs.hpp"
 
 #include "libs/GPIO/include/gpioevent.h"
 
-#include <iostream> // "input output" stream, to print messages
-#include <iomanip> // to "manipulate"/format the output messages
+#include "libs/cam2opencv/libcam2opencv.h"
+#include "libs/cam2opencv/qtviewer/window.h"
+
+#include <iostream> 
+#include <iomanip>
 #include <gpiod.h>
 
-// Timing operations
 #include <chrono>
 #include <thread>
 
-// For printing binary values (used in commented out debugging code)
 #include <bitset>
 
 #define GPIO_CHIP "/dev/gpiochip0"
 #define GPIO_LINE 17
 
 
+
+struct MyCallback : Libcam2OpenCV::Callback {
+    Window* window = nullptr;
+    virtual void hasFrame(const cv::Mat &frame, const libcamera::ControlList &) {
+        if (nullptr != window) {
+            window->updateImage(frame);
+        }
+    }
+};
+
 int main()
 {
     // Creating an instance of the class, inside the namespace
-    icm20948::ICM20948_I2C obj(1); // bus number 1 means it is communicating with an external device
+    icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
+
+    GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27);
+
 
     // g_imu = &obj;
 
     std::cout << "Object created!\n";
-    if(obj.init())
+    if(objI2C.init())
     {
         std::cout << "Hurray!" << std::endl;
 
-        if (obj.enable_wom_interrupt(0x0F)){
+        if (objI2C.enable_DRDY_INT()){
             std::cout << "WOM Interrupt Enabled" << std::endl;
         } else {
             std::cerr <<"Failed to enable WOM interrupt" << std::endl;
@@ -43,7 +56,16 @@ int main()
 
 
 
-    obj.Worker();
+    std::thread gpioThread(&GPIOName::GPIOClass::Worker, &objGPIO);
+
+    //objGPIO.running = false;
+
+    // Join the thread to clean up properly.
+    if (gpioThread.joinable())
+        gpioThread.join();
+
+    std::cout << "Exiting program" << std::endl;
+    return 0;
     
 }
 
