@@ -15,6 +15,7 @@ namespace AudioLib {
 
     void PlaySound();
     void PlayFile();
+    void PlayAudioTerminal();
     };
 }
 

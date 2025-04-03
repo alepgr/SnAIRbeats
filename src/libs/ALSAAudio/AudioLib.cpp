@@ -10,21 +10,23 @@
 
 namespace AudioLib {
 
+    #pragma pack(push, 1)
     struct WAVHeader {
-        char riff[4];            // "RIFF"
-        uint32_t chunkSize;      // overall size of file in bytes
-        char wave[4];            // "WAVE"
-        char fmt[4];             // "fmt "
-        uint32_t subchunk1Size;  // size of the fmt chunk (16 for PCM)
-        uint16_t audioFormat;    // PCM = 1
-        uint16_t numChannels;    // Number of channels
-        uint32_t sampleRate;     // Sampling rate
-        uint32_t byteRate;       // Byte rate = SampleRate * NumChannels * BitsPerSample/8
-        uint16_t blockAlign;     // NumChannels * BitsPerSample/8
-        uint16_t bitsPerSample;  // Bits per sample
-        char data[4];            // "data"
-        uint32_t dataSize;       // Size of the data section
+        char riff[4];            
+        uint32_t chunkSize;      
+        char wave[4];            
+        char fmt[4];             
+        uint32_t subchunk1Size;  
+        uint16_t audioFormat;    
+        uint16_t numChannels;    
+        uint32_t sampleRate;     
+        uint32_t byteRate;       
+        uint16_t blockAlign;     
+        uint16_t bitsPerSample;  
+        char data[4];            
+        uint32_t dataSize;       
     };
+    #pragma pack(pop)
 
     AudioLib::AudioLib(const std::string &device){
         int err = snd_pcm_open(&pcmHandle, device.c_str(), SND_PCM_STREAM_PLAYBACK, 0);
@@ -56,7 +58,7 @@ namespace AudioLib {
             throw std::runtime_error("Error setting channels: " + std::string(snd_strerror(err)));
         }
 
-        unsigned int channels = 2;
+        unsigned int channels = 1;
         err = snd_pcm_hw_params_set_channels(pcmHandle, params, channels);
         if (err < 0){
             snd_pcm_hw_params_free(params);
@@ -114,7 +116,7 @@ namespace AudioLib {
     }
 
 
-    void AudioLib::PlayFile() {
+    void AudioLib::AudioLib::PlayFile() {
         const std::string filename = "src/libs/ALSAAudio/AudioFiles/SnareDrum1.wav";
         std::ifstream wavFile(filename, std::ios::binary);
         if (!wavFile) {
@@ -174,5 +176,11 @@ namespace AudioLib {
         std::cerr << "Drain error: " << snd_strerror(drainErr) << std::endl;
     }
 }
+
+    void AudioLib::PlayAudioTerminal(){
+        //Change to be switch case and play depending on position of sticks
+        int ret = system("aplay -D plughw:2,0 src/libs/ALSAAudio/AudioFiles/SnareDrum1.wav");
+
+    }
 
 }

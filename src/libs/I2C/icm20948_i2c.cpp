@@ -5,12 +5,10 @@
 #include <cstdint>
 #include <iostream>
 #include <bitset>
-#include <gpiod.h>
 
-
-#include "include/icm20948_i2c.hpp"
-#include "include/icm20948_defs.hpp"
-#include "include/icm20948_utils.hpp"
+#include "icm20948_i2c.hpp"
+#include "icm20948_defs.hpp"
+#include "icm20948_utils.hpp"
 
 #include "mraa/i2c.hpp"
 #include "mraa/types.hpp"
@@ -19,19 +17,6 @@
 #define DEG2RAD 0.017453293f
 
 #define MAGN_SCALE_FACTOR 0.149975574f
-
-uint8_t int_status;
-bool running = true;
-
-gpiod_chip* chip = gpiod_chip_open_by_name("gpiochip0");
-int lineNumber = 17;
-gpiod_line* line = gpiod_chip_get_line(chip, lineNumber);
-
-int LEDpin = 27;
-gpiod_line* LEDLine = gpiod_chip_get_line(chip, LEDpin);
-
-int Counter = 0;
-
 
 
 namespace icm20948
@@ -58,37 +43,20 @@ namespace icm20948
         success &= reset();
         success &= wake();
         success &= set_settings();
-        _write_byte(0, ICM20948_LP_CONFIG_ADDR, 0x20);
-        success &= enable_wom_interrupt(0x20);
-
-        if (gpiod_line_request_falling_edge_events(line, "ICM20948Worker") < 0) {
-            std::cerr << "Error requesting falling edge events on GPIO line " << lineNumber << std::endl;
-        }
-
-        if (gpiod_line_request_output(LEDLine, "LED", 0) < 0) {
-            std::cerr << "Request LED line ouput has failed -- Womp Womp" << std::endl;
-        }
-
-
-    
-        //success &= _disable_magnetometer();
+        success &= enable_DRDY_INT();
 
         // Magnetometer init stage may fail once
         // Try at least 3 times before calling it off
+        // bool magn_initialized = false;
+        // for(int i = 0; i < 3; i++)
+        // {
+        //     magn_initialized = _magnetometer_init();
+        //     if(magn_initialized)
+        //         break;
+        // }
+        //success &= magn_initialized;
         
-        /*bool magn_initialized = false;
-        for(int i = 0; i < 3; i++)
-        {
-            magn_initialized = _magnetometer_init();
-            if(magn_initialized)
-                break;
-        }
-        success &= magn_initialized;
-
-        */
         return success;
-
-       
     }
 
 
@@ -131,7 +99,6 @@ namespace icm20948
         bool success = true;
 
         success &= _set_accel_sample_rate_div();
-        //success &= _write_byte(ICM20948_ACCEL_CONFIG_1_BANK, ICM20948_ACCEL_CONFIG_1_ADDR,0x0F);
         success &= _set_accel_range_dlpf();
         success &= _set_gyro_sample_rate_div();
         success &= _set_gyro_range_dlpf();
@@ -236,28 +203,14 @@ namespace icm20948
     bool ICM20948_I2C::_set_accel_sample_rate_div()
     {
         uint8_t lsb, msb;
-        settings.accel.sample_rate_div = 9;
-        lsb =  settings.accel.sample_rate_div & 0xFF;
-        msb = (settings.accel.sample_rate_div >> 8) & 0x0F;
-
-        // std::cout << settings.accel.sample_rate_div << std::endl;
-        //lsb = 0xFF;
-        //msb = 0x0F;
-
-        fprintf(stderr,"div=%x, lsb=%x, msb=%x\n",settings.accel.sample_rate_div,lsb,msb);
+        lsb =  settings.accel.sample_rate_div & 0xff;
+        msb = (settings.accel.sample_rate_div >> 8) & 0x0f;
 
         bool success = true;
 
         success &= _write_byte(ICM20948_ACCEL_SMPLRT_DIV_1_BANK, ICM20948_ACCEL_SMPLRT_DIV_1_ADDR, msb);
         success &= _write_byte(ICM20948_ACCEL_SMPLRT_DIV_2_BANK, ICM20948_ACCEL_SMPLRT_DIV_2_ADDR, lsb);
 
-        success &= _read_int_byte(ICM20948_ACCEL_SMPLRT_DIV_1_BANK, ICM20948_ACCEL_SMPLRT_DIV_1_ADDR,int_status);
-
-        fprintf(stderr, "msb=%x\n",int_status);
-
-        success &= _read_int_byte(ICM20948_ACCEL_SMPLRT_DIV_2_BANK, ICM20948_ACCEL_SMPLRT_DIV_2_ADDR,int_status);
-
-        fprintf(stderr, "lsb=%x\n",int_status);
         return success;
     }
 
@@ -265,8 +218,6 @@ namespace icm20948
     bool ICM20948_I2C::_set_accel_range_dlpf()
     {
         uint8_t byte = 0;
-
-        settings.accel.dlpf_enable = 1; //Enable ACCEL_FChoice
 
         byte |= !!((uint8_t)settings.accel.dlpf_enable);
         byte |= ((uint8_t)settings.accel.scale) << 1;
@@ -582,43 +533,6 @@ namespace icm20948
         return success;
     }
 
-    //Initialise Interrupt Registers
-    bool ICM20948_I2C::enable_wom_interrupt(uint8_t threshold){
-        bool success = true;
-
-        //Bank 0
-        success &= _set_bank(0);
-
-        //Enable WOM Interupt on Bit 3
-        success &= _write_byte(0, ICM20948_INT_ENABLE_ADDR, 0x08);
-
-        //Accel in low power
-        success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR, 0x00);
-
-        //bank 2
-        success &= _set_bank(2);
-        success &= _write_byte(2, ICM20948_ACCEL_WOM_THR_ADDR, threshold);
-
-        success &= _write_byte(2, ICM20948_ACCEL_INTEL_CTRL_ADDR, 0x03);
-
-        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x90);
-
-        return success;
-    }
-
-    bool ICM20948_I2C::check_wom_interrupt(){
-        if(!_read_int_byte(0, ICM20948_INT_STATUS_ADDR, int_status)){
-            std::cerr << "Couldn't read the INT_STATUS register" << std::endl;
-            return false;
-        }
-
-        //std::cout << "[DEBUG] INT_STATUS Register: 0x" << std::hex << (int)int_status << std::endl;
-        
-        //Bit 3 refers to Wake on Motion, if int_status is the same, return true - run callback
-        return (int_status & 0x08) != 0; //Bit 5 (WOM_INT) is set if motion detected
-
-    }
-
     bool ICM20948_I2C::enable_DRDY_INT(){
         bool success = true;
 
@@ -628,7 +542,7 @@ namespace icm20948
 
         success &= _write_byte(0,ICM20948_INT_ENABLE_1_ADDR,0x01);
 
-        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x10);
+        success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x30);
 
         return success;
     }
@@ -636,12 +550,12 @@ namespace icm20948
     bool ICM20948_I2C::check_DRDY_INT(){
         uint8_t int_status;
 
-        if (!_read_byte(0, ICM20948_INT_STATUS_ADDR, int_status)) {
+        if (!_read_byte(ICM20948_INT_STATUS_1_BANK, ICM20948_INT_STATUS_1_ADDR, int_status)) {
             std::cerr << "[ERROR] Failed to read INT_STATUS" << std::endl;
             return false;
         }
 
-        std::cout << "[DEBUG] INT_STATUS: 0x" <<std::hex << (int)int_status <<std::endl;
+        //std::cout << "[DEBUG] INT_STATUS: 0x" <<std::hex << (int)int_status <<std::endl;
 
         return (int_status & 0x20) != 0;
     }
@@ -650,6 +564,7 @@ namespace icm20948
     {
         uint8_t ret;
         bool success = _set_bank(bank);
+        int int_status;
         
         if(success)
         {
@@ -670,54 +585,4 @@ namespace icm20948
 
         return success;
     }
-
-    void ICM20948_I2C::Worker(){
-        while(running) {
-            // Block indefinitely until an event occurs.
-            //std::cout << "Start of Loop" << std::endl;
-            int ret = gpiod_line_event_wait(line, nullptr);
-            if(ret < 0) {
-                std::cerr << "Error waiting for event" << std::endl;
-                continue;
-            }
-            if(ret > 0) {
-                struct gpiod_line_event event;
-                if(gpiod_line_event_read(line, &event) < 0) {
-                    std::cerr << "Error reading event" << std::endl;
-                    continue;
-                }
-                // Process only falling edge events (i.e. when the pin goes LOW)
-                if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
-                    //Check WOM clears interrupt latch, by reading INT_STATUS
-                    if(check_wom_interrupt()) {
-                        //replace with Callbacks
-                        //std::cout << "Output" << std::endl;
-                        LightLED(LEDLine);
-                        //std::cout << "Hello" << std::endl;
-
-                        Counter ++;
-
-                        std::cout << Counter << " Hits have been detected" << std::endl;
-
-                    }
-                }
-            }
-        }
-    }
-
-    // void ICM20948_I2C::StartThread(){
-    //     thr = std::thread(&ICM20948_I2C::Worker,this);
-    // }
-    
-    void ICM20948_I2C::LightLED(gpiod_line* LEDLine) {
-        if (gpiod_line_set_value(LEDLine, 1)< 0){
-            std::cerr << "setting up LED high failed - womp womp" << std::endl;
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
-        if (gpiod_line_set_value(LEDLine, 0) < 0) {
-            std::cerr << "Canny turn it off - womp womp" << std::endl;
-        }
-    }
-
 }

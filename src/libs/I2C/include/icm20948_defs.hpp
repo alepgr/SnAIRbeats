@@ -30,6 +30,7 @@
 #define ICM20948_INT_ENABLE_3_BANK          0
 
 #define ICM20948_INT_STATUS_BANK            0
+#define ICM20948_INT_STATUS_1_BANK          0
 
 
 // Bank 2
@@ -91,8 +92,9 @@
 #define ICM20948_EXT_SLV_SENS_DATA_00_ADDR  0x3B
 
 #define ICM20948_INT_ENABLE_ADDR            0x10
-#define ICM20948_INT_ENABLE_1_ADDR            0x11
+#define ICM20948_INT_ENABLE_1_ADDR          0x11
 #define ICM20948_INT_STATUS_ADDR            0x19
+#define ICM20948_INT_STATUS_1_ADDR          0x1A
 
 // Addresses: Bank 2
 #define ICM20948_GYRO_SMPLRT_DIV_ADDR       0x00
