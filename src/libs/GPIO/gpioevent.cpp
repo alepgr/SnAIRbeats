@@ -3,13 +3,20 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <iomanip>
+#include <fstream>
+#include <cstdint>
+
+#include "../I2C/include/icm20948_i2c.hpp"
+#include "../I2C/include/icm20948_utils.hpp"
+
 
 namespace GPIOName {
 
-    GPIOClass::GPIOClass(const char* chipName, int InterruptPin, int LEDPin)
+    GPIOClass::GPIOClass(const char* chipName, int InterruptPin, int LEDPin, icm20948::ICM20948_I2C& sensor)
         : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
           InterruptPin(InterruptPin), LEDPin(LEDPin),
-          running(true), Counter(0)
+          running(true), Counter(0), sensor(sensor) 
     {
         chip = gpiod_chip_open_by_name(chipName);
         if (!chip) {
@@ -37,13 +44,30 @@ namespace GPIOName {
                     std::cerr << "Error reading event" << std::endl;
                     continue;
                 }
-                if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
+                if (event.event_type == GPIOD_LINE_EVENT_RISING_EDGE) {
                     Counter++;
                     std::cout << Counter << " Hits have been detected" << std::endl;
-                    //std::this_thread::sleep_for(std::chrono::milliseconds(4));
+                    
+                    sensor.check_DRDY_INT();
+
+                    if(!sensor.read_accel_gyro()){
+                        std::cout << "read_accel_gyro() failed!\nexiting..." << std::endl;
+                        break;
+                    }
+
+                    std::cout << std::setprecision(4)
+                              << "Accel:\n"
+                              << "  x = " << sensor.accel[0] << std::endl
+                              << "  y = " << sensor.accel[1] << std::endl
+                              << "  z = " << sensor.accel[2] << std::endl << std::endl;
+
+                    std::cout << std::setprecision(4)
+                              << "Gyro:\n"
+                              << "  x = " << sensor.gyro[0] << std::endl
+                              << "  y = " << sensor.gyro[1] << std::endl
+                              << "  z = " << sensor.gyro[2] << std::endl << std::endl;
                 }
             }
         }
     }
-
 }

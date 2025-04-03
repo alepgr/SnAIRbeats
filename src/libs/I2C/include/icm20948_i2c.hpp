@@ -20,17 +20,15 @@ namespace icm20948
             float _accel_scale_factor, _gyro_scale_factor, _magn_scale_factor;
 
             bool _write_byte(const uint8_t bank, const uint8_t reg, const uint8_t byte);
-            bool _read_int_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte);
             bool _read_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte);
-            bool _set_bank(uint8_t bank);            
             bool _write_bit(const uint8_t bank, const uint8_t reg, const uint8_t bit_pos, const bool bit);
             bool _read_bit(const uint8_t bank, const uint8_t reg, const uint8_t bit_pos, bool &bit);
             bool _read_block_bytes(const uint8_t bank, const uint8_t start_reg, uint8_t *bytes, const int length);
             bool _write_mag_byte(const uint8_t mag_reg, const uint8_t byte);
             bool _read_mag_byte(const uint8_t mag_reg, uint8_t &byte);
-            
+            bool _read_int_byte(const uint8_t bank, const uint8_t reg, uint8_t &byte);
 
-            
+            bool _set_bank(uint8_t bank);
             bool _set_accel_sample_rate_div();
             bool _set_accel_range_dlpf();
             bool _set_gyro_sample_rate_div();
@@ -41,13 +39,10 @@ namespace icm20948
             bool _magnetometer_set_mode();
             bool _magnetometer_configured();
             bool _magnetometer_set_readout();
-            bool _disable_magnetometer();
 
             bool _chip_i2c_master_reset();
 
-
         public:
-
             // Contains linear acceleration in m/s^2
             float accel[3];
             // Contains angular velocities in rad/s
@@ -59,7 +54,8 @@ namespace icm20948
             icm20948::settings settings;
 
             // Constructor
-            ICM20948_I2C(unsigned i2c_bus, unsigned i2c_address = ICM20948_I2C_ADDR, icm20948::settings settings = icm20948::settings());
+            ICM20948_I2C(unsigned i2c_bus, unsigned i2c_address = ICM20948_I2C_ADDR, icm20948::settings 
+                 = icm20948::settings());
 
             /**
              * @brief Initializes the ICM20948 sensor over I2C.
@@ -150,19 +146,9 @@ namespace icm20948
              */
             bool read_magn();
 
-            
-            bool enable_wom_interrupt(uint8_t threshold);
-            bool check_wom_interrupt();
-
             bool enable_DRDY_INT();
+
             bool check_DRDY_INT();
-
-            void Worker();
-            void LightLED(struct gpiod_line *ledLine);
-            void StartThread();
-
-        
-            
     };
 }
 
