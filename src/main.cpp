@@ -8,6 +8,8 @@
 
 #include "libs/ALSAAudio/include/AudioLib.hpp"
 
+#include "libs/IMUMaths/include/IMUMaths.hpp"
+
 //#include "libs/DataCollection/include/DataCollection.hpp"
 
 #include <iostream> 
@@ -22,9 +24,14 @@
 #define GPIO_CHIP "/dev/gpiochip0"
 #define GPIO_LINE 17
 
+//Object for I2C operations
 icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
 
-GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C);
+//Object for Maths operations, passing values in
+IMUMathsName::IMUMaths objMaths;
+
+//Object for GPIO operations
+GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C, objMaths);
 
 struct MyCallback : Libcam2OpenCV::Callback {
     Window* window = nullptr;
@@ -63,9 +70,10 @@ int main()
 
 
     // g_imu = &obj;
-    objI2C.settings.accel.sample_rate_div = 45 *5;
-    objI2C.settings.gyro.sample_rate_div = 44 * 5;
-    objI2C.settings.accel.scale = icm20948::ACCEL_2G;
+    objI2C.settings.accel.sample_rate_div = 0;
+    objI2C.settings.gyro.sample_rate_div = 0;
+    objI2C.settings.accel.scale = icm20948::ACCEL_16G;
+    objI2C.settings.gyro.scale = icm20948::GYRO_2000DPS;
     
     std::cout << "Object created!\n";
     if(objI2C.init())
