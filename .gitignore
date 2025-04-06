@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# CSVs
+*.csv
+
 # Ignore CMake-generated files
 CMakeCache.txt
 CMakeFiles/
