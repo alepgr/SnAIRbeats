@@ -7,7 +7,7 @@
 
 class Datacollection {
 public:
-    void CreateCSVfile(){    // Create a csv file to safe data 
+     std::string CreateCSVfile(){    // Create a csv file to safe data 
         std::string filename;
         std::cout<<"Enter filename to save sensor data:";
         std::getline(std::cin, filename);
@@ -16,7 +16,7 @@ public:
         }
         filename+=".csv"; // Add extension to filename
         std::ofstream file(filename, std::ios::trunc); // If the file exists erases the data first
-        file << "Timestamp (µs), Xacc, Yacc, Zacc, Xgyro, Ygyro, Zgyro\n"; //Hearde of the file 
+        file << "Timestamp (µs), Xacc, Yacc, Zacc, Xgyro, Ygyro, Zgyro\n"; //Header of the file 
         file.close();
         return filename;
     }
@@ -34,4 +34,4 @@ public:
         }
 
     }
-}
+};

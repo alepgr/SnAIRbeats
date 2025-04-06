@@ -3,6 +3,7 @@ add_subdirectory(libs/I2C)
 add_subdirectory(libs/cam2opencv)
 #add_subdirectory(libs/DataCollection)
 add_subdirectory(libs/ALSAAudio)
+add_subdirectory(libs/IMUMaths)
 
 find_package(PkgConfig REQUIRED)
 
@@ -36,6 +37,7 @@ target_link_libraries(SnairBeat PRIVATE
     ${LIBGPIOD_LIBRARIES} 
     ${ALSA_LIBRARIES}
     yaml-cpp
-    Qt5::Widgets)
+    Qt5::Widgets
+    IMUMATHS)
 
     
