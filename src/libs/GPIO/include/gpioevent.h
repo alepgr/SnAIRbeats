@@ -15,6 +15,8 @@
 
 #include "../../IMUMaths/include/IMUMaths.hpp"
 
+#include "../../PlayAudio/include/PlayAudio.hpp"
+
 namespace GPIOName {
     class GPIOClass {
     private:
@@ -29,7 +31,9 @@ namespace GPIOName {
     
     public:
         icm20948::ICM20948_I2C& sensor;
-        GPIOClass(const char* chipName, int InterruptPin, int LEDPin, icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths);
+        IMUMathsName::IMUMaths& Maths;
+        GPIOClass(const char* chipName, int InterruptPin, int LEDPin,
+             icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths);
         void Worker();
         void WorkerDataCollect();
         bool running;
