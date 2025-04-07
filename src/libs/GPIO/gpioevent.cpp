@@ -12,13 +12,16 @@
 
 #include "../IMUMaths/include/IMUMaths.hpp"
 
+#include "../PlayAudio/include/PlayAudio.hpp"
+
 
 namespace GPIOName {
 
-    GPIOClass::GPIOClass(const char* chipName, int InterruptPin, int LEDPin, icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths)
+    GPIOClass::GPIOClass(const char* chipName, int InterruptPin, int LEDPin,
+         icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths)
         : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
           InterruptPin(InterruptPin), LEDPin(LEDPin),
-          running(true), Counter(0), sensor(sensor) 
+          running(true), Counter(0), sensor(sensor), Maths(Maths) 
     {
         chip = gpiod_chip_open_by_name(chipName);
         if (!chip) {
@@ -106,7 +109,7 @@ namespace GPIOName {
 
     void GPIOClass::Worker() {
         bool Pause = false;
-        int Delay = 200;
+        int Delay = 20;
         while (running) {
             int ret = gpiod_line_event_wait(SensorLine, nullptr);
             if (ret < 0) {
@@ -130,6 +133,10 @@ namespace GPIOName {
                         break;
                     }
 
+                    // Runs the maths logic - Inputs acceleration data into Maths object
+                    // Needs to be in thread maybe??
+                    Maths.SoundChecker(sensor.accel[0], sensor.accel[1], sensor.accel[2]);
+
                     // std::cout << std::setprecision(4)
                     //           << "Accel:\n"
                     //           << "  x = " << sensor.accel[0] << std::endl
@@ -144,30 +151,32 @@ namespace GPIOName {
                     
 
                     //Change to case switch and make own class
-                    if (Pause == false){
-                        if (sensor.accel[0] <=-40 && sensor.accel[0] >=-45){
-                            std::thread soundThread(&GPIOClass::PlaySound, this);
-                            soundThread.detach();
-                            //std::this_thread::sleep_for(std::chrono::milliseconds(125));
-                            Pause = true;
-                            Counter = 0;
-                        } else if (sensor.accel[1] <=-40 && sensor.accel[1] >= -45){
-                            std::thread soundThread(&GPIOClass::PlaySoundHighTom, this);
-                            soundThread.detach();
-                            Pause = true;
-                            Counter = 0;
-                        } else if (sensor.accel[2] <= 20 && sensor.accel[2] >= 15){
-                            std::thread soundThread(&GPIOClass::PlaySoundCymbal, this);
-                            soundThread.detach();
-                            Pause = true;
-                            Counter = 0;
-                        }
-                    } else if (Pause == true){
-                        Counter ++;
-                        if (Counter == delay){
-                            Pause = false;
-                        }
-                    }
+
+
+                    // if (Pause == false){
+                    //     if (sensor.accel[0] <=-40 && sensor.accel[0] >=-45){
+                    //         std::thread soundThread(&GPIOClass::PlaySound, this);
+                    //         soundThread.detach();
+                    //         //std::this_thread::sleep_for(std::chrono::milliseconds(125));
+                    //         Pause = true;
+                    //         Counter = 0;
+                    //     } else if (sensor.accel[1] <=-40 && sensor.accel[1] >= -45){
+                    //         std::thread soundThread(&GPIOClass::PlaySoundHighTom, this);
+                    //         soundThread.detach();
+                    //         Pause = true;
+                    //         Counter = 0;
+                    //     } else if (sensor.accel[2] <= 20 && sensor.accel[2] >= 15){
+                    //         std::thread soundThread(&GPIOClass::PlaySoundCymbal, this);
+                    //         soundThread.detach();
+                    //         Pause = true;
+                    //         Counter = 0;
+                    //     }
+                    // } else if (Pause == true){
+                    //     Counter ++;
+                    //     if (Counter == delay){
+                    //         Pause = false;
+                    //     }
+                    // }
                 }
             }
         }

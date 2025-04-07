@@ -2,7 +2,7 @@ add_subdirectory(libs/GPIO)
 add_subdirectory(libs/I2C)
 add_subdirectory(libs/cam2opencv)
 #add_subdirectory(libs/DataCollection)
-add_subdirectory(libs/ALSAAudio)
+add_subdirectory(libs/PlayAudio)
 add_subdirectory(libs/IMUMaths)
 
 find_package(PkgConfig REQUIRED)
@@ -32,7 +32,7 @@ target_link_libraries(SnairBeat PRIVATE
     I2C 
     #DataCollection
     cam2opencv
-    ALSAAudio
+    PLAYAUDIO
     ${MRAA_LIBRARIES} 
     ${LIBGPIOD_LIBRARIES} 
     ${ALSA_LIBRARIES}

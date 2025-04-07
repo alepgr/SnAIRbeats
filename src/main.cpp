@@ -10,6 +10,8 @@
 
 #include "libs/IMUMaths/include/IMUMaths.hpp"
 
+#include "libs/PlayAudio/include/PlayAudio.hpp"
+
 //#include "libs/DataCollection/include/DataCollection.hpp"
 
 #include <iostream> 
@@ -27,8 +29,11 @@
 //Object for I2C operations
 icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
 
+//Object for Playing audio
+PlayAudioName::PlayAudio objAudio;
+
 //Object for Maths operations, passing values in
-IMUMathsName::IMUMaths objMaths;
+IMUMathsName::IMUMaths objMaths(&objAudio);
 
 //Object for GPIO operations
 GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C, objMaths);
