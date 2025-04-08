@@ -23,6 +23,10 @@
 
 #include <bitset>
 
+#include <QApplication>
+#include <QProcess>
+#include <QDebug>
+
 #define GPIO_CHIP "/dev/gpiochip0"
 #define GPIO_LINE 17
 
@@ -68,11 +72,31 @@ void ReadAccel(){
     return;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    // Creating an instance of the class, inside the namespace
-    
 
+    QApplication app(argc, argv);
+
+    //Libcam2OpenCV camera;
+    //MyCallback MyCallback;
+
+   //camera.registerCallback(&MyCallback);
+
+    //camera.start();
+    // Creating an instance of the class, inside the namespace
+
+
+    Window window;
+    window.show();
+    //QProcess process;
+
+
+
+    //process.start("libs/cam2opencv/qtviewer/qtviewer", QStringList());
+
+    // if (!process.waitForStarted()){
+    //     qDebug() << "Cannae open the window";
+    // }
 
     // g_imu = &obj;
     objI2C.settings.accel.sample_rate_div = 0;
@@ -101,6 +125,7 @@ int main()
     //objGPIO.CreateCSVfile();
     std::thread gpioThread(&GPIOName::GPIOClass::Worker, &objGPIO);
 
+    app.exec();
     //objGPIO.running = false;
 
     // Join the thread to clean up properly.
