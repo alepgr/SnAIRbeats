@@ -18,6 +18,7 @@ find_package(PkgConfig)
 
 find_package(OpenCV REQUIRED)
 
+
 pkg_check_modules(LIBCAMERA REQUIRED IMPORTED_TARGET libcamera)
 message(STATUS "libcamera library found:")
 message(STATUS "    version: ${LIBCAMERA_VERSION}")
@@ -28,15 +29,26 @@ message(STATUS "opencv:")
 message(STATUS "    version: ${OpenCV_VERSION}")
 message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 
+message(STATUS "OpenCV include path: ${OpenCV_INCLUDE_DIRS}")
+
 include_directories(${CMAKE_SOURCE_DIR} ${LIBCAMERA_INCLUDE_DIRS} ${OPENCV_INCLUDE_DIRS})
 include(GNUInstallDirs)
 
 add_subdirectory(metadataprinter)
 
-add_library(cam2opencv STATIC libcam2opencv.cpp)
+find_package(Qt5Widgets REQUIRED)
 
-target_link_libraries(cam2opencv PkgConfig::LIBCAMERA)
-target_link_libraries(cam2opencv ${OpenCV_LIBS})
+add_library(cam2opencv STATIC libcam2opencv.cpp qtviewer/window.cpp)
+
+target_include_directories(cam2opencv SYSTEM BEFORE PUBLIC
+    /usr/include/aarch64-linux-gnu/qt5/QtCore
+    /usr/include/aarch64-linux-gnu/qt5
+    ${Qt5Widgets_INCLUDE_DIRS}
+)
+
+target_link_libraries(cam2opencv PkgConfig::LIBCAMERA Qt5::Widgets /usr/lib/libqwt-qt5.so ${OpenCV_LIBS})
+# target_link_libraries(cam2opencv ${OpenCV_LIBS})
+
 
 set_target_properties(cam2opencv PROPERTIES
   PUBLIC_HEADER libcam2opencv.h)

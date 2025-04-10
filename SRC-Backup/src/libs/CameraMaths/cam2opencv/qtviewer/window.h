@@ -2,7 +2,7 @@
 #define WINDOW_H
 
 #include <qwt/qwt_thermo.h>
-
+#include <QWidget> 
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QLabel>

@@ -1,4 +1,5 @@
 #include "window.h"
+#include <QWidget>  
 
 Window::Window()
 {
