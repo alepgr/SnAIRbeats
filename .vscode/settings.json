@@ -67,6 +67,7 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "qlabel": "cpp"
+        "qlabel": "cpp",
+        "any": "cpp"
     }
 }
