@@ -12,3 +12,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 #include_directories(/usr/include/aarch64-linux-gnu/qt5)
 
 add_subdirectory(src)
+add_subdirectory(tests)
+
+enable_testing()

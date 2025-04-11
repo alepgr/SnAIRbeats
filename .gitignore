@@ -34,6 +34,17 @@
 # CSVs
 *.csv
 
+# Doxygen
+*.html
+*.js
+*.md5
+*.png
+*.map
+*.css
+*.svg
+*.inter
+*.make
+
 # Ignore CMake-generated files
 CMakeCache.txt
 CMakeFiles/

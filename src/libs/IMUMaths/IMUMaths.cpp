@@ -13,6 +13,12 @@ int delay = 100;
 namespace IMUMathsName{
 
     //IMUMaths::IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio) {}
+    //Constructor to bring Audio object in and play sounds using it
+    IMUMaths::IMUMaths(AudioPlayerName::AudioPlayer& Audio)
+        :Audio(Audio)
+    {
+
+    }
 
     bool IMUMaths::QuadraticSum(float X, float Y, float Z){
         float QuadAccel = std::sqrt((X*X) + (Y*Y) + (Z*Z));
@@ -30,19 +36,28 @@ namespace IMUMathsName{
         if (Pause == false){
             if (X <=-40 && X >=-45){
                 //Play snare drum on X
-                std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
+                //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
+                std::thread soundThread([this]() {
+                    this->Audio.playFile("src/libs/ALSAPlayer/include/SnareDrum.wav");
+                });
                 soundThread.detach();
                 Pause = true;
                 Counter = 0;
             } else if (Y <=-40 && Y >= -45){
                 // Play high tom on Y
-                std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
+                //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
+                std::thread soundThread([this]() {
+                    this->Audio.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
+                });
                 soundThread.detach();
                 Pause = true;
                 Counter = 0;
             } else if (Z <=20 && Z >= 15){
                 //Play crash cymbal on Z
-                std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
+                //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
+                std::thread soundThread([this]() {
+                    this->Audio.playFile("src/libs/ALSAPlayer/include/CrashCymbal.wav");
+                });
                 soundThread.detach();
                 Pause = true;
                 Counter = 0;

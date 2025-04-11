@@ -9,6 +9,8 @@
 
 #include "libs/PlayAudio/include/PlayAudio.hpp"
 
+#include "libs/ALSAPlayer/include/ALSAPlayer.hpp"
+
 #include <iostream> 
 #include <iomanip>
 #include <gpiod.h>
@@ -20,20 +22,34 @@
 #define GPIO_CHIP "/dev/gpiochip0"
 #define GPIO_LINE 17
 
-//Object for I2C operations
-icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
 
-//Object for Playing audio
-PlayAudioName::PlayAudio objAudio;
-
-//Object for Maths operations, passing values in
-IMUMathsName::IMUMaths objMaths(&objAudio);
-
-//Object for GPIO operations
-GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C, objMaths);
 
 int main()
 {
+
+    //Object for I2C operations
+    icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
+
+    //Object for Playing audio
+    PlayAudioName::PlayAudio objAudio;
+
+    //std::cout << "Hello" << std::endl;
+
+    //Object for ALSA Audio Player
+    AudioPlayerName::AudioPlayer objALSA("plughw:2,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
+
+    //Object for Maths operations, passing values in
+    IMUMathsName::IMUMaths objMaths(objALSA);
+
+    //Object for GPIO operations
+    GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C, objMaths);
+
+    objALSA.open();
+    // objALSA.playFile("src/libs/ALSAPlayer/include/SnareDrum.wav");
+    // objALSA.playFile("src/libs/ALSAPlayer/include/CrashCymbal.wav");
+    
+    // objALSA.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
+
     objI2C.settings.accel.sample_rate_div = 0;
     objI2C.settings.gyro.sample_rate_div = 0;
     objI2C.settings.accel.scale = icm20948::ACCEL_16G;

@@ -2,6 +2,7 @@ add_subdirectory(libs/GPIO)
 add_subdirectory(libs/I2C)
 add_subdirectory(libs/PlayAudio)
 add_subdirectory(libs/IMUMaths)
+add_subdirectory(libs/ALSAPlayer)
 
 find_package(PkgConfig REQUIRED)
 
@@ -26,6 +27,7 @@ target_link_libraries(SnairBeat PRIVATE
     ${LIBGPIOD_LIBRARIES} 
     ${ALSA_LIBRARIES}
     yaml-cpp
-    IMUMATHS)
+    IMUMATHS
+    ALSAPlayer)
 
     
