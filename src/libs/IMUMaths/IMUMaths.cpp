@@ -5,8 +5,6 @@
 #include <cmath>
 #include <thread>
 
-bool Pause = false;
-int Counter = 0;
 
 //How many samples to wait before another sound trigger
 int delay = 100;
@@ -15,7 +13,7 @@ namespace IMUMathsName{
     //IMUMaths::IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio) {}
     //Constructor to bring Audio object in and play sounds using it
     IMUMaths::IMUMaths(AudioPlayerName::AudioPlayer& Audio)
-        :Audio(Audio)
+        :Audio(Audio), LastFilePlayed(0)
     {
 
     }
@@ -33,7 +31,7 @@ namespace IMUMathsName{
     }
 
     void IMUMaths::SoundChecker(float X, float Y, float Z){
-        if (Pause == false){
+        if (!Pause){
             if (X <=-40 && X >=-45){
                 //Play snare drum on X
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
@@ -43,6 +41,8 @@ namespace IMUMathsName{
                 soundThread.detach();
                 Pause = true;
                 Counter = 0;
+                LastFilePlayed = 1;
+                std::cout << LastFilePlayed << std::endl;
             } else if (Y <=-40 && Y >= -45){
                 // Play high tom on Y
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
@@ -52,6 +52,8 @@ namespace IMUMathsName{
                 soundThread.detach();
                 Pause = true;
                 Counter = 0;
+                LastFilePlayed = 2;
+                std::cout << LastFilePlayed << std::endl;
             } else if (Z <=20 && Z >= 15){
                 //Play crash cymbal on Z
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
@@ -61,14 +63,16 @@ namespace IMUMathsName{
                 soundThread.detach();
                 Pause = true;
                 Counter = 0;
+                LastFilePlayed = 3;
+                std::cout << LastFilePlayed << std::endl;
             }
-        } else if (Pause == true){
+        } else if (Pause){
             Counter ++;
             if (Counter == delay){
                 Pause = false;
             }
-        }
-
+        } 
+        //std::cout << LastFilePlayed << std::endl;
     }
     
 }

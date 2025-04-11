@@ -26,11 +26,13 @@ namespace IMUMathsName {
         std::array<float, 10>bufferY;
         std::array<float, 10>bufferZ;
 
+        int LastFilePlayed;
+
         void SoundChecker(float X, float Y, float Z);
         
 
-        bool Pause = true;
-        int Counter = true;
+        bool Pause = false;
+        int Counter = 0;
 
 
     };

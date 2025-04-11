@@ -33,8 +33,6 @@ int main()
     //Object for Playing audio
     PlayAudioName::PlayAudio objAudio;
 
-    //std::cout << "Hello" << std::endl;
-
     //Object for ALSA Audio Player
     AudioPlayerName::AudioPlayer objALSA("plughw:2,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
 
