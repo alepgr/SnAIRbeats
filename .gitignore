@@ -45,6 +45,9 @@
 *.inter
 *.make
 
+# Tests
+*.log
+
 # Ignore CMake-generated files
 CMakeCache.txt
 CMakeFiles/
