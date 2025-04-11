@@ -8,6 +8,8 @@
 
 #include "../../PlayAudio/include/PlayAudio.hpp"
 
+#include "../../ALSAPlayer/include/ALSAPlayer.hpp"
+
 
 namespace IMUMathsName {
     class IMUMaths{
@@ -16,7 +18,9 @@ namespace IMUMathsName {
         PlayAudioName::PlayAudio* audioPtr;
 
         public:
-        explicit IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio) {}
+        AudioPlayerName::AudioPlayer &Audio;
+        IMUMaths(AudioPlayerName::AudioPlayer &Audio);
+        //explicit IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio);
         bool QuadraticSum(float X, float Y, float Z);
         std::array<float, 10>bufferX;
         std::array<float, 10>bufferY;

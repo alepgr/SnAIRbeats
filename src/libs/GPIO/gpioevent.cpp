@@ -15,13 +15,14 @@
 #include "../PlayAudio/include/PlayAudio.hpp"
 
 
+
 namespace GPIOName {
 
     GPIOClass::GPIOClass(const char* chipName, int InterruptPin, int LEDPin,
          icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths)
         : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
           InterruptPin(InterruptPin), LEDPin(LEDPin),
-          running(true), Counter(0), sensor(sensor), Maths(Maths) 
+          running(true), Counter(0), sensor(sensor), Maths(Maths)
     {
         chip = gpiod_chip_open_by_name(chipName);
         if (!chip) {
