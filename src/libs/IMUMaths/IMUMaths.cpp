@@ -42,7 +42,7 @@ namespace IMUMathsName{
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 1;
-                std::cout << LastFilePlayed << std::endl;
+                //std::cout << LastFilePlayed << std::endl;
             } else if (Y <=-40 && Y >= -45){
                 // Play high tom on Y
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
@@ -53,7 +53,7 @@ namespace IMUMathsName{
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 2;
-                std::cout << LastFilePlayed << std::endl;
+                //std::cout << LastFilePlayed << std::endl;
             } else if (Z <=20 && Z >= 15){
                 //Play crash cymbal on Z
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
@@ -64,7 +64,7 @@ namespace IMUMathsName{
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 3;
-                std::cout << LastFilePlayed << std::endl;
+                //std::cout << LastFilePlayed << std::endl;
             }
         } else if (Pause){
             Counter ++;

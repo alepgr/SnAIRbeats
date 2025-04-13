@@ -34,7 +34,7 @@ int main()
     PlayAudioName::PlayAudio objAudio;
 
     //Object for ALSA Audio Player
-    AudioPlayerName::AudioPlayer objALSA("plughw:2,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
+    AudioPlayerName::AudioPlayer objALSA("plughw:0,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
 
     //Object for Maths operations, passing values in
     IMUMathsName::IMUMaths objMaths(objALSA);
