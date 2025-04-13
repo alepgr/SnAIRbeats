@@ -67,7 +67,26 @@ cd src/libs/ALSAPlayer/include
 ls
 ```
 
+# Libraries
+Here is a small description of each of the libraries used within the project and what they are used for.
 
+## ALSAPlayer
+ALSAPlayer takes .wav files from inside its [include folder](src/libs/ALSAPlayer/include/) and converts them into audio buffers using the ConvertFiles function.  
+
+Audio devices are opened using the Open function which once finished can be used to player the created audiobuffers using the playFile function. The playFile function is built to play small audios and will interrupt itself, cancelling whatever is playing to play the next audio. This is much easier for SnAIRBeats compared to mixing as the interrupt of the drum notes is not noticable to the human ear, especially with the sample delay between each hit.
+
+## GPIO
+The GPIO library initialises the GPIO pins of the Raspberry Pi. Using [libgpiod](https://libgpiod.readthedocs.io/en/latest/), an event driven interrupt function called "worker" is used to read one of the GPIO pins for a HIGH value. The function is blocked until a rising edge event is seen in the GPIO pin selected in the constructor.  
+
+The interrupt is data-ready based and therefore wakes whenever new data is available from the sensor. Within the constructor, 2 objects were passed in, the Maths object and the I2C-IMU driver. The new data is read from the IMU's registers using a read function and passed into a callback which inputs the data into the maths object to be thresholded.
+
+## I2C
+The I2C library is a driver written specifically for the [ICM-20948 chip](https://invensense.tdk.com/wp-content/uploads/2016/06/DS-000189-ICM-20948-v1.3.pdf) seen within the SEN 15335 IMU and is very heavily based off of driver written by [NTKot](https://github.com/NTkot) found at [https://github.com/NTkot/icm20948_i2c](https://github.com/NTkot/icm20948_i2c) with the Raw-Data-Ready interrupt turned on and the magnetometer turned off.
+
+For each sensor used within the system, an object from this driver is built with a separate I2C address to differentiate between the two. These objects come with pre-built functions, must useful is the Read_Accel_Gyro which reads the registers of the IMU and stores the values in a variable within the object. These variables are what are passed into the IMUMaths callback through the GPIO worker whenever data is ready.
+
+## IMUMaths
+This libary was written to threshold the data that came through from the GPIO worker and has two main goals. Firstly it reads the data passed through and checks whether any of the values correlate to a hit and then play the corresponding audio from the ALSAAudio object. It also contains a sample delay to stop multiple sounds being played from the same hit. This is achieved using a simple boolean that is turned true after a hit is detected and waits a set number of samples before the boolean flips back, allowing another hit to be detected.
 # Media
 * [Instagram](https://www.instagram.com/snairbeats/)
 * [TikTok](https://www.tiktok.com/@snairbeats?_t=ZN-8uF2Rv9Fbuw&_r=1)
@@ -78,3 +97,6 @@ ls
 * Aleksander Zahariev
 * Mohammed Alqabandi
 * Renata Cia Sanches Loberto
+
+# Licenses
+The IMU driver has been adapted from the driver written by [NTKot](https://github.com/NTkot) and can be found at [https://github.com/NTkot/icm20948_i2c](https://github.com/NTkot/icm20948_i2c)
