@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <fstream>
 #include <cstdint>
+#include <functional>
 
 #include "../../I2C/include/icm20948_i2c.hpp"
 #include "../../I2C/include/icm20948_utils.hpp"
@@ -18,6 +19,8 @@
 #include "../../PlayAudio/include/PlayAudio.hpp"
 
 namespace GPIOName {
+
+    typedef void (*GPIOCallback)(void* context, float, float, float);
     class GPIOClass {
     private:
         gpiod_chip* chip;
@@ -32,6 +35,9 @@ namespace GPIOName {
     public:
         icm20948::ICM20948_I2C& sensor;
         IMUMathsName::IMUMaths& Maths;
+        
+        GPIOCallback callback;
+        void* CallbackFunction;
 
         //Constructor
         GPIOClass(const char* chipName, int InterruptPin, int LEDPin,
@@ -59,11 +65,12 @@ namespace GPIOName {
          */
         void WorkerDataCollect();
         bool running;
-
+        void SetCallback(GPIOCallback cb, void* context);
+        static void IMUMathsCallback(void* context, float X, float Y, float Z){
+            IMUMathsName::IMUMaths* maths = static_cast<IMUMathsName::IMUMaths*>(context);
+            maths->SoundChecker(X,Y,Z);
+        }
         
-        void PlaySound();
-        void PlaySoundCymbal();
-        void PlaySoundHighTom();
     };
 }
 

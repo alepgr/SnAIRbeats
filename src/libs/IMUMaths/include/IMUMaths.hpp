@@ -5,6 +5,7 @@
 #include <iostream> 
 #include <array>
 #include <iomanip>
+#include <functional>
 
 #include "../../PlayAudio/include/PlayAudio.hpp"
 
@@ -16,20 +17,20 @@ namespace IMUMathsName {
         private:
         
         PlayAudioName::PlayAudio* audioPtr;
+        std::function<void(const std::string&)> PlayFileCallback;
 
         public:
         AudioPlayerName::AudioPlayer &Audio;
         IMUMaths(AudioPlayerName::AudioPlayer &Audio);
-        //explicit IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio);
-        bool QuadraticSum(float X, float Y, float Z);
-        std::array<float, 10>bufferX;
-        std::array<float, 10>bufferY;
-        std::array<float, 10>bufferZ;
 
         int LastFilePlayed;
 
         void SoundChecker(float X, float Y, float Z);
         
+        void SetPlayFileCallback(const std::function<void(const std::string&)>& cb);
+
+
+
 
         bool Pause = false;
         int Counter = 0;
