@@ -137,67 +137,8 @@ namespace GPIOName {
                     // Runs the maths logic - Inputs acceleration data into Maths object
                     // Needs to be in thread maybe??
                     Maths.SoundChecker(sensor.accel[0], sensor.accel[1], sensor.accel[2]);
-
-                    // std::cout << std::setprecision(4)
-                    //           << "Accel:\n"
-                    //           << "  x = " << sensor.accel[0] << std::endl
-                    //           << "  y = " << sensor.accel[1] << std::endl
-                    //           << "  z = " << sensor.accel[2] << std::endl << std::endl;
-
-                    // std::cout << std::setprecision(4)
-                    //           << "Gyro:\n"
-                    //           << "  x = " << sensor.gyro[0] << std::endl
-                    //           << "  y = " << sensor.gyro[1] << std::endl
-                    //           << "  z = " << sensor.gyro[2] << std::endl << std::endl;
-                    
-
-                    //Change to case switch and make own class
-
-
-                    // if (Pause == false){
-                    //     if (sensor.accel[0] <=-40 && sensor.accel[0] >=-45){
-                    //         std::thread soundThread(&GPIOClass::PlaySound, this);
-                    //         soundThread.detach();
-                    //         //std::this_thread::sleep_for(std::chrono::milliseconds(125));
-                    //         Pause = true;
-                    //         Counter = 0;
-                    //     } else if (sensor.accel[1] <=-40 && sensor.accel[1] >= -45){
-                    //         std::thread soundThread(&GPIOClass::PlaySoundHighTom, this);
-                    //         soundThread.detach();
-                    //         Pause = true;
-                    //         Counter = 0;
-                    //     } else if (sensor.accel[2] <= 20 && sensor.accel[2] >= 15){
-                    //         std::thread soundThread(&GPIOClass::PlaySoundCymbal, this);
-                    //         soundThread.detach();
-                    //         Pause = true;
-                    //         Counter = 0;
-                    //     }
-                    // } else if (Pause == true){
-                    //     Counter ++;
-                    //     if (Counter == delay){
-                    //         Pause = false;
-                    //     }
-                    // }
                 }
             }
         }
-    }
-
-    void GPIOClass::PlaySound() {
-        //int retkill = system("killall aplay");
-        //int ret = system("aplay -D plughw:0,0 src/libs/GPIO/include/SnareDrum2.wav &");
-        int ret = system("aplay -D pulse src/libs/GPIO/include/SnareDrum3.wav");
-    }
-
-    void GPIOClass::PlaySoundCymbal() {
-        //int retkill = system("killall aplay");
-        //int ret = system("aplay -D plughw:0,0 src/libs/GPIO/include/SnareDrum2.wav &");
-        int ret = system("aplay -D pulse src/libs/GPIO/include/CrashCymbal.wav");
-    }
-
-    void GPIOClass::PlaySoundHighTom() {
-        //int retkill = system("killall aplay");
-        //int ret = system("aplay -D plughw:0,0 src/libs/GPIO/include/SnareDrum2.wav &");
-        int ret = system("aplay -D pulse src/libs/GPIO/include/HighTom.wav");
     }
 }

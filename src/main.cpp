@@ -59,7 +59,7 @@ int main()
         std::cout << "Hurray!" << std::endl;
 
         if (objI2C.enable_DRDY_INT()){
-            std::cout << "WOM Interrupt Enabled" << std::endl;
+            std::cout << "Data Ready Interrupt enabled" << std::endl;
         } else {
             std::cerr <<"Failed to enable WOM interrupt" << std::endl;
         }
@@ -68,7 +68,7 @@ int main()
         return -1;
     }
 
-
+    //Thread for IMU worker 1
     std::thread gpioThread(&GPIOName::GPIOClass::Worker, &objGPIO);
 
     //objGPIO.running = false;
