@@ -1,3 +1,5 @@
+![Snairbeats logo](FIGURES/logo.png)
+
 # SnAIRbeats
 SnAirBeats is a next generation methods to practice the drum kit, while reducing noise and space required to do so. The SnAirBeat set uses intertial measurement units (IMU) within the sticks to track their movement and play a corresponding drum, not requiring any physical hitting like modern electric drum sets need.
 
@@ -87,6 +89,10 @@ For each sensor used within the system, an object from this driver is built with
 
 ## IMUMaths
 This libary was written to threshold the data that came through from the GPIO worker and has two main goals. Firstly it reads the data passed through and checks whether any of the values correlate to a hit and then play the corresponding audio from the ALSAAudio object. It also contains a sample delay to stop multiple sounds being played from the same hit. This is achieved using a simple boolean that is turned true after a hit is detected and waits a set number of samples before the boolean flips back, allowing another hit to be detected.
+
+# Sponsorship and funding
+We are very grateful for RS Components for providing us with components that allowed us to complete this project.
+
 # Media
 * [Instagram](https://www.instagram.com/snairbeats/)
 * [TikTok](https://www.tiktok.com/@snairbeats?_t=ZN-8uF2Rv9Fbuw&_r=1)
@@ -94,7 +100,7 @@ This libary was written to threshold the data that came through from the GPIO wo
 # Authors and contributions
 * Calum Robertson
 * Alejandra Paja Garcia
-* Aleksander Zahariev
+* Aleksandar Zahariev
 * Mohammed Alqabandi
 * Renata Cia Sanches Loberto
 

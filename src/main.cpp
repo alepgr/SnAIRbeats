@@ -17,11 +17,44 @@
 
 #include <chrono>
 #include <thread>
+#include <string>
+
 
 #include <bitset>
 #define GPIO_CHIP "/dev/gpiochip0"
 #define GPIO_LINE 17
 
+
+void KeyboardInterrupt() {
+    std::string input;
+    while (true) {
+        std::cout << "Press 'q' to quit: " << std::endl;
+        std::cin >> input;
+        if (input == "q" || input == "Q") {
+            Cleanup();
+            std::cout << "Everything closed." << std::endl;
+            break;
+        }
+    }
+}
+
+void Cleanup() {
+    std::cout << "Quitting..." << std::endl;
+    // Might need to redo all this and check destructors
+    
+    icm20948::ICM20948_I2C &i2c,
+    PlayAudioName::PlayAudio &audio,
+    AudioPlayerName::AudioPlayer &alsa,
+    IMUMathsName::IMUMaths &maths,
+    GPIOName::GPIOClass &gpio
+    {   
+        maths.Close();
+        audio.Close();
+        alsa.close();
+        i2c.close();
+        gpio.close();
+    }
+    }
 
 
 int main()
@@ -70,12 +103,15 @@ int main()
 
     //Thread for IMU worker 1
     std::thread gpioThread(&GPIOName::GPIOClass::Worker, &objGPIO);
+    std::thread keyboardThread(KeyboardInterrupt);
 
     //objGPIO.running = false;
 
-    // Join the thread to clean up properly.
+    // Join threads to clean up properly.
     if (gpioThread.joinable())
         gpioThread.join();
+    if (keyboardThread.joinable())
+        keyboardThread.join();
 
     std::cout << "Exiting program" << std::endl;
     return 0;
