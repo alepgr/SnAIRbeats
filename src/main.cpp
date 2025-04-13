@@ -24,6 +24,21 @@
 #define GPIO_CHIP "/dev/gpiochip0"
 #define GPIO_LINE 17
 
+//Object for I2C operations
+icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
+
+//Object for Playing audio
+PlayAudioName::PlayAudio objAudio;
+
+//Object for ALSA Audio Player
+AudioPlayerName::AudioPlayer objALSA("plughw:0,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
+
+//Object for Maths operations, passing values in
+IMUMathsName::IMUMaths objMaths(objALSA);
+
+//Object for GPIO operations
+GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C, objMaths);
+
 
 void KeyboardInterrupt() {
     std::string input;
@@ -41,44 +56,19 @@ void KeyboardInterrupt() {
 void Cleanup() {
     std::cout << "Quitting..." << std::endl;
     // Might need to redo all this and check destructors
-    
-    icm20948::ICM20948_I2C &i2c,
-    PlayAudioName::PlayAudio &audio,
-    AudioPlayerName::AudioPlayer &alsa,
-    IMUMathsName::IMUMaths &maths,
-    GPIOName::GPIOClass &gpio
-    {   
-        maths.Close();
-        audio.Close();
-        alsa.close();
-        i2c.close();
-        gpio.close();
-    }
-    }
+    objI2C.Close();
+    objAudio.Close();
+    objALSA.close();
+    objMaths.Close();
+    objGPIO.Close();
+}
 
 
-int main()
-{
-
-    //Object for I2C operations
-    icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
-
-    //Object for Playing audio
-    PlayAudioName::PlayAudio objAudio;
-
-    //Object for ALSA Audio Player
-    AudioPlayerName::AudioPlayer objALSA("plughw:0,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
-
-    //Object for Maths operations, passing values in
-    IMUMathsName::IMUMaths objMaths(objALSA);
-
-    //Object for GPIO operations
-    GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C, objMaths);
+int main() {
 
     objALSA.open();
     // objALSA.playFile("src/libs/ALSAPlayer/include/SnareDrum.wav");
     // objALSA.playFile("src/libs/ALSAPlayer/include/CrashCymbal.wav");
-    
     // objALSA.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
 
     objI2C.settings.accel.sample_rate_div = 0;
@@ -103,6 +93,8 @@ int main()
 
     //Thread for IMU worker 1
     std::thread gpioThread(&GPIOName::GPIOClass::Worker, &objGPIO);
+
+    // Thread for keyboard interrupt
     std::thread keyboardThread(KeyboardInterrupt);
 
     //objGPIO.running = false;
