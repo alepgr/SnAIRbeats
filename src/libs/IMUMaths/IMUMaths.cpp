@@ -7,7 +7,7 @@
 
 
 //How many samples to wait before another sound trigger
-int delay = 100;
+int delay = 40;
 namespace IMUMathsName{
 
     //IMUMaths::IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio) {}
@@ -15,20 +15,15 @@ namespace IMUMathsName{
     IMUMaths::IMUMaths(AudioPlayerName::AudioPlayer& Audio)
         :Audio(Audio), LastFilePlayed(0)
     {
-
+        SetPlayFileCallback([this](const std::string& FilePath){
+            this->Audio.playFile(FilePath);
+        });
     }
 
-    bool IMUMaths::QuadraticSum(float X, float Y, float Z){
-        float QuadAccel = std::sqrt((X*X) + (Y*Y) + (Z*Z));
-
-
-        // Play a sound if the acceleration is high enough
-        if (QuadAccel > 15){
-            return 1;
-        } else {
-            return 0;
-        }
+    void IMUMaths::SetPlayFileCallback(const std::function<void(const std::string&)>& cb){
+        PlayFileCallback = cb;
     }
+
 
     void IMUMaths::SoundChecker(float X, float Y, float Z){
         if (!Pause){
@@ -36,7 +31,7 @@ namespace IMUMathsName{
                 //Play snare drum on X
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
                 std::thread soundThread([this]() {
-                    this->Audio.playFile("src/libs/ALSAPlayer/include/SnareDrum.wav");
+                    PlayFileCallback("src/libs/ALSAPlayer/include/SnareDrum.wav");
                 });
                 soundThread.detach();
                 Pause = true;
@@ -46,8 +41,11 @@ namespace IMUMathsName{
             } else if (Y <=-40 && Y >= -45){
                 // Play high tom on Y
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
+                // std::thread soundThread([this]() {
+                //     this->Audio.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
+                // });
                 std::thread soundThread([this]() {
-                    this->Audio.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
+                    PlayFileCallback("src/libs/ALSAPlayer/include/HighTom.wav");
                 });
                 soundThread.detach();
                 Pause = true;
@@ -58,7 +56,7 @@ namespace IMUMathsName{
                 //Play crash cymbal on Z
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
                 std::thread soundThread([this]() {
-                    this->Audio.playFile("src/libs/ALSAPlayer/include/CrashCymbal.wav");
+                    PlayFileCallback("src/libs/ALSAPlayer/include/CrashCymbal.wav");
                 });
                 soundThread.detach();
                 Pause = true;

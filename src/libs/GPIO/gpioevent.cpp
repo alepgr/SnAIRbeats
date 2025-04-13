@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <fstream>
 #include <cstdint>
+#include <functional>
 
 #include "../I2C/include/icm20948_i2c.hpp"
 #include "../I2C/include/icm20948_utils.hpp"
@@ -22,7 +23,8 @@ namespace GPIOName {
          icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths)
         : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
           InterruptPin(InterruptPin), LEDPin(LEDPin),
-          running(true), Counter(0), sensor(sensor), Maths(Maths)
+          running(true), Counter(0), sensor(sensor), Maths(Maths),
+          callback(nullptr), CallbackFunction(nullptr)
     {
         chip = gpiod_chip_open_by_name(chipName);
         if (!chip) {
@@ -35,7 +37,18 @@ namespace GPIOName {
         if (gpiod_line_request_both_edges_events(SensorLine, "sensor") < 0) {
             std::cerr << "[ERROR] Could not request events for sensor line - womp womp" << std::endl;
         }
+
+        SetCallback(&IMUMathsCallback, static_cast<void*>(&Maths));
+
     }
+
+    
+    void GPIOClass::SetCallback(GPIOCallback cb, void* context){
+        callback = cb;
+        CallbackFunction = context;
+    };
+
+
 
     void GPIOClass::WorkerDataCollect() {
         // CSV file create
@@ -136,9 +149,11 @@ namespace GPIOName {
 
                     // Runs the maths logic - Inputs acceleration data into Maths object
                     // Needs to be in thread maybe??
-                    Maths.SoundChecker(sensor.accel[0], sensor.accel[1], sensor.accel[2]);
-                }
+                    //Maths.SoundChecker(sensor.accel[0], sensor.accel[1], sensor.accel[2]);
+                    callback(CallbackFunction, sensor.accel[0], sensor.accel[1], sensor.accel[2]);
+                }   
             }
         }
-    }
+    };
+
 }

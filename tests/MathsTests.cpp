@@ -10,23 +10,23 @@ public:
     }
 };
 // threshold set to 15
-TEST(MathsTests, TestQuadraticSumTrueAboveThreshold) {
-    DummyAudioPlayer audio; 
-    IMUMathsName::IMUMaths IMUmaths(audio);
+// TEST(MathsTests, TestQuadraticSumTrueAboveThreshold) {
+//     DummyAudioPlayer audio; 
+//     IMUMathsName::IMUMaths IMUmaths(audio);
 
-    // Set values so that sqrt(300) = 17.3, above threshold
-    float x = 10.0, y = 10.0, z = 10.0;
-    EXPECT_TRUE(IMUmaths.QuadraticSum(x, y, z));
-}
+//     // Set values so that sqrt(300) = 17.3, above threshold
+//     float x = 10.0, y = 10.0, z = 10.0;
+//     EXPECT_TRUE(IMUmaths.QuadraticSum(x, y, z));
+// }
 
-TEST(MathsTests, TestQuadraticSumFalseBelowThreshold) {
-    DummyAudioPlayer audio;
-    IMUMathsName::IMUMaths IMUmaths(audio); 
+// TEST(MathsTests, TestQuadraticSumFalseBelowThreshold) {
+//     DummyAudioPlayer audio;
+//     IMUMathsName::IMUMaths IMUmaths(audio); 
 
-    // Set values so that sqrt(3) = 1.73, below threshold 
-    float x = 1.0, y = 1.0, z = 1.0;
-    EXPECT_FALSE(IMUmaths.QuadraticSum(x, y, z));
-}
+//     // Set values so that sqrt(3) = 1.73, below threshold 
+//     float x = 1.0, y = 1.0, z = 1.0;
+//     EXPECT_FALSE(IMUmaths.QuadraticSum(x, y, z));
+// }
 
 TEST(MathsTests, TestSoundSnare) {
     DummyAudioPlayer audio;
