@@ -19,10 +19,10 @@
 
 namespace GPIOName {
 
-    GPIOClass::GPIOClass(const char* chipName, int InterruptPin, int LEDPin,
+    GPIOClass::GPIOClass(const char* chipName, int InterruptPin,
          icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths)
         : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
-          InterruptPin(InterruptPin), LEDPin(LEDPin),
+          InterruptPin(InterruptPin),
           running(true), Counter(0), sensor(sensor), Maths(Maths),
           callback(nullptr), CallbackFunction(nullptr)
     {
@@ -155,5 +155,9 @@ namespace GPIOName {
             }
         }
     };
+
+    void GPIOClass::GPIOStop(){
+        running = false;
+    }
 
 }
