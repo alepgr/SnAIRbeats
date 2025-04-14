@@ -25,7 +25,12 @@
 #define GPIO_LINE 17
 
 //Object for I2C operations
-icm20948::ICM20948_I2C objI2C(1); // bus number 1 means it is communicating with an external device
+//Don't think needs closed
+
+//Objects for each IMU sensor with respective I2C addresses from datasheet
+//Allows for running on the same line
+icm20948::ICM20948_I2C objI2C(1,0x69); 
+icm20948::ICM20948_I2C objI2C_2(1,0x68); 
 
 //Object for Playing audio
 PlayAudioName::PlayAudio objAudio;
@@ -37,36 +42,42 @@ AudioPlayerName::AudioPlayer objALSA("plughw:0,0", 44100, 2, SND_PCM_FORMAT_S16_
 IMUMathsName::IMUMaths objMaths(objALSA);
 
 //Object for GPIO operations
-GPIOName::GPIOClass objGPIO("gpiochip0", 17, 27, objI2C, objMaths);
+GPIOName::GPIOClass objGPIO("gpiochip0", 17, objI2C, objMaths);
+GPIOName::GPIOClass objGPIO_2("gpiochip0",27, objI2C_2,objMaths);
 
 
-void KeyboardInterrupt() {
+void KeyboardInterrupt(std::thread &GPIOThread, std::thread &GPIOThread_2) {
     std::string input;
     while (true) {
         std::cout << "Press 'q' to quit: " << std::endl;
         std::cin >> input;
         if (input == "q" || input == "Q") {
-            Cleanup();
+
+            //Stop both GPIO worker threads and join them, then close ALSA object
+            objGPIO.GPIOStop();
+            objGPIO_2.GPIOStop();
+            if(GPIOThread.joinable()){
+                GPIOThread.join();
+            }
+
+            if(GPIOThread_2.joinable()){
+                GPIOThread_2.join();
+            }
+
+            objALSA.close();
+
             std::cout << "Everything closed." << std::endl;
-            break;
+            return;
         }
     }
 }
 
-void Cleanup() {
-    std::cout << "Quitting..." << std::endl;
-    // Might need to redo all this and check destructors
-    objI2C.Close();
-    objAudio.Close();
-    objALSA.close();
-    objMaths.Close();
-    objGPIO.Close();
-}
 
 
 int main() {
 
     objALSA.open();
+    
     // objALSA.playFile("src/libs/ALSAPlayer/include/SnareDrum.wav");
     // objALSA.playFile("src/libs/ALSAPlayer/include/CrashCymbal.wav");
     // objALSA.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
@@ -84,7 +95,7 @@ int main() {
         if (objI2C.enable_DRDY_INT()){
             std::cout << "Data Ready Interrupt enabled" << std::endl;
         } else {
-            std::cerr <<"Failed to enable WOM interrupt" << std::endl;
+            std::cerr <<"Failed to enable DRDY interrupt" << std::endl;
         }
     } else {
         std::cout << "Womp Womp - No worky" << std::endl;
@@ -93,15 +104,21 @@ int main() {
 
     //Thread for IMU worker 1
     std::thread gpioThread(&GPIOName::GPIOClass::Worker, &objGPIO);
+    std::thread gpioThread_2(&GPIOName::GPIOClass::Worker, &objGPIO_2);
 
     // Thread for keyboard interrupt
-    std::thread keyboardThread(KeyboardInterrupt);
+    std::thread keyboardThread(KeyboardInterrupt, std::ref(gpioThread), std::ref(gpioThread_2));
+
+
 
     //objGPIO.running = false;
 
     // Join threads to clean up properly.
-    if (gpioThread.joinable())
-        gpioThread.join();
+    // if (gpioThread.joinable())
+    //     gpioThread.join();
+
+    std::cout << "Hello" << std::endl;
+
     if (keyboardThread.joinable())
         keyboardThread.join();
 

@@ -27,10 +27,10 @@ namespace GPIOName {
         gpiod_line* SensorLine;
         gpiod_line* LEDLine;
         int InterruptPin;
-        int LEDPin;
         int Counter;
         bool Pause = true;
         int delay = 224;
+        std::atomic<bool> running{true};
     
     public:
         icm20948::ICM20948_I2C& sensor;
@@ -40,7 +40,7 @@ namespace GPIOName {
         void* CallbackFunction;
 
         //Constructor
-        GPIOClass(const char* chipName, int InterruptPin, int LEDPin,
+        GPIOClass(const char* chipName, int InterruptPin,
              icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths);
 
         /**
@@ -64,7 +64,7 @@ namespace GPIOName {
          * 
          */
         void WorkerDataCollect();
-        bool running;
+        void GPIOStop();
         void SetCallback(GPIOCallback cb, void* context);
         static void IMUMathsCallback(void* context, float X, float Y, float Z){
             IMUMathsName::IMUMaths* maths = static_cast<IMUMathsName::IMUMaths*>(context);
