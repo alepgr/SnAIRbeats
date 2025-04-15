@@ -29,11 +29,13 @@ namespace IMUMathsName{
         if (!Pause){
             if (X <=-40 && X >=-45){
                 //Play snare drum on X
+                LastFilePlayed = 1;
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/SnareDrum.wav");
                 });
                 soundThread.detach();
+                std::cout << "Snare" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 1;
@@ -48,6 +50,7 @@ namespace IMUMathsName{
                     PlayFileCallback("src/libs/ALSAPlayer/include/HighTom.wav");
                 });
                 soundThread.detach();
+                std::cout << "Tom" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 2;
@@ -59,6 +62,7 @@ namespace IMUMathsName{
                     PlayFileCallback("src/libs/ALSAPlayer/include/CrashCymbal.wav");
                 });
                 soundThread.detach();
+                std::cout << "Crash" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 3;

@@ -116,7 +116,6 @@ namespace GPIOName {
 
                     if (sensor.accel[0] >= -72){
                         std::cout << "making noise" << std::endl;
-                       int ret = system("aplay -D plughw:2,0 ../libs/ALSAAudio/AudioFiles/SnareDrum1.wav");
                     }
                 }
             }
