@@ -40,6 +40,8 @@ namespace GPIOName {
 
         SetCallback(&IMUMathsCallback, static_cast<void*>(&Maths));
 
+        std::cout << "GPIO Initialised" << std::endl;
+
     }
 
     
@@ -114,7 +116,6 @@ namespace GPIOName {
 
                     if (sensor.accel[0] >= -72){
                         std::cout << "making noise" << std::endl;
-                       int ret = system("aplay -D plughw:2,0 ../libs/ALSAAudio/AudioFiles/SnareDrum1.wav");
                     }
                 }
             }
@@ -124,6 +125,7 @@ namespace GPIOName {
     void GPIOClass::Worker() {
         bool Pause = false;
         int Delay = 20;
+        std::cout << "Worker started" << std::endl;
         while (running) {
             int ret = gpiod_line_event_wait(SensorLine, nullptr);
             if (ret < 0) {
