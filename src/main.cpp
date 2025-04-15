@@ -86,6 +86,11 @@ int main() {
     objI2C.settings.gyro.sample_rate_div = 0;
     objI2C.settings.accel.scale = icm20948::ACCEL_16G;
     objI2C.settings.gyro.scale = icm20948::GYRO_2000DPS;
+
+    objI2C_2.settings.accel.sample_rate_div = 0;
+    objI2C_2.settings.gyro.sample_rate_div = 0;
+    objI2C_2.settings.accel.scale = icm20948::ACCEL_16G;
+    objI2C_2.settings.gyro.scale = icm20948::GYRO_2000DPS;
     
     std::cout << "Object created!\n";
     if(objI2C.init())
@@ -93,6 +98,21 @@ int main() {
         std::cout << "Hurray!" << std::endl;
 
         if (objI2C.enable_DRDY_INT()){
+            std::cout << "Data Ready Interrupt enabled" << std::endl;
+        } else {
+            std::cerr <<"Failed to enable DRDY interrupt" << std::endl;
+        }
+    } else {
+        std::cout << "Womp Womp - No worky" << std::endl;
+        return -1;
+    }
+
+    std::cout << "Object created!\n";
+    if(objI2C_2.init())
+    {
+        std::cout << "Hurray!" << std::endl;
+
+        if (objI2C_2.enable_DRDY_INT()){
             std::cout << "Data Ready Interrupt enabled" << std::endl;
         } else {
             std::cerr <<"Failed to enable DRDY interrupt" << std::endl;
@@ -117,7 +137,7 @@ int main() {
     // if (gpioThread.joinable())
     //     gpioThread.join();
 
-    std::cout << "Hello" << std::endl;
+    //std::cout << "Hello" << std::endl;
 
     if (keyboardThread.joinable())
         keyboardThread.join();
