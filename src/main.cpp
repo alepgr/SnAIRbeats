@@ -36,7 +36,9 @@ icm20948::ICM20948_I2C objI2C_2(1,0x68);
 PlayAudioName::PlayAudio objAudio;
 
 //Object for ALSA Audio Player
-AudioPlayerName::AudioPlayer objALSA("plughw:0,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
+// AudioPlayerName::AudioPlayer objALSA("plughw:2,0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
+AudioPlayerName::AudioPlayer objALSA("plughw:CARD=UACDemoV10,DEV=0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
+
 
 //Object for Maths operations, passing values in
 IMUMathsName::IMUMaths objMaths(objALSA);
@@ -56,6 +58,7 @@ void KeyboardInterrupt(std::thread &GPIOThread, std::thread &GPIOThread_2) {
             //Stop both GPIO worker threads and join them, then close ALSA object
             objGPIO.GPIOStop();
             objGPIO_2.GPIOStop();
+            
             if(GPIOThread.joinable()){
                 GPIOThread.join();
             }
