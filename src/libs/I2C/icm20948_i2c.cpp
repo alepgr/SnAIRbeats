@@ -36,14 +36,13 @@ namespace icm20948
         uint8_t device_id;
 
         bool success = true;
-
         success &= (_i2c.writeReg(ICM20948_REG_BANK_SEL_ADDR, ICM20948_REG_BANK_SEL_BANK0_VALUE) == mraa::SUCCESS);
         success &= _read_byte(ICM20948_WHO_AM_I_BANK, ICM20948_WHO_AM_I_ADDR, device_id);
         success &= (device_id == ICM20948_BANK0_WHO_AM_I_VALUE);
         success &= reset();
         success &= wake();
         success &= set_settings();
-        success &= enable_DRDY_INT();
+        success &= enable_DRDY_INT();        
 
         // Magnetometer init stage may fail once
         // Try at least 3 times before calling it off
@@ -535,15 +534,10 @@ namespace icm20948
 
     bool ICM20948_I2C::enable_DRDY_INT(){
         bool success = true;
-
         success &= _set_bank(0);
-
         success &= _write_byte(0,ICM20948_LP_CONFIG_ADDR,0x00);
-
         success &= _write_byte(0,ICM20948_INT_ENABLE_1_ADDR,0x01);
-
         success &= _write_byte(0,ICM20948_INT_PIN_CFG_ADDR, 0x30);
-
         return success;
     }
 

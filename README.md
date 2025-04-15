@@ -90,6 +90,20 @@ For each sensor used within the system, an object from this driver is built with
 ## IMUMaths
 This libary was written to threshold the data that came through from the GPIO worker and has two main goals. Firstly it reads the data passed through and checks whether any of the values correlate to a hit and then play the corresponding audio from the ALSAAudio object. It also contains a sample delay to stop multiple sounds being played from the same hit. This is achieved using a simple boolean that is turned true after a hit is detected and waits a set number of samples before the boolean flips back, allowing another hit to be detected.
 
+# Unit tests
+This project uses unit testing to validate the functionality of the key classes, including classes responsible for IMU data processing and audio playback.
+
+Tests are written using the GoogleTest framework and integrated with CTest for easy execution.
+
+To run the tests from the root directory, use:
+```
+./run_tests
+```
+or to use CMake directly, run:
+```
+ctest
+```
+
 # Sponsorship and funding
 We are very grateful for RS Components for providing us with components that allowed us to complete this project.
 
