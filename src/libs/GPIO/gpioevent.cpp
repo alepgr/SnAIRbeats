@@ -40,6 +40,8 @@ namespace GPIOName {
 
         SetCallback(&IMUMathsCallback, static_cast<void*>(&Maths));
 
+        std::cout << "GPIO Initialised" << std::endl;
+
     }
 
     
@@ -124,6 +126,7 @@ namespace GPIOName {
     void GPIOClass::Worker() {
         bool Pause = false;
         int Delay = 20;
+        std::cout << "Worker started" << std::endl;
         while (running) {
             int ret = gpiod_line_event_wait(SensorLine, nullptr);
             if (ret < 0) {
