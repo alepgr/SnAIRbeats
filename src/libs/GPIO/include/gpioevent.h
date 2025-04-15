@@ -66,7 +66,7 @@ namespace GPIOName {
         void WorkerDataCollect();
 
         /**
-         * @brief Changes a boolaen to end the worker
+         * @brief Changes a boolean to end the worker
          */
         void GPIOStop();
 
