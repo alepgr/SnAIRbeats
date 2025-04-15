@@ -46,7 +46,7 @@ namespace GPIOName {
         /**
          * @brief Event driven worker reading data when HIGH seen on GPIO
          * 
-         * This function using blocking interrupts controlled by a GPIO pin.
+         * This function is an event driven interrupt controlled by a GPIO pin.
          * Once this GPIO pin reads HIGH the function will read the data registers
          * using the ReadAccel() callback from the IMU's driver which is then fed into the 
          * IMU Maths object to be analysed.
@@ -64,7 +64,13 @@ namespace GPIOName {
          * 
          */
         void WorkerDataCollect();
+
+        /**
+         * @brief Changes a boolean to end the worker
+         */
         void GPIOStop();
+
+        
         void SetCallback(GPIOCallback cb, void* context);
         static void IMUMathsCallback(void* context, float X, float Y, float Z){
             IMUMathsName::IMUMaths* maths = static_cast<IMUMathsName::IMUMaths*>(context);
