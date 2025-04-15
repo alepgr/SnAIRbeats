@@ -1,0 +1,45 @@
+name: C++ Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y g++ cmake libyaml-cpp-dev libgtest-dev libgmock-dev
+
+      - name: Install libgpiod
+        run: |
+          sudo apt install -y libgpiod-dev
+
+      - name: Install ALSAAudio dependencies
+        run: |
+          sudo apt install -y libasound2-dev
+
+      - name: Build and Install MRAA from Source
+        run: |
+          git clone https://github.com/eclipse/mraa.git
+          cd mraa
+          mkdir build && cd build
+          cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+          make -j$(nproc)
+          sudo make install
+          sudo ldconfig
+
+      - name: Compile C++ code
+        run: |
+          cmake .
+          make -j$(nproc)
