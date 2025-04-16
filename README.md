@@ -1,7 +1,7 @@
-![Snairbeats logo](FIGURES/logo.png)
+<img src="https://raw.githubusercontent.com/alepgr/SnAIRbeats/refs/heads/main/FIGURES/logo.png" alt="snairbeats logo" width="800"/>
 
 # SnAIRbeats
-SnAirBeats is a next generation methods to practice the drum kit, while reducing noise and space required to do so. The SnAirBeat set uses intertial measurement units (IMU) within the sticks to track their movement and play a corresponding drum, not requiring any physical hitting like modern electric drum sets need.
+SnAirBeats is a next generation method to practice the drums, while reducing noise and space typically required to do so. The SnAirBeat set uses intertial measurement units (IMU) within the sticks to track their movement and play a corresponding drum, not requiring any physical hitting like modern electric drum sets need.
 
 # Building
 SnAIRBeats requires the following components to work:
@@ -11,10 +11,10 @@ SnAIRBeats requires the following components to work:
 * 1x  [External USB Speaker](https://thepihut.com/products/mini-external-usb-stereo-speaker?variant=31955934801&country=GB&currency=GBP&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=1&gbraid=0AAAAADfQ4GEFlapDAiWBmf2emlHnIUtFT&gclid=CjwKCAjwwe2_BhBEEiwAM1I7sZX7Qgw-18XC8Lfv5pq3lkJwZNLx-_Mg28yoPVhgCK76qUmuxv67WhoC8xIQAvD_BwE)
 
 
-The circuit's wires should be at least 1m long to ensure comfortable movement while playing to avoid risk of damaging the project.  
+The circuit's wires should be at least 1m long to ensure comfortable movement while playing to avoid risk of damaging the project.
 A wiring guide can be seen below:
 
-![Wiring Guide](FIGURES/WiringGuide.png)
+<img src="https://raw.githubusercontent.com/alepgr/SnAIRbeats/refs/heads/main/FIGURES/WiringGuide.png" alt="wiring guide" width="500"/> 
 
 The drumsticks for the project need to be 3D printed via the [STLs](/STLs/) provided within this repository.
 
@@ -36,7 +36,7 @@ These packages can be installed by running the following commands through the te
 ```
 sudo apt install -y libgpiod-dev
 sudo apt install -y libmraa-dev
-sudo apt install -ylibyaml-dev
+sudo apt install -y libyaml-dev
 sudo apt install -y libasound2-dev
 ```
 
@@ -73,9 +73,9 @@ ls
 Here is a small description of each of the libraries used within the project and what they are used for.
 
 ## ALSAPlayer
-ALSAPlayer takes .wav files from inside its [include folder](src/libs/ALSAPlayer/include/) and converts them into audio buffers using the ConvertFiles function.  
+ALSAPlayer takes .wav files from inside its [include folder](src/libs/ALSAPlayer/include/) and converts them into audio buffers using the ConvertFiles function. This library is heavily based off of driver written by [Adam Stark](https://github.com/adamstark) found at [https://github.com/adamstark/AudioFile](https://github.com/adamstark/AudioFile).
 
-Audio devices are opened using the Open function which once finished can be used to player the created audiobuffers using the playFile function. The playFile function is built to play small audios and will interrupt itself, cancelling whatever is playing to play the next audio. This is much easier for SnAIRBeats compared to mixing as the interrupt of the drum notes is not noticable to the human ear, especially with the sample delay between each hit.
+Audio devices are opened using the Open function which once finished can be used to play the created audiobuffers using the playFile function. The playFile function is built to play small audios and will interrupt itself, cancelling whatever is playing to play the next audio. This is much easier for SnAIRBeats compared to mixing as the interrupt of the drum notes is not noticable to the human ear, especially with the sample delay between each hit.
 
 ## GPIO
 The GPIO library initialises the GPIO pins of the Raspberry Pi. Using [libgpiod](https://libgpiod.readthedocs.io/en/latest/), an event driven interrupt function called "worker" is used to read one of the GPIO pins for a HIGH value. The function is blocked until a rising edge event is seen in the GPIO pin selected in the constructor.  
@@ -104,6 +104,9 @@ or to use CMake directly, run:
 ctest
 ```
 
+# Documentation
+Complete documentation for this project can be found in [documentation.pdf](./documentation.pdf).
+
 # Sponsorship and funding
 We are very grateful for RS Components for providing us with components that allowed us to complete this project.
 
@@ -111,12 +114,14 @@ We are very grateful for RS Components for providing us with components that all
 * [Instagram](https://www.instagram.com/snairbeats/)
 * [TikTok](https://www.tiktok.com/@snairbeats?_t=ZN-8uF2Rv9Fbuw&_r=1)
 
-# Authors and contributions
+# Authors
 * Calum Robertson
-* Alejandra Paja Garcia
 * Aleksandar Zahariev
 * Mohammed Alqabandi
 * Renata Cia Sanches Loberto
+* Alejandra Paja Garcia
 
 # Licenses
 The IMU driver has been adapted from the driver written by [NTKot](https://github.com/NTkot) and can be found at [https://github.com/NTkot/icm20948_i2c](https://github.com/NTkot/icm20948_i2c)
+
+The ALSAPlayer library has been adapted from the driver written by [Adam Stark](https://github.com/adamstark) and can be found at [https://github.com/adamstark/AudioFile](https://github.com/adamstark/AudioFile)
