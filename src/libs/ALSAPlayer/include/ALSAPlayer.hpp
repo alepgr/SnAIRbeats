@@ -12,7 +12,12 @@
 
 
 namespace AudioPlayerName{
+
+    /**
+     * @brief Handles audio file loading, conversion and playback.
+     */
     class AudioPlayer{
+
         public:
         std::vector<int32_t> audioBuffer;
         std::unordered_map<std::string, std::vector<int32_t>> fileBuffers;
@@ -32,12 +37,23 @@ namespace AudioPlayerName{
         : deviceName(device), sampleRate(rate), channels(ch),
         format(fmt), framesPerPeriod(frames), handle(nullptr)
         {
-            //Convert files to audio buffers here I think
+            //Convert files to audio buffers
             if (!filesToConvert.empty()){
                 ConvertFiles(filesToConvert);
             }
         }
+        
+        /**
+        * @brief Open PCM device for playback. 
 
+        * Opens the PCM device for playback and sets the hardware parameters. 
+        * It includes the following steps: 
+        * - open the PCM device
+        * - allocate hardware parameters object and fill it in with default values
+        * - set desired hardware parameters (set access type, format, number of channels, sample rate, period size)
+        * - write parameters to the driver
+        * - get period size
+        */ 
         bool open(){
             int rc = snd_pcm_open(&handle, deviceName.c_str(), SND_PCM_STREAM_PLAYBACK,0);
             if (rc < 0){
@@ -66,6 +82,18 @@ namespace AudioPlayerName{
             return true;
         }
 
+        /**
+        * @brief Play audio file using the PCM device.
+
+        * Plays an audio file using the PCM device. 
+        * It includes the following steps:
+        * - stop PCM playback and drop pending frames
+        * - prepare PCM device for use
+        * - check if the device is open and the audio buffer is available	
+        * - write the audio data to the PCM device in a loop until all frames are played
+        * - close stream once all frames are played and put it in PREPARED state for next time
+        * @param fileKey The filename of the audio to be played.
+        */
         bool playFile(const std::string& fileKey) {
             
             CancelPlayback = true;
@@ -119,13 +147,19 @@ namespace AudioPlayerName{
             return true;
         }
 
+        /**
+        * @brief Close PCM handle and free all associated resources
+        */
         void close() {
             if (handle) {
                 snd_pcm_close(handle);
                 handle = nullptr;
             }
         }
-
+        
+        /** 
+        @brief Destructor
+        */
         ~AudioPlayer() {
             close();
         }
@@ -159,6 +193,10 @@ namespace AudioPlayerName{
         std::cout << std::endl;
         }
 
+        /**
+        * @brief Converts audio files to interleaved 32-bit int buffers for playback.
+        * @param filePaths Path to audio files.
+        */
         void ConvertFiles(const std::vector<std::string>& filePaths) {
             std::vector<int32_t> result;
 
