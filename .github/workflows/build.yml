@@ -43,3 +43,7 @@ jobs:
         run: |
           cmake .
           make -j$(nproc)
+          
+      - name: Run tests
+        run: |
+          ctest --output-on-failure
