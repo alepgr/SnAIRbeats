@@ -39,6 +39,11 @@ namespace GPIOName {
         GPIOCallback callback;
         void* CallbackFunction;
 
+        // function added for testing
+        bool IsRunning() const {
+            return running.load();
+        }
+
         //Constructor
         GPIOClass(const char* chipName, int InterruptPin,
              icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths);

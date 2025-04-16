@@ -1,8 +1,9 @@
 find_package(GTest REQUIRED)
 
 add_executable(run_tests
+GPIOTests.cpp
 MathsTests.cpp
- )
+)
 
 
  enable_testing()
@@ -19,6 +20,7 @@ MathsTests.cpp
  ALSAPlayer
  gtest     
  gtest_main 
+ GTest::gmock
 )
 
 
@@ -26,4 +28,7 @@ MathsTests.cpp
 add_test(NAME Test_all COMMAND ${CMAKE_BINARY_DIR}/run_tests)
 
 
-    
+
+set_tests_properties(Test_all PROPERTIES
+WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
