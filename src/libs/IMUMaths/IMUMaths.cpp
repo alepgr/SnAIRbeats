@@ -15,8 +15,13 @@ namespace IMUMathsName{
     IMUMaths::IMUMaths(AudioPlayerName::AudioPlayer& Audio)
         :Audio(Audio), LastFilePlayed(0)
     {
+         if (!Audio.open()) {
+             std::cerr << "[IMUMaths] Warning: Failed to open ALSA device from IMUMaths constructor.\n";
+        }
+        
+        Audio.startMixer();
         SetPlayFileCallback([this](const std::string& FilePath){
-            this->Audio.playFile(FilePath);
+            this->Audio.addSoundToMixer(FilePath);
         });
     }
 
@@ -27,7 +32,7 @@ namespace IMUMathsName{
 
     void IMUMaths::SoundChecker(float X, float Y, float Z){
         if (!Pause){
-            if (X <=-40 && X >=-45){
+            if (X <=-60 && X >=-65){
                 //Play snare drum on X
                 LastFilePlayed = 1;
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
@@ -40,7 +45,7 @@ namespace IMUMathsName{
                 Counter = 0;
                 LastFilePlayed = 1;
                 //std::cout << LastFilePlayed << std::endl;
-            } else if (Y <=-40 && Y >= -45){
+            } else if (Y <=-60 && Y >= -65){
                 // Play high tom on Y
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
                 // std::thread soundThread([this]() {
