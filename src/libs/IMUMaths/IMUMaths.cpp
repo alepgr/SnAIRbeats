@@ -36,12 +36,11 @@ namespace IMUMathsName{
         if (!Pause){
             if (X <=-45 && X >=-60){
                 //Play snare drum on X
-                LastFilePlayed = 1;
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/SnareDrum.wav");
                 });
-                soundThread.detach();
+                soundThread.join(); 
                 std::cout << "Snare" <<std::endl;
                 Pause = true;
                 Counter = 0;
