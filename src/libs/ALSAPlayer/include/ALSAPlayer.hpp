@@ -25,7 +25,7 @@ namespace AudioPlayerName{
         std::unordered_map<std::string, std::vector<int32_t>> fileBuffers;
 
         bool StopMixingThread = false;
-        //  bool CancelPlayback = true;
+        // bool CancelPlayback = true;
 
 
         AudioPlayer(const std::string& device="default",
@@ -145,10 +145,10 @@ namespace AudioPlayerName{
         * - close stream once all frames are played and put it in PREPARED state for next time
         * @param fileKey The filename of the audio to be played.
         */
-        bool playFile(const std::string& fileKey) {
+        // bool playFile(const std::string& fileKey) {
             
-            CancelPlayback = true;
-        }
+        //     CancelPlayback = true;
+        // }
 
 
         void startMixer() {
