@@ -17,7 +17,7 @@ namespace AudioPlayerName{
     class AudioPlayer{
         public:
         // std::vector<int32_t> audioBuffer;
-        std::unordered_map<std::string, std::vector<int16_t>> fileBuffers;
+        std::unordered_map<std::string, std::vector<int32_t>> fileBuffers;
 
         bool StopMixingThread = false;
         //  bool CancelPlayback = true;
@@ -237,7 +237,7 @@ namespace AudioPlayerName{
         // std::mutex MixCVMutex;
 
         struct ActiveSound {
-            std::vector<int16_t>* buffer; 
+            std::vector<int32_t>* buffer; 
             size_t position;             
         };
 
@@ -256,7 +256,7 @@ namespace AudioPlayerName{
         void mixerThreadLoop() {
             // Allocate a buffer for one period of audio
             const size_t periodSizeSamples = framesPerPeriod * channels;
-            std::vector<int16_t> mixBuffer(periodSizeSamples, 0);
+            std::vector<int32_t> mixBuffer(periodSizeSamples, 0);
 
             while (!StopMixingThread) {
                 // 1) Clear the mix buffer to 0 each iteration
@@ -321,10 +321,10 @@ namespace AudioPlayerName{
 
 
         void ConvertFiles(const std::vector<std::string>& filePaths) {
-            std::vector<int16_t> result;
+            std::vector<int32_t> result;
 
             for (const auto& path : filePaths) {
-                AudioFile<int16_t> file;
+                AudioFile<int32_t> file;
                 if (!file.load(path)) {
                     std::cerr << "Error loading file: " << path << std::endl;
                     continue;
@@ -333,7 +333,7 @@ namespace AudioPlayerName{
                 int fileChannels = file.getNumChannels();
                 int ChannelSamples = file.getNumSamplesPerChannel();
 
-                std::vector<int16_t> interleaved;
+                std::vector<int32_t> interleaved;
                 interleaved.reserve(ChannelSamples * fileChannels);
                 for (int i=0; i < ChannelSamples; ++i){
                     for (int ch = 0; ch < fileChannels; ++ch){
