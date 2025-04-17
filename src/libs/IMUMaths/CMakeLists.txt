@@ -9,4 +9,4 @@ target_include_directories(IMUMATHS PUBLIC
 )
 
 #Link desired libraris - ALSAPlayer is defined in its respective CMAke found in the defined source
-target_link_libraries(IMUMATHS PRIVATE ALSAPlayer) #PLAYAUDIO
+target_link_libraries(IMUMATHS PRIVATE ALSAPlayer) 
