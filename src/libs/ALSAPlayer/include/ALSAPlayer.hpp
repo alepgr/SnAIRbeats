@@ -20,7 +20,6 @@ namespace AudioPlayerName{
         std::unordered_map<std::string, std::vector<int32_t>> fileBuffers;
 
         bool StopMixingThread = false;
-        //  bool CancelPlayback = true;
 
 
         AudioPlayer(const std::string& device="default",
@@ -117,6 +116,7 @@ namespace AudioPlayerName{
         }
 
 
+
         void startMixer() {
             if (!handle) {
                 std::cerr << "ALSA device is not open. Call open() first." << std::endl;
@@ -125,7 +125,6 @@ namespace AudioPlayerName{
             StopMixingThread = false;
             mixThread = std::thread(&AudioPlayer::mixerThreadLoop, this);
         }
-
 
         void stopMixer() {
             StopMixingThread = true;
@@ -154,7 +153,6 @@ namespace AudioPlayerName{
             ActiveSounds.push_back(newSound);
             return true;
         }
-
 
         // bool playFile(const std::string& fileKey) {
             
@@ -208,6 +206,12 @@ namespace AudioPlayerName{
         //     snd_pcm_prepare(handle);
         //     return true;
         // }
+
+
+
+        /**
+        * @brief Close PCM handle and free all associated resources
+        */
 
         void close() {
             stopMixer();
@@ -319,6 +323,11 @@ namespace AudioPlayerName{
             }
         }
 
+
+        /**
+        * @brief Converts audio files to interleaved 32-bit int buffers for playback.
+        * @param filePaths Path to audio files.
+        */
 
         void ConvertFiles(const std::vector<std::string>& filePaths) {
             std::vector<int32_t> result;
