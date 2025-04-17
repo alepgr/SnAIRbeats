@@ -22,7 +22,7 @@ namespace IMUMathsName {
         public:
         AudioPlayerName::AudioPlayer &Audio;
         IMUMaths(AudioPlayerName::AudioPlayer &Audio);
-
+        ~IMUMaths();   
         int LastFilePlayed;
 
         void SoundChecker(float X, float Y, float Z);

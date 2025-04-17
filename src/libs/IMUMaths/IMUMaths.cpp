@@ -24,7 +24,9 @@ namespace IMUMathsName{
             this->Audio.addSoundToMixer(FilePath);
         });
     }
-
+    IMUMaths::~IMUMaths() {
+        Audio.stopMixer();
+    }
     void IMUMaths::SetPlayFileCallback(const std::function<void(const std::string&)>& cb){
         PlayFileCallback = cb;
     }
@@ -32,7 +34,7 @@ namespace IMUMathsName{
 
     void IMUMaths::SoundChecker(float X, float Y, float Z){
         if (!Pause){
-            if (X <=-60 && X >=-65){
+            if (X <=-45 && X >=-60){
                 //Play snare drum on X
                 LastFilePlayed = 1;
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
@@ -45,7 +47,7 @@ namespace IMUMathsName{
                 Counter = 0;
                 LastFilePlayed = 1;
                 //std::cout << LastFilePlayed << std::endl;
-            } else if (Y <=-60 && Y >= -65){
+            } else if (Y <=-45 && Y >= -60){
                 // Play high tom on Y
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
                 // std::thread soundThread([this]() {
@@ -60,7 +62,7 @@ namespace IMUMathsName{
                 Counter = 0;
                 LastFilePlayed = 2;
                 //std::cout << LastFilePlayed << std::endl;
-            } else if (Z <=20 && Z >= 15){
+            } else if (Z <=25 && Z >= 20){
                 //Play crash cymbal on Z
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
                 std::thread soundThread([this]() {

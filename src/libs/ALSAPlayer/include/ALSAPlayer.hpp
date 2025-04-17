@@ -1,3 +1,4 @@
+
 #ifndef ALSAPLAYER_H
 #define ALSAPLAYER_H
 
@@ -16,7 +17,7 @@ namespace AudioPlayerName{
     class AudioPlayer{
         public:
         // std::vector<int32_t> audioBuffer;
-        std::unordered_map<std::string, std::vector<int32_t>> fileBuffers;
+        std::unordered_map<std::string, std::vector<int16_t>> fileBuffers;
 
         bool StopMixingThread = false;
         //  bool CancelPlayback = true;
@@ -26,7 +27,7 @@ namespace AudioPlayerName{
             unsigned int rate = 44100,
             unsigned int ch = 2,
             snd_pcm_format_t fmt = SND_PCM_FORMAT_S16_LE,
-            snd_pcm_uframes_t frames = 512,
+            snd_pcm_uframes_t frames = 256,
             const std::vector<std::string>& filesToConvert = {"src/libs/ALSAPlayer/include/CrashCymbal.wav",
                                                               "src/libs/ALSAPlayer/include/HighTom.wav",
                                                               "src/libs/ALSAPlayer/include/SnareDrum.wav"})
@@ -56,7 +57,7 @@ namespace AudioPlayerName{
             unsigned int rate_near = sampleRate;
             snd_pcm_hw_params_set_rate_near(handle, params, &rate_near,0);
             
-            framesPerPeriod = 256;
+            // framesPerPeriod = 128;
             rc = snd_pcm_hw_params_set_period_size_near(handle, params, &framesPerPeriod, 0);
             if (rc <0) {
                 std::cerr << "Unable to set HW parameters: " << snd_strerror(rc) << std::endl;
@@ -132,7 +133,7 @@ namespace AudioPlayerName{
                 mixThread.join();
             }
         }
-
+        
 
         bool addSoundToMixer(const std::string& fileKey) {
             std::lock_guard<std::mutex> lock(ActiveMutex);
@@ -209,7 +210,9 @@ namespace AudioPlayerName{
         // }
 
         void close() {
+            stopMixer();
             if (handle) {
+                snd_pcm_drop(handle);
                 snd_pcm_close(handle);
                 handle = nullptr;
             }
@@ -234,7 +237,7 @@ namespace AudioPlayerName{
         // std::mutex MixCVMutex;
 
         struct ActiveSound {
-            std::vector<int32_t>* buffer; 
+            std::vector<int16_t>* buffer; 
             size_t position;             
         };
 
@@ -253,7 +256,7 @@ namespace AudioPlayerName{
         void mixerThreadLoop() {
             // Allocate a buffer for one period of audio
             const size_t periodSizeSamples = framesPerPeriod * channels;
-            std::vector<int32_t> mixBuffer(periodSizeSamples, 0);
+            std::vector<int16_t> mixBuffer(periodSizeSamples, 0);
 
             while (!StopMixingThread) {
                 // 1) Clear the mix buffer to 0 each iteration
@@ -318,7 +321,7 @@ namespace AudioPlayerName{
 
 
         void ConvertFiles(const std::vector<std::string>& filePaths) {
-            std::vector<int32_t> result;
+            std::vector<int16_t> result;
 
             for (const auto& path : filePaths) {
                 AudioFile<int16_t> file;
@@ -330,7 +333,7 @@ namespace AudioPlayerName{
                 int fileChannels = file.getNumChannels();
                 int ChannelSamples = file.getNumSamplesPerChannel();
 
-                std::vector<int32_t> interleaved;
+                std::vector<int16_t> interleaved;
                 interleaved.reserve(ChannelSamples * fileChannels);
                 for (int i=0; i < ChannelSamples; ++i){
                     for (int ch = 0; ch < fileChannels; ++ch){
