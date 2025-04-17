@@ -29,7 +29,11 @@ namespace IMUMathsName {
          */
         IMUMaths(AudioPlayerName::AudioPlayer &Audio);
 
+        ~IMUMaths();   
+
+
         // For debugging: Identifier of the last audio file played
+
         int LastFilePlayed;
 
         /**
