@@ -140,4 +140,3 @@
 #define ICM20948_INT_ENABLE_3_ADDR 0x13
 
 #endif
-

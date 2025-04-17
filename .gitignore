@@ -48,6 +48,8 @@
 # Tests
 *.log
 
+docs/html
+
 # Ignore CMake-generated files
 CMakeCache.txt
 CMakeFiles/

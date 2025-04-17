@@ -146,8 +146,27 @@ namespace icm20948
              */
             bool read_magn();
 
+            /**
+             * @brief Enables the Data Ready Interrupt
+             * 
+             * This function enables the Raw Data Ready Interrupt within the IMU by setting the specific
+             * registers so that it is notified when new data is available.
+             * When new data is available the INT pin on the IMU sends a HIGH value which can be read via a GPIO pin on the Pi.
+             * 
+             * 
+             * @return true if the setup was successful, false if registers could not be written successefully
+             */
             bool enable_DRDY_INT();
-
+            
+            /**
+             * @brief Checks if the Data Ready Interrupt is active
+             * 
+             * The function is run when the GPIO pin connected to the INT wire recieves a HIGH signal
+             * This reads the int_status register, reads the data from the data registers and thus unlatches
+             * the interrupt, ready for the next set of data
+             * 
+             * @return true if the registers were successfully read, false if an error occured
+             */
             bool check_DRDY_INT();
     };
 }
