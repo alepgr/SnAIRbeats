@@ -1,3 +1,4 @@
+#Top level of CMake. Establishing 
 cmake_minimum_required(VERSION 3.10)
 
 project(SnairBeat LANGUAGES CXX)
@@ -5,12 +6,10 @@ project(SnairBeat LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Place built executables at top-level build folder
+# Place built executables at top-level
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-# Add the Qt5 folder globally
-#include_directories(/usr/include/aarch64-linux-gnu/qt5)
-
+#Links the source directory and the tests directory the the project
 add_subdirectory(src)
 add_subdirectory(tests)
 

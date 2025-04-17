@@ -58,3 +58,8 @@ Makefile
 SnairBeat
 
 Testing/Temporary/CTestCostData.txt
+run_tests
+*.cmake
+
+src/SnairBeat_autogen/
+src/.vscode/

@@ -13,10 +13,6 @@
 
 #include "../IMUMaths/include/IMUMaths.hpp"
 
-#include "../PlayAudio/include/PlayAudio.hpp"
-
-
-
 namespace GPIOName {
 
     GPIOClass::GPIOClass(const char* chipName, int InterruptPin,
@@ -38,6 +34,7 @@ namespace GPIOName {
             std::cerr << "[ERROR] Could not request events for sensor line - womp womp" << std::endl;
         }
 
+        //Registers the callback
         SetCallback(&IMUMathsCallback, static_cast<void*>(&Maths));
 
         std::cout << "GPIO Initialised" << std::endl;
@@ -122,10 +119,12 @@ namespace GPIOName {
         }
     }
 
+
     void GPIOClass::Worker() {
         bool Pause = false;
+        //How many samples to wait until the next audio can be played
+        //Avoids the use of a clock like chrono
         int Delay = 20;
-        std::cout << "Worker started" << std::endl;
         while (running) {
             int ret = gpiod_line_event_wait(SensorLine, nullptr);
             if (ret < 0) {
@@ -139,25 +138,23 @@ namespace GPIOName {
                     continue;
                 }
                 if (event.event_type == GPIOD_LINE_EVENT_RISING_EDGE) {
-                    Counter++;
-                    //std::cout << Counter << " Hits have been detected" << std::endl;
-                    
-                    sensor.check_DRDY_INT();
-
+                    //Tells IMU driver to read acceleration data from registers
                     if(!sensor.read_accel_gyro()){
                         std::cout << "read_accel_gyro() failed!\nexiting..." << std::endl;
                         break;
                     }
 
-                    // Runs the maths logic - Inputs acceleration data into Maths object
-                    // Needs to be in thread maybe??
-                    //Maths.SoundChecker(sensor.accel[0], sensor.accel[1], sensor.accel[2]);
+                    //Clears the interrupt latch once data has been read
+                    sensor.check_DRDY_INT();
+
+                    //Amazingly named callback, sends acceleration data from I2C driver into maths object
                     callback(CallbackFunction, sensor.accel[0], sensor.accel[1], sensor.accel[2]);
                 }   
             }
         }
     };
 
+    //Turns off the worker when called
     void GPIOClass::GPIOStop(){
         running = false;
     }

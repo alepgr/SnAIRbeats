@@ -1,5 +1,5 @@
 #include "include/IMUMaths.hpp"
-#include "../PlayAudio/include/PlayAudio.hpp"
+#include "../ALSAPlayer/include/ALSAPlayer.hpp"
 
 #include <iostream>
 #include <cmath>
@@ -36,27 +36,22 @@ namespace IMUMathsName{
         if (!Pause){
             if (X <=-45 && X >=-60){
                 //Play snare drum on X
-                //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/SnareDrum.wav");
                 });
                 soundThread.join(); 
-                std::cout << "Snare" <<std::endl;
+                //std::cout << "Snare" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 1;
                 //std::cout << LastFilePlayed << std::endl;
             } else if (Y <=-45 && Y >= -60){
                 // Play high tom on Y
-                //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
-                // std::thread soundThread([this]() {
-                //     this->Audio.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
-                // });
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/HighTom.wav");
                 });
                 soundThread.detach();
-                std::cout << "Tom" <<std::endl;
+                //std::cout << "Tom" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 2;
@@ -68,7 +63,7 @@ namespace IMUMathsName{
                     PlayFileCallback("src/libs/ALSAPlayer/include/CrashCymbal.wav");
                 });
                 soundThread.detach();
-                std::cout << "Crash" <<std::endl;
+               // std::cout << "Crash" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 3;
