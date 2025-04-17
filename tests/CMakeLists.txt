@@ -11,7 +11,6 @@ MathsTests.cpp
  target_link_libraries(run_tests PRIVATE 
  GPIO 
  I2C 
- PLAYAUDIO
  ${MRAA_LIBRARIES} 
  ${LIBGPIOD_LIBRARIES} 
  ${ALSA_LIBRARIES}
@@ -23,11 +22,7 @@ MathsTests.cpp
  GTest::gmock
 )
 
-
-
 add_test(NAME Test_all COMMAND ${CMAKE_BINARY_DIR}/run_tests)
-
-
 
 set_tests_properties(Test_all PROPERTIES
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}

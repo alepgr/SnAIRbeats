@@ -1,5 +1,4 @@
 #include "include/IMUMaths.hpp"
-#include "../PlayAudio/include/PlayAudio.hpp"
 
 #include <iostream>
 #include <cmath>
@@ -9,8 +8,7 @@
 //How many samples to wait before another sound trigger
 int delay = 40;
 namespace IMUMathsName{
-
-    //IMUMaths::IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio) {}
+    
     //Constructor to bring Audio object in and play sounds using it
     IMUMaths::IMUMaths(AudioPlayerName::AudioPlayer& Audio)
         :Audio(Audio), LastFilePlayed(0)
@@ -24,9 +22,11 @@ namespace IMUMathsName{
             this->Audio.addSoundToMixer(FilePath);
         });
     }
+
     IMUMaths::~IMUMaths() {
         Audio.stopMixer();
     }
+
     void IMUMaths::SetPlayFileCallback(const std::function<void(const std::string&)>& cb){
         PlayFileCallback = cb;
     }
@@ -36,39 +36,32 @@ namespace IMUMathsName{
         if (!Pause){
             if (X <=-45 && X >=-60){
                 //Play snare drum on X
-                //std::thread soundThread(&PlayAudioName::PlayAudio::PlaySnare);
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/SnareDrum.wav");
                 });
                 soundThread.join(); 
-                std::cout << "Snare" <<std::endl;
+                //std::cout << "Snare" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 1;
-                //std::cout << LastFilePlayed << std::endl;
             } else if (Y <=-45 && Y >= -60){
                 // Play high tom on Y
-                //std::thread soundThread(&PlayAudioName::PlayAudio::PlayHighTom);
-                // std::thread soundThread([this]() {
-                //     this->Audio.playFile("src/libs/ALSAPlayer/include/HighTom.wav");
-                // });
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/HighTom.wav");
                 });
                 soundThread.detach();
-                std::cout << "Tom" <<std::endl;
+                //std::cout << "Tom" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 2;
                 //std::cout << LastFilePlayed << std::endl;
-            } else if (Z <=25 && Z >= 20){
+            } else if (Z <=30 && Z >= 15){
                 //Play crash cymbal on Z
-                //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/CrashCymbal.wav");
                 });
                 soundThread.detach();
-                std::cout << "Crash" <<std::endl;
+                //std::cout << "Crash" <<std::endl;
                 Pause = true;
                 Counter = 0;
                 LastFilePlayed = 3;

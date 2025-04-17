@@ -16,7 +16,6 @@
 
 #include "../../IMUMaths/include/IMUMaths.hpp"
 
-#include "../../PlayAudio/include/PlayAudio.hpp"
 
 namespace GPIOName {
 
