@@ -12,10 +12,7 @@
 
 namespace IMUMathsName {
     class IMUMaths{
-        private:
         
-        std::function<void(const std::string&)> PlayFileCallback;
-
         public:
         AudioPlayerName::AudioPlayer &Audio;
 
@@ -60,7 +57,37 @@ namespace IMUMathsName {
         // Counter variable
         int Counter = 0;
 
+        struct Callback{
+            virtual void AudioTrigger(const std::string& FilePath) = 0;
+            virtual ~Callback(){};
+        };
 
+        void RegisterCallback(Callback* cb){
+            callback = cb;
+            //std::cout << "[IMUMaths] Registered callback at address: " << callback << std::endl;
+        }
+
+
+
+        private:
+        
+        Callback* callback = nullptr;
+        std::function<void(const std::string&)> PlayFileCallback;
+
+
+    };
+
+    struct AudioCallback : IMUMathsName::IMUMaths::Callback{
+        AudioPlayerName::AudioPlayer& Audio;
+
+        AudioCallback(AudioPlayerName::AudioPlayer& audio) : Audio(audio) {}
+
+        virtual void AudioTrigger(const std::string& FilePath){
+            std::thread([this,FilePath]{
+                Audio.addSoundToMixer(FilePath);
+                
+            }).detach();
+        }
     };
 }
 

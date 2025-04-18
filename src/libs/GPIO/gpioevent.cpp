@@ -17,8 +17,7 @@ namespace GPIOName {
          icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths)
         : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
           InterruptPin(InterruptPin),
-          running(true), Counter(0), sensor(sensor), Maths(Maths),
-          callback(nullptr), CallbackFunction(nullptr)
+          running(true), Counter(0), sensor(sensor), Maths(Maths)
     {
         chip = gpiod_chip_open_by_name(chipName);
         if (!chip) {
@@ -33,24 +32,12 @@ namespace GPIOName {
         }
 
         //Registers the callback
-        SetCallback(&IMUMathsCallback, static_cast<void*>(&Maths));
-
         std::cout << "GPIO Initialised" << std::endl;
 
     }
 
-    
-    void GPIOClass::SetCallback(GPIOCallback cb, void* context){
-        callback = cb;
-        CallbackFunction = context;
-    };
-
-
     void GPIOClass::Worker() {
         bool Pause = false;
-        //How many samples to wait until the next audio can be played
-        //Avoids the use of a clock like chrono
-        int Delay = 20;
         while (running) {
             int ret = gpiod_line_event_wait(SensorLine, nullptr);
             if (ret < 0) {
@@ -74,7 +61,9 @@ namespace GPIOName {
                     sensor.check_DRDY_INT();
 
                     //Amazingly named callback, sends acceleration data from I2C driver into maths object
-                    callback(CallbackFunction, sensor.accel[0], sensor.accel[1], sensor.accel[2]);
+                    if (callback){
+                        callback -> MathsCallback(sensor.accel[0],sensor.accel[1],sensor.accel[2]);
+                    }
                 }   
             }
         }
