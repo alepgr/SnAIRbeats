@@ -1,0 +1,32 @@
+\doxysection{Audio\+Lib.\+hpp}
+\hypertarget{AudioLib_8hpp_source}{}\label{AudioLib_8hpp_source}\index{src/libs/ALSAAudio/include/AudioLib.hpp@{src/libs/ALSAAudio/include/AudioLib.hpp}}
+\mbox{\hyperlink{AudioLib_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AUDIOLIB\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AUDIOLIB\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <alsa/asoundlib.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceAudioLib}{AudioLib}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespaceAudioLib}{AudioLib}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ snd\_pcm\_t\ *pcmHandle=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{classAudioLib_1_1AudioLib_aaa0806aa7796332cb2043be9e094a4df}{AudioLib}}(\textcolor{keyword}{const}\ std::string\ \&device\ =\ \textcolor{stringliteral}{"{}default"{}});}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{classAudioLib_1_1AudioLib_a3d668265bc1e9ee2d5ffcabb7bf67a62}{\string~AudioLib}}();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioLib_1_1AudioLib_ad0ad89a385dfca60ee0a909e4637b6c9}{PlaySound}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioLib_1_1AudioLib_a2dd81ccb4d533c48b149848a57431618}{PlayFile}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioLib_1_1AudioLib_a4e572effca9f66b9cd93b8c2a888a864}{PlayAudioTerminal}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \};}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

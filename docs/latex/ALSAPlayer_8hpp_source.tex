@@ -1,0 +1,203 @@
+\doxysection{ALSAPlayer.\+hpp}
+\hypertarget{ALSAPlayer_8hpp_source}{}\label{ALSAPlayer_8hpp_source}\index{src/libs/ALSAPlayer/include/ALSAPlayer.hpp@{src/libs/ALSAPlayer/include/ALSAPlayer.hpp}}
+\mbox{\hyperlink{ALSAPlayer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ALSAPLAYER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ALSAPLAYER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <alsa/asoundlib.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AudioFile_8h}{AudioFile.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceAudioPlayerName}{AudioPlayerName}}\{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ac944337d3f2563cee68e2a71488dab44}{AudioPlayer}}\{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ std::vector<int32\_t>\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a7e3d7f02bf3ce29a59148ff97830fa94}{audioBuffer}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::unordered\_map<std::string,\ std::vector<int32\_t>>\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6}{fileBuffers}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4a493f2514ad4cbd2ddc54e773ace464}{StopMixingThread}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ab3a396f5760af5bf91f315fd16250c4d}{CancelPlayback}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ac944337d3f2563cee68e2a71488dab44}{AudioPlayer}}(\textcolor{keyword}{const}\ std::string\&\ device=\textcolor{stringliteral}{"{}default"{}},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ rate\ =\ 44100,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ ch\ =\ 2,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_format\_t\ fmt\ =\ SND\_PCM\_FORMAT\_S16\_LE,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_uframes\_t\ frames\ =\ 32,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\&\ filesToConvert\ =\ \{\textcolor{stringliteral}{"{}src/libs/ALSAPlayer/include/CrashCymbal.wav"{}},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}src/libs/ALSAPlayer/include/HighTom.wav"{}},}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}src/libs/ALSAPlayer/include/SnareDrum.wav"{}}\})}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ :\ deviceName(device),\ sampleRate(rate),\ channels(ch),}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ format(fmt),\ framesPerPeriod(frames),\ handle(nullptr)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Convert\ files\ to\ audio\ buffers\ here\ I\ think}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!filesToConvert.empty())\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConvertFiles(filesToConvert);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ad7bff3955a92e62945dbedf8b69172f0}{open}}()\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rc\ =\ snd\_pcm\_open(\&handle,\ deviceName.c\_str(),\ SND\_PCM\_STREAM\_PLAYBACK,0);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ <\ 0)\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Unable\ to\ open\ PCM\ devices:\ "{}}\ <<\ snd\_strerror(rc)\ <<\ std::endl;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_t*\ params;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_alloca(\&params);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_any(handle,\ params);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_set\_access(handle,\ params,\ SND\_PCM\_ACCESS\_RW\_INTERLEAVED);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_set\_format(handle,\ params,\ format);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_set\_channels(handle,\ params,\ channels);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ rate\_near\ =\ sampleRate;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_set\_rate\_near(handle,\ params,\ \&rate\_near,0);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_set\_period\_size\_near(handle,\ params,\ \&framesPerPeriod,\ 0);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ snd\_pcm\_hw\_params(handle,\ params);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ <0)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Unable\ to\ set\ HW\ parameters:\ "{}}\ <<\ snd\_strerror(rc)\ <<\ std::endl;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_hw\_params\_get\_period\_size(params,\ \&framesPerPeriod,0);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_aee8686e98fb453f25b3899c83bc69403}{playFile}}(\textcolor{keyword}{const}\ std::string\&\ fileKey)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ab3a396f5760af5bf91f315fd16250c4d}{CancelPlayback}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(handle)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_drop(handle);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_prepare(handle);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ab3a396f5760af5bf91f315fd16250c4d}{CancelPlayback}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!handle)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Device\ not\ open.\ Call\ open()\ first.\(\backslash\)n"{}};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6}{fileBuffers}}.find(fileKey)\ ==\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6}{fileBuffers}}.end())\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Audio\ buffer\ not\ found\ for\ file:\ "{}}\ <<\ fileKey\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int32\_t>\&\ buffer\ =\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6}{fileBuffers}}[fileKey];}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ totalFrames\ =\ buffer.size()\ /\ channels;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ offset\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rc\ =\ 0;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ab3a396f5760af5bf91f315fd16250c4d}{CancelPlayback}})\{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[DEBUG]\ Playback\ cancelled."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (offset\ <\ totalFrames)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_uframes\_t\ framesToWrite\ =\ framesPerPeriod;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (offset\ +\ framesPerPeriod\ >\ totalFrames)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ framesToWrite\ =\ totalFrames\ -\/\ offset;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rc\ =\ snd\_pcm\_writei(handle,\ buffer.data()\ +\ offset\ *\ channels,\ framesToWrite);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rc\ ==\ -\/EPIPE)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Underrun\ occurred\(\backslash\)n"{}};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_prepare(handle);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rc\ <\ 0)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ from\ writei:\ "{}}\ <<\ snd\_strerror(rc)\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{static\_cast<}snd\_pcm\_uframes\_t\textcolor{keyword}{>}(rc)\ !=\ framesToWrite)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Short\ write,\ wrote\ "{}}\ <<\ rc\ <<\ \textcolor{stringliteral}{"{}\ frames\(\backslash\)n"{}};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ offset\ +=\ rc;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_drain(handle);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_prepare(handle);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ac94aa1dbc897497295484c23f693aeb6}{close}}()\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handle)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ snd\_pcm\_close(handle);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a40cc08fed9d626556b81796a13126447}{\string~AudioPlayer}}()\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ac94aa1dbc897497295484c23f693aeb6}{close}}();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ std::string\ deviceName;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sampleRate;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ channels;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ snd\_pcm\_format\_t\ format;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ snd\_pcm\_uframes\_t\ framesPerPeriod;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ snd\_pcm\_t*\ handle;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ std::condition\_variable\ MixCV;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ std::mutex\ MixCVMutex;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }ActiveSound\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int32\_t>*\ buffer;\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ position;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ std::vector<ActiveSound>\ ActiveSounds;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ std::mutex\ ActiveMutex;}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ printVector(\textcolor{keyword}{const}\ std::vector<T>\&\ vec)\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ el\ :\ vec)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ el\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ConvertFiles(\textcolor{keyword}{const}\ std::vector<std::string>\&\ filePaths)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int32\_t>\ result;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ path\ :\ filePaths)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AudioFile<int32\_t>\ file;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file.\mbox{\hyperlink{classAudioFile_a0ccbac429bc50bf78feca42ca283560b}{load}}(path))\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ loading\ file:\ "{}}\ <<\ path\ <<\ std::endl;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ fileChannels\ =\ file.\mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}();}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ChannelSamples\ =\ file.\mbox{\hyperlink{classAudioFile_ae1b5b4b7351a79dbf810bb34ede496b9}{getNumSamplesPerChannel}}();}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int32\_t>\ interleaved;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ interleaved.reserve(ChannelSamples\ *\ fileChannels);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i=0;\ i\ <\ ChannelSamples;\ ++i)\{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ ch\ =\ 0;\ ch\ <\ fileChannels;\ ++ch)\{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ interleaved.push\_back(file.\mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[ch][i]);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//printVector(interleaved);}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6}{fileBuffers}}[path]\ =\ std::move(interleaved);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \};}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

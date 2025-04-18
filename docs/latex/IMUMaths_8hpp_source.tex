@@ -1,0 +1,51 @@
+\doxysection{IMUMaths.\+hpp}
+\hypertarget{IMUMaths_8hpp_source}{}\label{IMUMaths_8hpp_source}\index{src/libs/IMUMaths/include/IMUMaths.hpp@{src/libs/IMUMaths/include/IMUMaths.hpp}}
+\mbox{\hyperlink{IMUMaths_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ IMUMATHS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ IMUMATHS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlayAudio_8hpp}{../../PlayAudio/include/PlayAudio.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ALSAPlayer_8hpp}{../../ALSAPlayer/include/ALSAPlayer.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceIMUMathsName}{IMUMathsName}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a1177c2622863325d7277d88f39b903a4}{IMUMaths}}\{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlayAudioName_1_1PlayAudio}{PlayAudioName::PlayAudio}}*\ audioPtr;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::function<void(\textcolor{keyword}{const}\ std::string\&)>\ PlayFileCallback;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer}{AudioPlayerName::AudioPlayer}}\ \&\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a4a4c4231c3f7e4e7953c83debd33de6c}{Audio}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a1177c2622863325d7277d88f39b903a4}{IMUMaths}}(\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer}{AudioPlayerName::AudioPlayer}}\ \&\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a4a4c4231c3f7e4e7953c83debd33de6c}{Audio}});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ debugging:\ Identifier\ of\ the\ last\ audio\ file\ played}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a753e6ebc6ac0a90244c9b6f6a4446cb7}{LastFilePlayed}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a804011a859db31a0c30ef2145d58eb63}{SoundChecker}}(\textcolor{keywordtype}{float}\ X,\ \textcolor{keywordtype}{float}\ Y,\ \textcolor{keywordtype}{float}\ Z);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a547d90a3eb4764f31c560c76bb634b99}{SetPlayFileCallback}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ std::string\&)>\&\ cb);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pauses}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_ae0682422c330541342438da5918e1e3b}{Pause}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Counter\ variable}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a753956a730ec25b07b939ad1aad40f73}{Counter}}\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

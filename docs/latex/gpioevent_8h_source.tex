@@ -1,0 +1,68 @@
+\doxysection{gpioevent.\+h}
+\hypertarget{gpioevent_8h_source}{}\label{gpioevent_8h_source}\index{src/libs/GPIO/include/gpioevent.h@{src/libs/GPIO/include/gpioevent.h}}
+\mbox{\hyperlink{gpioevent_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GPIOEVENT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GPIOEVENT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <gpiod.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{icm20948__i2c_8hpp}{../../I2C/include/icm20948\_i2c.hpp}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{icm20948__utils_8hpp}{../../I2C/include/icm20948\_utils.hpp}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{IMUMaths_8hpp}{../../IMUMaths/include/IMUMaths.hpp}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PlayAudio_8hpp}{../../PlayAudio/include/PlayAudio.hpp}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceGPIOName}{GPIOName}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{namespaceGPIOName_a960040d4a679d0a92ddbaaf758588bf1}{GPIOCallback}})(\textcolor{keywordtype}{void}*\ context,\ float,\ float,\ float);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGPIOName_1_1GPIOClass_a2fb2cff516f7f7e28e2ad0b5cff44a80}{GPIOClass}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ gpiod\_chip*\ chip;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ gpiod\_line*\ SensorLine;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ gpiod\_line*\ LEDLine;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ InterruptPin;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ Counter;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Pause\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ delay\ =\ 224;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::atomic<bool>\ running\{\textcolor{keyword}{true}\};}
+\DoxyCodeLine{00034\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C}{icm20948::ICM20948\_I2C}}\&\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_abc011a6110cbf973b830173fc189137b}{sensor}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMathsName::IMUMaths}}\&\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_ab9297efb08d93e8af45050a65cefcf9c}{Maths}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGPIOName_a960040d4a679d0a92ddbaaf758588bf1}{GPIOCallback}}\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a3c7c97671903c54e66ece6a2dd5db2f2}{callback}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a432ba5be0d8077a7833cca8a13716d25}{CallbackFunction}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Constructor}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a2fb2cff516f7f7e28e2ad0b5cff44a80}{GPIOClass}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ chipName,\ \textcolor{keywordtype}{int}\ InterruptPin,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C}{icm20948::ICM20948\_I2C}}\&\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_abc011a6110cbf973b830173fc189137b}{sensor}},\ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMathsName::IMUMaths}}\&\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_ab9297efb08d93e8af45050a65cefcf9c}{Maths}});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_ab70535378a603cb2a68d1bc019b53161}{Worker}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a065edc82f2f8c16f807790122b5dfa2c}{WorkerDataCollect}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a377d807ee01a8f22ecd6e3fdd2a2b6fe}{GPIOStop}}();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a84bd48b1fe96f3b69c27573e73feb447}{SetCallback}}(\mbox{\hyperlink{namespaceGPIOName_a960040d4a679d0a92ddbaaf758588bf1}{GPIOCallback}}\ cb,\ \textcolor{keywordtype}{void}*\ context);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGPIOName_1_1GPIOClass_aa56cd669b5e9991b5a8f41f7ee8df764}{IMUMathsCallback}}(\textcolor{keywordtype}{void}*\ context,\ \textcolor{keywordtype}{float}\ X,\ \textcolor{keywordtype}{float}\ Y,\ \textcolor{keywordtype}{float}\ Z)\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMathsName::IMUMaths}}*\ maths\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMathsName::IMUMaths}}*\textcolor{keyword}{>}(context);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ maths-\/>\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a804011a859db31a0c30ef2145d58eb63}{SoundChecker}}(X,Y,Z);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \};}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

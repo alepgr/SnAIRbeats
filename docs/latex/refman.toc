@@ -1,0 +1,315 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Sn\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Air\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Beats}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Sn\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}AIRbeats}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Building}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Prerequisites}{1}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Compliation from source}{2}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Usage}{2}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Libraries}{2}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}ALSAPlayer}{3}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}GPIO}{3}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.3}I2C}{3}{subsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.6.4}IMUMaths}{3}{subsection.1.6.4}%
+\contentsline {section}{\numberline {1.7}Unit tests}{3}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Sponsorship and funding}{4}{section.1.8}%
+\contentsline {section}{\numberline {1.9}Media}{4}{section.1.9}%
+\contentsline {section}{\numberline {1.10}Authors and contributions}{4}{section.1.10}%
+\contentsline {section}{\numberline {1.11}Licenses}{4}{section.1.11}%
+\contentsline {chapter}{\numberline {2}Namespace Index}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Namespace List}{5}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Index}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Class List}{7}{section.3.1}%
+\contentsline {chapter}{\numberline {4}File Index}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}File List}{9}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Namespace Documentation}{11}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lib Namespace Reference}{11}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Player\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Name Namespace Reference}{11}{section.5.2}%
+\contentsline {section}{\numberline {5.3}GPIOName Namespace Reference}{11}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Typedef Documentation}{11}{subsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.1.1}GPIOCallback}{11}{subsubsection.5.3.1.1}%
+\contentsline {section}{\numberline {5.4}icm20948 Namespace Reference}{12}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Typedef Documentation}{13}{subsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.1}accel\_settings}{13}{subsubsection.5.4.1.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.2}gyro\_settings}{13}{subsubsection.5.4.1.2}%
+\contentsline {subsubsection}{\numberline {5.4.1.3}magn\_settings}{13}{subsubsection.5.4.1.3}%
+\contentsline {subsubsection}{\numberline {5.4.1.4}settings}{13}{subsubsection.5.4.1.4}%
+\contentsline {subsection}{\numberline {5.4.2}Enumeration Type Documentation}{13}{subsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.1}accel\_dlpf\_config}{13}{subsubsection.5.4.2.1}%
+\contentsline {subsubsection}{\numberline {5.4.2.2}accel\_scale}{14}{subsubsection.5.4.2.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.3}gyro\_dlpf\_config}{14}{subsubsection.5.4.2.3}%
+\contentsline {subsubsection}{\numberline {5.4.2.4}gyro\_scale}{15}{subsubsection.5.4.2.4}%
+\contentsline {subsubsection}{\numberline {5.4.2.5}magn\_mode}{16}{subsubsection.5.4.2.5}%
+\contentsline {subsection}{\numberline {5.4.3}Function Documentation}{16}{subsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.3.1}accel\_dlpf\_config\_to\_str()}{16}{subsubsection.5.4.3.1}%
+\contentsline {subsubsection}{\numberline {5.4.3.2}accel\_scale\_factor()}{17}{subsubsection.5.4.3.2}%
+\contentsline {subsubsection}{\numberline {5.4.3.3}accel\_scale\_to\_str()}{17}{subsubsection.5.4.3.3}%
+\contentsline {subsubsection}{\numberline {5.4.3.4}gyro\_dlpf\_config\_to\_str()}{18}{subsubsection.5.4.3.4}%
+\contentsline {subsubsection}{\numberline {5.4.3.5}gyro\_scale\_factor()}{18}{subsubsection.5.4.3.5}%
+\contentsline {subsubsection}{\numberline {5.4.3.6}gyro\_scale\_to\_str()}{19}{subsubsection.5.4.3.6}%
+\contentsline {subsubsection}{\numberline {5.4.3.7}magn\_mode\_to\_str()}{19}{subsubsection.5.4.3.7}%
+\contentsline {section}{\numberline {5.5}IMUMaths\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Name Namespace Reference}{20}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Name Namespace Reference}{20}{section.5.6}%
+\contentsline {chapter}{\numberline {6}Class Documentation}{21}{chapter.6}%
+\contentsline {section}{\numberline {6.1}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::accel\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}settings Struct Reference}{21}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{21}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Constructor \& Destructor Documentation}{22}{subsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.2.1}accel\_settings()}{22}{subsubsection.6.1.2.1}%
+\contentsline {subsection}{\numberline {6.1.3}Member Data Documentation}{22}{subsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.3.1}dlpf\_config}{22}{subsubsection.6.1.3.1}%
+\contentsline {subsubsection}{\numberline {6.1.3.2}dlpf\_enable}{22}{subsubsection.6.1.3.2}%
+\contentsline {subsubsection}{\numberline {6.1.3.3}sample\_rate\_div}{22}{subsubsection.6.1.3.3}%
+\contentsline {subsubsection}{\numberline {6.1.3.4}scale}{22}{subsubsection.6.1.3.4}%
+\contentsline {section}{\numberline {6.2}Aiff\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Utilities Struct Reference}{23}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Member Function Documentation}{23}{subsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.1.1}decodeAiffSampleRate()}{23}{subsubsection.6.2.1.1}%
+\contentsline {subsubsection}{\numberline {6.2.1.2}encodeAiffSampleRate()}{23}{subsubsection.6.2.1.2}%
+\contentsline {section}{\numberline {6.3}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}File$<$ T $>$ Class Template Reference}{23}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Member Typedef Documentation}{24}{subsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.1.1}AudioBuffer}{24}{subsubsection.6.3.1.1}%
+\contentsline {subsection}{\numberline {6.3.2}Constructor \& Destructor Documentation}{24}{subsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.2.1}AudioFile()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{24}{subsubsection.6.3.2.1}%
+\contentsline {subsubsection}{\numberline {6.3.2.2}AudioFile()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{24}{subsubsection.6.3.2.2}%
+\contentsline {subsection}{\numberline {6.3.3}Member Function Documentation}{25}{subsection.6.3.3}%
+\contentsline {subsubsection}{\numberline {6.3.3.1}getBitDepth()}{25}{subsubsection.6.3.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.3.2}getLengthInSeconds()}{25}{subsubsection.6.3.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.3.3}getNumChannels()}{25}{subsubsection.6.3.3.3}%
+\contentsline {subsubsection}{\numberline {6.3.3.4}getNumSamplesPerChannel()}{25}{subsubsection.6.3.3.4}%
+\contentsline {subsubsection}{\numberline {6.3.3.5}getSampleRate()}{25}{subsubsection.6.3.3.5}%
+\contentsline {subsubsection}{\numberline {6.3.3.6}isMono()}{25}{subsubsection.6.3.3.6}%
+\contentsline {subsubsection}{\numberline {6.3.3.7}isStereo()}{26}{subsubsection.6.3.3.7}%
+\contentsline {subsubsection}{\numberline {6.3.3.8}load()}{26}{subsubsection.6.3.3.8}%
+\contentsline {subsubsection}{\numberline {6.3.3.9}loadFromMemory()}{26}{subsubsection.6.3.3.9}%
+\contentsline {subsubsection}{\numberline {6.3.3.10}printSummary()}{26}{subsubsection.6.3.3.10}%
+\contentsline {subsubsection}{\numberline {6.3.3.11}save()}{26}{subsubsection.6.3.3.11}%
+\contentsline {subsubsection}{\numberline {6.3.3.12}setAudioBuffer()}{26}{subsubsection.6.3.3.12}%
+\contentsline {subsubsection}{\numberline {6.3.3.13}setAudioBufferSize()}{27}{subsubsection.6.3.3.13}%
+\contentsline {subsubsection}{\numberline {6.3.3.14}setBitDepth()}{27}{subsubsection.6.3.3.14}%
+\contentsline {subsubsection}{\numberline {6.3.3.15}setNumChannels()}{27}{subsubsection.6.3.3.15}%
+\contentsline {subsubsection}{\numberline {6.3.3.16}setNumSamplesPerChannel()}{27}{subsubsection.6.3.3.16}%
+\contentsline {subsubsection}{\numberline {6.3.3.17}setSampleRate()}{27}{subsubsection.6.3.3.17}%
+\contentsline {subsubsection}{\numberline {6.3.3.18}shouldLogErrorsToConsole()}{27}{subsubsection.6.3.3.18}%
+\contentsline {subsection}{\numberline {6.3.4}Member Data Documentation}{28}{subsection.6.3.4}%
+\contentsline {subsubsection}{\numberline {6.3.4.1}iXMLChunk}{28}{subsubsection.6.3.4.1}%
+\contentsline {subsubsection}{\numberline {6.3.4.2}samples}{28}{subsubsection.6.3.4.2}%
+\contentsline {section}{\numberline {6.4}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lib\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lib Class Reference}{28}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Constructor \& Destructor Documentation}{28}{subsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.1.1}AudioLib()}{28}{subsubsection.6.4.1.1}%
+\contentsline {subsubsection}{\numberline {6.4.1.2}$\sim $AudioLib()}{28}{subsubsection.6.4.1.2}%
+\contentsline {subsection}{\numberline {6.4.2}Member Function Documentation}{29}{subsection.6.4.2}%
+\contentsline {subsubsection}{\numberline {6.4.2.1}PlayAudioTerminal()}{29}{subsubsection.6.4.2.1}%
+\contentsline {subsubsection}{\numberline {6.4.2.2}PlayFile()}{29}{subsubsection.6.4.2.2}%
+\contentsline {subsubsection}{\numberline {6.4.2.3}PlaySound()}{29}{subsubsection.6.4.2.3}%
+\contentsline {section}{\numberline {6.5}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Player\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Name\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Player Class Reference}{29}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Constructor \& Destructor Documentation}{30}{subsection.6.5.1}%
+\contentsline {subsubsection}{\numberline {6.5.1.1}AudioPlayer()}{30}{subsubsection.6.5.1.1}%
+\contentsline {subsubsection}{\numberline {6.5.1.2}$\sim $AudioPlayer()}{30}{subsubsection.6.5.1.2}%
+\contentsline {subsection}{\numberline {6.5.2}Member Function Documentation}{30}{subsection.6.5.2}%
+\contentsline {subsubsection}{\numberline {6.5.2.1}close()}{30}{subsubsection.6.5.2.1}%
+\contentsline {subsubsection}{\numberline {6.5.2.2}open()}{30}{subsubsection.6.5.2.2}%
+\contentsline {subsubsection}{\numberline {6.5.2.3}playFile()}{30}{subsubsection.6.5.2.3}%
+\contentsline {subsection}{\numberline {6.5.3}Member Data Documentation}{30}{subsection.6.5.3}%
+\contentsline {subsubsection}{\numberline {6.5.3.1}audioBuffer}{30}{subsubsection.6.5.3.1}%
+\contentsline {subsubsection}{\numberline {6.5.3.2}CancelPlayback}{30}{subsubsection.6.5.3.2}%
+\contentsline {subsubsection}{\numberline {6.5.3.3}fileBuffers}{31}{subsubsection.6.5.3.3}%
+\contentsline {subsubsection}{\numberline {6.5.3.4}StopMixingThread}{31}{subsubsection.6.5.3.4}%
+\contentsline {section}{\numberline {6.6}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sample\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Converter$<$ T $>$ Struct Template Reference}{31}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Member Function Documentation}{31}{subsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.1.1}clamp()}{31}{subsubsection.6.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.6.1.2}sampleToSignedByte()}{31}{subsubsection.6.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.6.1.3}sampleToSixteenBitInt()}{32}{subsubsection.6.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.6.1.4}sampleToThirtyTwoBitInt()}{32}{subsubsection.6.6.1.4}%
+\contentsline {subsubsection}{\numberline {6.6.1.5}sampleToTwentyFourBitInt()}{32}{subsubsection.6.6.1.5}%
+\contentsline {subsubsection}{\numberline {6.6.1.6}sampleToUnsignedByte()}{32}{subsubsection.6.6.1.6}%
+\contentsline {subsubsection}{\numberline {6.6.1.7}signedByteToSample()}{32}{subsubsection.6.6.1.7}%
+\contentsline {subsubsection}{\numberline {6.6.1.8}sixteenBitIntToSample()}{32}{subsubsection.6.6.1.8}%
+\contentsline {subsubsection}{\numberline {6.6.1.9}thirtyTwoBitIntToSample()}{33}{subsubsection.6.6.1.9}%
+\contentsline {subsubsection}{\numberline {6.6.1.10}twentyFourBitIntToSample()}{33}{subsubsection.6.6.1.10}%
+\contentsline {subsubsection}{\numberline {6.6.1.11}unsignedByteToSample()}{33}{subsubsection.6.6.1.11}%
+\contentsline {section}{\numberline {6.7}GPIOName\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::GPIOClass Class Reference}{33}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Constructor \& Destructor Documentation}{34}{subsection.6.7.1}%
+\contentsline {subsubsection}{\numberline {6.7.1.1}GPIOClass()}{34}{subsubsection.6.7.1.1}%
+\contentsline {subsection}{\numberline {6.7.2}Member Function Documentation}{34}{subsection.6.7.2}%
+\contentsline {subsubsection}{\numberline {6.7.2.1}GPIOStop()}{34}{subsubsection.6.7.2.1}%
+\contentsline {subsubsection}{\numberline {6.7.2.2}IMUMathsCallback()}{34}{subsubsection.6.7.2.2}%
+\contentsline {subsubsection}{\numberline {6.7.2.3}SetCallback()}{34}{subsubsection.6.7.2.3}%
+\contentsline {subsubsection}{\numberline {6.7.2.4}Worker()}{34}{subsubsection.6.7.2.4}%
+\contentsline {subsubsection}{\numberline {6.7.2.5}WorkerDataCollect()}{35}{subsubsection.6.7.2.5}%
+\contentsline {subsection}{\numberline {6.7.3}Member Data Documentation}{35}{subsection.6.7.3}%
+\contentsline {subsubsection}{\numberline {6.7.3.1}callback}{35}{subsubsection.6.7.3.1}%
+\contentsline {subsubsection}{\numberline {6.7.3.2}CallbackFunction}{35}{subsubsection.6.7.3.2}%
+\contentsline {subsubsection}{\numberline {6.7.3.3}Maths}{35}{subsubsection.6.7.3.3}%
+\contentsline {subsubsection}{\numberline {6.7.3.4}sensor}{35}{subsubsection.6.7.3.4}%
+\contentsline {section}{\numberline {6.8}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::gyro\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}settings Struct Reference}{35}{section.6.8}%
+\contentsline {subsection}{\numberline {6.8.1}Detailed Description}{36}{subsection.6.8.1}%
+\contentsline {subsection}{\numberline {6.8.2}Constructor \& Destructor Documentation}{36}{subsection.6.8.2}%
+\contentsline {subsubsection}{\numberline {6.8.2.1}gyro\_settings()}{36}{subsubsection.6.8.2.1}%
+\contentsline {subsection}{\numberline {6.8.3}Member Data Documentation}{36}{subsection.6.8.3}%
+\contentsline {subsubsection}{\numberline {6.8.3.1}dlpf\_config}{36}{subsubsection.6.8.3.1}%
+\contentsline {subsubsection}{\numberline {6.8.3.2}dlpf\_enable}{37}{subsubsection.6.8.3.2}%
+\contentsline {subsubsection}{\numberline {6.8.3.3}sample\_rate\_div}{37}{subsubsection.6.8.3.3}%
+\contentsline {subsubsection}{\numberline {6.8.3.4}scale}{37}{subsubsection.6.8.3.4}%
+\contentsline {section}{\numberline {6.9}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::ICM20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I2C Class Reference}{37}{section.6.9}%
+\contentsline {subsection}{\numberline {6.9.1}Constructor \& Destructor Documentation}{38}{subsection.6.9.1}%
+\contentsline {subsubsection}{\numberline {6.9.1.1}ICM20948\_I2C()}{38}{subsubsection.6.9.1.1}%
+\contentsline {subsection}{\numberline {6.9.2}Member Function Documentation}{38}{subsection.6.9.2}%
+\contentsline {subsubsection}{\numberline {6.9.2.1}check\_DRDY\_INT()}{38}{subsubsection.6.9.2.1}%
+\contentsline {subsubsection}{\numberline {6.9.2.2}enable\_DRDY\_INT()}{38}{subsubsection.6.9.2.2}%
+\contentsline {subsubsection}{\numberline {6.9.2.3}init()}{38}{subsubsection.6.9.2.3}%
+\contentsline {subsubsection}{\numberline {6.9.2.4}read\_accel\_gyro()}{39}{subsubsection.6.9.2.4}%
+\contentsline {subsubsection}{\numberline {6.9.2.5}read\_magn()}{39}{subsubsection.6.9.2.5}%
+\contentsline {subsubsection}{\numberline {6.9.2.6}reset()}{39}{subsubsection.6.9.2.6}%
+\contentsline {subsubsection}{\numberline {6.9.2.7}set\_settings()}{40}{subsubsection.6.9.2.7}%
+\contentsline {subsubsection}{\numberline {6.9.2.8}wake()}{40}{subsubsection.6.9.2.8}%
+\contentsline {subsection}{\numberline {6.9.3}Member Data Documentation}{40}{subsection.6.9.3}%
+\contentsline {subsubsection}{\numberline {6.9.3.1}accel}{40}{subsubsection.6.9.3.1}%
+\contentsline {subsubsection}{\numberline {6.9.3.2}gyro}{40}{subsubsection.6.9.3.2}%
+\contentsline {subsubsection}{\numberline {6.9.3.3}magn}{41}{subsubsection.6.9.3.3}%
+\contentsline {subsubsection}{\numberline {6.9.3.4}settings}{41}{subsubsection.6.9.3.4}%
+\contentsline {section}{\numberline {6.10}IMUMaths\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Name\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::IMUMaths Class Reference}{41}{section.6.10}%
+\contentsline {subsection}{\numberline {6.10.1}Constructor \& Destructor Documentation}{41}{subsection.6.10.1}%
+\contentsline {subsubsection}{\numberline {6.10.1.1}IMUMaths()}{41}{subsubsection.6.10.1.1}%
+\contentsline {subsection}{\numberline {6.10.2}Member Function Documentation}{41}{subsection.6.10.2}%
+\contentsline {subsubsection}{\numberline {6.10.2.1}SetPlayFileCallback()}{41}{subsubsection.6.10.2.1}%
+\contentsline {subsubsection}{\numberline {6.10.2.2}SoundChecker()}{42}{subsubsection.6.10.2.2}%
+\contentsline {subsection}{\numberline {6.10.3}Member Data Documentation}{42}{subsection.6.10.3}%
+\contentsline {subsubsection}{\numberline {6.10.3.1}Audio}{42}{subsubsection.6.10.3.1}%
+\contentsline {subsubsection}{\numberline {6.10.3.2}Counter}{42}{subsubsection.6.10.3.2}%
+\contentsline {subsubsection}{\numberline {6.10.3.3}LastFilePlayed}{42}{subsubsection.6.10.3.3}%
+\contentsline {subsubsection}{\numberline {6.10.3.4}Pause}{42}{subsubsection.6.10.3.4}%
+\contentsline {section}{\numberline {6.11}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::magn\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}settings Struct Reference}{43}{section.6.11}%
+\contentsline {subsection}{\numberline {6.11.1}Detailed Description}{43}{subsection.6.11.1}%
+\contentsline {subsection}{\numberline {6.11.2}Constructor \& Destructor Documentation}{43}{subsection.6.11.2}%
+\contentsline {subsubsection}{\numberline {6.11.2.1}magn\_settings()}{43}{subsubsection.6.11.2.1}%
+\contentsline {subsection}{\numberline {6.11.3}Member Data Documentation}{43}{subsection.6.11.3}%
+\contentsline {subsubsection}{\numberline {6.11.3.1}mode}{43}{subsubsection.6.11.3.1}%
+\contentsline {section}{\numberline {6.12}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Name\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio Class Reference}{44}{section.6.12}%
+\contentsline {subsection}{\numberline {6.12.1}Member Function Documentation}{44}{subsection.6.12.1}%
+\contentsline {subsubsection}{\numberline {6.12.1.1}PlayCymbal()}{44}{subsubsection.6.12.1.1}%
+\contentsline {subsubsection}{\numberline {6.12.1.2}PlayHighTom()}{44}{subsubsection.6.12.1.2}%
+\contentsline {subsubsection}{\numberline {6.12.1.3}PlaySnare()}{44}{subsubsection.6.12.1.3}%
+\contentsline {section}{\numberline {6.13}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::settings Struct Reference}{44}{section.6.13}%
+\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{45}{subsection.6.13.1}%
+\contentsline {subsection}{\numberline {6.13.2}Constructor \& Destructor Documentation}{45}{subsection.6.13.2}%
+\contentsline {subsubsection}{\numberline {6.13.2.1}settings()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{45}{subsubsection.6.13.2.1}%
+\contentsline {subsubsection}{\numberline {6.13.2.2}settings()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{45}{subsubsection.6.13.2.2}%
+\contentsline {subsection}{\numberline {6.13.3}Member Data Documentation}{46}{subsection.6.13.3}%
+\contentsline {subsubsection}{\numberline {6.13.3.1}accel}{46}{subsubsection.6.13.3.1}%
+\contentsline {subsubsection}{\numberline {6.13.3.2}gyro}{46}{subsubsection.6.13.3.2}%
+\contentsline {subsubsection}{\numberline {6.13.3.3}magn}{46}{subsubsection.6.13.3.3}%
+\contentsline {chapter}{\numberline {7}File Documentation}{47}{chapter.7}%
+\contentsline {section}{\numberline {7.1}README.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}md File Reference}{47}{section.7.1}%
+\contentsline {section}{\numberline {7.2}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ALSAAudio/include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lib.hpp File Reference}{47}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lib.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{47}{section.7.3}%
+\contentsline {section}{\numberline {7.4}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ALSAPlayer/include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ALSAPlayer.hpp File Reference}{48}{section.7.4}%
+\contentsline {section}{\numberline {7.5}ALSAPlayer.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{48}{section.7.5}%
+\contentsline {section}{\numberline {7.6}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ALSAPlayer/include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}File.h File Reference}{50}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}Detailed Description}{51}{subsection.7.6.1}%
+\contentsline {subsection}{\numberline {7.6.2}Enumeration Type Documentation}{51}{subsection.7.6.2}%
+\contentsline {subsubsection}{\numberline {7.6.2.1}AIFFAudioFormat}{51}{subsubsection.7.6.2.1}%
+\contentsline {subsubsection}{\numberline {7.6.2.2}AudioFileFormat}{52}{subsubsection.7.6.2.2}%
+\contentsline {subsubsection}{\numberline {7.6.2.3}SampleLimit}{52}{subsubsection.7.6.2.3}%
+\contentsline {subsubsection}{\numberline {7.6.2.4}WavAudioFormat}{52}{subsubsection.7.6.2.4}%
+\contentsline {subsection}{\numberline {7.6.3}Function Documentation}{53}{subsection.7.6.3}%
+\contentsline {subsubsection}{\numberline {7.6.3.1}convertSignedToUnsigned()}{53}{subsubsection.7.6.3.1}%
+\contentsline {section}{\numberline {7.7}Audio\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}File.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{53}{section.7.7}%
+\contentsline {section}{\numberline {7.8}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}GPIO/include/gpioevent.h File Reference}{71}{section.7.8}%
+\contentsline {section}{\numberline {7.9}gpioevent.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{72}{section.7.9}%
+\contentsline {section}{\numberline {7.10}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C/include/icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}defs.hpp File Reference}{72}{section.7.10}%
+\contentsline {subsection}{\numberline {7.10.1}Macro Definition Documentation}{74}{subsection.7.10.1}%
+\contentsline {subsubsection}{\numberline {7.10.1.1}AK09916\_CNTL2\_ADDR}{74}{subsubsection.7.10.1.1}%
+\contentsline {subsubsection}{\numberline {7.10.1.2}ICM20948\_ACCEL\_CONFIG\_1\_ADDR}{74}{subsubsection.7.10.1.2}%
+\contentsline {subsubsection}{\numberline {7.10.1.3}ICM20948\_ACCEL\_CONFIG\_1\_BANK}{74}{subsubsection.7.10.1.3}%
+\contentsline {subsubsection}{\numberline {7.10.1.4}ICM20948\_ACCEL\_INTEL\_CTRL\_ADDR}{75}{subsubsection.7.10.1.4}%
+\contentsline {subsubsection}{\numberline {7.10.1.5}ICM20948\_ACCEL\_INTEL\_CTRL\_BANK}{75}{subsubsection.7.10.1.5}%
+\contentsline {subsubsection}{\numberline {7.10.1.6}ICM20948\_ACCEL\_OUT\_BANK}{75}{subsubsection.7.10.1.6}%
+\contentsline {subsubsection}{\numberline {7.10.1.7}ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_ADDR}{75}{subsubsection.7.10.1.7}%
+\contentsline {subsubsection}{\numberline {7.10.1.8}ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_BANK}{75}{subsubsection.7.10.1.8}%
+\contentsline {subsubsection}{\numberline {7.10.1.9}ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_ADDR}{75}{subsubsection.7.10.1.9}%
+\contentsline {subsubsection}{\numberline {7.10.1.10}ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_BANK}{75}{subsubsection.7.10.1.10}%
+\contentsline {subsubsection}{\numberline {7.10.1.11}ICM20948\_ACCEL\_WOM\_THR\_ADDR}{75}{subsubsection.7.10.1.11}%
+\contentsline {subsubsection}{\numberline {7.10.1.12}ICM20948\_ACCEL\_WOM\_THR\_BANK}{75}{subsubsection.7.10.1.12}%
+\contentsline {subsubsection}{\numberline {7.10.1.13}ICM20948\_ACCEL\_XOUT\_H\_ADDR}{75}{subsubsection.7.10.1.13}%
+\contentsline {subsubsection}{\numberline {7.10.1.14}ICM20948\_ACCEL\_XOUT\_L\_ADDR}{76}{subsubsection.7.10.1.14}%
+\contentsline {subsubsection}{\numberline {7.10.1.15}ICM20948\_ACCEL\_YOUT\_H\_ADDR}{76}{subsubsection.7.10.1.15}%
+\contentsline {subsubsection}{\numberline {7.10.1.16}ICM20948\_ACCEL\_YOUT\_L\_ADDR}{76}{subsubsection.7.10.1.16}%
+\contentsline {subsubsection}{\numberline {7.10.1.17}ICM20948\_ACCEL\_ZOUT\_H\_ADDR}{76}{subsubsection.7.10.1.17}%
+\contentsline {subsubsection}{\numberline {7.10.1.18}ICM20948\_ACCEL\_ZOUT\_L\_ADDR}{76}{subsubsection.7.10.1.18}%
+\contentsline {subsubsection}{\numberline {7.10.1.19}ICM20948\_BANK0\_WHO\_AM\_I\_VALUE}{76}{subsubsection.7.10.1.19}%
+\contentsline {subsubsection}{\numberline {7.10.1.20}ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_ADDR}{76}{subsubsection.7.10.1.20}%
+\contentsline {subsubsection}{\numberline {7.10.1.21}ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_BANK}{76}{subsubsection.7.10.1.21}%
+\contentsline {subsubsection}{\numberline {7.10.1.22}ICM20948\_GYRO\_CONFIG\_1\_ADDR}{76}{subsubsection.7.10.1.22}%
+\contentsline {subsubsection}{\numberline {7.10.1.23}ICM20948\_GYRO\_CONFIG\_1\_BANK}{76}{subsubsection.7.10.1.23}%
+\contentsline {subsubsection}{\numberline {7.10.1.24}ICM20948\_GYRO\_OUT\_BANK}{77}{subsubsection.7.10.1.24}%
+\contentsline {subsubsection}{\numberline {7.10.1.25}ICM20948\_GYRO\_SMPLRT\_DIV\_ADDR}{77}{subsubsection.7.10.1.25}%
+\contentsline {subsubsection}{\numberline {7.10.1.26}ICM20948\_GYRO\_SMPLRT\_DIV\_BANK}{77}{subsubsection.7.10.1.26}%
+\contentsline {subsubsection}{\numberline {7.10.1.27}ICM20948\_GYRO\_XOUT\_H\_ADDR}{77}{subsubsection.7.10.1.27}%
+\contentsline {subsubsection}{\numberline {7.10.1.28}ICM20948\_GYRO\_XOUT\_L\_ADDR}{77}{subsubsection.7.10.1.28}%
+\contentsline {subsubsection}{\numberline {7.10.1.29}ICM20948\_GYRO\_YOUT\_H\_ADDR}{77}{subsubsection.7.10.1.29}%
+\contentsline {subsubsection}{\numberline {7.10.1.30}ICM20948\_GYRO\_YOUT\_L\_ADDR}{77}{subsubsection.7.10.1.30}%
+\contentsline {subsubsection}{\numberline {7.10.1.31}ICM20948\_GYRO\_ZOUT\_H\_ADDR}{77}{subsubsection.7.10.1.31}%
+\contentsline {subsubsection}{\numberline {7.10.1.32}ICM20948\_GYRO\_ZOUT\_L\_ADDR}{77}{subsubsection.7.10.1.32}%
+\contentsline {subsubsection}{\numberline {7.10.1.33}ICM20948\_I2C\_ADDR}{77}{subsubsection.7.10.1.33}%
+\contentsline {subsubsection}{\numberline {7.10.1.34}ICM20948\_I2C\_MST\_CTRL\_ADDR}{78}{subsubsection.7.10.1.34}%
+\contentsline {subsubsection}{\numberline {7.10.1.35}ICM20948\_I2C\_MST\_CTRL\_BANK}{78}{subsubsection.7.10.1.35}%
+\contentsline {subsubsection}{\numberline {7.10.1.36}ICM20948\_I2C\_MST\_STATUS\_ADDR}{78}{subsubsection.7.10.1.36}%
+\contentsline {subsubsection}{\numberline {7.10.1.37}ICM20948\_I2C\_MST\_STATUS\_BANK}{78}{subsubsection.7.10.1.37}%
+\contentsline {subsubsection}{\numberline {7.10.1.38}ICM20948\_I2C\_SLV0\_ADDR\_ADDR}{78}{subsubsection.7.10.1.38}%
+\contentsline {subsubsection}{\numberline {7.10.1.39}ICM20948\_I2C\_SLV0\_ADDR\_BANK}{78}{subsubsection.7.10.1.39}%
+\contentsline {subsubsection}{\numberline {7.10.1.40}ICM20948\_I2C\_SLV0\_CTRL\_ADDR}{78}{subsubsection.7.10.1.40}%
+\contentsline {subsubsection}{\numberline {7.10.1.41}ICM20948\_I2C\_SLV0\_CTRL\_BANK}{78}{subsubsection.7.10.1.41}%
+\contentsline {subsubsection}{\numberline {7.10.1.42}ICM20948\_I2C\_SLV0\_REG\_ADDR}{78}{subsubsection.7.10.1.42}%
+\contentsline {subsubsection}{\numberline {7.10.1.43}ICM20948\_I2C\_SLV0\_REG\_BANK}{78}{subsubsection.7.10.1.43}%
+\contentsline {subsubsection}{\numberline {7.10.1.44}ICM20948\_I2C\_SLV4\_ADDR\_ADDR}{79}{subsubsection.7.10.1.44}%
+\contentsline {subsubsection}{\numberline {7.10.1.45}ICM20948\_I2C\_SLV4\_ADDR\_BANK}{79}{subsubsection.7.10.1.45}%
+\contentsline {subsubsection}{\numberline {7.10.1.46}ICM20948\_I2C\_SLV4\_CTRL\_ADDR}{79}{subsubsection.7.10.1.46}%
+\contentsline {subsubsection}{\numberline {7.10.1.47}ICM20948\_I2C\_SLV4\_CTRL\_BANK}{79}{subsubsection.7.10.1.47}%
+\contentsline {subsubsection}{\numberline {7.10.1.48}ICM20948\_I2C\_SLV4\_DI\_ADDR}{79}{subsubsection.7.10.1.48}%
+\contentsline {subsubsection}{\numberline {7.10.1.49}ICM20948\_I2C\_SLV4\_DI\_BANK}{79}{subsubsection.7.10.1.49}%
+\contentsline {subsubsection}{\numberline {7.10.1.50}ICM20948\_I2C\_SLV4\_DO\_ADDR}{79}{subsubsection.7.10.1.50}%
+\contentsline {subsubsection}{\numberline {7.10.1.51}ICM20948\_I2C\_SLV4\_DO\_BANK}{79}{subsubsection.7.10.1.51}%
+\contentsline {subsubsection}{\numberline {7.10.1.52}ICM20948\_I2C\_SLV4\_REG\_ADDR}{79}{subsubsection.7.10.1.52}%
+\contentsline {subsubsection}{\numberline {7.10.1.53}ICM20948\_I2C\_SLV4\_REG\_BANK}{79}{subsubsection.7.10.1.53}%
+\contentsline {subsubsection}{\numberline {7.10.1.54}ICM20948\_INT\_ENABLE\_1\_ADDR\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{80}{subsubsection.7.10.1.54}%
+\contentsline {subsubsection}{\numberline {7.10.1.55}ICM20948\_INT\_ENABLE\_1\_ADDR\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{80}{subsubsection.7.10.1.55}%
+\contentsline {subsubsection}{\numberline {7.10.1.56}ICM20948\_INT\_ENABLE\_1\_BANK}{80}{subsubsection.7.10.1.56}%
+\contentsline {subsubsection}{\numberline {7.10.1.57}ICM20948\_INT\_ENABLE\_2\_ADDR}{80}{subsubsection.7.10.1.57}%
+\contentsline {subsubsection}{\numberline {7.10.1.58}ICM20948\_INT\_ENABLE\_2\_BANK}{80}{subsubsection.7.10.1.58}%
+\contentsline {subsubsection}{\numberline {7.10.1.59}ICM20948\_INT\_ENABLE\_3\_ADDR}{80}{subsubsection.7.10.1.59}%
+\contentsline {subsubsection}{\numberline {7.10.1.60}ICM20948\_INT\_ENABLE\_3\_BANK}{80}{subsubsection.7.10.1.60}%
+\contentsline {subsubsection}{\numberline {7.10.1.61}ICM20948\_INT\_ENABLE\_ADDR\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{80}{subsubsection.7.10.1.61}%
+\contentsline {subsubsection}{\numberline {7.10.1.62}ICM20948\_INT\_ENABLE\_ADDR\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{80}{subsubsection.7.10.1.62}%
+\contentsline {subsubsection}{\numberline {7.10.1.63}ICM20948\_INT\_ENABLE\_BANK}{80}{subsubsection.7.10.1.63}%
+\contentsline {subsubsection}{\numberline {7.10.1.64}ICM20948\_INT\_PIN\_CFG\_ADDR}{81}{subsubsection.7.10.1.64}%
+\contentsline {subsubsection}{\numberline {7.10.1.65}ICM20948\_INT\_PIN\_CFG\_BANK}{81}{subsubsection.7.10.1.65}%
+\contentsline {subsubsection}{\numberline {7.10.1.66}ICM20948\_INT\_STATUS\_1\_ADDR}{81}{subsubsection.7.10.1.66}%
+\contentsline {subsubsection}{\numberline {7.10.1.67}ICM20948\_INT\_STATUS\_1\_BANK}{81}{subsubsection.7.10.1.67}%
+\contentsline {subsubsection}{\numberline {7.10.1.68}ICM20948\_INT\_STATUS\_ADDR}{81}{subsubsection.7.10.1.68}%
+\contentsline {subsubsection}{\numberline {7.10.1.69}ICM20948\_INT\_STATUS\_BANK}{81}{subsubsection.7.10.1.69}%
+\contentsline {subsubsection}{\numberline {7.10.1.70}ICM20948\_LP\_CONFIG\_ADDR}{81}{subsubsection.7.10.1.70}%
+\contentsline {subsubsection}{\numberline {7.10.1.71}ICM20948\_LP\_CONFIG\_BANK}{81}{subsubsection.7.10.1.71}%
+\contentsline {subsubsection}{\numberline {7.10.1.72}ICM20948\_MAGN\_I2C\_ADDR}{81}{subsubsection.7.10.1.72}%
+\contentsline {subsubsection}{\numberline {7.10.1.73}ICM20948\_PWR\_MGMT\_1\_ADDR}{81}{subsubsection.7.10.1.73}%
+\contentsline {subsubsection}{\numberline {7.10.1.74}ICM20948\_PWR\_MGMT\_1\_BANK}{82}{subsubsection.7.10.1.74}%
+\contentsline {subsubsection}{\numberline {7.10.1.75}ICM20948\_PWR\_MGMT\_2\_ADDR}{82}{subsubsection.7.10.1.75}%
+\contentsline {subsubsection}{\numberline {7.10.1.76}ICM20948\_PWR\_MGMT\_2\_BANK}{82}{subsubsection.7.10.1.76}%
+\contentsline {subsubsection}{\numberline {7.10.1.77}ICM20948\_REG\_BANK\_SEL\_ADDR}{82}{subsubsection.7.10.1.77}%
+\contentsline {subsubsection}{\numberline {7.10.1.78}ICM20948\_REG\_BANK\_SEL\_BANK0\_VALUE}{82}{subsubsection.7.10.1.78}%
+\contentsline {subsubsection}{\numberline {7.10.1.79}ICM20948\_REG\_BANK\_SEL\_BANK1\_VALUE}{82}{subsubsection.7.10.1.79}%
+\contentsline {subsubsection}{\numberline {7.10.1.80}ICM20948\_REG\_BANK\_SEL\_BANK2\_VALUE}{82}{subsubsection.7.10.1.80}%
+\contentsline {subsubsection}{\numberline {7.10.1.81}ICM20948\_REG\_BANK\_SEL\_BANK3\_VALUE}{82}{subsubsection.7.10.1.81}%
+\contentsline {subsubsection}{\numberline {7.10.1.82}ICM20948\_TEMP\_OUT\_BANK}{82}{subsubsection.7.10.1.82}%
+\contentsline {subsubsection}{\numberline {7.10.1.83}ICM20948\_TEMP\_OUT\_H\_ADDR}{82}{subsubsection.7.10.1.83}%
+\contentsline {subsubsection}{\numberline {7.10.1.84}ICM20948\_TEMP\_OUT\_L\_ADDR}{83}{subsubsection.7.10.1.84}%
+\contentsline {subsubsection}{\numberline {7.10.1.85}ICM20948\_USER\_CTRL\_ADDR}{83}{subsubsection.7.10.1.85}%
+\contentsline {subsubsection}{\numberline {7.10.1.86}ICM20948\_USER\_CTRL\_BANK}{83}{subsubsection.7.10.1.86}%
+\contentsline {subsubsection}{\numberline {7.10.1.87}ICM20948\_WHO\_AM\_I\_ADDR}{83}{subsubsection.7.10.1.87}%
+\contentsline {subsubsection}{\numberline {7.10.1.88}ICM20948\_WHO\_AM\_I\_BANK}{83}{subsubsection.7.10.1.88}%
+\contentsline {section}{\numberline {7.11}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}defs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{83}{section.7.11}%
+\contentsline {section}{\numberline {7.12}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C/include/icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}i2c.hpp File Reference}{85}{section.7.12}%
+\contentsline {section}{\numberline {7.13}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}i2c.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{85}{section.7.13}%
+\contentsline {section}{\numberline {7.14}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C/include/icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}utils.hpp File Reference}{86}{section.7.14}%
+\contentsline {section}{\numberline {7.15}icm20948\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}utils.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{88}{section.7.15}%
+\contentsline {section}{\numberline {7.16}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IMUMaths/include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IMUMaths.hpp File Reference}{90}{section.7.16}%
+\contentsline {section}{\numberline {7.17}IMUMaths.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{90}{section.7.17}%
+\contentsline {section}{\numberline {7.18}src/libs/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio/include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio.hpp File Reference}{91}{section.7.18}%
+\contentsline {section}{\numberline {7.19}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Audio.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{91}{section.7.19}%

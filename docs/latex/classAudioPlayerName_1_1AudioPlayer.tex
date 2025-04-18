@@ -1,0 +1,98 @@
+\doxysection{Audio\+Player\+Name\+::Audio\+Player Class Reference}
+\hypertarget{classAudioPlayerName_1_1AudioPlayer}{}\label{classAudioPlayerName_1_1AudioPlayer}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+
+
+{\ttfamily \#include $<$ALSAPlayer.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ac944337d3f2563cee68e2a71488dab44}{Audio\+Player}} (const std\+::string \&device="{}default"{}, unsigned int rate=44100, unsigned int ch=2, snd\+\_\+pcm\+\_\+format\+\_\+t fmt=SND\+\_\+\+PCM\+\_\+\+FORMAT\+\_\+\+S16\+\_\+\+LE, snd\+\_\+pcm\+\_\+uframes\+\_\+t frames=32, const std\+::vector$<$ std\+::string $>$ \&files\+To\+Convert=\{"{}src/libs/ALSAPlayer/include/Crash\+Cymbal.\+wav"{}, "{}src/libs/ALSAPlayer/include/High\+Tom.\+wav"{}, "{}src/libs/ALSAPlayer/include/Snare\+Drum.\+wav"{}\})
+\item 
+bool \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ad7bff3955a92e62945dbedf8b69172f0}{open}} ()
+\item 
+bool \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_aee8686e98fb453f25b3899c83bc69403}{play\+File}} (const std\+::string \&file\+Key)
+\item 
+void \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ac94aa1dbc897497295484c23f693aeb6}{close}} ()
+\item 
+\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a40cc08fed9d626556b81796a13126447}{\texorpdfstring{$\sim$}{\string~}\+Audio\+Player}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int32\+\_\+t $>$ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a7e3d7f02bf3ce29a59148ff97830fa94}{audio\+Buffer}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ int32\+\_\+t $>$ $>$ \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6}{file\+Buffers}}
+\item 
+bool \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_a4a493f2514ad4cbd2ddc54e773ace464}{Stop\+Mixing\+Thread}}
+\item 
+bool \mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer_ab3a396f5760af5bf91f315fd16250c4d}{Cancel\+Playback}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_ac944337d3f2563cee68e2a71488dab44}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!AudioPlayer@{AudioPlayer}}
+\index{AudioPlayer@{AudioPlayer}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{AudioPlayer()}{AudioPlayer()}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_ac944337d3f2563cee68e2a71488dab44} 
+Audio\+Player\+Name\+::\+Audio\+Player\+::\+Audio\+Player (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{device}{ = {\ttfamily "{}default"{}}, }\item[{unsigned int}]{rate}{ = {\ttfamily 44100}, }\item[{unsigned int}]{ch}{ = {\ttfamily 2}, }\item[{snd\+\_\+pcm\+\_\+format\+\_\+t}]{fmt}{ = {\ttfamily SND\+\_\+PCM\+\_\+FORMAT\+\_\+S16\+\_\+LE}, }\item[{snd\+\_\+pcm\+\_\+uframes\+\_\+t}]{frames}{ = {\ttfamily 32}, }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{files\+To\+Convert}{ = {\ttfamily \{"{}src/libs/ALSAPlayer/include/CrashCymbal.wav"{},~"{}src/libs/ALSAPlayer/include/HighTom.wav"{},~"{}src/libs/ALSAPlayer/include/SnareDrum.wav"{}\}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_a40cc08fed9d626556b81796a13126447}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!````~AudioPlayer@{\texorpdfstring{$\sim$}{\string~}AudioPlayer}}
+\index{````~AudioPlayer@{\texorpdfstring{$\sim$}{\string~}AudioPlayer}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AudioPlayer()}{\string~AudioPlayer()}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_a40cc08fed9d626556b81796a13126447} 
+Audio\+Player\+Name\+::\+Audio\+Player\+::\texorpdfstring{$\sim$}{\string~}\+Audio\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_ac94aa1dbc897497295484c23f693aeb6}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!close@{close}}
+\index{close@{close}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_ac94aa1dbc897497295484c23f693aeb6} 
+void Audio\+Player\+Name\+::\+Audio\+Player\+::close (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_ad7bff3955a92e62945dbedf8b69172f0}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!open@{open}}
+\index{open@{open}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_ad7bff3955a92e62945dbedf8b69172f0} 
+bool Audio\+Player\+Name\+::\+Audio\+Player\+::open (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_aee8686e98fb453f25b3899c83bc69403}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!playFile@{playFile}}
+\index{playFile@{playFile}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{playFile()}{playFile()}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_aee8686e98fb453f25b3899c83bc69403} 
+bool Audio\+Player\+Name\+::\+Audio\+Player\+::play\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_a7e3d7f02bf3ce29a59148ff97830fa94}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!audioBuffer@{audioBuffer}}
+\index{audioBuffer@{audioBuffer}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{audioBuffer}{audioBuffer}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_a7e3d7f02bf3ce29a59148ff97830fa94} 
+std\+::vector$<$int32\+\_\+t$>$ Audio\+Player\+Name\+::\+Audio\+Player\+::audio\+Buffer}
+
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_ab3a396f5760af5bf91f315fd16250c4d}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!CancelPlayback@{CancelPlayback}}
+\index{CancelPlayback@{CancelPlayback}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{CancelPlayback}{CancelPlayback}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_ab3a396f5760af5bf91f315fd16250c4d} 
+bool Audio\+Player\+Name\+::\+Audio\+Player\+::\+Cancel\+Playback = true}
+
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!fileBuffers@{fileBuffers}}
+\index{fileBuffers@{fileBuffers}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{fileBuffers}{fileBuffers}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_a4d30a7b477a1e1b076866fcf7321e7d6} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::vector$<$int32\+\_\+t$>$ $>$ Audio\+Player\+Name\+::\+Audio\+Player\+::file\+Buffers}
+
+\Hypertarget{classAudioPlayerName_1_1AudioPlayer_a4a493f2514ad4cbd2ddc54e773ace464}\index{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!StopMixingThread@{StopMixingThread}}
+\index{StopMixingThread@{StopMixingThread}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{StopMixingThread}{StopMixingThread}}
+{\footnotesize\ttfamily \label{classAudioPlayerName_1_1AudioPlayer_a4a493f2514ad4cbd2ddc54e773ace464} 
+bool Audio\+Player\+Name\+::\+Audio\+Player\+::\+Stop\+Mixing\+Thread}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+ALSAPlayer/include/\mbox{\hyperlink{ALSAPlayer_8hpp}{ALSAPlayer.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,159 @@
+\doxysection{icm20948\+\_\+utils.\+hpp}
+\hypertarget{icm20948__utils_8hpp_source}{}\label{icm20948__utils_8hpp_source}\index{src/libs/I2C/include/icm20948\_utils.hpp@{src/libs/I2C/include/icm20948\_utils.hpp}}
+\mbox{\hyperlink{icm20948__utils_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ICM2094\_UTILS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ICM2094\_UTILS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}yaml-\/cpp/yaml.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceicm20948}{icm20948}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ /***\ ACCELEROMETER\ SETTINGS\ TYPEDEFS\ ***/}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a10962c0378d54e76d00fca0435c5eed5}{ACCEL\_2G}}\ =\ 0,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673af2a264922f360e04817e77765b80978b}{ACCEL\_4G}},}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a3795f5faff7839b7fbb08f22fe80d907}{ACCEL\_8G}},}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a2c5998799a8fab32e9f3569957311b88}{ACCEL\_16G}}}
+\DoxyCodeLine{00028\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\_scale}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857ad576f91386994ed878db4b7dee32bcae}{ACCEL\_DLPF\_246HZ}}\ =\ 0,\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a439d5f4636f81ae51d01a1e4f0eac85f}{ACCEL\_DLPF\_246HZ\_2}},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a26cb85d4b765d07a462b0463ed720775}{ACCEL\_DLPF\_111\_4HZ}},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a90657a417f142990ecf234018082a3a6}{ACCEL\_DLPF\_50\_4HZ}},}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857af97490556aeb64d4bf2cc3d3387f4029}{ACCEL\_DLPF\_23\_9HZ}},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a754f26fbba29b3056442f3e2abc5e2ff}{ACCEL\_DLPF\_11\_5HZ}},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857aad38873c989e80fa60860b2ec48205a3}{ACCEL\_DLPF\_5\_7HZ}},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a54a59d3f305828db07e8b11f6db49f70}{ACCEL\_DLPF\_473HZ}}}
+\DoxyCodeLine{00057\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\_dlpf\_config}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structicm20948_1_1accel__settings_a18d375204f26a158788ed59920e3ab52}{accel\_settings}}}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Range\ [0,\ 4095]}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4}{sample\_rate\_div}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Full\ scale\ of\ measurements\ +/-\/}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\_scale}}\ \mbox{\hyperlink{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7}{scale}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Digital\ Low-\/Pass\ Filter\ enable}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac}{dlpf\_enable}};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Digital\ Low-\/Pass\ Filter\ settings}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\_dlpf\_config}}\ \mbox{\hyperlink{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201}{dlpf\_config}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1accel__settings_a18d375204f26a158788ed59920e3ab52}{accel\_settings}}(uint16\_t\ \mbox{\hyperlink{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4}{sample\_rate\_div}}\ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\_scale}}\ \mbox{\hyperlink{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7}{scale}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a10962c0378d54e76d00fca0435c5eed5}{ACCEL\_2G}},}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac}{dlpf\_enable}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\_dlpf\_config}}\ \mbox{\hyperlink{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201}{dlpf\_config}}\ =\ \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857ad576f91386994ed878db4b7dee32bcae}{ACCEL\_DLPF\_246HZ}})\ :\ \mbox{\hyperlink{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4}{sample\_rate\_div}}(\mbox{\hyperlink{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4}{sample\_rate\_div}}),}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7}{scale}}(\mbox{\hyperlink{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7}{scale}}),}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac}{dlpf\_enable}}(\mbox{\hyperlink{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac}{dlpf\_enable}}),}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201}{dlpf\_config}}(\mbox{\hyperlink{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201}{dlpf\_config}})\ \{\};}
+\DoxyCodeLine{00114\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_a4604c05a67dc8537a1f4780eccec81b7}{accel\_settings}};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ /***\ GYROSCOPE\ SETTINGS\ TYPEDEFS\ ***/}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950aabd72e9c7237ef6ac1483378c37db628}{GYRO\_250DPS}}\ =\ 0,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950a549d7b9c4b2bbf75a2c70c96f121cfe0}{GYRO\_500DPS}},\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950ae2d68a647e8a6ef753561ee9fe15fcd9}{GYRO\_1000DPS}},}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950a87d8034a32d15681a2811fd897f0ef94}{GYRO\_2000DPS}}}
+\DoxyCodeLine{00137\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\_scale}};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a3d4b8dc9e1511d7d42e031f4cc04fd44}{GYRO\_DLPF\_196\_6HZ}}\ =\ 0,}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01ac3aa6b2e10ac763342844ce203cedeb9}{GYRO\_DLPF\_151\_8HZ}},}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a8a05f80bd6e2edae852b4f9b13b605f1}{GYRO\_DLPF\_119\_5HZ}},}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a915166c0d2c456d42828e64331a7ddc7}{GYRO\_DLPF\_51\_2HZ}},}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a2ec4f20881ca82d990d67c5b325e378d}{GYRO\_DLPF\_23\_9HZ}},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a6d136718830bbce7a90cbac74ecefc1e}{GYRO\_DLPF\_11\_6HZ}},}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01ac729d419c805e6e8b0e4c5b7a979eef9}{GYRO\_DLPF\_5\_7HZ}},}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01abfd46a43efe7108d44c1cd85123d8275}{GYRO\_DLPF\_361\_4HZ}}}
+\DoxyCodeLine{00166\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\_dlpf\_config}};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structicm20948_1_1gyro__settings_aaab8efac19bdb29981862e97bf67ad8e}{gyro\_settings}}}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Range\ [0,\ 250]}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c}{sample\_rate\_div}};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Full\ scale\ of\ measurements\ +/-\/}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\_scale}}\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285}{scale}};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Digital\ Low-\/Pass\ Filter\ enable}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1}{dlpf\_enable}};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Digital\ Low-\/Pass\ Filter\ settings}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\_dlpf\_config}}\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a}{dlpf\_config}};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1gyro__settings_aaab8efac19bdb29981862e97bf67ad8e}{gyro\_settings}}(uint8\_t\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c}{sample\_rate\_div}}\ \ \ \ =\ 0,}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\_scale}}\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285}{scale}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950aabd72e9c7237ef6ac1483378c37db628}{GYRO\_250DPS}},}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1}{dlpf\_enable}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\_dlpf\_config}}\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a}{dlpf\_config}}\ =\ \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a3d4b8dc9e1511d7d42e031f4cc04fd44}{GYRO\_DLPF\_196\_6HZ}})\ :\ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c}{sample\_rate\_div}}(\mbox{\hyperlink{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c}{sample\_rate\_div}}),}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285}{scale}}(\mbox{\hyperlink{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285}{scale}}),}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1}{dlpf\_enable}}(\mbox{\hyperlink{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1}{dlpf\_enable}}),}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a}{dlpf\_config}}(\mbox{\hyperlink{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a}{dlpf\_config}})\ \{\};}
+\DoxyCodeLine{00223\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_a305679615d047d722f18ccbb13b5dff8}{gyro\_settings}};}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{comment}{\ \ \ \ /***\ MAGNETOMETER\ SETTINGS\ TYPEDEFS\ ***/}}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02caf7a1f55f16854e842b04e2d311525a7a}{MAGN\_SHUTDOWN}}\ =\ 0,}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02ca4696e7df486d4c8527ec94a02a9aaa96}{MAGN\_SINGLE}}\ =\ 1,\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02cad54782be844575b7d7eeff6f6afde888}{MAGN\_10HZ}}\ =\ 2,}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02cada7064494b2cdab263d8a919bdfb3c49}{MAGN\_20HZ}}\ =\ 4,}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02ca20c2ccacb7d16752e55197c2ae202087}{MAGN\_50HZ}}\ =\ 6,}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02caaa091f0f880adfe061f828e771680137}{MAGN\_100HZ}}\ =\ 8,}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02cad20e2222b9521644cdccdeb39f3c3f6e}{MAGN\_SELF\_TEST}}\ =\ 16}
+\DoxyCodeLine{00252\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02c}{magn\_mode}};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structicm20948_1_1magn__settings_a4a8042e4a839f077a832f4035f5b1d2f}{magn\_settings}}}
+\DoxyCodeLine{00273\ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Magnetometer\ operation\ mode}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02c}{magn\_mode}}\ \mbox{\hyperlink{structicm20948_1_1magn__settings_a9dafcbd7b44a43a2910781b42c788905}{mode}};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1magn__settings_a4a8042e4a839f077a832f4035f5b1d2f}{magn\_settings}}(\mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02c}{magn\_mode}}\ \mbox{\hyperlink{structicm20948_1_1magn__settings_a9dafcbd7b44a43a2910781b42c788905}{mode}}\ =\ \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02caaa091f0f880adfe061f828e771680137}{MAGN\_100HZ}})\ :\ \mbox{\hyperlink{structicm20948_1_1magn__settings_a9dafcbd7b44a43a2910781b42c788905}{mode}}(\mbox{\hyperlink{structicm20948_1_1magn__settings_a9dafcbd7b44a43a2910781b42c788905}{mode}})\ \{\};}
+\DoxyCodeLine{00278\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_ab8718ad937a784bdb91b1f8ae23e2c6a}{magn\_settings}};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{comment}{\ \ \ \ /***\ SENSOR\ SETTINGS\ TYPEDEFS\ ***/}}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structicm20948_1_1settings_a10a11e4c131120c7d473aa97376505df}{settings}}}
+\DoxyCodeLine{00315\ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\_settings}}\ \mbox{\hyperlink{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781}{accel}};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\_settings}}\ \ \mbox{\hyperlink{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9}{gyro}};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\_settings}}\ \ \mbox{\hyperlink{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86}{magn}};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1settings_a10a11e4c131120c7d473aa97376505df}{settings}}(\mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\_settings}}\ \mbox{\hyperlink{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781}{accel}}\ =\ \mbox{\hyperlink{namespaceicm20948_a4604c05a67dc8537a1f4780eccec81b7}{accel\_settings}}(),\ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\_settings}}\ \mbox{\hyperlink{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9}{gyro}}\ \ \ =\ \mbox{\hyperlink{namespaceicm20948_a305679615d047d722f18ccbb13b5dff8}{gyro\_settings}}(),}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\_settings}}\ \mbox{\hyperlink{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86}{magn}}\ \ \ =\ \mbox{\hyperlink{namespaceicm20948_ab8718ad937a784bdb91b1f8ae23e2c6a}{magn\_settings}}())\ :\ \mbox{\hyperlink{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781}{accel}}(\mbox{\hyperlink{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781}{accel}}),\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9}{gyro}}(\mbox{\hyperlink{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9}{gyro}}),}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86}{magn}}(\mbox{\hyperlink{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86}{magn}})\ \{\};}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1settings_ae7fa4079f4d7dbe03aa4454b6a3749c8}{settings}}(YAML::Node\ config\_file\_node);}
+\DoxyCodeLine{00343\ \ \ \ \ \}\ \mbox{\hyperlink{namespaceicm20948_af58f34f9f5f028d1ebc80a98fbebf3f4}{settings}};}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{comment}{\ \ \ \ /***\ METHODS\ ***/}}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespaceicm20948_af14221b01595095e63c2b6da92461546}{accel\_scale\_factor}}(\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\_scale}}\ scale);}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00382\ \ \ \ \ std::string\ \mbox{\hyperlink{namespaceicm20948_a4946bab7910d89f8bfd507e564872e96}{accel\_scale\_to\_str}}(\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\_scale}}\ scale);}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00401\ \ \ \ \ std::string\ \mbox{\hyperlink{namespaceicm20948_a4a26038ff1fca8a832393f87ff9ed235}{accel\_dlpf\_config\_to\_str}}(\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\_dlpf\_config}}\ config);}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespaceicm20948_ab5aff64efdfa42700724773154b88241}{gyro\_scale\_factor}}(\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\_scale}}\ scale);}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00437\ \ \ \ \ std::string\ \mbox{\hyperlink{namespaceicm20948_a7ceffdb0c86d118f1852b4a67c119517}{gyro\_scale\_to\_str}}(\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\_scale}}\ scale);}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00456\ \ \ \ \ std::string\ \mbox{\hyperlink{namespaceicm20948_a37feed00f9178e9a6733f1f0db39e468}{gyro\_dlpf\_config\_to\_str}}(\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\_dlpf\_config}}\ config);}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00474\ \ \ \ \ std::string\ \mbox{\hyperlink{namespaceicm20948_a4e2db8332ee3f51602d9032468ec2b34}{magn\_mode\_to\_str}}(\mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02c}{magn\_mode}}\ mode);}
+\DoxyCodeLine{00475\ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

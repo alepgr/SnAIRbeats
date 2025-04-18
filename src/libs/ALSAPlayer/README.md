@@ -4,7 +4,7 @@
 # ALSA ALSA ALSA
 
 # OBJECTIVE
-ALSA C++ wrappers for working with playback and capture devices on linux. I made this because I have wasted so many hours in trying to figure out how things work. So I decided to not let this goto waste and encapsulate all that I have known into three simple files:
+ALSA C++ wrappers for working with playback and capture devices on linux. I made this because I have wasted so many hours in trying to figure out how things work. So I decided to not let this go to waste and encapsulate all that I have known into three simple files:
 i & ii) ALSADevices.cpp/ALSADevices.hpp
 iii) constants.h
 

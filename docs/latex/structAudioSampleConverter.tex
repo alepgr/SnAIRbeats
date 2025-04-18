@@ -1,0 +1,116 @@
+\doxysection{Audio\+Sample\+Converter\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structAudioSampleConverter}{}\label{structAudioSampleConverter}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Audio\+File.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T \mbox{\hyperlink{structAudioSampleConverter_a0b50615ff076475cac23d82e5076210f}{signed\+Byte\+To\+Sample}} (int8\+\_\+t sample)
+\item 
+static int8\+\_\+t \mbox{\hyperlink{structAudioSampleConverter_ad783f17dc9dbcbb18432ca4dfdd74c98}{sample\+To\+Signed\+Byte}} (T sample)
+\item 
+static T \mbox{\hyperlink{structAudioSampleConverter_abd0b6569174231ca8b20ca5a96240280}{unsigned\+Byte\+To\+Sample}} (uint8\+\_\+t sample)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{structAudioSampleConverter_a643baeb52a6262a7f7eaf475d30589f9}{sample\+To\+Unsigned\+Byte}} (T sample)
+\item 
+static T \mbox{\hyperlink{structAudioSampleConverter_a0f752c6c037ee3803a311f4c943cdab9}{sixteen\+Bit\+Int\+To\+Sample}} (int16\+\_\+t sample)
+\item 
+static int16\+\_\+t \mbox{\hyperlink{structAudioSampleConverter_a415885a26e795b1d401430b6ed5a9578}{sample\+To\+Sixteen\+Bit\+Int}} (T sample)
+\item 
+static T \mbox{\hyperlink{structAudioSampleConverter_a853a3bb206c188934221f11e39d50f6c}{twenty\+Four\+Bit\+Int\+To\+Sample}} (int32\+\_\+t sample)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{structAudioSampleConverter_a1922d852ecde37f673b31f9f9d7b9644}{sample\+To\+Twenty\+Four\+Bit\+Int}} (T sample)
+\item 
+static T \mbox{\hyperlink{structAudioSampleConverter_a621f400c0c9c7fc9935aca1b8dde0334}{thirty\+Two\+Bit\+Int\+To\+Sample}} (int32\+\_\+t sample)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{structAudioSampleConverter_a074bca454263f09c838f21177debba95}{sample\+To\+Thirty\+Two\+Bit\+Int}} (T sample)
+\item 
+static T \mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}} (T v1, T min\+Value, T max\+Value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!clamp@{clamp}}
+\index{clamp@{clamp}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{clamp()}{clamp()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7} 
+template$<$class T$>$ \\
+T \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::clamp (\begin{DoxyParamCaption}\item[{T}]{v1}{, }\item[{T}]{min\+Value}{, }\item[{T}]{max\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Helper clamp function to enforce ranges \Hypertarget{structAudioSampleConverter_ad783f17dc9dbcbb18432ca4dfdd74c98}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToSignedByte@{sampleToSignedByte}}
+\index{sampleToSignedByte@{sampleToSignedByte}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{sampleToSignedByte()}{sampleToSignedByte()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_ad783f17dc9dbcbb18432ca4dfdd74c98} 
+template$<$class T$>$ \\
+int8\+\_\+t \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::sample\+To\+Signed\+Byte (\begin{DoxyParamCaption}\item[{T}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert an audio sample to an signed 8-\/bit representation \Hypertarget{structAudioSampleConverter_a415885a26e795b1d401430b6ed5a9578}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToSixteenBitInt@{sampleToSixteenBitInt}}
+\index{sampleToSixteenBitInt@{sampleToSixteenBitInt}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{sampleToSixteenBitInt()}{sampleToSixteenBitInt()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a415885a26e795b1d401430b6ed5a9578} 
+template$<$class T$>$ \\
+int16\+\_\+t \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::sample\+To\+Sixteen\+Bit\+Int (\begin{DoxyParamCaption}\item[{T}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert a an audio sample to a 16-\/bit integer \Hypertarget{structAudioSampleConverter_a074bca454263f09c838f21177debba95}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToThirtyTwoBitInt@{sampleToThirtyTwoBitInt}}
+\index{sampleToThirtyTwoBitInt@{sampleToThirtyTwoBitInt}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{sampleToThirtyTwoBitInt()}{sampleToThirtyTwoBitInt()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a074bca454263f09c838f21177debba95} 
+template$<$class T$>$ \\
+int32\+\_\+t \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::sample\+To\+Thirty\+Two\+Bit\+Int (\begin{DoxyParamCaption}\item[{T}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert a an audio sample to a 32-\/bit signed integer \Hypertarget{structAudioSampleConverter_a1922d852ecde37f673b31f9f9d7b9644}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToTwentyFourBitInt@{sampleToTwentyFourBitInt}}
+\index{sampleToTwentyFourBitInt@{sampleToTwentyFourBitInt}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{sampleToTwentyFourBitInt()}{sampleToTwentyFourBitInt()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a1922d852ecde37f673b31f9f9d7b9644} 
+template$<$class T$>$ \\
+int32\+\_\+t \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::sample\+To\+Twenty\+Four\+Bit\+Int (\begin{DoxyParamCaption}\item[{T}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert a an audio sample to a 24-\/bit value (in a 32-\/bit integer) \Hypertarget{structAudioSampleConverter_a643baeb52a6262a7f7eaf475d30589f9}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToUnsignedByte@{sampleToUnsignedByte}}
+\index{sampleToUnsignedByte@{sampleToUnsignedByte}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{sampleToUnsignedByte()}{sampleToUnsignedByte()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a643baeb52a6262a7f7eaf475d30589f9} 
+template$<$class T$>$ \\
+uint8\+\_\+t \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::sample\+To\+Unsigned\+Byte (\begin{DoxyParamCaption}\item[{T}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert an audio sample to an unsigned 8-\/bit representation \Hypertarget{structAudioSampleConverter_a0b50615ff076475cac23d82e5076210f}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!signedByteToSample@{signedByteToSample}}
+\index{signedByteToSample@{signedByteToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{signedByteToSample()}{signedByteToSample()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a0b50615ff076475cac23d82e5076210f} 
+template$<$class T$>$ \\
+T \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::signed\+Byte\+To\+Sample (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert a signed 8-\/bit integer to an audio sample \Hypertarget{structAudioSampleConverter_a0f752c6c037ee3803a311f4c943cdab9}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sixteenBitIntToSample@{sixteenBitIntToSample}}
+\index{sixteenBitIntToSample@{sixteenBitIntToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{sixteenBitIntToSample()}{sixteenBitIntToSample()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a0f752c6c037ee3803a311f4c943cdab9} 
+template$<$class T$>$ \\
+T \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::sixteen\+Bit\+Int\+To\+Sample (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert a 16-\/bit integer to an audio sample \Hypertarget{structAudioSampleConverter_a621f400c0c9c7fc9935aca1b8dde0334}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!thirtyTwoBitIntToSample@{thirtyTwoBitIntToSample}}
+\index{thirtyTwoBitIntToSample@{thirtyTwoBitIntToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{thirtyTwoBitIntToSample()}{thirtyTwoBitIntToSample()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a621f400c0c9c7fc9935aca1b8dde0334} 
+template$<$class T$>$ \\
+T \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::thirty\+Two\+Bit\+Int\+To\+Sample (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert a 32-\/bit signed integer to an audio sample \Hypertarget{structAudioSampleConverter_a853a3bb206c188934221f11e39d50f6c}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!twentyFourBitIntToSample@{twentyFourBitIntToSample}}
+\index{twentyFourBitIntToSample@{twentyFourBitIntToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{twentyFourBitIntToSample()}{twentyFourBitIntToSample()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_a853a3bb206c188934221f11e39d50f6c} 
+template$<$class T$>$ \\
+T \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::twenty\+Four\+Bit\+Int\+To\+Sample (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert a 24-\/bit value (int a 32-\/bit int) to an audio sample \Hypertarget{structAudioSampleConverter_abd0b6569174231ca8b20ca5a96240280}\index{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!unsignedByteToSample@{unsignedByteToSample}}
+\index{unsignedByteToSample@{unsignedByteToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{unsignedByteToSample()}{unsignedByteToSample()}}
+{\footnotesize\ttfamily \label{structAudioSampleConverter_abd0b6569174231ca8b20ca5a96240280} 
+template$<$class T$>$ \\
+T \mbox{\hyperlink{structAudioSampleConverter}{Audio\+Sample\+Converter}}$<$ T $>$\+::unsigned\+Byte\+To\+Sample (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert an unsigned 8-\/bit integer to an audio sample 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+ALSAPlayer/include/\mbox{\hyperlink{AudioFile_8h}{Audio\+File.\+h}}\end{DoxyCompactItemize}

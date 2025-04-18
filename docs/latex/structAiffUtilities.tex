@@ -1,0 +1,33 @@
+\doxysection{Aiff\+Utilities Struct Reference}
+\hypertarget{structAiffUtilities}{}\label{structAiffUtilities}\index{AiffUtilities@{AiffUtilities}}
+
+
+{\ttfamily \#include $<$Audio\+File.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{structAiffUtilities_ad9e479ef92796156dac5a98410b1835d}{decode\+Aiff\+Sample\+Rate}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bytes)
+\item 
+static void \mbox{\hyperlink{structAiffUtilities_ad17328a19f54eabf710c04f64e678029}{encode\+Aiff\+Sample\+Rate}} (double sample\+Rate, uint8\+\_\+t \texorpdfstring{$\ast$}{*}bytes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structAiffUtilities_ad9e479ef92796156dac5a98410b1835d}\index{AiffUtilities@{AiffUtilities}!decodeAiffSampleRate@{decodeAiffSampleRate}}
+\index{decodeAiffSampleRate@{decodeAiffSampleRate}!AiffUtilities@{AiffUtilities}}
+\doxysubsubsection{\texorpdfstring{decodeAiffSampleRate()}{decodeAiffSampleRate()}}
+{\footnotesize\ttfamily \label{structAiffUtilities_ad9e479ef92796156dac5a98410b1835d} 
+double Aiff\+Utilities\+::decode\+Aiff\+Sample\+Rate (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Decode an 80-\/bit (10 byte) sample rate to a double \Hypertarget{structAiffUtilities_ad17328a19f54eabf710c04f64e678029}\index{AiffUtilities@{AiffUtilities}!encodeAiffSampleRate@{encodeAiffSampleRate}}
+\index{encodeAiffSampleRate@{encodeAiffSampleRate}!AiffUtilities@{AiffUtilities}}
+\doxysubsubsection{\texorpdfstring{encodeAiffSampleRate()}{encodeAiffSampleRate()}}
+{\footnotesize\ttfamily \label{structAiffUtilities_ad17328a19f54eabf710c04f64e678029} 
+void Aiff\+Utilities\+::encode\+Aiff\+Sample\+Rate (\begin{DoxyParamCaption}\item[{double}]{sample\+Rate}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Encode a double as an 80-\/bit (10-\/byte) sample rate 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+ALSAPlayer/include/\mbox{\hyperlink{AudioFile_8h}{Audio\+File.\+h}}\end{DoxyCompactItemize}

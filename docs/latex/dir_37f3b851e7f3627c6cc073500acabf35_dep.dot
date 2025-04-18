@@ -1,0 +1,20 @@
+digraph "src/libs/IMUMaths"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_87a455bccb09a92130c26a11a880c98a {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="libs", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_87a455bccb09a92130c26a11a880c98a.html",tooltip=""]
+  dir_e307e3326747e0377b809c80d02de7ac [label="PlayAudio", fillcolor="#a2b4d6", color="red", style="filled", URL="dir_e307e3326747e0377b809c80d02de7ac.html",tooltip=""];
+  dir_52b6f8c666a862847721759b2421c535 [label="ALSAPlayer", fillcolor="#a2b4d6", color="red", style="filled", URL="dir_52b6f8c666a862847721759b2421c535.html",tooltip=""];
+  subgraph clusterdir_37f3b851e7f3627c6cc073500acabf35 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_37f3b851e7f3627c6cc073500acabf35.html",tooltip=""]
+    dir_37f3b851e7f3627c6cc073500acabf35 [shape=plaintext, label="IMUMaths"];
+  dir_30fb83fcbdfa3f66eaa3a89f6dbc41f9 [label="include", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_30fb83fcbdfa3f66eaa3a89f6dbc41f9.html",tooltip=""];
+  }
+  }
+  dir_30fb83fcbdfa3f66eaa3a89f6dbc41f9->dir_52b6f8c666a862847721759b2421c535 [headlabel="1", labeldistance=1.5 headhref="dir_000009_000001.html" href="dir_000009_000001.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_30fb83fcbdfa3f66eaa3a89f6dbc41f9->dir_e307e3326747e0377b809c80d02de7ac [headlabel="1", labeldistance=1.5 headhref="dir_000009_000012.html" href="dir_000009_000012.html" color="steelblue1" fontcolor="steelblue1"];
+}

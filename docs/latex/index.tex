@@ -1,0 +1,124 @@
+\chapter{Sn\+Air\+Beats}
+\hypertarget{index}{}\label{index}\index{SnAirBeats@{SnAirBeats}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ \hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Sn\+AIRbeats}{Sn\+AIRbeats}}\label{index_autotoc_md0}
+Sn\+Air\+Beats is a next generation methods to practice the drum kit, while reducing noise and space required to do so. The Sn\+Air\+Beat set uses intertial measurement units (IMU) within the sticks to track their movement and play a corresponding drum, not requiring any physical hitting like modern electric drum sets need.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Building}{Building}}\label{index_autotoc_md1}
+Sn\+AIRBeats requires the following components to work\+:
+
+
+\begin{DoxyItemize}
+\item 1x \href{https://uk.rs-online.com/web/p/raspberry-pi/0219255}{\texttt{ Raspberry Pi 5}}
+\item 2x \href{https://uk.rs-online.com/web/p/sensor-development-tools/2836590}{\texttt{ SEN15335 Breakout IMU}}
+\item 1x \href{https://thepihut.com/products/mini-external-usb-stereo-speaker?variant=31955934801&country=GB&currency=GBP&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=1&gbraid=0AAAAADfQ4GEFlapDAiWBmf2emlHnIUtFT&gclid=CjwKCAjwwe2_BhBEEiwAM1I7sZX7Qgw-18XC8Lfv5pq3lkJwZNLx-_Mg28yoPVhgCK76qUmuxv67WhoC8xIQAvD_BwE}{\texttt{ External USB Speaker}}
+\end{DoxyItemize}
+
+The circuit\textquotesingle{}s wires should be at least 1m long to ensure comfortable movement while playing to avoid risk of damaging the project. ~\newline
+ A wiring guide can be seen below\+:
+
+
+
+The drumsticks for the project need to be 3D printed via the \href{/STLs/}{\texttt{ STLs}} provided within this repository.\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{index_autotoc_md2}
+Firstly it should be noted that Sn\+AIRBeats can only run on a Linux system. It is recommened to use a Raspberry Pi operating system such as \href{https://www.raspberrypi.com/software/}{\texttt{ Raspebian}} as the packages will not work on Windows systems. ~\newline
+
+
+Before installing any of the prerequisites, please update your package list with\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt\ update}
+
+\end{DoxyCode}
+
+
+There are 4 main libraries that need to be installed for this project\+:
+\begin{DoxyItemize}
+\item Libgpiod -\/ for general purpose input/output
+\item mraa -\/ IoT and hardware interface library (required for IMU driver)
+\item YAML -\/ Support for YAML (required for IMU driver)
+\item ALSA -\/ To process and play sound files
+\end{DoxyItemize}
+
+These packages can be installed by running the following commands through the terminal of the Raspberry Pi. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt\ install\ -\/y\ libgpiod-\/dev}
+\DoxyCodeLine{sudo\ apt\ install\ -\/y\ libmraa-\/dev}
+\DoxyCodeLine{sudo\ apt\ install\ -\/ylibyaml-\/dev}
+\DoxyCodeLine{sudo\ apt\ install\ -\/y\ libasound2-\/dev}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Compliation from source}{Compliation from source}}\label{index_autotoc_md3}
+The project is built using a series of CMake\+Lists.\+txt which locate and link the required internal and external libraries for the project. By running the code below, the CMake will generate the respective make files within each of files. Running make will build the project and return an executable.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ .}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+It may take a few seconds for everything to build properly, but once everything has been successfully created you can use the code below to run Sn\+AIRBeats. ~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./SnairBeats}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{index_autotoc_md4}
+Sn\+AIRBeats works by reading the direction of acceleration within the IMUs. Holding the sticks with the X-\/direction representing the vertical axis\+:
+\begin{DoxyItemize}
+\item Hitting a stick down will play a snare drum
+\item Hitting a stick to either side will play a high tom
+\item Lunging the stick forward will play a crash cymbal
+\end{DoxyItemize}
+
+If desired, the sounds played by each direction can be changed by swapping files in the ALSAPlayer library found either \href{src/libs/ALSAPlayer/include}{\texttt{ here}} or through the command directory\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ src/libs/ALSAPlayer/include}
+\DoxyCodeLine{ls}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Libraries}{Libraries}}\label{index_autotoc_md5}
+Here is a small description of each of the libraries used within the project and what they are used for.\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{ALSAPlayer}{ALSAPlayer}}\label{index_autotoc_md6}
+ALSAPlayer takes .wav files from inside its \href{src/libs/ALSAPlayer/include/}{\texttt{ include folder}} and converts them into audio buffers using the Convert\+Files function. ~\newline
+
+
+Audio devices are opened using the Open function which once finished can be used to player the created audiobuffers using the play\+File function. The play\+File function is built to play small audios and will interrupt itself, cancelling whatever is playing to play the next audio. This is much easier for Sn\+AIRBeats compared to mixing as the interrupt of the drum notes is not noticable to the human ear, especially with the sample delay between each hit.\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{GPIO}{GPIO}}\label{index_autotoc_md7}
+The GPIO library initialises the GPIO pins of the Raspberry Pi. Using \href{https://libgpiod.readthedocs.io/en/latest/}{\texttt{ libgpiod}}, an event driven interrupt function called "{}worker"{} is used to read one of the GPIO pins for a HIGH value. The function is blocked until a rising edge event is seen in the GPIO pin selected in the constructor. ~\newline
+
+
+The interrupt is data-\/ready based and therefore wakes whenever new data is available from the sensor. Within the constructor, 2 objects were passed in, the Maths object and the I2\+C-\/\+IMU driver. The new data is read from the IMU\textquotesingle{}s registers using a read function and passed into a callback which inputs the data into the maths object to be thresholded.\hypertarget{index_autotoc_md8}{}\doxysubsection{\texorpdfstring{I2C}{I2C}}\label{index_autotoc_md8}
+The I2C library is a driver written specifically for the \href{https://invensense.tdk.com/wp-content/uploads/2016/06/DS-000189-ICM-20948-v1.3.pdf}{\texttt{ ICM-\/20948 chip}} seen within the SEN 15335 IMU and is very heavily based off of driver written by \href{https://github.com/NTkot}{\texttt{ NTKot}} found at \href{https://github.com/NTkot/icm20948_i2c}{\texttt{ https\+://github.\+com/\+NTkot/icm20948\+\_\+i2c}} with the Raw-\/\+Data-\/\+Ready interrupt turned on and the magnetometer turned off.
+
+For each sensor used within the system, an object from this driver is built with a separate I2C address to differentiate between the two. These objects come with pre-\/built functions, must useful is the Read\+\_\+\+Accel\+\_\+\+Gyro which reads the registers of the IMU and stores the values in a variable within the object. These variables are what are passed into the IMUMaths callback through the GPIO worker whenever data is ready.\hypertarget{index_autotoc_md9}{}\doxysubsection{\texorpdfstring{IMUMaths}{IMUMaths}}\label{index_autotoc_md9}
+This libary was written to threshold the data that came through from the GPIO worker and has two main goals. Firstly it reads the data passed through and checks whether any of the values correlate to a hit and then play the corresponding audio from the ALSAAudio object. It also contains a sample delay to stop multiple sounds being played from the same hit. This is achieved using a simple boolean that is turned true after a hit is detected and waits a set number of samples before the boolean flips back, allowing another hit to be detected.\hypertarget{index_autotoc_md10}{}\doxysection{\texorpdfstring{Unit tests}{Unit tests}}\label{index_autotoc_md10}
+This project uses unit testing to validate the functionality of the key classes, including classes responsible for IMU data processing and audio playback.
+
+Tests are written using the Google\+Test framework and integrated with CTest for easy execution.
+
+To run the tests from the root directory, use\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./run\_tests}
+
+\end{DoxyCode}
+ or to use CMake directly, run\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ctest}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md11}{}\doxysection{\texorpdfstring{Sponsorship and funding}{Sponsorship and funding}}\label{index_autotoc_md11}
+We are very grateful for RS Components for providing us with components that allowed us to complete this project.\hypertarget{index_autotoc_md12}{}\doxysection{\texorpdfstring{Media}{Media}}\label{index_autotoc_md12}
+
+\begin{DoxyItemize}
+\item \href{https://www.instagram.com/snairbeats/}{\texttt{ Instagram}}
+\item \href{https://www.tiktok.com/@snairbeats?_t=ZN-8uF2Rv9Fbuw&_r=1}{\texttt{ Tik\+Tok}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{Authors and contributions}{Authors and contributions}}\label{index_autotoc_md13}
+
+\begin{DoxyItemize}
+\item Calum Robertson
+\item Alejandra Paja Garcia
+\item Aleksandar Zahariev
+\item Mohammed Alqabandi
+\item Renata Cia Sanches Loberto
+\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysection{\texorpdfstring{Licenses}{Licenses}}\label{index_autotoc_md14}
+The IMU driver has been adapted from the driver written by \href{https://github.com/NTkot}{\texttt{ NTKot}} and can be found at \href{https://github.com/NTkot/icm20948_i2c}{\texttt{ https\+://github.\+com/\+NTkot/icm20948\+\_\+i2c}} 

@@ -1,0 +1,102 @@
+\doxysection{src/libs/\+I2\+C/include/icm20948\+\_\+utils.hpp File Reference}
+\hypertarget{icm20948__utils_8hpp}{}\label{icm20948__utils_8hpp}\index{src/libs/I2C/include/icm20948\_utils.hpp@{src/libs/I2C/include/icm20948\_utils.hpp}}
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include "{}yaml-\/cpp/yaml.\+h"{}}\newline
+Include dependency graph for icm20948\+\_\+utils.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structicm20948_1_1accel__settings}{icm20948\+::accel\+\_\+settings}}
+\begin{DoxyCompactList}\small\item\em Configuration settings for an accelerometer sensor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structicm20948_1_1gyro__settings}{icm20948\+::gyro\+\_\+settings}}
+\begin{DoxyCompactList}\small\item\em Configuration settings for a gyroscope sensor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structicm20948_1_1magn__settings}{icm20948\+::magn\+\_\+settings}}
+\begin{DoxyCompactList}\small\item\em Configuration settings for a magnetometer sensor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structicm20948_1_1settings}{icm20948\+::settings}}
+\begin{DoxyCompactList}\small\item\em Aggregated configuration settings for sensor modules. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceicm20948}{icm20948}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct icm20948\+::accel\+\_\+settings \mbox{\hyperlink{namespaceicm20948_a4604c05a67dc8537a1f4780eccec81b7}{icm20948\+::accel\+\_\+settings}}
+\item 
+typedef struct icm20948\+::gyro\+\_\+settings \mbox{\hyperlink{namespaceicm20948_a305679615d047d722f18ccbb13b5dff8}{icm20948\+::gyro\+\_\+settings}}
+\item 
+typedef struct icm20948\+::magn\+\_\+settings \mbox{\hyperlink{namespaceicm20948_ab8718ad937a784bdb91b1f8ae23e2c6a}{icm20948\+::magn\+\_\+settings}}
+\item 
+typedef struct icm20948\+::settings \mbox{\hyperlink{namespaceicm20948_af58f34f9f5f028d1ebc80a98fbebf3f4}{icm20948\+::settings}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{icm20948\+::accel\+\_\+scale}} \{ \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a10962c0378d54e76d00fca0435c5eed5}{icm20948\+::\+ACCEL\+\_\+2G}} = 0
+, \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673af2a264922f360e04817e77765b80978b}{icm20948\+::\+ACCEL\+\_\+4G}}
+, \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a3795f5faff7839b7fbb08f22fe80d907}{icm20948\+::\+ACCEL\+\_\+8G}}
+, \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a2c5998799a8fab32e9f3569957311b88}{icm20948\+::\+ACCEL\+\_\+16G}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the accelerometer full-\/scale range settings. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{icm20948\+::accel\+\_\+dlpf\+\_\+config}} \{ \newline
+\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857ad576f91386994ed878db4b7dee32bcae}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+246\+HZ}} = 0
+, \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a439d5f4636f81ae51d01a1e4f0eac85f}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+246\+HZ\+\_\+2}}
+, \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a26cb85d4b765d07a462b0463ed720775}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+111\+\_\+4\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a90657a417f142990ecf234018082a3a6}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+50\+\_\+4\+HZ}}
+, \newline
+\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857af97490556aeb64d4bf2cc3d3387f4029}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+23\+\_\+9\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a754f26fbba29b3056442f3e2abc5e2ff}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+11\+\_\+5\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857aad38873c989e80fa60860b2ec48205a3}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+5\+\_\+7\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857a54a59d3f305828db07e8b11f6db49f70}{icm20948\+::\+ACCEL\+\_\+\+DLPF\+\_\+473\+HZ}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the accelerometer Digital Low Pass Filter (DLPF) configuration settings. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{icm20948\+::gyro\+\_\+scale}} \{ \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950aabd72e9c7237ef6ac1483378c37db628}{icm20948\+::\+GYRO\+\_\+250\+DPS}} = 0
+, \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950a549d7b9c4b2bbf75a2c70c96f121cfe0}{icm20948\+::\+GYRO\+\_\+500\+DPS}}
+, \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950ae2d68a647e8a6ef753561ee9fe15fcd9}{icm20948\+::\+GYRO\+\_\+1000\+DPS}}
+, \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950a87d8034a32d15681a2811fd897f0ef94}{icm20948\+::\+GYRO\+\_\+2000\+DPS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the gyroscope full-\/scale range settings. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{icm20948\+::gyro\+\_\+dlpf\+\_\+config}} \{ \newline
+\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a3d4b8dc9e1511d7d42e031f4cc04fd44}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+196\+\_\+6\+HZ}} = 0
+, \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01ac3aa6b2e10ac763342844ce203cedeb9}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+151\+\_\+8\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a8a05f80bd6e2edae852b4f9b13b605f1}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+119\+\_\+5\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a915166c0d2c456d42828e64331a7ddc7}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+51\+\_\+2\+HZ}}
+, \newline
+\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a2ec4f20881ca82d990d67c5b325e378d}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+23\+\_\+9\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a6d136718830bbce7a90cbac74ecefc1e}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+11\+\_\+6\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01ac729d419c805e6e8b0e4c5b7a979eef9}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+5\+\_\+7\+HZ}}
+, \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01abfd46a43efe7108d44c1cd85123d8275}{icm20948\+::\+GYRO\+\_\+\+DLPF\+\_\+361\+\_\+4\+HZ}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the gyroscope Digital Low Pass Filter (DLPF) configuration settings. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02c}{icm20948\+::magn\+\_\+mode}} \{ \newline
+\mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02caf7a1f55f16854e842b04e2d311525a7a}{icm20948\+::\+MAGN\+\_\+\+SHUTDOWN}} = 0
+, \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02ca4696e7df486d4c8527ec94a02a9aaa96}{icm20948\+::\+MAGN\+\_\+\+SINGLE}} = 1
+, \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02cad54782be844575b7d7eeff6f6afde888}{icm20948\+::\+MAGN\+\_\+10\+HZ}} = 2
+, \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02cada7064494b2cdab263d8a919bdfb3c49}{icm20948\+::\+MAGN\+\_\+20\+HZ}} = 4
+, \newline
+\mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02ca20c2ccacb7d16752e55197c2ae202087}{icm20948\+::\+MAGN\+\_\+50\+HZ}} = 6
+, \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02caaa091f0f880adfe061f828e771680137}{icm20948\+::\+MAGN\+\_\+100\+HZ}} = 8
+, \mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02cad20e2222b9521644cdccdeb39f3c3f6e}{icm20948\+::\+MAGN\+\_\+\+SELF\+\_\+\+TEST}} = 16
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the magnetometer operating modes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{namespaceicm20948_af14221b01595095e63c2b6da92461546}{icm20948\+::accel\+\_\+scale\+\_\+factor}} (\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale}} scale)
+\begin{DoxyCompactList}\small\item\em Calculates the scale factor for accelerometer measurements. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceicm20948_a4946bab7910d89f8bfd507e564872e96}{icm20948\+::accel\+\_\+scale\+\_\+to\+\_\+str}} (\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale}} scale)
+\begin{DoxyCompactList}\small\item\em Converts an accelerometer scale value to its corresponding string representation. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceicm20948_a4a26038ff1fca8a832393f87ff9ed235}{icm20948\+::accel\+\_\+dlpf\+\_\+config\+\_\+to\+\_\+str}} (\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config}} config)
+\begin{DoxyCompactList}\small\item\em Converts an accelerometer Digital Low-\/\+Pass Filter (DLPF) configuration value to its corresponding string representation. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespaceicm20948_ab5aff64efdfa42700724773154b88241}{icm20948\+::gyro\+\_\+scale\+\_\+factor}} (\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale}} scale)
+\begin{DoxyCompactList}\small\item\em Calculates the scale factor for gyroscope measurements. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceicm20948_a7ceffdb0c86d118f1852b4a67c119517}{icm20948\+::gyro\+\_\+scale\+\_\+to\+\_\+str}} (\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale}} scale)
+\begin{DoxyCompactList}\small\item\em Converts a gyroscope scale value to its corresponding string representation. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceicm20948_a37feed00f9178e9a6733f1f0db39e468}{icm20948\+::gyro\+\_\+dlpf\+\_\+config\+\_\+to\+\_\+str}} (\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config}} config)
+\begin{DoxyCompactList}\small\item\em Converts a gyroscope Digital Low-\/\+Pass Filter (DLPF) configuration value to its corresponding string representation. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceicm20948_a4e2db8332ee3f51602d9032468ec2b34}{icm20948\+::magn\+\_\+mode\+\_\+to\+\_\+str}} (\mbox{\hyperlink{namespaceicm20948_a52f2b76d3ebd33c9147b45c09ed3d02c}{magn\+\_\+mode}} mode)
+\begin{DoxyCompactList}\small\item\em Converts a magnetometer operation mode value to its corresponding string representation. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,561 @@
+\indexentry{SnAirBeats@{SnAirBeats}|hyperpage}{1}
+\indexentry{AudioLib@{AudioLib}|hyperpage}{11}
+\indexentry{AudioPlayerName@{AudioPlayerName}|hyperpage}{11}
+\indexentry{GPIOName@{GPIOName}|hyperpage}{11}
+\indexentry{GPIOName@{GPIOName}!GPIOCallback@{GPIOCallback}|hyperpage}{11}
+\indexentry{GPIOCallback@{GPIOCallback}!GPIOName@{GPIOName}|hyperpage}{11}
+\indexentry{icm20948@{icm20948}|hyperpage}{12}
+\indexentry{icm20948@{icm20948}!accel\_settings@{accel\_settings}|hyperpage}{13}
+\indexentry{accel\_settings@{accel\_settings}!icm20948@{icm20948}|hyperpage}{13}
+\indexentry{icm20948@{icm20948}!gyro\_settings@{gyro\_settings}|hyperpage}{13}
+\indexentry{gyro\_settings@{gyro\_settings}!icm20948@{icm20948}|hyperpage}{13}
+\indexentry{icm20948@{icm20948}!magn\_settings@{magn\_settings}|hyperpage}{13}
+\indexentry{magn\_settings@{magn\_settings}!icm20948@{icm20948}|hyperpage}{13}
+\indexentry{icm20948@{icm20948}!settings@{settings}|hyperpage}{13}
+\indexentry{settings@{settings}!icm20948@{icm20948}|hyperpage}{13}
+\indexentry{icm20948@{icm20948}!accel\_dlpf\_config@{accel\_dlpf\_config}|hyperpage}{13}
+\indexentry{accel\_dlpf\_config@{accel\_dlpf\_config}!icm20948@{icm20948}|hyperpage}{13}
+\indexentry{ACCEL\_DLPF\_246HZ@{ACCEL\_DLPF\_246HZ}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_246HZ@{ACCEL\_DLPF\_246HZ}|hyperpage}{14}
+\indexentry{ACCEL\_DLPF\_246HZ\_2@{ACCEL\_DLPF\_246HZ\_2}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_246HZ\_2@{ACCEL\_DLPF\_246HZ\_2}|hyperpage}{14}
+\indexentry{ACCEL\_DLPF\_111\_4HZ@{ACCEL\_DLPF\_111\_4HZ}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_111\_4HZ@{ACCEL\_DLPF\_111\_4HZ}|hyperpage}{14}
+\indexentry{ACCEL\_DLPF\_50\_4HZ@{ACCEL\_DLPF\_50\_4HZ}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_50\_4HZ@{ACCEL\_DLPF\_50\_4HZ}|hyperpage}{14}
+\indexentry{ACCEL\_DLPF\_23\_9HZ@{ACCEL\_DLPF\_23\_9HZ}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_23\_9HZ@{ACCEL\_DLPF\_23\_9HZ}|hyperpage}{14}
+\indexentry{ACCEL\_DLPF\_11\_5HZ@{ACCEL\_DLPF\_11\_5HZ}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_11\_5HZ@{ACCEL\_DLPF\_11\_5HZ}|hyperpage}{14}
+\indexentry{ACCEL\_DLPF\_5\_7HZ@{ACCEL\_DLPF\_5\_7HZ}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_5\_7HZ@{ACCEL\_DLPF\_5\_7HZ}|hyperpage}{14}
+\indexentry{ACCEL\_DLPF\_473HZ@{ACCEL\_DLPF\_473HZ}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_DLPF\_473HZ@{ACCEL\_DLPF\_473HZ}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!accel\_scale@{accel\_scale}|hyperpage}{14}
+\indexentry{accel\_scale@{accel\_scale}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{ACCEL\_2G@{ACCEL\_2G}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_2G@{ACCEL\_2G}|hyperpage}{14}
+\indexentry{ACCEL\_4G@{ACCEL\_4G}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_4G@{ACCEL\_4G}|hyperpage}{14}
+\indexentry{ACCEL\_8G@{ACCEL\_8G}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_8G@{ACCEL\_8G}|hyperpage}{14}
+\indexentry{ACCEL\_16G@{ACCEL\_16G}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!ACCEL\_16G@{ACCEL\_16G}|hyperpage}{14}
+\indexentry{icm20948@{icm20948}!gyro\_dlpf\_config@{gyro\_dlpf\_config}|hyperpage}{14}
+\indexentry{gyro\_dlpf\_config@{gyro\_dlpf\_config}!icm20948@{icm20948}|hyperpage}{14}
+\indexentry{GYRO\_DLPF\_196\_6HZ@{GYRO\_DLPF\_196\_6HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_196\_6HZ@{GYRO\_DLPF\_196\_6HZ}|hyperpage}{15}
+\indexentry{GYRO\_DLPF\_151\_8HZ@{GYRO\_DLPF\_151\_8HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_151\_8HZ@{GYRO\_DLPF\_151\_8HZ}|hyperpage}{15}
+\indexentry{GYRO\_DLPF\_119\_5HZ@{GYRO\_DLPF\_119\_5HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_119\_5HZ@{GYRO\_DLPF\_119\_5HZ}|hyperpage}{15}
+\indexentry{GYRO\_DLPF\_51\_2HZ@{GYRO\_DLPF\_51\_2HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_51\_2HZ@{GYRO\_DLPF\_51\_2HZ}|hyperpage}{15}
+\indexentry{GYRO\_DLPF\_23\_9HZ@{GYRO\_DLPF\_23\_9HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_23\_9HZ@{GYRO\_DLPF\_23\_9HZ}|hyperpage}{15}
+\indexentry{GYRO\_DLPF\_11\_6HZ@{GYRO\_DLPF\_11\_6HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_11\_6HZ@{GYRO\_DLPF\_11\_6HZ}|hyperpage}{15}
+\indexentry{GYRO\_DLPF\_5\_7HZ@{GYRO\_DLPF\_5\_7HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_5\_7HZ@{GYRO\_DLPF\_5\_7HZ}|hyperpage}{15}
+\indexentry{GYRO\_DLPF\_361\_4HZ@{GYRO\_DLPF\_361\_4HZ}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_DLPF\_361\_4HZ@{GYRO\_DLPF\_361\_4HZ}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!gyro\_scale@{gyro\_scale}|hyperpage}{15}
+\indexentry{gyro\_scale@{gyro\_scale}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{GYRO\_250DPS@{GYRO\_250DPS}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_250DPS@{GYRO\_250DPS}|hyperpage}{15}
+\indexentry{GYRO\_500DPS@{GYRO\_500DPS}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_500DPS@{GYRO\_500DPS}|hyperpage}{15}
+\indexentry{GYRO\_1000DPS@{GYRO\_1000DPS}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_1000DPS@{GYRO\_1000DPS}|hyperpage}{15}
+\indexentry{GYRO\_2000DPS@{GYRO\_2000DPS}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!GYRO\_2000DPS@{GYRO\_2000DPS}|hyperpage}{15}
+\indexentry{icm20948@{icm20948}!magn\_mode@{magn\_mode}|hyperpage}{15}
+\indexentry{magn\_mode@{magn\_mode}!icm20948@{icm20948}|hyperpage}{15}
+\indexentry{MAGN\_SHUTDOWN@{MAGN\_SHUTDOWN}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!MAGN\_SHUTDOWN@{MAGN\_SHUTDOWN}|hyperpage}{16}
+\indexentry{MAGN\_SINGLE@{MAGN\_SINGLE}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!MAGN\_SINGLE@{MAGN\_SINGLE}|hyperpage}{16}
+\indexentry{MAGN\_10HZ@{MAGN\_10HZ}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!MAGN\_10HZ@{MAGN\_10HZ}|hyperpage}{16}
+\indexentry{MAGN\_20HZ@{MAGN\_20HZ}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!MAGN\_20HZ@{MAGN\_20HZ}|hyperpage}{16}
+\indexentry{MAGN\_50HZ@{MAGN\_50HZ}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!MAGN\_50HZ@{MAGN\_50HZ}|hyperpage}{16}
+\indexentry{MAGN\_100HZ@{MAGN\_100HZ}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!MAGN\_100HZ@{MAGN\_100HZ}|hyperpage}{16}
+\indexentry{MAGN\_SELF\_TEST@{MAGN\_SELF\_TEST}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!MAGN\_SELF\_TEST@{MAGN\_SELF\_TEST}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!accel\_dlpf\_config\_to\_str@{accel\_dlpf\_config\_to\_str}|hyperpage}{16}
+\indexentry{accel\_dlpf\_config\_to\_str@{accel\_dlpf\_config\_to\_str}!icm20948@{icm20948}|hyperpage}{16}
+\indexentry{icm20948@{icm20948}!accel\_scale\_factor@{accel\_scale\_factor}|hyperpage}{17}
+\indexentry{accel\_scale\_factor@{accel\_scale\_factor}!icm20948@{icm20948}|hyperpage}{17}
+\indexentry{icm20948@{icm20948}!accel\_scale\_to\_str@{accel\_scale\_to\_str}|hyperpage}{17}
+\indexentry{accel\_scale\_to\_str@{accel\_scale\_to\_str}!icm20948@{icm20948}|hyperpage}{17}
+\indexentry{icm20948@{icm20948}!gyro\_dlpf\_config\_to\_str@{gyro\_dlpf\_config\_to\_str}|hyperpage}{18}
+\indexentry{gyro\_dlpf\_config\_to\_str@{gyro\_dlpf\_config\_to\_str}!icm20948@{icm20948}|hyperpage}{18}
+\indexentry{icm20948@{icm20948}!gyro\_scale\_factor@{gyro\_scale\_factor}|hyperpage}{18}
+\indexentry{gyro\_scale\_factor@{gyro\_scale\_factor}!icm20948@{icm20948}|hyperpage}{18}
+\indexentry{icm20948@{icm20948}!gyro\_scale\_to\_str@{gyro\_scale\_to\_str}|hyperpage}{19}
+\indexentry{gyro\_scale\_to\_str@{gyro\_scale\_to\_str}!icm20948@{icm20948}|hyperpage}{19}
+\indexentry{icm20948@{icm20948}!magn\_mode\_to\_str@{magn\_mode\_to\_str}|hyperpage}{19}
+\indexentry{magn\_mode\_to\_str@{magn\_mode\_to\_str}!icm20948@{icm20948}|hyperpage}{19}
+\indexentry{IMUMathsName@{IMUMathsName}|hyperpage}{20}
+\indexentry{PlayAudioName@{PlayAudioName}|hyperpage}{20}
+\indexentry{icm20948::accel\_settings@{icm20948::accel\_settings}|hyperpage}{21}
+\indexentry{icm20948::accel\_settings@{icm20948::accel\_settings}!accel\_settings@{accel\_settings}|hyperpage}{22}
+\indexentry{accel\_settings@{accel\_settings}!icm20948::accel\_settings@{icm20948::accel\_settings}|hyperpage}{22}
+\indexentry{icm20948::accel\_settings@{icm20948::accel\_settings}!dlpf\_config@{dlpf\_config}|hyperpage}{22}
+\indexentry{dlpf\_config@{dlpf\_config}!icm20948::accel\_settings@{icm20948::accel\_settings}|hyperpage}{22}
+\indexentry{icm20948::accel\_settings@{icm20948::accel\_settings}!dlpf\_enable@{dlpf\_enable}|hyperpage}{22}
+\indexentry{dlpf\_enable@{dlpf\_enable}!icm20948::accel\_settings@{icm20948::accel\_settings}|hyperpage}{22}
+\indexentry{icm20948::accel\_settings@{icm20948::accel\_settings}!sample\_rate\_div@{sample\_rate\_div}|hyperpage}{22}
+\indexentry{sample\_rate\_div@{sample\_rate\_div}!icm20948::accel\_settings@{icm20948::accel\_settings}|hyperpage}{22}
+\indexentry{icm20948::accel\_settings@{icm20948::accel\_settings}!scale@{scale}|hyperpage}{22}
+\indexentry{scale@{scale}!icm20948::accel\_settings@{icm20948::accel\_settings}|hyperpage}{22}
+\indexentry{AiffUtilities@{AiffUtilities}|hyperpage}{23}
+\indexentry{AiffUtilities@{AiffUtilities}!decodeAiffSampleRate@{decodeAiffSampleRate}|hyperpage}{23}
+\indexentry{decodeAiffSampleRate@{decodeAiffSampleRate}!AiffUtilities@{AiffUtilities}|hyperpage}{23}
+\indexentry{AiffUtilities@{AiffUtilities}!encodeAiffSampleRate@{encodeAiffSampleRate}|hyperpage}{23}
+\indexentry{encodeAiffSampleRate@{encodeAiffSampleRate}!AiffUtilities@{AiffUtilities}|hyperpage}{23}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{23}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!AudioBuffer@{AudioBuffer}|hyperpage}{24}
+\indexentry{AudioBuffer@{AudioBuffer}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{24}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!AudioFile@{AudioFile}|hyperpage}{24}
+\indexentry{AudioFile@{AudioFile}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{24}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!AudioFile@{AudioFile}|hyperpage}{24}
+\indexentry{AudioFile@{AudioFile}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{24}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!getBitDepth@{getBitDepth}|hyperpage}{25}
+\indexentry{getBitDepth@{getBitDepth}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{25}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!getLengthInSeconds@{getLengthInSeconds}|hyperpage}{25}
+\indexentry{getLengthInSeconds@{getLengthInSeconds}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{25}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!getNumChannels@{getNumChannels}|hyperpage}{25}
+\indexentry{getNumChannels@{getNumChannels}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{25}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!getNumSamplesPerChannel@{getNumSamplesPerChannel}|hyperpage}{25}
+\indexentry{getNumSamplesPerChannel@{getNumSamplesPerChannel}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{25}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!getSampleRate@{getSampleRate}|hyperpage}{25}
+\indexentry{getSampleRate@{getSampleRate}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{25}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!isMono@{isMono}|hyperpage}{25}
+\indexentry{isMono@{isMono}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{25}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!isStereo@{isStereo}|hyperpage}{25}
+\indexentry{isStereo@{isStereo}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{25}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!load@{load}|hyperpage}{26}
+\indexentry{load@{load}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{26}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!loadFromMemory@{loadFromMemory}|hyperpage}{26}
+\indexentry{loadFromMemory@{loadFromMemory}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{26}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!printSummary@{printSummary}|hyperpage}{26}
+\indexentry{printSummary@{printSummary}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{26}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!save@{save}|hyperpage}{26}
+\indexentry{save@{save}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{26}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!setAudioBuffer@{setAudioBuffer}|hyperpage}{26}
+\indexentry{setAudioBuffer@{setAudioBuffer}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{26}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!setAudioBufferSize@{setAudioBufferSize}|hyperpage}{26}
+\indexentry{setAudioBufferSize@{setAudioBufferSize}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{26}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!setBitDepth@{setBitDepth}|hyperpage}{27}
+\indexentry{setBitDepth@{setBitDepth}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{27}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!setNumChannels@{setNumChannels}|hyperpage}{27}
+\indexentry{setNumChannels@{setNumChannels}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{27}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!setNumSamplesPerChannel@{setNumSamplesPerChannel}|hyperpage}{27}
+\indexentry{setNumSamplesPerChannel@{setNumSamplesPerChannel}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{27}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!setSampleRate@{setSampleRate}|hyperpage}{27}
+\indexentry{setSampleRate@{setSampleRate}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{27}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!shouldLogErrorsToConsole@{shouldLogErrorsToConsole}|hyperpage}{27}
+\indexentry{shouldLogErrorsToConsole@{shouldLogErrorsToConsole}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{27}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!iXMLChunk@{iXMLChunk}|hyperpage}{28}
+\indexentry{iXMLChunk@{iXMLChunk}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{28}
+\indexentry{AudioFile$<$ T $>$@{AudioFile$<$ T $>$}!samples@{samples}|hyperpage}{28}
+\indexentry{samples@{samples}!AudioFile$<$ T $>$@{AudioFile$<$ T $>$}|hyperpage}{28}
+\indexentry{AudioLib::AudioLib@{AudioLib::AudioLib}|hyperpage}{28}
+\indexentry{AudioLib::AudioLib@{AudioLib::AudioLib}!AudioLib@{AudioLib}|hyperpage}{28}
+\indexentry{AudioLib@{AudioLib}!AudioLib::AudioLib@{AudioLib::AudioLib}|hyperpage}{28}
+\indexentry{AudioLib::AudioLib@{AudioLib::AudioLib}!````~AudioLib@{\texorpdfstring{$\sim$}{\string~}AudioLib}|hyperpage}{28}
+\indexentry{````~AudioLib@{\texorpdfstring{$\sim$}{\string~}AudioLib}!AudioLib::AudioLib@{AudioLib::AudioLib}|hyperpage}{28}
+\indexentry{AudioLib::AudioLib@{AudioLib::AudioLib}!PlayAudioTerminal@{PlayAudioTerminal}|hyperpage}{29}
+\indexentry{PlayAudioTerminal@{PlayAudioTerminal}!AudioLib::AudioLib@{AudioLib::AudioLib}|hyperpage}{29}
+\indexentry{AudioLib::AudioLib@{AudioLib::AudioLib}!PlayFile@{PlayFile}|hyperpage}{29}
+\indexentry{PlayFile@{PlayFile}!AudioLib::AudioLib@{AudioLib::AudioLib}|hyperpage}{29}
+\indexentry{AudioLib::AudioLib@{AudioLib::AudioLib}!PlaySound@{PlaySound}|hyperpage}{29}
+\indexentry{PlaySound@{PlaySound}!AudioLib::AudioLib@{AudioLib::AudioLib}|hyperpage}{29}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{29}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!AudioPlayer@{AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayer@{AudioPlayer}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!````~AudioPlayer@{\texorpdfstring{$\sim$}{\string~}AudioPlayer}|hyperpage}{30}
+\indexentry{````~AudioPlayer@{\texorpdfstring{$\sim$}{\string~}AudioPlayer}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!close@{close}|hyperpage}{30}
+\indexentry{close@{close}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!open@{open}|hyperpage}{30}
+\indexentry{open@{open}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!playFile@{playFile}|hyperpage}{30}
+\indexentry{playFile@{playFile}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!audioBuffer@{audioBuffer}|hyperpage}{30}
+\indexentry{audioBuffer@{audioBuffer}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!CancelPlayback@{CancelPlayback}|hyperpage}{30}
+\indexentry{CancelPlayback@{CancelPlayback}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!fileBuffers@{fileBuffers}|hyperpage}{30}
+\indexentry{fileBuffers@{fileBuffers}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{30}
+\indexentry{AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}!StopMixingThread@{StopMixingThread}|hyperpage}{31}
+\indexentry{StopMixingThread@{StopMixingThread}!AudioPlayerName::AudioPlayer@{AudioPlayerName::AudioPlayer}|hyperpage}{31}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{31}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!clamp@{clamp}|hyperpage}{31}
+\indexentry{clamp@{clamp}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{31}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToSignedByte@{sampleToSignedByte}|hyperpage}{31}
+\indexentry{sampleToSignedByte@{sampleToSignedByte}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{31}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToSixteenBitInt@{sampleToSixteenBitInt}|hyperpage}{31}
+\indexentry{sampleToSixteenBitInt@{sampleToSixteenBitInt}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{31}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToThirtyTwoBitInt@{sampleToThirtyTwoBitInt}|hyperpage}{32}
+\indexentry{sampleToThirtyTwoBitInt@{sampleToThirtyTwoBitInt}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{32}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToTwentyFourBitInt@{sampleToTwentyFourBitInt}|hyperpage}{32}
+\indexentry{sampleToTwentyFourBitInt@{sampleToTwentyFourBitInt}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{32}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sampleToUnsignedByte@{sampleToUnsignedByte}|hyperpage}{32}
+\indexentry{sampleToUnsignedByte@{sampleToUnsignedByte}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{32}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!signedByteToSample@{signedByteToSample}|hyperpage}{32}
+\indexentry{signedByteToSample@{signedByteToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{32}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!sixteenBitIntToSample@{sixteenBitIntToSample}|hyperpage}{32}
+\indexentry{sixteenBitIntToSample@{sixteenBitIntToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{32}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!thirtyTwoBitIntToSample@{thirtyTwoBitIntToSample}|hyperpage}{32}
+\indexentry{thirtyTwoBitIntToSample@{thirtyTwoBitIntToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{32}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!twentyFourBitIntToSample@{twentyFourBitIntToSample}|hyperpage}{33}
+\indexentry{twentyFourBitIntToSample@{twentyFourBitIntToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{33}
+\indexentry{AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}!unsignedByteToSample@{unsignedByteToSample}|hyperpage}{33}
+\indexentry{unsignedByteToSample@{unsignedByteToSample}!AudioSampleConverter$<$ T $>$@{AudioSampleConverter$<$ T $>$}|hyperpage}{33}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{33}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!GPIOClass@{GPIOClass}|hyperpage}{34}
+\indexentry{GPIOClass@{GPIOClass}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{34}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!GPIOStop@{GPIOStop}|hyperpage}{34}
+\indexentry{GPIOStop@{GPIOStop}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{34}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!IMUMathsCallback@{IMUMathsCallback}|hyperpage}{34}
+\indexentry{IMUMathsCallback@{IMUMathsCallback}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{34}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!SetCallback@{SetCallback}|hyperpage}{34}
+\indexentry{SetCallback@{SetCallback}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{34}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!Worker@{Worker}|hyperpage}{34}
+\indexentry{Worker@{Worker}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{34}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!WorkerDataCollect@{WorkerDataCollect}|hyperpage}{34}
+\indexentry{WorkerDataCollect@{WorkerDataCollect}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{34}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!callback@{callback}|hyperpage}{35}
+\indexentry{callback@{callback}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{35}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!CallbackFunction@{CallbackFunction}|hyperpage}{35}
+\indexentry{CallbackFunction@{CallbackFunction}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{35}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!Maths@{Maths}|hyperpage}{35}
+\indexentry{Maths@{Maths}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{35}
+\indexentry{GPIOName::GPIOClass@{GPIOName::GPIOClass}!sensor@{sensor}|hyperpage}{35}
+\indexentry{sensor@{sensor}!GPIOName::GPIOClass@{GPIOName::GPIOClass}|hyperpage}{35}
+\indexentry{icm20948::gyro\_settings@{icm20948::gyro\_settings}|hyperpage}{35}
+\indexentry{icm20948::gyro\_settings@{icm20948::gyro\_settings}!gyro\_settings@{gyro\_settings}|hyperpage}{36}
+\indexentry{gyro\_settings@{gyro\_settings}!icm20948::gyro\_settings@{icm20948::gyro\_settings}|hyperpage}{36}
+\indexentry{icm20948::gyro\_settings@{icm20948::gyro\_settings}!dlpf\_config@{dlpf\_config}|hyperpage}{36}
+\indexentry{dlpf\_config@{dlpf\_config}!icm20948::gyro\_settings@{icm20948::gyro\_settings}|hyperpage}{36}
+\indexentry{icm20948::gyro\_settings@{icm20948::gyro\_settings}!dlpf\_enable@{dlpf\_enable}|hyperpage}{36}
+\indexentry{dlpf\_enable@{dlpf\_enable}!icm20948::gyro\_settings@{icm20948::gyro\_settings}|hyperpage}{36}
+\indexentry{icm20948::gyro\_settings@{icm20948::gyro\_settings}!sample\_rate\_div@{sample\_rate\_div}|hyperpage}{37}
+\indexentry{sample\_rate\_div@{sample\_rate\_div}!icm20948::gyro\_settings@{icm20948::gyro\_settings}|hyperpage}{37}
+\indexentry{icm20948::gyro\_settings@{icm20948::gyro\_settings}!scale@{scale}|hyperpage}{37}
+\indexentry{scale@{scale}!icm20948::gyro\_settings@{icm20948::gyro\_settings}|hyperpage}{37}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{37}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!ICM20948\_I2C@{ICM20948\_I2C}|hyperpage}{38}
+\indexentry{ICM20948\_I2C@{ICM20948\_I2C}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{38}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!check\_DRDY\_INT@{check\_DRDY\_INT}|hyperpage}{38}
+\indexentry{check\_DRDY\_INT@{check\_DRDY\_INT}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{38}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!enable\_DRDY\_INT@{enable\_DRDY\_INT}|hyperpage}{38}
+\indexentry{enable\_DRDY\_INT@{enable\_DRDY\_INT}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{38}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!init@{init}|hyperpage}{38}
+\indexentry{init@{init}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{38}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!read\_accel\_gyro@{read\_accel\_gyro}|hyperpage}{38}
+\indexentry{read\_accel\_gyro@{read\_accel\_gyro}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{38}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!read\_magn@{read\_magn}|hyperpage}{39}
+\indexentry{read\_magn@{read\_magn}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{39}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!reset@{reset}|hyperpage}{39}
+\indexentry{reset@{reset}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{39}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!set\_settings@{set\_settings}|hyperpage}{39}
+\indexentry{set\_settings@{set\_settings}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{39}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!wake@{wake}|hyperpage}{40}
+\indexentry{wake@{wake}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{40}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!accel@{accel}|hyperpage}{40}
+\indexentry{accel@{accel}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{40}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!gyro@{gyro}|hyperpage}{40}
+\indexentry{gyro@{gyro}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{40}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!magn@{magn}|hyperpage}{40}
+\indexentry{magn@{magn}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{40}
+\indexentry{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!settings@{settings}|hyperpage}{41}
+\indexentry{settings@{settings}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}|hyperpage}{41}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{41}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!IMUMaths@{IMUMaths}|hyperpage}{41}
+\indexentry{IMUMaths@{IMUMaths}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{41}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!SetPlayFileCallback@{SetPlayFileCallback}|hyperpage}{41}
+\indexentry{SetPlayFileCallback@{SetPlayFileCallback}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{41}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!SoundChecker@{SoundChecker}|hyperpage}{42}
+\indexentry{SoundChecker@{SoundChecker}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{42}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!Audio@{Audio}|hyperpage}{42}
+\indexentry{Audio@{Audio}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{42}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!Counter@{Counter}|hyperpage}{42}
+\indexentry{Counter@{Counter}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{42}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!LastFilePlayed@{LastFilePlayed}|hyperpage}{42}
+\indexentry{LastFilePlayed@{LastFilePlayed}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{42}
+\indexentry{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!Pause@{Pause}|hyperpage}{42}
+\indexentry{Pause@{Pause}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}|hyperpage}{42}
+\indexentry{icm20948::magn\_settings@{icm20948::magn\_settings}|hyperpage}{43}
+\indexentry{icm20948::magn\_settings@{icm20948::magn\_settings}!magn\_settings@{magn\_settings}|hyperpage}{43}
+\indexentry{magn\_settings@{magn\_settings}!icm20948::magn\_settings@{icm20948::magn\_settings}|hyperpage}{43}
+\indexentry{icm20948::magn\_settings@{icm20948::magn\_settings}!mode@{mode}|hyperpage}{43}
+\indexentry{mode@{mode}!icm20948::magn\_settings@{icm20948::magn\_settings}|hyperpage}{43}
+\indexentry{PlayAudioName::PlayAudio@{PlayAudioName::PlayAudio}|hyperpage}{44}
+\indexentry{PlayAudioName::PlayAudio@{PlayAudioName::PlayAudio}!PlayCymbal@{PlayCymbal}|hyperpage}{44}
+\indexentry{PlayCymbal@{PlayCymbal}!PlayAudioName::PlayAudio@{PlayAudioName::PlayAudio}|hyperpage}{44}
+\indexentry{PlayAudioName::PlayAudio@{PlayAudioName::PlayAudio}!PlayHighTom@{PlayHighTom}|hyperpage}{44}
+\indexentry{PlayHighTom@{PlayHighTom}!PlayAudioName::PlayAudio@{PlayAudioName::PlayAudio}|hyperpage}{44}
+\indexentry{PlayAudioName::PlayAudio@{PlayAudioName::PlayAudio}!PlaySnare@{PlaySnare}|hyperpage}{44}
+\indexentry{PlaySnare@{PlaySnare}!PlayAudioName::PlayAudio@{PlayAudioName::PlayAudio}|hyperpage}{44}
+\indexentry{icm20948::settings@{icm20948::settings}|hyperpage}{44}
+\indexentry{icm20948::settings@{icm20948::settings}!settings@{settings}|hyperpage}{45}
+\indexentry{settings@{settings}!icm20948::settings@{icm20948::settings}|hyperpage}{45}
+\indexentry{icm20948::settings@{icm20948::settings}!settings@{settings}|hyperpage}{45}
+\indexentry{settings@{settings}!icm20948::settings@{icm20948::settings}|hyperpage}{45}
+\indexentry{icm20948::settings@{icm20948::settings}!accel@{accel}|hyperpage}{46}
+\indexentry{accel@{accel}!icm20948::settings@{icm20948::settings}|hyperpage}{46}
+\indexentry{icm20948::settings@{icm20948::settings}!gyro@{gyro}|hyperpage}{46}
+\indexentry{gyro@{gyro}!icm20948::settings@{icm20948::settings}|hyperpage}{46}
+\indexentry{icm20948::settings@{icm20948::settings}!magn@{magn}|hyperpage}{46}
+\indexentry{magn@{magn}!icm20948::settings@{icm20948::settings}|hyperpage}{46}
+\indexentry{README.md@{README.md}|hyperpage}{47}
+\indexentry{src/libs/ALSAAudio/include/AudioLib.hpp@{src/libs/ALSAAudio/include/AudioLib.hpp}|hyperpage}{47}
+\indexentry{src/libs/ALSAAudio/include/AudioLib.hpp@{src/libs/ALSAAudio/include/AudioLib.hpp}|hyperpage}{47}
+\indexentry{src/libs/ALSAPlayer/include/ALSAPlayer.hpp@{src/libs/ALSAPlayer/include/ALSAPlayer.hpp}|hyperpage}{48}
+\indexentry{src/libs/ALSAPlayer/include/ALSAPlayer.hpp@{src/libs/ALSAPlayer/include/ALSAPlayer.hpp}|hyperpage}{48}
+\indexentry{src/libs/ALSAPlayer/include/AudioFile.h@{src/libs/ALSAPlayer/include/AudioFile.h}|hyperpage}{50}
+\indexentry{AudioFile.h@{AudioFile.h}!AIFFAudioFormat@{AIFFAudioFormat}|hyperpage}{51}
+\indexentry{AIFFAudioFormat@{AIFFAudioFormat}!AudioFile.h@{AudioFile.h}|hyperpage}{51}
+\indexentry{Uncompressed@{Uncompressed}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!Uncompressed@{Uncompressed}|hyperpage}{52}
+\indexentry{Compressed@{Compressed}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!Compressed@{Compressed}|hyperpage}{52}
+\indexentry{Error@{Error}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!Error@{Error}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!AudioFileFormat@{AudioFileFormat}|hyperpage}{52}
+\indexentry{AudioFileFormat@{AudioFileFormat}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{Error@{Error}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!Error@{Error}|hyperpage}{52}
+\indexentry{NotLoaded@{NotLoaded}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!NotLoaded@{NotLoaded}|hyperpage}{52}
+\indexentry{Wave@{Wave}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!Wave@{Wave}|hyperpage}{52}
+\indexentry{Aiff@{Aiff}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!Aiff@{Aiff}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!SampleLimit@{SampleLimit}|hyperpage}{52}
+\indexentry{SampleLimit@{SampleLimit}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{SignedInt16\_Min@{SignedInt16\_Min}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!SignedInt16\_Min@{SignedInt16\_Min}|hyperpage}{52}
+\indexentry{SignedInt16\_Max@{SignedInt16\_Max}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!SignedInt16\_Max@{SignedInt16\_Max}|hyperpage}{52}
+\indexentry{UnsignedInt16\_Min@{UnsignedInt16\_Min}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!UnsignedInt16\_Min@{UnsignedInt16\_Min}|hyperpage}{52}
+\indexentry{UnsignedInt16\_Max@{UnsignedInt16\_Max}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!UnsignedInt16\_Max@{UnsignedInt16\_Max}|hyperpage}{52}
+\indexentry{SignedInt24\_Min@{SignedInt24\_Min}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!SignedInt24\_Min@{SignedInt24\_Min}|hyperpage}{52}
+\indexentry{SignedInt24\_Max@{SignedInt24\_Max}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!SignedInt24\_Max@{SignedInt24\_Max}|hyperpage}{52}
+\indexentry{UnsignedInt24\_Min@{UnsignedInt24\_Min}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!UnsignedInt24\_Min@{UnsignedInt24\_Min}|hyperpage}{52}
+\indexentry{UnsignedInt24\_Max@{UnsignedInt24\_Max}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!UnsignedInt24\_Max@{UnsignedInt24\_Max}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!WavAudioFormat@{WavAudioFormat}|hyperpage}{52}
+\indexentry{WavAudioFormat@{WavAudioFormat}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{PCM@{PCM}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!PCM@{PCM}|hyperpage}{52}
+\indexentry{IEEEFloat@{IEEEFloat}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!IEEEFloat@{IEEEFloat}|hyperpage}{52}
+\indexentry{ALaw@{ALaw}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!ALaw@{ALaw}|hyperpage}{52}
+\indexentry{MULaw@{MULaw}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!MULaw@{MULaw}|hyperpage}{52}
+\indexentry{Extensible@{Extensible}!AudioFile.h@{AudioFile.h}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!Extensible@{Extensible}|hyperpage}{52}
+\indexentry{AudioFile.h@{AudioFile.h}!convertSignedToUnsigned@{convertSignedToUnsigned}|hyperpage}{53}
+\indexentry{convertSignedToUnsigned@{convertSignedToUnsigned}!AudioFile.h@{AudioFile.h}|hyperpage}{53}
+\indexentry{src/libs/ALSAPlayer/include/AudioFile.h@{src/libs/ALSAPlayer/include/AudioFile.h}|hyperpage}{53}
+\indexentry{src/libs/GPIO/include/gpioevent.h@{src/libs/GPIO/include/gpioevent.h}|hyperpage}{71}
+\indexentry{src/libs/GPIO/include/gpioevent.h@{src/libs/GPIO/include/gpioevent.h}|hyperpage}{72}
+\indexentry{src/libs/I2C/include/icm20948\_defs.hpp@{src/libs/I2C/include/icm20948\_defs.hpp}|hyperpage}{72}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!AK09916\_CNTL2\_ADDR@{AK09916\_CNTL2\_ADDR}|hyperpage}{74}
+\indexentry{AK09916\_CNTL2\_ADDR@{AK09916\_CNTL2\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{74}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_CONFIG\_1\_ADDR@{ICM20948\_ACCEL\_CONFIG\_1\_ADDR}|hyperpage}{74}
+\indexentry{ICM20948\_ACCEL\_CONFIG\_1\_ADDR@{ICM20948\_ACCEL\_CONFIG\_1\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{74}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_CONFIG\_1\_BANK@{ICM20948\_ACCEL\_CONFIG\_1\_BANK}|hyperpage}{74}
+\indexentry{ICM20948\_ACCEL\_CONFIG\_1\_BANK@{ICM20948\_ACCEL\_CONFIG\_1\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{74}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_INTEL\_CTRL\_ADDR@{ICM20948\_ACCEL\_INTEL\_CTRL\_ADDR}|hyperpage}{74}
+\indexentry{ICM20948\_ACCEL\_INTEL\_CTRL\_ADDR@{ICM20948\_ACCEL\_INTEL\_CTRL\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{74}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_INTEL\_CTRL\_BANK@{ICM20948\_ACCEL\_INTEL\_CTRL\_BANK}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_INTEL\_CTRL\_BANK@{ICM20948\_ACCEL\_INTEL\_CTRL\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_OUT\_BANK@{ICM20948\_ACCEL\_OUT\_BANK}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_OUT\_BANK@{ICM20948\_ACCEL\_OUT\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_ADDR@{ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_ADDR}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_ADDR@{ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_BANK@{ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_BANK}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_BANK@{ICM20948\_ACCEL\_SMPLRT\_DIV\_1\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_ADDR@{ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_ADDR}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_ADDR@{ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_BANK@{ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_BANK}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_BANK@{ICM20948\_ACCEL\_SMPLRT\_DIV\_2\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_WOM\_THR\_ADDR@{ICM20948\_ACCEL\_WOM\_THR\_ADDR}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_WOM\_THR\_ADDR@{ICM20948\_ACCEL\_WOM\_THR\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_WOM\_THR\_BANK@{ICM20948\_ACCEL\_WOM\_THR\_BANK}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_WOM\_THR\_BANK@{ICM20948\_ACCEL\_WOM\_THR\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_XOUT\_H\_ADDR@{ICM20948\_ACCEL\_XOUT\_H\_ADDR}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_XOUT\_H\_ADDR@{ICM20948\_ACCEL\_XOUT\_H\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_XOUT\_L\_ADDR@{ICM20948\_ACCEL\_XOUT\_L\_ADDR}|hyperpage}{75}
+\indexentry{ICM20948\_ACCEL\_XOUT\_L\_ADDR@{ICM20948\_ACCEL\_XOUT\_L\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{75}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_YOUT\_H\_ADDR@{ICM20948\_ACCEL\_YOUT\_H\_ADDR}|hyperpage}{76}
+\indexentry{ICM20948\_ACCEL\_YOUT\_H\_ADDR@{ICM20948\_ACCEL\_YOUT\_H\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_YOUT\_L\_ADDR@{ICM20948\_ACCEL\_YOUT\_L\_ADDR}|hyperpage}{76}
+\indexentry{ICM20948\_ACCEL\_YOUT\_L\_ADDR@{ICM20948\_ACCEL\_YOUT\_L\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_ZOUT\_H\_ADDR@{ICM20948\_ACCEL\_ZOUT\_H\_ADDR}|hyperpage}{76}
+\indexentry{ICM20948\_ACCEL\_ZOUT\_H\_ADDR@{ICM20948\_ACCEL\_ZOUT\_H\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_ACCEL\_ZOUT\_L\_ADDR@{ICM20948\_ACCEL\_ZOUT\_L\_ADDR}|hyperpage}{76}
+\indexentry{ICM20948\_ACCEL\_ZOUT\_L\_ADDR@{ICM20948\_ACCEL\_ZOUT\_L\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_BANK0\_WHO\_AM\_I\_VALUE@{ICM20948\_BANK0\_WHO\_AM\_I\_VALUE}|hyperpage}{76}
+\indexentry{ICM20948\_BANK0\_WHO\_AM\_I\_VALUE@{ICM20948\_BANK0\_WHO\_AM\_I\_VALUE}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_ADDR@{ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_ADDR}|hyperpage}{76}
+\indexentry{ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_ADDR@{ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_BANK@{ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_BANK}|hyperpage}{76}
+\indexentry{ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_BANK@{ICM20948\_EXT\_SLV\_SENS\_DATA\_00\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_CONFIG\_1\_ADDR@{ICM20948\_GYRO\_CONFIG\_1\_ADDR}|hyperpage}{76}
+\indexentry{ICM20948\_GYRO\_CONFIG\_1\_ADDR@{ICM20948\_GYRO\_CONFIG\_1\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_CONFIG\_1\_BANK@{ICM20948\_GYRO\_CONFIG\_1\_BANK}|hyperpage}{76}
+\indexentry{ICM20948\_GYRO\_CONFIG\_1\_BANK@{ICM20948\_GYRO\_CONFIG\_1\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_OUT\_BANK@{ICM20948\_GYRO\_OUT\_BANK}|hyperpage}{76}
+\indexentry{ICM20948\_GYRO\_OUT\_BANK@{ICM20948\_GYRO\_OUT\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{76}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_SMPLRT\_DIV\_ADDR@{ICM20948\_GYRO\_SMPLRT\_DIV\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_SMPLRT\_DIV\_ADDR@{ICM20948\_GYRO\_SMPLRT\_DIV\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_SMPLRT\_DIV\_BANK@{ICM20948\_GYRO\_SMPLRT\_DIV\_BANK}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_SMPLRT\_DIV\_BANK@{ICM20948\_GYRO\_SMPLRT\_DIV\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_XOUT\_H\_ADDR@{ICM20948\_GYRO\_XOUT\_H\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_XOUT\_H\_ADDR@{ICM20948\_GYRO\_XOUT\_H\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_XOUT\_L\_ADDR@{ICM20948\_GYRO\_XOUT\_L\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_XOUT\_L\_ADDR@{ICM20948\_GYRO\_XOUT\_L\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_YOUT\_H\_ADDR@{ICM20948\_GYRO\_YOUT\_H\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_YOUT\_H\_ADDR@{ICM20948\_GYRO\_YOUT\_H\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_YOUT\_L\_ADDR@{ICM20948\_GYRO\_YOUT\_L\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_YOUT\_L\_ADDR@{ICM20948\_GYRO\_YOUT\_L\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_ZOUT\_H\_ADDR@{ICM20948\_GYRO\_ZOUT\_H\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_ZOUT\_H\_ADDR@{ICM20948\_GYRO\_ZOUT\_H\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_GYRO\_ZOUT\_L\_ADDR@{ICM20948\_GYRO\_ZOUT\_L\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_GYRO\_ZOUT\_L\_ADDR@{ICM20948\_GYRO\_ZOUT\_L\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_ADDR@{ICM20948\_I2C\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_I2C\_ADDR@{ICM20948\_I2C\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_MST\_CTRL\_ADDR@{ICM20948\_I2C\_MST\_CTRL\_ADDR}|hyperpage}{77}
+\indexentry{ICM20948\_I2C\_MST\_CTRL\_ADDR@{ICM20948\_I2C\_MST\_CTRL\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{77}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_MST\_CTRL\_BANK@{ICM20948\_I2C\_MST\_CTRL\_BANK}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_MST\_CTRL\_BANK@{ICM20948\_I2C\_MST\_CTRL\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_MST\_STATUS\_ADDR@{ICM20948\_I2C\_MST\_STATUS\_ADDR}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_MST\_STATUS\_ADDR@{ICM20948\_I2C\_MST\_STATUS\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_MST\_STATUS\_BANK@{ICM20948\_I2C\_MST\_STATUS\_BANK}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_MST\_STATUS\_BANK@{ICM20948\_I2C\_MST\_STATUS\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV0\_ADDR\_ADDR@{ICM20948\_I2C\_SLV0\_ADDR\_ADDR}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_SLV0\_ADDR\_ADDR@{ICM20948\_I2C\_SLV0\_ADDR\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV0\_ADDR\_BANK@{ICM20948\_I2C\_SLV0\_ADDR\_BANK}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_SLV0\_ADDR\_BANK@{ICM20948\_I2C\_SLV0\_ADDR\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV0\_CTRL\_ADDR@{ICM20948\_I2C\_SLV0\_CTRL\_ADDR}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_SLV0\_CTRL\_ADDR@{ICM20948\_I2C\_SLV0\_CTRL\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV0\_CTRL\_BANK@{ICM20948\_I2C\_SLV0\_CTRL\_BANK}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_SLV0\_CTRL\_BANK@{ICM20948\_I2C\_SLV0\_CTRL\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV0\_REG\_ADDR@{ICM20948\_I2C\_SLV0\_REG\_ADDR}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_SLV0\_REG\_ADDR@{ICM20948\_I2C\_SLV0\_REG\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV0\_REG\_BANK@{ICM20948\_I2C\_SLV0\_REG\_BANK}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_SLV0\_REG\_BANK@{ICM20948\_I2C\_SLV0\_REG\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_ADDR\_ADDR@{ICM20948\_I2C\_SLV4\_ADDR\_ADDR}|hyperpage}{78}
+\indexentry{ICM20948\_I2C\_SLV4\_ADDR\_ADDR@{ICM20948\_I2C\_SLV4\_ADDR\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{78}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_ADDR\_BANK@{ICM20948\_I2C\_SLV4\_ADDR\_BANK}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_ADDR\_BANK@{ICM20948\_I2C\_SLV4\_ADDR\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_CTRL\_ADDR@{ICM20948\_I2C\_SLV4\_CTRL\_ADDR}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_CTRL\_ADDR@{ICM20948\_I2C\_SLV4\_CTRL\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_CTRL\_BANK@{ICM20948\_I2C\_SLV4\_CTRL\_BANK}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_CTRL\_BANK@{ICM20948\_I2C\_SLV4\_CTRL\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_DI\_ADDR@{ICM20948\_I2C\_SLV4\_DI\_ADDR}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_DI\_ADDR@{ICM20948\_I2C\_SLV4\_DI\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_DI\_BANK@{ICM20948\_I2C\_SLV4\_DI\_BANK}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_DI\_BANK@{ICM20948\_I2C\_SLV4\_DI\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_DO\_ADDR@{ICM20948\_I2C\_SLV4\_DO\_ADDR}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_DO\_ADDR@{ICM20948\_I2C\_SLV4\_DO\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_DO\_BANK@{ICM20948\_I2C\_SLV4\_DO\_BANK}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_DO\_BANK@{ICM20948\_I2C\_SLV4\_DO\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_REG\_ADDR@{ICM20948\_I2C\_SLV4\_REG\_ADDR}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_REG\_ADDR@{ICM20948\_I2C\_SLV4\_REG\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_I2C\_SLV4\_REG\_BANK@{ICM20948\_I2C\_SLV4\_REG\_BANK}|hyperpage}{79}
+\indexentry{ICM20948\_I2C\_SLV4\_REG\_BANK@{ICM20948\_I2C\_SLV4\_REG\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_1\_ADDR@{ICM20948\_INT\_ENABLE\_1\_ADDR}|hyperpage}{79}
+\indexentry{ICM20948\_INT\_ENABLE\_1\_ADDR@{ICM20948\_INT\_ENABLE\_1\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{79}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_1\_ADDR@{ICM20948\_INT\_ENABLE\_1\_ADDR}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_1\_ADDR@{ICM20948\_INT\_ENABLE\_1\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_1\_BANK@{ICM20948\_INT\_ENABLE\_1\_BANK}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_1\_BANK@{ICM20948\_INT\_ENABLE\_1\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_2\_ADDR@{ICM20948\_INT\_ENABLE\_2\_ADDR}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_2\_ADDR@{ICM20948\_INT\_ENABLE\_2\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_2\_BANK@{ICM20948\_INT\_ENABLE\_2\_BANK}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_2\_BANK@{ICM20948\_INT\_ENABLE\_2\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_3\_ADDR@{ICM20948\_INT\_ENABLE\_3\_ADDR}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_3\_ADDR@{ICM20948\_INT\_ENABLE\_3\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_3\_BANK@{ICM20948\_INT\_ENABLE\_3\_BANK}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_3\_BANK@{ICM20948\_INT\_ENABLE\_3\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_ADDR@{ICM20948\_INT\_ENABLE\_ADDR}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_ADDR@{ICM20948\_INT\_ENABLE\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_ADDR@{ICM20948\_INT\_ENABLE\_ADDR}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_ADDR@{ICM20948\_INT\_ENABLE\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_ENABLE\_BANK@{ICM20948\_INT\_ENABLE\_BANK}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_ENABLE\_BANK@{ICM20948\_INT\_ENABLE\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_PIN\_CFG\_ADDR@{ICM20948\_INT\_PIN\_CFG\_ADDR}|hyperpage}{80}
+\indexentry{ICM20948\_INT\_PIN\_CFG\_ADDR@{ICM20948\_INT\_PIN\_CFG\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{80}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_PIN\_CFG\_BANK@{ICM20948\_INT\_PIN\_CFG\_BANK}|hyperpage}{81}
+\indexentry{ICM20948\_INT\_PIN\_CFG\_BANK@{ICM20948\_INT\_PIN\_CFG\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_STATUS\_1\_ADDR@{ICM20948\_INT\_STATUS\_1\_ADDR}|hyperpage}{81}
+\indexentry{ICM20948\_INT\_STATUS\_1\_ADDR@{ICM20948\_INT\_STATUS\_1\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_STATUS\_1\_BANK@{ICM20948\_INT\_STATUS\_1\_BANK}|hyperpage}{81}
+\indexentry{ICM20948\_INT\_STATUS\_1\_BANK@{ICM20948\_INT\_STATUS\_1\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_STATUS\_ADDR@{ICM20948\_INT\_STATUS\_ADDR}|hyperpage}{81}
+\indexentry{ICM20948\_INT\_STATUS\_ADDR@{ICM20948\_INT\_STATUS\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_INT\_STATUS\_BANK@{ICM20948\_INT\_STATUS\_BANK}|hyperpage}{81}
+\indexentry{ICM20948\_INT\_STATUS\_BANK@{ICM20948\_INT\_STATUS\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_LP\_CONFIG\_ADDR@{ICM20948\_LP\_CONFIG\_ADDR}|hyperpage}{81}
+\indexentry{ICM20948\_LP\_CONFIG\_ADDR@{ICM20948\_LP\_CONFIG\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_LP\_CONFIG\_BANK@{ICM20948\_LP\_CONFIG\_BANK}|hyperpage}{81}
+\indexentry{ICM20948\_LP\_CONFIG\_BANK@{ICM20948\_LP\_CONFIG\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_MAGN\_I2C\_ADDR@{ICM20948\_MAGN\_I2C\_ADDR}|hyperpage}{81}
+\indexentry{ICM20948\_MAGN\_I2C\_ADDR@{ICM20948\_MAGN\_I2C\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_PWR\_MGMT\_1\_ADDR@{ICM20948\_PWR\_MGMT\_1\_ADDR}|hyperpage}{81}
+\indexentry{ICM20948\_PWR\_MGMT\_1\_ADDR@{ICM20948\_PWR\_MGMT\_1\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_PWR\_MGMT\_1\_BANK@{ICM20948\_PWR\_MGMT\_1\_BANK}|hyperpage}{81}
+\indexentry{ICM20948\_PWR\_MGMT\_1\_BANK@{ICM20948\_PWR\_MGMT\_1\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{81}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_PWR\_MGMT\_2\_ADDR@{ICM20948\_PWR\_MGMT\_2\_ADDR}|hyperpage}{82}
+\indexentry{ICM20948\_PWR\_MGMT\_2\_ADDR@{ICM20948\_PWR\_MGMT\_2\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_PWR\_MGMT\_2\_BANK@{ICM20948\_PWR\_MGMT\_2\_BANK}|hyperpage}{82}
+\indexentry{ICM20948\_PWR\_MGMT\_2\_BANK@{ICM20948\_PWR\_MGMT\_2\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_REG\_BANK\_SEL\_ADDR@{ICM20948\_REG\_BANK\_SEL\_ADDR}|hyperpage}{82}
+\indexentry{ICM20948\_REG\_BANK\_SEL\_ADDR@{ICM20948\_REG\_BANK\_SEL\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_REG\_BANK\_SEL\_BANK0\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK0\_VALUE}|hyperpage}{82}
+\indexentry{ICM20948\_REG\_BANK\_SEL\_BANK0\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK0\_VALUE}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_REG\_BANK\_SEL\_BANK1\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK1\_VALUE}|hyperpage}{82}
+\indexentry{ICM20948\_REG\_BANK\_SEL\_BANK1\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK1\_VALUE}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_REG\_BANK\_SEL\_BANK2\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK2\_VALUE}|hyperpage}{82}
+\indexentry{ICM20948\_REG\_BANK\_SEL\_BANK2\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK2\_VALUE}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_REG\_BANK\_SEL\_BANK3\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK3\_VALUE}|hyperpage}{82}
+\indexentry{ICM20948\_REG\_BANK\_SEL\_BANK3\_VALUE@{ICM20948\_REG\_BANK\_SEL\_BANK3\_VALUE}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_TEMP\_OUT\_BANK@{ICM20948\_TEMP\_OUT\_BANK}|hyperpage}{82}
+\indexentry{ICM20948\_TEMP\_OUT\_BANK@{ICM20948\_TEMP\_OUT\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_TEMP\_OUT\_H\_ADDR@{ICM20948\_TEMP\_OUT\_H\_ADDR}|hyperpage}{82}
+\indexentry{ICM20948\_TEMP\_OUT\_H\_ADDR@{ICM20948\_TEMP\_OUT\_H\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_TEMP\_OUT\_L\_ADDR@{ICM20948\_TEMP\_OUT\_L\_ADDR}|hyperpage}{82}
+\indexentry{ICM20948\_TEMP\_OUT\_L\_ADDR@{ICM20948\_TEMP\_OUT\_L\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{82}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_USER\_CTRL\_ADDR@{ICM20948\_USER\_CTRL\_ADDR}|hyperpage}{83}
+\indexentry{ICM20948\_USER\_CTRL\_ADDR@{ICM20948\_USER\_CTRL\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{83}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_USER\_CTRL\_BANK@{ICM20948\_USER\_CTRL\_BANK}|hyperpage}{83}
+\indexentry{ICM20948\_USER\_CTRL\_BANK@{ICM20948\_USER\_CTRL\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{83}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_WHO\_AM\_I\_ADDR@{ICM20948\_WHO\_AM\_I\_ADDR}|hyperpage}{83}
+\indexentry{ICM20948\_WHO\_AM\_I\_ADDR@{ICM20948\_WHO\_AM\_I\_ADDR}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{83}
+\indexentry{icm20948\_defs.hpp@{icm20948\_defs.hpp}!ICM20948\_WHO\_AM\_I\_BANK@{ICM20948\_WHO\_AM\_I\_BANK}|hyperpage}{83}
+\indexentry{ICM20948\_WHO\_AM\_I\_BANK@{ICM20948\_WHO\_AM\_I\_BANK}!icm20948\_defs.hpp@{icm20948\_defs.hpp}|hyperpage}{83}
+\indexentry{src/libs/I2C/include/icm20948\_defs.hpp@{src/libs/I2C/include/icm20948\_defs.hpp}|hyperpage}{83}
+\indexentry{src/libs/I2C/include/icm20948\_i2c.hpp@{src/libs/I2C/include/icm20948\_i2c.hpp}|hyperpage}{85}
+\indexentry{src/libs/I2C/include/icm20948\_i2c.hpp@{src/libs/I2C/include/icm20948\_i2c.hpp}|hyperpage}{85}
+\indexentry{src/libs/I2C/include/icm20948\_utils.hpp@{src/libs/I2C/include/icm20948\_utils.hpp}|hyperpage}{86}
+\indexentry{src/libs/I2C/include/icm20948\_utils.hpp@{src/libs/I2C/include/icm20948\_utils.hpp}|hyperpage}{88}
+\indexentry{src/libs/IMUMaths/include/IMUMaths.hpp@{src/libs/IMUMaths/include/IMUMaths.hpp}|hyperpage}{90}
+\indexentry{src/libs/IMUMaths/include/IMUMaths.hpp@{src/libs/IMUMaths/include/IMUMaths.hpp}|hyperpage}{90}
+\indexentry{src/libs/PlayAudio/include/PlayAudio.hpp@{src/libs/PlayAudio/include/PlayAudio.hpp}|hyperpage}{91}
+\indexentry{src/libs/PlayAudio/include/PlayAudio.hpp@{src/libs/PlayAudio/include/PlayAudio.hpp}|hyperpage}{91}

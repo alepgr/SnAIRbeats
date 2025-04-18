@@ -1,0 +1,245 @@
+\doxysection{icm20948\+::ICM20948\+\_\+\+I2C Class Reference}
+\hypertarget{classicm20948_1_1ICM20948__I2C}{}\label{classicm20948_1_1ICM20948__I2C}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+
+
+{\ttfamily \#include $<$icm20948\+\_\+i2c.\+hpp$>$}
+
+
+
+Collaboration diagram for icm20948\+::ICM20948\+\_\+\+I2C\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_aecf5833ce6285093115953195e3d0079}{ICM20948\+\_\+\+I2C}} (unsigned i2c\+\_\+bus, unsigned i2c\+\_\+address=\mbox{\hyperlink{icm20948__defs_8hpp_ad2332082f2390f86f6d6ee09acf1e259}{ICM20948\+\_\+\+I2\+C\+\_\+\+ADDR}}, \mbox{\hyperlink{structicm20948_1_1settings}{icm20948\+::settings}}=\mbox{\hyperlink{structicm20948_1_1settings}{icm20948\+::settings}}())
+\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a0ed48078a426d7d43d93aa8d0bd72b92}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the ICM20948 sensor over I2C. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a9730db34affbddeb85298eaeb9322a6f}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Resets the ICM20948 sensor over I2C. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a81ba652c5ec59a3e63d9883f8bc45e42}{wake}} ()
+\begin{DoxyCompactList}\small\item\em Wakes up the ICM20948 sensor from sleep mode over I2C. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_aac5f1f6373e9e965332b49f0bb2b3382}{set\+\_\+settings}} ()
+\begin{DoxyCompactList}\small\item\em Configures the ICM20948 sensor settings over I2C. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a02e447e84df4ef2512568139ea28ad07}{read\+\_\+accel\+\_\+gyro}} ()
+\begin{DoxyCompactList}\small\item\em Reads accelerometer and gyroscope data from the ICM20948 sensor over I2C. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a3114b3923967a235e6011ec8cad01406}{read\+\_\+magn}} ()
+\begin{DoxyCompactList}\small\item\em Reads magnetometer data from the ICM20948 sensor over I2C. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a8d2268b31d2b0b60da74e35a5854c970}{enable\+\_\+\+DRDY\+\_\+\+INT}} ()
+\begin{DoxyCompactList}\small\item\em Enables the Data Ready Interrupt. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a16f60f1416acbe9d214578467df09d35}{check\+\_\+\+DRDY\+\_\+\+INT}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the Data Ready Interrupt is active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_af6e029b6c6a94da5496894c50daedb66}{accel}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_af72f1758c258827bbe3debca41260d9f}{gyro}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_addde200e41d649c72927102e67790105}{magn}} \mbox{[}3\mbox{]}
+\item 
+\mbox{\hyperlink{structicm20948_1_1settings}{icm20948\+::settings}} \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a3eec16c908bc6a52a8d190cfdd66bf55}{settings}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_aecf5833ce6285093115953195e3d0079}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!ICM20948\_I2C@{ICM20948\_I2C}}
+\index{ICM20948\_I2C@{ICM20948\_I2C}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{ICM20948\_I2C()}{ICM20948\_I2C()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_aecf5833ce6285093115953195e3d0079} 
+icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::\+ICM20948\+\_\+\+I2C (\begin{DoxyParamCaption}\item[{unsigned}]{i2c\+\_\+bus}{, }\item[{unsigned}]{i2c\+\_\+address}{ = {\ttfamily \mbox{\hyperlink{icm20948__defs_8hpp_ad2332082f2390f86f6d6ee09acf1e259}{ICM20948\+\_\+\+I2\+C\+\_\+\+ADDR}}}, }\item[{\mbox{\hyperlink{structicm20948_1_1settings}{icm20948\+::settings}}}]{}{ = {\ttfamily \mbox{\hyperlink{structicm20948_1_1settings}{icm20948\+::settings}}()}}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a16f60f1416acbe9d214578467df09d35}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!check\_DRDY\_INT@{check\_DRDY\_INT}}
+\index{check\_DRDY\_INT@{check\_DRDY\_INT}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{check\_DRDY\_INT()}{check\_DRDY\_INT()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a16f60f1416acbe9d214578467df09d35} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::check\+\_\+\+DRDY\+\_\+\+INT (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the Data Ready Interrupt is active. 
+
+The function is run when the GPIO pin connected to the INT wire recieves a HIGH signal This reads the int\+\_\+status register, reads the data from the data registers and thus unlatches the interrupt, ready for the next set of data
+
+\begin{DoxyReturn}{Returns}
+true if the registers were successfully read, false if an error occured 
+\end{DoxyReturn}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a8d2268b31d2b0b60da74e35a5854c970}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!enable\_DRDY\_INT@{enable\_DRDY\_INT}}
+\index{enable\_DRDY\_INT@{enable\_DRDY\_INT}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{enable\_DRDY\_INT()}{enable\_DRDY\_INT()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a8d2268b31d2b0b60da74e35a5854c970} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::enable\+\_\+\+DRDY\+\_\+\+INT (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Enables the Data Ready Interrupt. 
+
+This function enables the Raw Data Ready Interrupt within the IMU by setting the specific registers so that it is notified when new data is available. When new data is available the INT pin on the IMU sends a HIGH value which can be read via a GPIO pin on the Pi.
+
+\begin{DoxyReturn}{Returns}
+true if the setup was successful, false if registers could not be written successefully 
+\end{DoxyReturn}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a0ed48078a426d7d43d93aa8d0bd72b92}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!init@{init}}
+\index{init@{init}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a0ed48078a426d7d43d93aa8d0bd72b92} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the ICM20948 sensor over I2C. 
+
+This function performs the initialization sequence for the ICM20948 sensor. It includes the following steps\+:
+\begin{DoxyItemize}
+\item Selects Bank 0 of the ICM20948 registers.
+\item Reads the WHO\+\_\+\+AM\+\_\+I register to verify the sensor\textquotesingle{}s identity.
+\item Resets the sensor to ensure it is in a known state.
+\item Wakes up the sensor from sleep mode.
+\item Configures the sensor settings (e.\+g., accelerometer, gyroscope settings).
+\item Attempts to initialize the magnetometer up to three times.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+bool Returns true if the initialization sequence was successful, including successful magnetometer initialization. Returns false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a02e447e84df4ef2512568139ea28ad07}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!read\_accel\_gyro@{read\_accel\_gyro}}
+\index{read\_accel\_gyro@{read\_accel\_gyro}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{read\_accel\_gyro()}{read\_accel\_gyro()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a02e447e84df4ef2512568139ea28ad07} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::read\+\_\+accel\+\_\+gyro (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reads accelerometer and gyroscope data from the ICM20948 sensor over I2C. 
+
+This function reads a block of 12 bytes from the ICM20948 sensor, which includes the accelerometer and gyroscope data. It performs the following steps\+:
+\begin{DoxyItemize}
+\item Reads the accelerometer and gyroscope data from the sensor\textquotesingle{}s registers.
+\item Reverses the byte order of the data for correct interpretation.
+\item Converts the raw accelerometer data to meters per second squared (m/s²) using the configured scale factor.
+\item Converts the raw gyroscope data to radians per second (rad/s) using the configured scale factor.
+\item Stores the processed accelerometer data in the {\ttfamily accel} array and gyroscope data in the {\ttfamily gyro} array.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+bool Returns true if the data was successfully read and processed. Returns false if the read operation fails. 
+\end{DoxyReturn}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a3114b3923967a235e6011ec8cad01406}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!read\_magn@{read\_magn}}
+\index{read\_magn@{read\_magn}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{read\_magn()}{read\_magn()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a3114b3923967a235e6011ec8cad01406} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::read\+\_\+magn (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reads magnetometer data from the ICM20948 sensor over I2C. 
+
+This function reads a block of 6 bytes from the ICM20948 sensor, which contains the magnetometer data. It performs the following steps\+:
+\begin{DoxyItemize}
+\item Reads the magnetometer data from the sensor\textquotesingle{}s registers.
+\item Converts the raw magnetometer data to microteslas (µT) using the constant scale factor.
+\item Stores the processed magnetometer data in the {\ttfamily magn} array.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+bool Returns true if the magnetometer data was successfully read and processed. Returns false if the read operation fails. 
+\end{DoxyReturn}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a9730db34affbddeb85298eaeb9322a6f}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!reset@{reset}}
+\index{reset@{reset}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a9730db34affbddeb85298eaeb9322a6f} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resets the ICM20948 sensor over I2C. 
+
+This function issues a reset command to the ICM20948 sensor and waits until the reset process is complete. It includes the following steps\+:
+\begin{DoxyItemize}
+\item Sets the reset bit in the PWR\+\_\+\+MGMT\+\_\+1 register to initiate a reset.
+\item Waits briefly (5 ms) to allow the reset to start.
+\item Polls the reset bit in the PWR\+\_\+\+MGMT\+\_\+1 register to check if the sensor is still resetting.
+\item Continues polling every 25 ms until the reset bit is cleared, indicating that the reset process is complete.
+\item Resets the internal bank tracking to Bank 0 after a successful reset.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+bool Returns true if the reset process was successful. Returns false if any step in the reset process fails. 
+\end{DoxyReturn}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_aac5f1f6373e9e965332b49f0bb2b3382}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!set\_settings@{set\_settings}}
+\index{set\_settings@{set\_settings}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{set\_settings()}{set\_settings()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_aac5f1f6373e9e965332b49f0bb2b3382} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::set\+\_\+settings (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Configures the ICM20948 sensor settings over I2C. 
+
+This function sets up various configuration parameters for the ICM20948 sensor, including\+:
+\begin{DoxyItemize}
+\item Accelerometer sample rate divider
+\item Accelerometer range and digital low-\/pass filter (DLPF) settings
+\item Gyroscope sample rate divider
+\item Gyroscope range and digital low-\/pass filter (DLPF) settings
+\end{DoxyItemize}
+
+Each configuration step is performed by calling the respective private methods. The overall success of the settings configuration is determined by the success of each individual step.
+
+\begin{DoxyReturn}{Returns}
+bool Returns true if all settings were successfully applied. Returns false if any configuration step fails. 
+\end{DoxyReturn}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a81ba652c5ec59a3e63d9883f8bc45e42}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!wake@{wake}}
+\index{wake@{wake}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{wake()}{wake()}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a81ba652c5ec59a3e63d9883f8bc45e42} 
+bool icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::wake (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Wakes up the ICM20948 sensor from sleep mode over I2C. 
+
+This function clears the sleep bit in the PWR\+\_\+\+MGMT\+\_\+1 register to wake the ICM20948 sensor from sleep mode. It includes the following steps\+:
+\begin{DoxyItemize}
+\item Clears the sleep bit (bit 6) in the PWR\+\_\+\+MGMT\+\_\+1 register.
+\item Waits briefly (5 ms) to allow the sensor to stabilize after waking up.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+bool Returns true if the wake-\/up process was successful. Returns false if the operation fails. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classicm20948_1_1ICM20948__I2C_af6e029b6c6a94da5496894c50daedb66}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!accel@{accel}}
+\index{accel@{accel}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{accel}{accel}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_af6e029b6c6a94da5496894c50daedb66} 
+float icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::accel\mbox{[}3\mbox{]}}
+
+\Hypertarget{classicm20948_1_1ICM20948__I2C_af72f1758c258827bbe3debca41260d9f}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!gyro@{gyro}}
+\index{gyro@{gyro}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{gyro}{gyro}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_af72f1758c258827bbe3debca41260d9f} 
+float icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::gyro\mbox{[}3\mbox{]}}
+
+\Hypertarget{classicm20948_1_1ICM20948__I2C_addde200e41d649c72927102e67790105}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!magn@{magn}}
+\index{magn@{magn}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{magn}{magn}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_addde200e41d649c72927102e67790105} 
+float icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::magn\mbox{[}3\mbox{]}}
+
+\Hypertarget{classicm20948_1_1ICM20948__I2C_a3eec16c908bc6a52a8d190cfdd66bf55}\index{icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}!settings@{settings}}
+\index{settings@{settings}!icm20948::ICM20948\_I2C@{icm20948::ICM20948\_I2C}}
+\doxysubsubsection{\texorpdfstring{settings}{settings}}
+{\footnotesize\ttfamily \label{classicm20948_1_1ICM20948__I2C_a3eec16c908bc6a52a8d190cfdd66bf55} 
+\mbox{\hyperlink{structicm20948_1_1settings}{icm20948\+::settings}} icm20948\+::\+ICM20948\+\_\+\+I2\+C\+::settings}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+I2\+C/include/\mbox{\hyperlink{icm20948__i2c_8hpp}{icm20948\+\_\+i2c.\+hpp}}\end{DoxyCompactItemize}

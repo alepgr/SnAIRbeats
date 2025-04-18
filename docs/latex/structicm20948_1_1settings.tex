@@ -1,0 +1,108 @@
+\doxysection{icm20948\+::settings Struct Reference}
+\hypertarget{structicm20948_1_1settings}{}\label{structicm20948_1_1settings}\index{icm20948::settings@{icm20948::settings}}
+
+
+Aggregated configuration settings for sensor modules.  
+
+
+
+
+{\ttfamily \#include $<$icm20948\+\_\+utils.\+hpp$>$}
+
+
+
+Collaboration diagram for icm20948\+::settings\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structicm20948_1_1settings_a10a11e4c131120c7d473aa97376505df}{settings}} (\mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\+\_\+settings}} \mbox{\hyperlink{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781}{accel}}=\mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\+\_\+settings}}(), \mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings}} \mbox{\hyperlink{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9}{gyro}}=\mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings}}(), \mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\+\_\+settings}} \mbox{\hyperlink{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86}{magn}}=\mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\+\_\+settings}}())
+\item 
+\mbox{\hyperlink{structicm20948_1_1settings_ae7fa4079f4d7dbe03aa4454b6a3749c8}{settings}} (YAML\+::\+Node config\+\_\+file\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Constructs a {\ttfamily settings} object from a YAML configuration node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\+\_\+settings}} \mbox{\hyperlink{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781}{accel}}
+\item 
+\mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings}} \mbox{\hyperlink{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9}{gyro}}
+\item 
+\mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\+\_\+settings}} \mbox{\hyperlink{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86}{magn}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Aggregated configuration settings for sensor modules. 
+
+This structure contains the configuration parameters for multiple sensor modules, including accelerometer, gyroscope, and magnetometer settings. It allows for centralized management of all sensor settings in a single structure.
+
+Members\+:
+\begin{DoxyItemize}
+\item \doxylink{structicm20948_1_1accel__settings}{accel\+\_\+settings} {\ttfamily accel}\+: Configuration settings for the accelerometer sensor, defining parameters such as inner sample rate, full-\/scale range, and Digital Low-\/\+Pass Filter (DLPF) settings.
+\item \doxylink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings} {\ttfamily gyro}\+: Configuration settings for the gyroscope sensor, including inner sample rate, ~\newline
+ full-\/scale range, and Digital Low-\/\+Pass Filter (DLPF) settings.
+\item \doxylink{structicm20948_1_1magn__settings}{magn\+\_\+settings} {\ttfamily magn}\+: Configuration settings for the magnetometer sensor, specifying the operation mode ~\newline
+ and measurement frequency.
+\end{DoxyItemize}
+
+Constructors\+:
+\begin{DoxyItemize}
+\item settings(\doxylink{structicm20948_1_1accel__settings}{accel\+\_\+settings} accel = \doxylink{namespaceicm20948_a4604c05a67dc8537a1f4780eccec81b7}{accel\+\_\+settings()}, \doxylink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings} gyro = \doxylink{namespaceicm20948_a305679615d047d722f18ccbb13b5dff8}{gyro\+\_\+settings()}, \doxylink{structicm20948_1_1magn__settings}{magn\+\_\+settings} magn = \doxylink{namespaceicm20948_ab8718ad937a784bdb91b1f8ae23e2c6a}{magn\+\_\+settings()}) Initializes the structure with specified or default settings for accelerometer, gyroscope, and magnetometer.
+\item \doxylink{structicm20948_1_1settings_ae7fa4079f4d7dbe03aa4454b6a3749c8}{settings(\+YAML\+::\+Node config\+\_\+file\+\_\+node)} Initializes the structure with settings loaded from a YAML configuration file node. 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structicm20948_1_1settings_a10a11e4c131120c7d473aa97376505df}\index{icm20948::settings@{icm20948::settings}!settings@{settings}}
+\index{settings@{settings}!icm20948::settings@{icm20948::settings}}
+\doxysubsubsection{\texorpdfstring{settings()}{settings()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structicm20948_1_1settings_a10a11e4c131120c7d473aa97376505df} 
+icm20948\+::settings\+::settings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\+\_\+settings}}}]{accel}{ = {\ttfamily \mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\+\_\+settings}}()}, }\item[{\mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings}}}]{gyro}{ = {\ttfamily \mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings}}()}, }\item[{\mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\+\_\+settings}}}]{magn}{ = {\ttfamily \mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\+\_\+settings}}()}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structicm20948_1_1settings_ae7fa4079f4d7dbe03aa4454b6a3749c8}\index{icm20948::settings@{icm20948::settings}!settings@{settings}}
+\index{settings@{settings}!icm20948::settings@{icm20948::settings}}
+\doxysubsubsection{\texorpdfstring{settings()}{settings()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structicm20948_1_1settings_ae7fa4079f4d7dbe03aa4454b6a3749c8} 
+icm20948\+::settings\+::settings (\begin{DoxyParamCaption}\item[{YAML\+::\+Node}]{config\+\_\+file\+\_\+node}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a {\ttfamily settings} object from a YAML configuration node. 
+
+This constructor initializes the {\ttfamily settings} structure by parsing a YAML configuration node. It sets up the accelerometer, gyroscope, and magnetometer settings based on the values provided in the YAML file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+file\+\_\+node} & A YAML node containing configuration data for the accelerometer, gyroscope, and magnetometer. The node should include sub-\/nodes for each sensor type with relevant settings such as sample rate, scale, and filter configurations.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If an invalid mode is specified for the magnetometer in the YAML configuration. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781}\index{icm20948::settings@{icm20948::settings}!accel@{accel}}
+\index{accel@{accel}!icm20948::settings@{icm20948::settings}}
+\doxysubsubsection{\texorpdfstring{accel}{accel}}
+{\footnotesize\ttfamily \label{structicm20948_1_1settings_ab4b40ef5ec0c6cd305df73dcb17ea781} 
+\mbox{\hyperlink{structicm20948_1_1accel__settings}{accel\+\_\+settings}} icm20948\+::settings\+::accel}
+
+\Hypertarget{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9}\index{icm20948::settings@{icm20948::settings}!gyro@{gyro}}
+\index{gyro@{gyro}!icm20948::settings@{icm20948::settings}}
+\doxysubsubsection{\texorpdfstring{gyro}{gyro}}
+{\footnotesize\ttfamily \label{structicm20948_1_1settings_a0c2485a146323219f03a06177ced80d9} 
+\mbox{\hyperlink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings}} icm20948\+::settings\+::gyro}
+
+\Hypertarget{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86}\index{icm20948::settings@{icm20948::settings}!magn@{magn}}
+\index{magn@{magn}!icm20948::settings@{icm20948::settings}}
+\doxysubsubsection{\texorpdfstring{magn}{magn}}
+{\footnotesize\ttfamily \label{structicm20948_1_1settings_a1e7c191c05324ae009daa9edca4b5b86} 
+\mbox{\hyperlink{structicm20948_1_1magn__settings}{magn\+\_\+settings}} icm20948\+::settings\+::magn}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+I2\+C/include/\mbox{\hyperlink{icm20948__utils_8hpp}{icm20948\+\_\+utils.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,121 @@
+\doxysection{IMUMaths\+Name\+::IMUMaths Class Reference}
+\hypertarget{classIMUMathsName_1_1IMUMaths}{}\label{classIMUMathsName_1_1IMUMaths}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+
+
+{\ttfamily \#include $<$IMUMaths.\+hpp$>$}
+
+
+
+Collaboration diagram for IMUMaths\+Name\+::IMUMaths\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a1177c2622863325d7277d88f39b903a4}{IMUMaths}} (\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer}{Audio\+Player\+Name\+::\+Audio\+Player}} \&\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a4a4c4231c3f7e4e7953c83debd33de6c}{Audio}})
+\begin{DoxyCompactList}\small\item\em Constructs an object with access to the audio player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a804011a859db31a0c30ef2145d58eb63}{Sound\+Checker}} (float X, float Y, float Z)
+\begin{DoxyCompactList}\small\item\em It measures each axis and sees if it falls within desired thresholds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a547d90a3eb4764f31c560c76bb634b99}{Set\+Play\+File\+Callback}} (const std\+::function$<$ void(const std\+::string \&)$>$ \&cb)
+\begin{DoxyCompactList}\small\item\em Sets the callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer}{Audio\+Player\+Name\+::\+Audio\+Player}} \& \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a4a4c4231c3f7e4e7953c83debd33de6c}{Audio}}
+\item 
+int \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a753e6ebc6ac0a90244c9b6f6a4446cb7}{Last\+File\+Played}}
+\item 
+bool \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_ae0682422c330541342438da5918e1e3b}{Pause}} = false
+\item 
+int \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths_a753956a730ec25b07b939ad1aad40f73}{Counter}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classIMUMathsName_1_1IMUMaths_a1177c2622863325d7277d88f39b903a4}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!IMUMaths@{IMUMaths}}
+\index{IMUMaths@{IMUMaths}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+\doxysubsubsection{\texorpdfstring{IMUMaths()}{IMUMaths()}}
+{\footnotesize\ttfamily \label{classIMUMathsName_1_1IMUMaths_a1177c2622863325d7277d88f39b903a4} 
+IMUMaths\+Name\+::\+IMUMaths\+::\+IMUMaths (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer}{Audio\+Player\+Name\+::\+Audio\+Player}} \&}]{Audio}{}\end{DoxyParamCaption})}
+
+
+
+Constructs an object with access to the audio player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Audio} & used for playback \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classIMUMathsName_1_1IMUMaths_a547d90a3eb4764f31c560c76bb634b99}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!SetPlayFileCallback@{SetPlayFileCallback}}
+\index{SetPlayFileCallback@{SetPlayFileCallback}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+\doxysubsubsection{\texorpdfstring{SetPlayFileCallback()}{SetPlayFileCallback()}}
+{\footnotesize\ttfamily \label{classIMUMathsName_1_1IMUMaths_a547d90a3eb4764f31c560c76bb634b99} 
+void IMUMaths\+Name\+::\+IMUMaths\+::\+Set\+Play\+File\+Callback (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const std\+::string \&)$>$ \&}]{cb}{}\end{DoxyParamCaption})}
+
+
+
+Sets the callback. 
+
+It registers a callback via the function input
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classIMUMathsName_1_1IMUMaths_a804011a859db31a0c30ef2145d58eb63}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!SoundChecker@{SoundChecker}}
+\index{SoundChecker@{SoundChecker}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+\doxysubsubsection{\texorpdfstring{SoundChecker()}{SoundChecker()}}
+{\footnotesize\ttfamily \label{classIMUMathsName_1_1IMUMaths_a804011a859db31a0c30ef2145d58eb63} 
+void IMUMaths\+Name\+::\+IMUMaths\+::\+Sound\+Checker (\begin{DoxyParamCaption}\item[{float}]{X}{, }\item[{float}]{Y}{, }\item[{float}]{Z}{}\end{DoxyParamCaption})}
+
+
+
+It measures each axis and sees if it falls within desired thresholds. 
+
+If the acceleration along the specified axis falls within specified thersholds, it will play audio
+
+
+\begin{DoxyParams}{Parameters}
+{\em X} & acceleration along the x-\/axis \\
+\hline
+{\em Y} & acceleration along the Y-\/axis \\
+\hline
+{\em Z} & acceleration along the Z-\/axis \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classIMUMathsName_1_1IMUMaths_a4a4c4231c3f7e4e7953c83debd33de6c}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!Audio@{Audio}}
+\index{Audio@{Audio}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+\doxysubsubsection{\texorpdfstring{Audio}{Audio}}
+{\footnotesize\ttfamily \label{classIMUMathsName_1_1IMUMaths_a4a4c4231c3f7e4e7953c83debd33de6c} 
+\mbox{\hyperlink{classAudioPlayerName_1_1AudioPlayer}{Audio\+Player\+Name\+::\+Audio\+Player}}\& IMUMaths\+Name\+::\+IMUMaths\+::\+Audio}
+
+\Hypertarget{classIMUMathsName_1_1IMUMaths_a753956a730ec25b07b939ad1aad40f73}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!Counter@{Counter}}
+\index{Counter@{Counter}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+\doxysubsubsection{\texorpdfstring{Counter}{Counter}}
+{\footnotesize\ttfamily \label{classIMUMathsName_1_1IMUMaths_a753956a730ec25b07b939ad1aad40f73} 
+int IMUMaths\+Name\+::\+IMUMaths\+::\+Counter = 0}
+
+\Hypertarget{classIMUMathsName_1_1IMUMaths_a753e6ebc6ac0a90244c9b6f6a4446cb7}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!LastFilePlayed@{LastFilePlayed}}
+\index{LastFilePlayed@{LastFilePlayed}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+\doxysubsubsection{\texorpdfstring{LastFilePlayed}{LastFilePlayed}}
+{\footnotesize\ttfamily \label{classIMUMathsName_1_1IMUMaths_a753e6ebc6ac0a90244c9b6f6a4446cb7} 
+int IMUMaths\+Name\+::\+IMUMaths\+::\+Last\+File\+Played}
+
+\Hypertarget{classIMUMathsName_1_1IMUMaths_ae0682422c330541342438da5918e1e3b}\index{IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}!Pause@{Pause}}
+\index{Pause@{Pause}!IMUMathsName::IMUMaths@{IMUMathsName::IMUMaths}}
+\doxysubsubsection{\texorpdfstring{Pause}{Pause}}
+{\footnotesize\ttfamily \label{classIMUMathsName_1_1IMUMaths_ae0682422c330541342438da5918e1e3b} 
+bool IMUMaths\+Name\+::\+IMUMaths\+::\+Pause = false}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+IMUMaths/include/\mbox{\hyperlink{IMUMaths_8hpp}{IMUMaths.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,1540 @@
+\doxysection{Audio\+File.\+h}
+\hypertarget{AudioFile_8h_source}{}\label{AudioFile_8h_source}\index{src/libs/ALSAPlayer/include/AudioFile.h@{src/libs/ALSAPlayer/include/AudioFile.h}}
+\mbox{\hyperlink{AudioFile_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//=======================================================================}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//=======================================================================}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ \_AS\_AudioFile\_h}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ \_AS\_AudioFile\_h}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ defined\ (\_MSC\_VER)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#undef\ max}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#undef\ min}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ disable\ some\ warnings\ on\ Windows}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#if\ defined\ (\_MSC\_VER)}}
+\DoxyCodeLine{00056\ \ \ \ \ \_\_pragma(warning\ (push))}
+\DoxyCodeLine{00057\ \ \ \ \ \_\_pragma(warning\ (disable\ :\ 4244))}
+\DoxyCodeLine{00058\ \ \ \ \ \_\_pragma(warning\ (disable\ :\ 4457))}
+\DoxyCodeLine{00059\ \ \ \ \ \_\_pragma(warning\ (disable\ :\ 4458))}
+\DoxyCodeLine{00060\ \ \ \ \ \_\_pragma(warning\ (disable\ :\ 4389))}
+\DoxyCodeLine{00061\ \ \ \ \ \_\_pragma(warning\ (disable\ :\ 4996))}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#elif\ defined\ (\_\_GNUC\_\_)}}
+\DoxyCodeLine{00063\ \ \ \ \ \_Pragma(\textcolor{stringliteral}{"{}GCC\ diagnostic\ push"{}})}
+\DoxyCodeLine{00064\ \ \ \ \ \_Pragma(\textcolor{stringliteral}{"{}GCC\ diagnostic\ ignored\ \(\backslash\)"{}-\/Wconversion\(\backslash\)"{}"{}})}
+\DoxyCodeLine{00065\ \ \ \ \ \_Pragma(\textcolor{stringliteral}{"{}GCC\ diagnostic\ ignored\ \(\backslash\)"{}-\/Wsign-\/compare\(\backslash\)"{}"{}})}
+\DoxyCodeLine{00066\ \ \ \ \ \_Pragma(\textcolor{stringliteral}{"{}GCC\ diagnostic\ ignored\ \(\backslash\)"{}-\/Wshadow\(\backslash\)"{}"{}})}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593f}{AudioFileFormat}}}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da4dfd42ec49d09d8c6555c218301cc30f}{Error}},}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fa5111e24c1ecc6266ce0de4b4dc42033b}{NotLoaded}},}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fad911b34823c7674c292556dc56148c27}{Wave}},}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fac2271ab764905d770a81d0920f8c6aaf}{Aiff}}}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00084\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAudioFile_ae74399e93d3f4623c7421ee10cfc0e15}{AudioFile}}}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00087\ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<std::vector<T>\ >\ \mbox{\hyperlink{classAudioFile_ad1260a47791dc30cbabfe3ff2ea099b1}{AudioBuffer}};}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classAudioFile_ae74399e93d3f4623c7421ee10cfc0e15}{AudioFile}}();}
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classAudioFile_ae74399e93d3f4623c7421ee10cfc0e15}{AudioFile}}\ (\textcolor{keyword}{const}\ std::string\&\ filePath);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a0ccbac429bc50bf78feca42ca283560b}{load}}\ (\textcolor{keyword}{const}\ std::string\&\ filePath);}
+\DoxyCodeLine{00103\ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a482a7224af90f43c4b6d5c93c89deabf}{save}}\ (\textcolor{keyword}{const}\ std::string\&\ filePath,\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593f}{AudioFileFormat}}\ format\ =\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fad911b34823c7674c292556dc56148c27}{AudioFileFormat::Wave}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a30eff74f8c584573f299175e6afcb259}{loadFromMemory}}\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData);}
+\DoxyCodeLine{00112\ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00115\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classAudioFile_a8cd1b082af9db6bd180e4a63edcdefc9}{getSampleRate}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a1057326fd2c2eca7cc7937f811868cf1}{isMono}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00122\ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a380a188d95f8f23b7622dfe222a7e8f6}{isStereo}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00125\ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAudioFile_a5495d5cb55911de54f0714e219130b48}{getBitDepth}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAudioFile_ae1b5b4b7351a79dbf810bb34ede496b9}{getNumSamplesPerChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00131\ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classAudioFile_a5a6b01404675361b1c21c9c5fb5753d4}{getLengthInSeconds}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a7b88c68133a9ac92149c58499e026360}{printSummary}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00137\ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00139\ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_abad458336845ff0ff2ab8967654d3dd3}{setAudioBuffer}}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classAudioFile_ad1260a47791dc30cbabfe3ff2ea099b1}{AudioBuffer}}\&\ newBuffer);}
+\DoxyCodeLine{00144\ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a13cd76162de8c2eaea54bbf46661484e}{setAudioBufferSize}}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numChannels,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numSamples);}
+\DoxyCodeLine{00149\ \ \ \ \ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_af2f1febe827753881e2419db783fb2f6}{setNumSamplesPerChannel}}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numSamples);}
+\DoxyCodeLine{00154\ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a382e1b5f3738025fa94bc19358beba7d}{setNumChannels}}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numChannels);}
+\DoxyCodeLine{00157\ \ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a95f61244f14cd7f7c7bad7c93c887927}{setBitDepth}}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ numBitsPerSample);}
+\DoxyCodeLine{00160\ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a60ee16af770b2e593b0e0d02cea01149}{setSampleRate}}\ (\textcolor{keyword}{const}\ uint32\_t\ newSampleRate);}
+\DoxyCodeLine{00163\ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a1986c0297e4e4db99435702528e9c3c4}{shouldLogErrorsToConsole}}\ (\textcolor{keywordtype}{bool}\ logErrors);}
+\DoxyCodeLine{00167\ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classAudioFile_ad1260a47791dc30cbabfe3ff2ea099b1}{AudioBuffer}}\ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}};}
+\DoxyCodeLine{00175\ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00179\ \ \ \ \ std::string\ \mbox{\hyperlink{classAudioFile_ab2bc14440b0a6ff1a297e28a0354d422}{iXMLChunk}};}
+\DoxyCodeLine{00180\ \ \ \ \ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00182\ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{enum\ class}\ Endianness}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ LittleEndian,}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ BigEndian}
+\DoxyCodeLine{00188\ \ \ \ \ \};}
+\DoxyCodeLine{00189\ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{bool}\ decodeWaveFile\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData);}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{bool}\ decodeAiffFile\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData);}
+\DoxyCodeLine{00193\ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{bool}\ saveToWaveFile\ (\textcolor{keyword}{const}\ std::string\&\ filePath);}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{bool}\ saveToAiffFile\ (\textcolor{keyword}{const}\ std::string\&\ filePath);}
+\DoxyCodeLine{00197\ \ \ \ \ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{void}\ clearAudioBuffer();}
+\DoxyCodeLine{00200\ \ \ \ \ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593f}{AudioFileFormat}}\ determineAudioFileFormat\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ int32\_t\ fourBytesToInt\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ source,\ \textcolor{keywordtype}{int}\ startIndex,\ Endianness\ endianness\ =\ Endianness::LittleEndian);}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ int16\_t\ twoBytesToInt\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ source,\ \textcolor{keywordtype}{int}\ startIndex,\ Endianness\ endianness\ =\ Endianness::LittleEndian);}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getIndexOfString\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ source,\ std::string\ s);}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getIndexOfChunk\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ source,\ \textcolor{keyword}{const}\ std::string\&\ chunkHeaderID,\ \textcolor{keywordtype}{int}\ startIndex,\ Endianness\ endianness\ =\ Endianness::LittleEndian);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint32\_t\ getAiffSampleRate\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData,\ \textcolor{keywordtype}{int}\ sampleRateStartIndex);}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ addSampleRateToAiffData\ (std::vector<uint8\_t>\&\ fileData,\ uint32\_t\ sampleRate);}
+\DoxyCodeLine{00212\ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ addStringToFileData\ (std::vector<uint8\_t>\&\ fileData,\ std::string\ s);}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ addInt32ToFileData\ (std::vector<uint8\_t>\&\ fileData,\ int32\_t\ i,\ Endianness\ endianness\ =\ Endianness::LittleEndian);}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ addInt16ToFileData\ (std::vector<uint8\_t>\&\ fileData,\ int16\_t\ i,\ Endianness\ endianness\ =\ Endianness::LittleEndian);}
+\DoxyCodeLine{00217\ \ \ \ \ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ writeDataToFile\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData,\ std::string\ filePath);}
+\DoxyCodeLine{00220\ \ \ \ \ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{void}\ reportError\ (\textcolor{keyword}{const}\ std::string\&\ errorMessage);}
+\DoxyCodeLine{00223\ \ \ \ \ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593f}{AudioFileFormat}}\ audioFileFormat;}
+\DoxyCodeLine{00226\ \ \ \ \ uint32\_t\ sampleRate;}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordtype}{int}\ bitDepth;}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{bool}\ logErrorsToConsole\ \{\textcolor{keyword}{true}\};}
+\DoxyCodeLine{00229\ \};}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAudioSampleConverter}{AudioSampleConverter}}}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{structAudioSampleConverter_a0b50615ff076475cac23d82e5076210f}{signedByteToSample}}\ (int8\_t\ sample);}
+\DoxyCodeLine{00238\ \ \ \ \ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keyword}{static}\ int8\_t\ \mbox{\hyperlink{structAudioSampleConverter_ad783f17dc9dbcbb18432ca4dfdd74c98}{sampleToSignedByte}}\ (T\ sample);}
+\DoxyCodeLine{00241\ \ \ \ \ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{structAudioSampleConverter_abd0b6569174231ca8b20ca5a96240280}{unsignedByteToSample}}\ (uint8\_t\ sample);}
+\DoxyCodeLine{00245\ \ \ \ \ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{structAudioSampleConverter_a643baeb52a6262a7f7eaf475d30589f9}{sampleToUnsignedByte}}\ (T\ sample);}
+\DoxyCodeLine{00248\ \ \ \ \ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{structAudioSampleConverter_a0f752c6c037ee3803a311f4c943cdab9}{sixteenBitIntToSample}}\ (int16\_t\ sample);}
+\DoxyCodeLine{00252\ \ \ \ \ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{static}\ int16\_t\ \mbox{\hyperlink{structAudioSampleConverter_a415885a26e795b1d401430b6ed5a9578}{sampleToSixteenBitInt}}\ (T\ sample);}
+\DoxyCodeLine{00255\ \ \ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{structAudioSampleConverter_a853a3bb206c188934221f11e39d50f6c}{twentyFourBitIntToSample}}\ (int32\_t\ sample);}
+\DoxyCodeLine{00259\ \ \ \ \ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keyword}{static}\ int32\_t\ \mbox{\hyperlink{structAudioSampleConverter_a1922d852ecde37f673b31f9f9d7b9644}{sampleToTwentyFourBitInt}}\ (T\ sample);}
+\DoxyCodeLine{00262\ \ \ \ \ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{structAudioSampleConverter_a621f400c0c9c7fc9935aca1b8dde0334}{thirtyTwoBitIntToSample}}\ (int32\_t\ sample);}
+\DoxyCodeLine{00266\ \ \ \ \ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{static}\ int32\_t\ \mbox{\hyperlink{structAudioSampleConverter_a074bca454263f09c838f21177debba95}{sampleToThirtyTwoBitInt}}\ (T\ sample);}
+\DoxyCodeLine{00269\ \ \ \ \ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{static}\ T\ \mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (T\ v1,\ T\ minValue,\ T\ maxValue);}
+\DoxyCodeLine{00273\ \};}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00276\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAiffUtilities}{AiffUtilities}}}
+\DoxyCodeLine{00277\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structAiffUtilities_ad9e479ef92796156dac5a98410b1835d}{decodeAiffSampleRate}}\ (\textcolor{keyword}{const}\ uint8\_t*\ bytes);}
+\DoxyCodeLine{00281\ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structAiffUtilities_ad17328a19f54eabf710c04f64e678029}{encodeAiffSampleRate}}\ (\textcolor{keywordtype}{double}\ sampleRate,\ uint8\_t*\ bytes);}
+\DoxyCodeLine{00284\ \};}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00287\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8e}{WavAudioFormat}}}
+\DoxyCodeLine{00288\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea91062305c293c8f87879282035b9e982}{PCM}}\ =\ 0x0001,}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8eaf48e2c55df672bab9d55c60af50a7181}{IEEEFloat}}\ =\ 0x0003,}
+\DoxyCodeLine{00291\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea6a355409829949f68b750116a8583fe2}{ALaw}}\ =\ 0x0006,}
+\DoxyCodeLine{00292\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea730c7411a2c9edcad21808aea0a225d8}{MULaw}}\ =\ 0x0007,}
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea3399988804e27576467357a9fd8fbf92}{Extensible}}\ =\ 0xFFFE}
+\DoxyCodeLine{00294\ \};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00297\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7d}{AIFFAudioFormat}}}
+\DoxyCodeLine{00298\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da8ff322ff580065823204d6a61d90f9b3}{Uncompressed}},}
+\DoxyCodeLine{00300\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da4e27fd9489beea00d95846abc48ab83e}{Compressed}},}
+\DoxyCodeLine{00301\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da4dfd42ec49d09d8c6555c218301cc30f}{Error}}}
+\DoxyCodeLine{00302\ \};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00305\ \textcolor{comment}{/*\ IMPLEMENTATION\ */}}
+\DoxyCodeLine{00306\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00309\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00310\ \mbox{\hyperlink{classAudioFile_ae74399e93d3f4623c7421ee10cfc0e15}{AudioFile<T>::AudioFile}}()}
+\DoxyCodeLine{00311\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ bitDepth\ =\ 16;}
+\DoxyCodeLine{00313\ \ \ \ \ sampleRate\ =\ 44100;}
+\DoxyCodeLine{00314\ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}.resize\ (1);}
+\DoxyCodeLine{00315\ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[0].resize\ (0);}
+\DoxyCodeLine{00316\ \ \ \ \ audioFileFormat\ =\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fa5111e24c1ecc6266ce0de4b4dc42033b}{AudioFileFormat::NotLoaded}};}
+\DoxyCodeLine{00317\ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00320\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00321\ \mbox{\hyperlink{classAudioFile_ae74399e93d3f4623c7421ee10cfc0e15}{AudioFile<T>::AudioFile}}\ (\textcolor{keyword}{const}\ std::string\&\ filePath)}
+\DoxyCodeLine{00322\ \ :\ \ \mbox{\hyperlink{classAudioFile_ae74399e93d3f4623c7421ee10cfc0e15}{AudioFile}}<T>()}
+\DoxyCodeLine{00323\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \mbox{\hyperlink{classAudioFile_a0ccbac429bc50bf78feca42ca283560b}{load}}\ (filePath);}
+\DoxyCodeLine{00325\ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00328\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00329\ uint32\_t\ \mbox{\hyperlink{classAudioFile_a8cd1b082af9db6bd180e4a63edcdefc9}{AudioFile<T>::getSampleRate}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00330\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{return}\ sampleRate;}
+\DoxyCodeLine{00332\ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00335\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00336\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{AudioFile<T>::getNumChannels}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00337\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})\mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}.size();}
+\DoxyCodeLine{00339\ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00342\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00343\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a1057326fd2c2eca7cc7937f811868cf1}{AudioFile<T>::isMono}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00344\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}()\ ==\ 1;}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00349\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00350\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a380a188d95f8f23b7622dfe222a7e8f6}{AudioFile<T>::isStereo}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00351\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}()\ ==\ 2;}
+\DoxyCodeLine{00353\ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00356\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00357\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAudioFile_a5495d5cb55911de54f0714e219130b48}{AudioFile<T>::getBitDepth}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00358\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordflow}{return}\ bitDepth;}
+\DoxyCodeLine{00360\ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00363\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00364\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAudioFile_ae1b5b4b7351a79dbf810bb34ede496b9}{AudioFile<T>::getNumSamplesPerChannel}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00365\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}.size()\ >\ 0)}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})\ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[0].size();}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00370\ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00373\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00374\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classAudioFile_a5a6b01404675361b1c21c9c5fb5753d4}{AudioFile<T>::getLengthInSeconds}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00375\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{double})\mbox{\hyperlink{classAudioFile_ae1b5b4b7351a79dbf810bb34ede496b9}{getNumSamplesPerChannel}}()\ /\ (double)sampleRate;}
+\DoxyCodeLine{00377\ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00380\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00381\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a7b88c68133a9ac92149c58499e026360}{AudioFile<T>::printSummary}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00382\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00383\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}|======================================|"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00384\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Num\ Channels:\ "{}}\ <<\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}()\ <<\ std::endl;}
+\DoxyCodeLine{00385\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Num\ Samples\ Per\ Channel:\ "{}}\ <<\ \mbox{\hyperlink{classAudioFile_ae1b5b4b7351a79dbf810bb34ede496b9}{getNumSamplesPerChannel}}()\ <<\ std::endl;}
+\DoxyCodeLine{00386\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Sample\ Rate:\ "{}}\ <<\ sampleRate\ <<\ std::endl;}
+\DoxyCodeLine{00387\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Bit\ Depth:\ "{}}\ <<\ bitDepth\ <<\ std::endl;}
+\DoxyCodeLine{00388\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Length\ in\ Seconds:\ "{}}\ <<\ \mbox{\hyperlink{classAudioFile_a5a6b01404675361b1c21c9c5fb5753d4}{getLengthInSeconds}}()\ <<\ std::endl;}
+\DoxyCodeLine{00389\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}|======================================|"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00393\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00394\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_abad458336845ff0ff2ab8967654d3dd3}{AudioFile<T>::setAudioBuffer}}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classAudioFile_ad1260a47791dc30cbabfe3ff2ea099b1}{AudioBuffer}}\&\ newBuffer)}
+\DoxyCodeLine{00395\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keywordtype}{int}\ numChannels\ =\ (int)newBuffer.size();}
+\DoxyCodeLine{00397\ \ \ \ \ }
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordflow}{if}\ (numChannels\ <=\ 0)}
+\DoxyCodeLine{00399\ \ \ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}The\ buffer\ you\ are\ trying\ to\ use\ has\ no\ channels"{}});}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00402\ \ \ \ \ \}}
+\DoxyCodeLine{00403\ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ numSamples\ =\ newBuffer[0].size();}
+\DoxyCodeLine{00405\ \ \ \ \ }
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{comment}{//\ set\ the\ number\ of\ channels}}
+\DoxyCodeLine{00407\ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}.resize\ (newBuffer.size());}
+\DoxyCodeLine{00408\ \ \ \ \ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}();\ k++)}
+\DoxyCodeLine{00410\ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ assert\ (newBuffer[k].size()\ ==\ numSamples);}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[k].resize\ (numSamples);}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ numSamples;\ i++)}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[k][i]\ =\ newBuffer[k][i];}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00419\ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \ \ \ \ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00422\ \}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00425\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00426\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a13cd76162de8c2eaea54bbf46661484e}{AudioFile<T>::setAudioBufferSize}}\ (\textcolor{keywordtype}{int}\ numChannels,\ \textcolor{keywordtype}{int}\ numSamples)}
+\DoxyCodeLine{00427\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}.resize\ (numChannels);}
+\DoxyCodeLine{00429\ \ \ \ \ \mbox{\hyperlink{classAudioFile_af2f1febe827753881e2419db783fb2f6}{setNumSamplesPerChannel}}\ (numSamples);}
+\DoxyCodeLine{00430\ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00433\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00434\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_af2f1febe827753881e2419db783fb2f6}{AudioFile<T>::setNumSamplesPerChannel}}\ (\textcolor{keywordtype}{int}\ numSamples)}
+\DoxyCodeLine{00435\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordtype}{int}\ originalSize\ =\ \mbox{\hyperlink{classAudioFile_ae1b5b4b7351a79dbf810bb34ede496b9}{getNumSamplesPerChannel}}();}
+\DoxyCodeLine{00437\ \ \ \ \ }
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}();i++)}
+\DoxyCodeLine{00439\ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[i].resize\ (numSamples);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ any\ new\ samples\ to\ zero}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (numSamples\ >\ originalSize)}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ std::fill\ (\mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[i].begin()\ +\ originalSize,\ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[i].end(),\ (T)0.);}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00449\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00450\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a382e1b5f3738025fa94bc19358beba7d}{AudioFile<T>::setNumChannels}}\ (\textcolor{keywordtype}{int}\ numChannels)}
+\DoxyCodeLine{00451\ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keywordtype}{int}\ originalNumChannels\ =\ \mbox{\hyperlink{classAudioFile_a514f860a956b4494ee8d8c806391d6b3}{getNumChannels}}();}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordtype}{int}\ originalNumSamplesPerChannel\ =\ \mbox{\hyperlink{classAudioFile_ae1b5b4b7351a79dbf810bb34ede496b9}{getNumSamplesPerChannel}}();}
+\DoxyCodeLine{00454\ \ \ \ \ }
+\DoxyCodeLine{00455\ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}.resize\ (numChannels);}
+\DoxyCodeLine{00456\ \ \ \ \ }
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{comment}{//\ make\ sure\ any\ new\ channels\ are\ set\ to\ the\ right\ size}}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{comment}{//\ and\ filled\ with\ zeros}}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordflow}{if}\ (numChannels\ >\ originalNumChannels)}
+\DoxyCodeLine{00460\ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ originalNumChannels;\ i\ <\ numChannels;\ i++)}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[i].resize\ (originalNumSamplesPerChannel);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ std::fill\ (\mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[i].begin(),\ \mbox{\hyperlink{classAudioFile_af937119db095c5af870851050dcbeabb}{samples}}[i].end(),\ (T)0.);}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00466\ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \}}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00470\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00471\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a95f61244f14cd7f7c7bad7c93c887927}{AudioFile<T>::setBitDepth}}\ (\textcolor{keywordtype}{int}\ numBitsPerSample)}
+\DoxyCodeLine{00472\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ bitDepth\ =\ numBitsPerSample;}
+\DoxyCodeLine{00474\ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00477\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00478\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a60ee16af770b2e593b0e0d02cea01149}{AudioFile<T>::setSampleRate}}\ (uint32\_t\ newSampleRate)}
+\DoxyCodeLine{00479\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ sampleRate\ =\ newSampleRate;}
+\DoxyCodeLine{00481\ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00484\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00485\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAudioFile_a1986c0297e4e4db99435702528e9c3c4}{AudioFile<T>::shouldLogErrorsToConsole}}\ (\textcolor{keywordtype}{bool}\ logErrors)}
+\DoxyCodeLine{00486\ \{}
+\DoxyCodeLine{00487\ \ \ \ \ logErrorsToConsole\ =\ logErrors;}
+\DoxyCodeLine{00488\ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00491\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00492\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a0ccbac429bc50bf78feca42ca283560b}{AudioFile<T>::load}}\ (\textcolor{keyword}{const}\ std::string\&\ filePath)}
+\DoxyCodeLine{00493\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ std::ifstream\ file\ (filePath,\ std::ios::binary);}
+\DoxyCodeLine{00495\ \ \ \ \ }
+\DoxyCodeLine{00496\ \ \ \ \ \textcolor{comment}{//\ check\ the\ file\ exists}}
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\ file.good())}
+\DoxyCodeLine{00498\ \ \ \ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ File\ doesn't\ exist\ or\ otherwise\ can't\ load\ file\(\backslash\)n"{}}\ \ +\ filePath);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00501\ \ \ \ \ \}}
+\DoxyCodeLine{00502\ \ \ \ \ }
+\DoxyCodeLine{00503\ \ \ \ \ std::vector<uint8\_t>\ fileData;}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ file.unsetf\ (std::ios::skipws);}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \ \ \ \ file.seekg\ (0,\ std::ios::end);}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ length\ =\ file.tellg();}
+\DoxyCodeLine{00509\ \ \ \ \ file.seekg\ (0,\ std::ios::beg);}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{comment}{//\ allocate}}
+\DoxyCodeLine{00512\ \ \ \ \ fileData.resize\ (length);}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ file.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}\ (fileData.data()),\ length);}
+\DoxyCodeLine{00515\ \ \ \ \ file.close();}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keywordflow}{if}\ (file.gcount()\ !=\ length)}
+\DoxyCodeLine{00518\ \ \ \ \ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ Couldn't\ read\ entire\ file\(\backslash\)n"{}}\ +\ filePath);}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00521\ \ \ \ \ \}}
+\DoxyCodeLine{00522\ \ \ \ \ }
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{comment}{//\ Handle\ very\ small\ files\ that\ will\ break\ our\ attempt\ to\ read\ the}}
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{comment}{//\ first\ header\ info\ from\ them}}
+\DoxyCodeLine{00525\ \ \ \ \ \textcolor{keywordflow}{if}\ (fileData.size()\ <\ 12)}
+\DoxyCodeLine{00526\ \ \ \ \ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ File\ is\ not\ a\ valid\ audio\ file\(\backslash\)n"{}}\ +\ filePath);}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00529\ \ \ \ \ \}}
+\DoxyCodeLine{00530\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00531\ \ \ \ \ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAudioFile_a30eff74f8c584573f299175e6afcb259}{loadFromMemory}}\ (fileData);}
+\DoxyCodeLine{00533\ \ \ \ \ \}}
+\DoxyCodeLine{00534\ \}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00537\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00538\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a30eff74f8c584573f299175e6afcb259}{AudioFile<T>::loadFromMemory}}\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData)}
+\DoxyCodeLine{00539\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \textcolor{comment}{//\ get\ audio\ file\ format}}
+\DoxyCodeLine{00541\ \ \ \ \ audioFileFormat\ =\ determineAudioFileFormat\ (fileData);}
+\DoxyCodeLine{00542\ \ \ \ \ }
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordflow}{if}\ (audioFileFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fad911b34823c7674c292556dc56148c27}{AudioFileFormat::Wave}})}
+\DoxyCodeLine{00544\ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ decodeWaveFile\ (fileData);}
+\DoxyCodeLine{00546\ \ \ \ \ \}}
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (audioFileFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fac2271ab764905d770a81d0920f8c6aaf}{AudioFileFormat::Aiff}})}
+\DoxyCodeLine{00548\ \ \ \ \ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ decodeAiffFile\ (fileData);}
+\DoxyCodeLine{00550\ \ \ \ \ \}}
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00552\ \ \ \ \ \{}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}Audio\ File\ Type:\ Error"{}});}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00555\ \ \ \ \ \}}
+\DoxyCodeLine{00556\ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00559\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00560\ \textcolor{keywordtype}{bool}\ AudioFile<T>::decodeWaveFile\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData)}
+\DoxyCodeLine{00561\ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00563\ \ \ \ \ \textcolor{comment}{//\ HEADER\ CHUNK}}
+\DoxyCodeLine{00564\ \ \ \ \ std::string\ headerChunkID\ (fileData.begin(),\ fileData.begin()\ +\ 4);}
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{comment}{//int32\_t\ fileSizeInBytes\ =\ fourBytesToInt\ (fileData,\ 4)\ +\ 8;}}
+\DoxyCodeLine{00566\ \ \ \ \ std::string\ format\ (fileData.begin()\ +\ 8,\ fileData.begin()\ +\ 12);}
+\DoxyCodeLine{00567\ \ \ \ \ }
+\DoxyCodeLine{00568\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{comment}{//\ try\ and\ find\ the\ start\ points\ of\ key\ chunks}}
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keywordtype}{int}\ indexOfDataChunk\ =\ getIndexOfChunk\ (fileData,\ \textcolor{stringliteral}{"{}data"{}},\ 12);}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keywordtype}{int}\ indexOfFormatChunk\ =\ getIndexOfChunk\ (fileData,\ \textcolor{stringliteral}{"{}fmt\ "{}},\ 12);}
+\DoxyCodeLine{00572\ \ \ \ \ \textcolor{keywordtype}{int}\ indexOfXMLChunk\ =\ getIndexOfChunk\ (fileData,\ \textcolor{stringliteral}{"{}iXML"{}},\ 12);}
+\DoxyCodeLine{00573\ \ \ \ \ }
+\DoxyCodeLine{00574\ \ \ \ \ \textcolor{comment}{//\ if\ we\ can't\ find\ the\ data\ or\ format\ chunks,\ or\ the\ IDs/formats\ don't\ seem\ to\ be\ as\ expected}}
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{comment}{//\ then\ it\ is\ unlikely\ we'll\ able\ to\ read\ this\ file,\ so\ abort}}
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordflow}{if}\ (indexOfDataChunk\ ==\ -\/1\ ||\ indexOfFormatChunk\ ==\ -\/1\ ||\ headerChunkID\ !=\ \textcolor{stringliteral}{"{}RIFF"{}}\ ||\ format\ !=\ \textcolor{stringliteral}{"{}WAVE"{}})}
+\DoxyCodeLine{00577\ \ \ \ \ \{}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ doesn't\ seem\ to\ be\ a\ valid\ .WAV\ file"{}});}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00580\ \ \ \ \ \}}
+\DoxyCodeLine{00581\ \ \ \ \ }
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{comment}{//\ FORMAT\ CHUNK}}
+\DoxyCodeLine{00584\ \ \ \ \ \textcolor{keywordtype}{int}\ f\ =\ indexOfFormatChunk;}
+\DoxyCodeLine{00585\ \ \ \ \ std::string\ formatChunkID\ (fileData.begin()\ +\ f,\ fileData.begin()\ +\ f\ +\ 4);}
+\DoxyCodeLine{00586\ \ \ \ \ \textcolor{comment}{//int32\_t\ formatChunkSize\ =\ fourBytesToInt\ (fileData,\ f\ +\ 4);}}
+\DoxyCodeLine{00587\ \ \ \ \ uint16\_t\ audioFormat\ =\ twoBytesToInt\ (fileData,\ f\ +\ 8);}
+\DoxyCodeLine{00588\ \ \ \ \ uint16\_t\ numChannels\ =\ twoBytesToInt\ (fileData,\ f\ +\ 10);}
+\DoxyCodeLine{00589\ \ \ \ \ sampleRate\ =\ (uint32\_t)\ fourBytesToInt\ (fileData,\ f\ +\ 12);}
+\DoxyCodeLine{00590\ \ \ \ \ uint32\_t\ numBytesPerSecond\ =\ fourBytesToInt\ (fileData,\ f\ +\ 16);}
+\DoxyCodeLine{00591\ \ \ \ \ uint16\_t\ numBytesPerBlock\ =\ twoBytesToInt\ (fileData,\ f\ +\ 20);}
+\DoxyCodeLine{00592\ \ \ \ \ bitDepth\ =\ (int)\ twoBytesToInt\ (fileData,\ f\ +\ 22);}
+\DoxyCodeLine{00593\ \ \ \ \ }
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ >\ \textcolor{keyword}{sizeof}\ (T)\ *\ 8)}
+\DoxyCodeLine{00595\ \ \ \ \ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ std::string\ message\ =\ \textcolor{stringliteral}{"{}ERROR:\ you\ are\ trying\ to\ read\ a\ "{}};}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string\ (bitDepth);}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ message\ +=\ \textcolor{stringliteral}{"{}-\/bit\ file\ using\ a\ "{}};}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string\ (\textcolor{keyword}{sizeof}\ (T)\ *\ 8);}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ message\ +=\ \textcolor{stringliteral}{"{}-\/bit\ sample\ type"{}};}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ reportError\ (message);}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00603\ \ \ \ \ \}}
+\DoxyCodeLine{00604\ \ \ \ \ }
+\DoxyCodeLine{00605\ \ \ \ \ uint16\_t\ numBytesPerSample\ =\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}\ (bitDepth)\ /\ 8;}
+\DoxyCodeLine{00606\ \ \ \ \ }
+\DoxyCodeLine{00607\ \ \ \ \ \textcolor{comment}{//\ check\ that\ the\ audio\ format\ is\ PCM\ or\ Float\ or\ extensible}}
+\DoxyCodeLine{00608\ \ \ \ \ \textcolor{keywordflow}{if}\ (audioFormat\ !=\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea91062305c293c8f87879282035b9e982}{WavAudioFormat::PCM}}\ \&\&\ audioFormat\ !=\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8eaf48e2c55df672bab9d55c60af50a7181}{WavAudioFormat::IEEEFloat}}\ \&\&\ audioFormat\ !=\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea3399988804e27576467357a9fd8fbf92}{WavAudioFormat::Extensible}})}
+\DoxyCodeLine{00609\ \ \ \ \ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ .WAV\ file\ is\ encoded\ in\ a\ format\ that\ this\ library\ does\ not\ support\ at\ present"{}});}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00612\ \ \ \ \ \}}
+\DoxyCodeLine{00613\ \ \ \ \ }
+\DoxyCodeLine{00614\ \ \ \ \ \textcolor{comment}{//\ check\ the\ number\ of\ channels\ is\ mono\ or\ stereo}}
+\DoxyCodeLine{00615\ \ \ \ \ \textcolor{keywordflow}{if}\ (numChannels\ <\ 1\ ||\ numChannels\ >\ 128)}
+\DoxyCodeLine{00616\ \ \ \ \ \{}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ WAV\ file\ seems\ to\ be\ an\ invalid\ number\ of\ channels\ (or\ corrupted?)"{}});}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00619\ \ \ \ \ \}}
+\DoxyCodeLine{00620\ \ \ \ \ }
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{comment}{//\ check\ header\ data\ is\ consistent}}
+\DoxyCodeLine{00622\ \ \ \ \ \textcolor{keywordflow}{if}\ (numBytesPerSecond\ !=\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}\ ((numChannels\ *\ sampleRate\ *\ bitDepth)\ /\ 8)\ ||\ numBytesPerBlock\ !=\ (numChannels\ *\ numBytesPerSample))}
+\DoxyCodeLine{00623\ \ \ \ \ \{}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ the\ header\ data\ in\ this\ WAV\ file\ seems\ to\ be\ inconsistent"{}});}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00626\ \ \ \ \ \}}
+\DoxyCodeLine{00627\ \ \ \ \ }
+\DoxyCodeLine{00628\ \ \ \ \ \textcolor{comment}{//\ check\ bit\ depth\ is\ either\ 8,\ 16,\ 24\ or\ 32\ bit}}
+\DoxyCodeLine{00629\ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ !=\ 8\ \&\&\ bitDepth\ !=\ 16\ \&\&\ bitDepth\ !=\ 24\ \&\&\ bitDepth\ !=\ 32)}
+\DoxyCodeLine{00630\ \ \ \ \ \{}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ file\ has\ a\ bit\ depth\ that\ is\ not\ 8,\ 16,\ 24\ or\ 32\ bits"{}});}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00633\ \ \ \ \ \}}
+\DoxyCodeLine{00634\ \ \ \ \ }
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{comment}{//\ DATA\ CHUNK}}
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{keywordtype}{int}\ d\ =\ indexOfDataChunk;}
+\DoxyCodeLine{00638\ \ \ \ \ std::string\ dataChunkID\ (fileData.begin()\ +\ d,\ fileData.begin()\ +\ d\ +\ 4);}
+\DoxyCodeLine{00639\ \ \ \ \ int32\_t\ dataChunkSize\ =\ fourBytesToInt\ (fileData,\ d\ +\ 4);}
+\DoxyCodeLine{00640\ \ \ \ \ }
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keywordtype}{int}\ numSamples\ =\ dataChunkSize\ /\ (numChannels\ *\ bitDepth\ /\ 8);}
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{keywordtype}{int}\ samplesStartIndex\ =\ indexOfDataChunk\ +\ 8;}
+\DoxyCodeLine{00643\ \ \ \ \ }
+\DoxyCodeLine{00644\ \ \ \ \ clearAudioBuffer();}
+\DoxyCodeLine{00645\ \ \ \ \ samples.resize\ (numChannels);}
+\DoxyCodeLine{00646\ \ \ \ \ }
+\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numSamples;\ i++)}
+\DoxyCodeLine{00648\ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ channel\ =\ 0;\ channel\ <\ numChannels;\ channel++)}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sampleIndex\ =\ samplesStartIndex\ +\ (numBytesPerBlock\ *\ i)\ +\ channel\ *\ numBytesPerSample;}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((sampleIndex\ +\ (bitDepth\ /\ 8)\ -\/\ 1)\ >=\ fileData.size())}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ read\ file\ error\ as\ the\ metadata\ indicates\ more\ samples\ than\ there\ are\ in\ the\ file\ data"{}});}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 8)}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_abd0b6569174231ca8b20ca5a96240280}{AudioSampleConverter<T>::unsignedByteToSample}}\ (fileData[sampleIndex]);}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 16)}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ sampleAsInt\ =\ twoBytesToInt\ (fileData,\ sampleIndex);}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a0f752c6c037ee3803a311f4c943cdab9}{AudioSampleConverter<T>::sixteenBitIntToSample}}\ (sampleAsInt);}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 24)}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsInt\ =\ 0;}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleAsInt\ =\ (fileData[sampleIndex\ +\ 2]\ <<\ 16)\ |\ (fileData[sampleIndex\ +\ 1]\ <<\ 8)\ |\ fileData[sampleIndex];}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sampleAsInt\ \&\ 0x800000)\ \textcolor{comment}{//\ \ if\ the\ 24th\ bit\ is\ set,\ this\ is\ a\ negative\ number\ in\ 24-\/bit\ world}}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleAsInt\ =\ sampleAsInt\ |\ \string~0xFFFFFF;\ \textcolor{comment}{//\ so\ make\ sure\ sign\ is\ extended\ to\ the\ 32\ bit\ float}}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a853a3bb206c188934221f11e39d50f6c}{AudioSampleConverter<T>::twentyFourBitIntToSample}}\ (sampleAsInt);}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 32)}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsInt\ =\ fourBytesToInt\ (fileData,\ sampleIndex);}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample;}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (audioFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8eaf48e2c55df672bab9d55c60af50a7181}{WavAudioFormat::IEEEFloat}}\ \&\&\ std::is\_floating\_point\_v<T>)\ }
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ f;}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memcpy\ (\&f,\ \&sampleAsInt,\ \textcolor{keyword}{sizeof}(int32\_t));}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sample\ =\ (T)f;}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ assume\ PCM}}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a621f400c0c9c7fc9935aca1b8dde0334}{AudioSampleConverter<T>::thirtyTwoBitIntToSample}}\ (sampleAsInt);}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false});}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00704\ \ \ \ \ \}}
+\DoxyCodeLine{00705\ }
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00707\ \ \ \ \ \textcolor{comment}{//\ iXML\ CHUNK}}
+\DoxyCodeLine{00708\ \ \ \ \ \textcolor{keywordflow}{if}\ (indexOfXMLChunk\ !=\ -\/1)}
+\DoxyCodeLine{00709\ \ \ \ \ \{}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ int32\_t\ chunkSize\ =\ fourBytesToInt\ (fileData,\ indexOfXMLChunk\ +\ 4);}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ iXMLChunk\ =\ std::string\ ((\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)\ \&fileData[indexOfXMLChunk\ +\ 8],\ chunkSize);}
+\DoxyCodeLine{00712\ \ \ \ \ \}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00715\ \}}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00717\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00718\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00719\ \textcolor{keywordtype}{bool}\ AudioFile<T>::decodeAiffFile\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData)}
+\DoxyCodeLine{00720\ \{}
+\DoxyCodeLine{00721\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{comment}{//\ HEADER\ CHUNK}}
+\DoxyCodeLine{00723\ \ \ \ \ std::string\ headerChunkID\ (fileData.begin(),\ fileData.begin()\ +\ 4);}
+\DoxyCodeLine{00724\ \ \ \ \ \textcolor{comment}{//int32\_t\ fileSizeInBytes\ =\ fourBytesToInt\ (fileData,\ 4,\ Endianness::BigEndian)\ +\ 8;}}
+\DoxyCodeLine{00725\ \ \ \ \ std::string\ format\ (fileData.begin()\ +\ 8,\ fileData.begin()\ +\ 12);}
+\DoxyCodeLine{00726\ \ \ \ \ }
+\DoxyCodeLine{00727\ \ \ \ \ \textcolor{keywordtype}{int}\ audioFormat\ =\ format\ ==\ \textcolor{stringliteral}{"{}AIFF"{}}\ ?\ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da8ff322ff580065823204d6a61d90f9b3}{AIFFAudioFormat::Uncompressed}}\ :\ format\ ==\ \textcolor{stringliteral}{"{}AIFC"{}}\ ?\ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da4e27fd9489beea00d95846abc48ab83e}{AIFFAudioFormat::Compressed}}\ :\ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da4dfd42ec49d09d8c6555c218301cc30f}{AIFFAudioFormat::Error}};}
+\DoxyCodeLine{00728\ \ \ \ \ }
+\DoxyCodeLine{00729\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00730\ \ \ \ \ \textcolor{comment}{//\ try\ and\ find\ the\ start\ points\ of\ key\ chunks}}
+\DoxyCodeLine{00731\ \ \ \ \ \textcolor{keywordtype}{int}\ indexOfCommChunk\ =\ getIndexOfChunk\ (fileData,\ \textcolor{stringliteral}{"{}COMM"{}},\ 12,\ Endianness::BigEndian);}
+\DoxyCodeLine{00732\ \ \ \ \ \textcolor{keywordtype}{int}\ indexOfSoundDataChunk\ =\ getIndexOfChunk\ (fileData,\ \textcolor{stringliteral}{"{}SSND"{}},\ 12,\ Endianness::BigEndian);}
+\DoxyCodeLine{00733\ \ \ \ \ \textcolor{keywordtype}{int}\ indexOfXMLChunk\ =\ getIndexOfChunk\ (fileData,\ \textcolor{stringliteral}{"{}iXML"{}},\ 12,\ Endianness::BigEndian);}
+\DoxyCodeLine{00734\ \ \ \ \ }
+\DoxyCodeLine{00735\ \ \ \ \ \textcolor{comment}{//\ if\ we\ can't\ find\ the\ data\ or\ format\ chunks,\ or\ the\ IDs/formats\ don't\ seem\ to\ be\ as\ expected}}
+\DoxyCodeLine{00736\ \ \ \ \ \textcolor{comment}{//\ then\ it\ is\ unlikely\ we'll\ able\ to\ read\ this\ file,\ so\ abort}}
+\DoxyCodeLine{00737\ \ \ \ \ \textcolor{keywordflow}{if}\ (indexOfSoundDataChunk\ ==\ -\/1\ ||\ indexOfCommChunk\ ==\ -\/1\ ||\ headerChunkID\ !=\ \textcolor{stringliteral}{"{}FORM"{}}\ ||\ audioFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da4dfd42ec49d09d8c6555c218301cc30f}{AIFFAudioFormat::Error}})}
+\DoxyCodeLine{00738\ \ \ \ \ \{}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ doesn't\ seem\ to\ be\ a\ valid\ AIFF\ file"{}});}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00741\ \ \ \ \ \}}
+\DoxyCodeLine{00742\ }
+\DoxyCodeLine{00743\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00744\ \ \ \ \ \textcolor{comment}{//\ COMM\ CHUNK}}
+\DoxyCodeLine{00745\ \ \ \ \ \textcolor{keywordtype}{int}\ p\ =\ indexOfCommChunk;}
+\DoxyCodeLine{00746\ \ \ \ \ std::string\ commChunkID\ (fileData.begin()\ +\ p,\ fileData.begin()\ +\ p\ +\ 4);}
+\DoxyCodeLine{00747\ \ \ \ \ \textcolor{comment}{//int32\_t\ commChunkSize\ =\ fourBytesToInt\ (fileData,\ p\ +\ 4,\ Endianness::BigEndian);}}
+\DoxyCodeLine{00748\ \ \ \ \ int16\_t\ numChannels\ =\ twoBytesToInt\ (fileData,\ p\ +\ 8,\ Endianness::BigEndian);}
+\DoxyCodeLine{00749\ \ \ \ \ int32\_t\ numSamplesPerChannel\ =\ fourBytesToInt\ (fileData,\ p\ +\ 10,\ Endianness::BigEndian);}
+\DoxyCodeLine{00750\ \ \ \ \ bitDepth\ =\ (int)\ twoBytesToInt\ (fileData,\ p\ +\ 14,\ Endianness::BigEndian);}
+\DoxyCodeLine{00751\ \ \ \ \ sampleRate\ =\ getAiffSampleRate\ (fileData,\ p\ +\ 16);}
+\DoxyCodeLine{00752\ \ \ \ \ }
+\DoxyCodeLine{00753\ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ >\ \textcolor{keyword}{sizeof}\ (T)\ *\ 8)}
+\DoxyCodeLine{00754\ \ \ \ \ \{}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ std::string\ message\ =\ \textcolor{stringliteral}{"{}ERROR:\ you\ are\ trying\ to\ read\ a\ "{}};}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string\ (bitDepth);}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ message\ +=\ \textcolor{stringliteral}{"{}-\/bit\ file\ using\ a\ "{}};}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ message\ +=\ std::to\_string\ (\textcolor{keyword}{sizeof}\ (T)\ *\ 8);}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ message\ +=\ \textcolor{stringliteral}{"{}-\/bit\ sample\ type"{}};}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ reportError\ (message);}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00762\ \ \ \ \ \}}
+\DoxyCodeLine{00763\ \ \ \ \ }
+\DoxyCodeLine{00764\ \ \ \ \ \textcolor{comment}{//\ check\ the\ sample\ rate\ was\ properly\ decoded}}
+\DoxyCodeLine{00765\ \ \ \ \ \textcolor{keywordflow}{if}\ (sampleRate\ ==\ 0)}
+\DoxyCodeLine{00766\ \ \ \ \ \{}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ AIFF\ file\ has\ an\ unsupported\ sample\ rate"{}});}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00769\ \ \ \ \ \}}
+\DoxyCodeLine{00770\ \ \ \ \ }
+\DoxyCodeLine{00771\ \ \ \ \ \textcolor{comment}{//\ check\ the\ number\ of\ channels\ is\ mono\ or\ stereo}}
+\DoxyCodeLine{00772\ \ \ \ \ \textcolor{keywordflow}{if}\ (numChannels\ <\ 1\ ||numChannels\ >\ 2)}
+\DoxyCodeLine{00773\ \ \ \ \ \{}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ AIFF\ file\ seems\ to\ be\ neither\ mono\ nor\ stereo\ (perhaps\ multi-\/track,\ or\ corrupted?)"{}});}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00776\ \ \ \ \ \}}
+\DoxyCodeLine{00777\ \ \ \ \ }
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{comment}{//\ check\ bit\ depth\ is\ either\ 8,\ 16,\ 24\ or\ 32-\/bit}}
+\DoxyCodeLine{00779\ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ !=\ 8\ \&\&\ bitDepth\ !=\ 16\ \&\&\ bitDepth\ !=\ 24\ \&\&\ bitDepth\ !=\ 32)}
+\DoxyCodeLine{00780\ \ \ \ \ \{}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ this\ file\ has\ a\ bit\ depth\ that\ is\ not\ 8,\ 16,\ 24\ or\ 32\ bits"{}});}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00783\ \ \ \ \ \}}
+\DoxyCodeLine{00784\ \ \ \ \ }
+\DoxyCodeLine{00785\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00786\ \ \ \ \ \textcolor{comment}{//\ SSND\ CHUNK}}
+\DoxyCodeLine{00787\ \ \ \ \ \textcolor{keywordtype}{int}\ s\ =\ indexOfSoundDataChunk;}
+\DoxyCodeLine{00788\ \ \ \ \ std::string\ soundDataChunkID\ (fileData.begin()\ +\ s,\ fileData.begin()\ +\ s\ +\ 4);}
+\DoxyCodeLine{00789\ \ \ \ \ int32\_t\ soundDataChunkSize\ =\ fourBytesToInt\ (fileData,\ s\ +\ 4,\ Endianness::BigEndian);}
+\DoxyCodeLine{00790\ \ \ \ \ int32\_t\ offset\ =\ fourBytesToInt\ (fileData,\ s\ +\ 8,\ Endianness::BigEndian);}
+\DoxyCodeLine{00791\ \ \ \ \ \textcolor{comment}{//int32\_t\ blockSize\ =\ fourBytesToInt\ (fileData,\ s\ +\ 12,\ Endianness::BigEndian);}}
+\DoxyCodeLine{00792\ \ \ \ \ }
+\DoxyCodeLine{00793\ \ \ \ \ \textcolor{keywordtype}{int}\ numBytesPerSample\ =\ bitDepth\ /\ 8;}
+\DoxyCodeLine{00794\ \ \ \ \ \textcolor{keywordtype}{int}\ numBytesPerFrame\ =\ numBytesPerSample\ *\ numChannels;}
+\DoxyCodeLine{00795\ \ \ \ \ \textcolor{keywordtype}{int}\ totalNumAudioSampleBytes\ =\ numSamplesPerChannel\ *\ numBytesPerFrame;}
+\DoxyCodeLine{00796\ \ \ \ \ \textcolor{keywordtype}{int}\ samplesStartIndex\ =\ s\ +\ 16\ +\ (int)offset;}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00798\ \ \ \ \ \textcolor{comment}{//\ sanity\ check\ the\ data}}
+\DoxyCodeLine{00799\ \ \ \ \ \textcolor{keywordflow}{if}\ ((soundDataChunkSize\ -\/\ 8)\ !=\ totalNumAudioSampleBytes\ ||\ totalNumAudioSampleBytes\ >\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(fileData.size()\ -\/\ samplesStartIndex))}
+\DoxyCodeLine{00800\ \ \ \ \ \{}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ the\ metadatafor\ this\ file\ doesn't\ seem\ right"{}});}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00803\ \ \ \ \ \}}
+\DoxyCodeLine{00804\ \ \ \ \ }
+\DoxyCodeLine{00805\ \ \ \ \ clearAudioBuffer();}
+\DoxyCodeLine{00806\ \ \ \ \ samples.resize\ (numChannels);}
+\DoxyCodeLine{00807\ \ \ \ \ }
+\DoxyCodeLine{00808\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numSamplesPerChannel;\ i++)}
+\DoxyCodeLine{00809\ \ \ \ \ \{}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ channel\ =\ 0;\ channel\ <\ numChannels;\ channel++)}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sampleIndex\ =\ samplesStartIndex\ +\ (numBytesPerFrame\ *\ i)\ +\ channel\ *\ numBytesPerSample;}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((sampleIndex\ +\ (bitDepth\ /\ 8)\ -\/\ 1)\ >=\ fileData.size())}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ read\ file\ error\ as\ the\ metadata\ indicates\ more\ samples\ than\ there\ are\ in\ the\ file\ data"{}});}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 8)}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a0b50615ff076475cac23d82e5076210f}{AudioSampleConverter<T>::signedByteToSample}}\ (\textcolor{keyword}{static\_cast<}int8\_t\textcolor{keyword}{>}\ (fileData[sampleIndex]));}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 16)}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ sampleAsInt\ =\ twoBytesToInt\ (fileData,\ sampleIndex,\ Endianness::BigEndian);}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a0f752c6c037ee3803a311f4c943cdab9}{AudioSampleConverter<T>::sixteenBitIntToSample}}\ (sampleAsInt);}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 24)}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsInt\ =\ 0;}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleAsInt\ =\ (fileData[sampleIndex]\ <<\ 16)\ |\ (fileData[sampleIndex\ +\ 1]\ <<\ 8)\ |\ fileData[sampleIndex\ +\ 2];}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sampleAsInt\ \&\ 0x800000)\ \textcolor{comment}{//\ \ if\ the\ 24th\ bit\ is\ set,\ this\ is\ a\ negative\ number\ in\ 24-\/bit\ world}}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleAsInt\ =\ sampleAsInt\ |\ \string~0xFFFFFF;\ \textcolor{comment}{//\ so\ make\ sure\ sign\ is\ extended\ to\ the\ 32\ bit\ float}}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a853a3bb206c188934221f11e39d50f6c}{AudioSampleConverter<T>::twentyFourBitIntToSample}}\ (sampleAsInt);}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 32)}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsInt\ =\ fourBytesToInt\ (fileData,\ sampleIndex,\ Endianness::BigEndian);}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ sample;}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (audioFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_a526ed66f20752002a63ee72e2e350d7da4e27fd9489beea00d95846abc48ab83e}{AIFFAudioFormat::Compressed}})}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sample\ =\ (T)\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{float}\&\textcolor{keyword}{>}\ (sampleAsInt);}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ assume\ PCM}}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a621f400c0c9c7fc9935aca1b8dde0334}{AudioSampleConverter<T>::thirtyTwoBitIntToSample}}\ (sampleAsInt);}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ samples[channel].push\_back\ (sample);}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false});}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00859\ \ \ \ \ \}}
+\DoxyCodeLine{00860\ }
+\DoxyCodeLine{00861\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00862\ \ \ \ \ \textcolor{comment}{//\ iXML\ CHUNK}}
+\DoxyCodeLine{00863\ \ \ \ \ \textcolor{keywordflow}{if}\ (indexOfXMLChunk\ !=\ -\/1)}
+\DoxyCodeLine{00864\ \ \ \ \ \{}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ int32\_t\ chunkSize\ =\ fourBytesToInt\ (fileData,\ indexOfXMLChunk\ +\ 4);}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ iXMLChunk\ =\ std::string\ ((\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)\ \&fileData[indexOfXMLChunk\ +\ 8],\ chunkSize);}
+\DoxyCodeLine{00867\ \ \ \ \ \}}
+\DoxyCodeLine{00868\ \ \ \ \ }
+\DoxyCodeLine{00869\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00870\ \}}
+\DoxyCodeLine{00871\ }
+\DoxyCodeLine{00872\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00873\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00874\ uint32\_t\ AudioFile<T>::getAiffSampleRate\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData,\ \textcolor{keywordtype}{int}\ sampleRateStartIndex)}
+\DoxyCodeLine{00875\ \{}
+\DoxyCodeLine{00876\ \ \ \ \ \textcolor{keywordtype}{double}\ sampleRate\ =\ \mbox{\hyperlink{structAiffUtilities_ad9e479ef92796156dac5a98410b1835d}{AiffUtilities::decodeAiffSampleRate}}\ (\&fileData[sampleRateStartIndex]);}
+\DoxyCodeLine{00877\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}\ (sampleRate);}
+\DoxyCodeLine{00878\ \}}
+\DoxyCodeLine{00879\ }
+\DoxyCodeLine{00880\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00881\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00882\ \textcolor{keywordtype}{void}\ AudioFile<T>::addSampleRateToAiffData\ (std::vector<uint8\_t>\&\ fileData,\ uint32\_t\ sampleRateToAdd)}
+\DoxyCodeLine{00883\ \{}
+\DoxyCodeLine{00884\ \ \ \ \ std::array<uint8\_t,\ 10>\ sampleRateData;}
+\DoxyCodeLine{00885\ \ \ \ \ \mbox{\hyperlink{structAiffUtilities_ad17328a19f54eabf710c04f64e678029}{AiffUtilities::encodeAiffSampleRate}}\ (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}\ (sampleRateToAdd),\ sampleRateData.data());}
+\DoxyCodeLine{00886\ \ \ \ \ fileData.insert\ (fileData.end(),\ sampleRateData.begin(),\ sampleRateData.end());}
+\DoxyCodeLine{00887\ \}}
+\DoxyCodeLine{00888\ }
+\DoxyCodeLine{00889\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00890\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00891\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAudioFile_a482a7224af90f43c4b6d5c93c89deabf}{AudioFile<T>::save}}\ (\textcolor{keyword}{const}\ std::string\&\ filePath,\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593f}{AudioFileFormat}}\ format)}
+\DoxyCodeLine{00892\ \{}
+\DoxyCodeLine{00893\ \ \ \ \ \textcolor{keywordflow}{if}\ (format\ ==\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fad911b34823c7674c292556dc56148c27}{AudioFileFormat::Wave}})}
+\DoxyCodeLine{00894\ \ \ \ \ \{}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ saveToWaveFile\ (filePath);}
+\DoxyCodeLine{00896\ \ \ \ \ \}}
+\DoxyCodeLine{00897\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (format\ ==\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fac2271ab764905d770a81d0920f8c6aaf}{AudioFileFormat::Aiff}})}
+\DoxyCodeLine{00898\ \ \ \ \ \{}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ saveToAiffFile\ (filePath);}
+\DoxyCodeLine{00900\ \ \ \ \ \}}
+\DoxyCodeLine{00901\ \ \ \ \ }
+\DoxyCodeLine{00902\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00903\ \}}
+\DoxyCodeLine{00904\ }
+\DoxyCodeLine{00905\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{00906\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00907\ \textcolor{keywordtype}{bool}\ AudioFile<T>::saveToWaveFile\ (\textcolor{keyword}{const}\ std::string\&\ filePath)}
+\DoxyCodeLine{00908\ \{}
+\DoxyCodeLine{00909\ \ \ \ \ std::vector<uint8\_t>\ fileData;}
+\DoxyCodeLine{00910\ \ \ \ \ }
+\DoxyCodeLine{00911\ \ \ \ \ int32\_t\ dataChunkSize\ =\ getNumSamplesPerChannel()\ *\ (getNumChannels()\ *\ bitDepth\ /\ 8);}
+\DoxyCodeLine{00912\ \ \ \ \ int16\_t\ audioFormat\ =\ bitDepth\ ==\ 32\ \&\&\ std::is\_floating\_point\_v<T>\ ?\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8eaf48e2c55df672bab9d55c60af50a7181}{WavAudioFormat::IEEEFloat}}\ :\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea91062305c293c8f87879282035b9e982}{WavAudioFormat::PCM}};}
+\DoxyCodeLine{00913\ \ \ \ \ int32\_t\ formatChunkSize\ =\ audioFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8ea91062305c293c8f87879282035b9e982}{WavAudioFormat::PCM}}\ ?\ 16\ :\ 18;}
+\DoxyCodeLine{00914\ \ \ \ \ int32\_t\ iXMLChunkSize\ =\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (iXMLChunk.size());}
+\DoxyCodeLine{00915\ \ \ \ \ }
+\DoxyCodeLine{00916\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00917\ \ \ \ \ \textcolor{comment}{//\ HEADER\ CHUNK}}
+\DoxyCodeLine{00918\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}RIFF"{}});}
+\DoxyCodeLine{00919\ \ \ \ \ }
+\DoxyCodeLine{00920\ \ \ \ \ \textcolor{comment}{//\ The\ file\ size\ in\ bytes\ is\ the\ header\ chunk\ size\ (4,\ not\ counting\ RIFF\ and\ WAVE)\ +\ the\ format}}
+\DoxyCodeLine{00921\ \ \ \ \ \textcolor{comment}{//\ chunk\ size\ (24)\ +\ the\ metadata\ part\ of\ the\ data\ chunk\ plus\ the\ actual\ data\ chunk\ size}}
+\DoxyCodeLine{00922\ \ \ \ \ int32\_t\ fileSizeInBytes\ =\ 4\ +\ formatChunkSize\ +\ 8\ +\ 8\ +\ dataChunkSize;}
+\DoxyCodeLine{00923\ \ \ \ \ \textcolor{keywordflow}{if}\ (iXMLChunkSize\ >\ 0)}
+\DoxyCodeLine{00924\ \ \ \ \ \{}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ fileSizeInBytes\ +=\ (8\ +\ iXMLChunkSize);}
+\DoxyCodeLine{00926\ \ \ \ \ \}}
+\DoxyCodeLine{00927\ }
+\DoxyCodeLine{00928\ \ \ \ \ addInt32ToFileData\ (fileData,\ fileSizeInBytes);}
+\DoxyCodeLine{00929\ \ \ \ \ }
+\DoxyCodeLine{00930\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}WAVE"{}});}
+\DoxyCodeLine{00931\ \ \ \ \ }
+\DoxyCodeLine{00932\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00933\ \ \ \ \ \textcolor{comment}{//\ FORMAT\ CHUNK}}
+\DoxyCodeLine{00934\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}fmt\ "{}});}
+\DoxyCodeLine{00935\ \ \ \ \ addInt32ToFileData\ (fileData,\ formatChunkSize);\ \textcolor{comment}{//\ format\ chunk\ size\ (16\ for\ PCM)}}
+\DoxyCodeLine{00936\ \ \ \ \ addInt16ToFileData\ (fileData,\ audioFormat);\ \textcolor{comment}{//\ audio\ format}}
+\DoxyCodeLine{00937\ \ \ \ \ addInt16ToFileData\ (fileData,\ (int16\_t)getNumChannels());\ \textcolor{comment}{//\ num\ channels}}
+\DoxyCodeLine{00938\ \ \ \ \ addInt32ToFileData\ (fileData,\ (int32\_t)sampleRate);\ \textcolor{comment}{//\ sample\ rate}}
+\DoxyCodeLine{00939\ \ \ \ \ }
+\DoxyCodeLine{00940\ \ \ \ \ int32\_t\ numBytesPerSecond\ =\ (int32\_t)\ ((getNumChannels()\ *\ sampleRate\ *\ bitDepth)\ /\ 8);}
+\DoxyCodeLine{00941\ \ \ \ \ addInt32ToFileData\ (fileData,\ numBytesPerSecond);}
+\DoxyCodeLine{00942\ \ \ \ \ }
+\DoxyCodeLine{00943\ \ \ \ \ int16\_t\ numBytesPerBlock\ =\ getNumChannels()\ *\ (bitDepth\ /\ 8);}
+\DoxyCodeLine{00944\ \ \ \ \ addInt16ToFileData\ (fileData,\ numBytesPerBlock);}
+\DoxyCodeLine{00945\ \ \ \ \ }
+\DoxyCodeLine{00946\ \ \ \ \ addInt16ToFileData\ (fileData,\ (int16\_t)bitDepth);}
+\DoxyCodeLine{00947\ \ \ \ \ }
+\DoxyCodeLine{00948\ \ \ \ \ \textcolor{keywordflow}{if}\ (audioFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8eaf48e2c55df672bab9d55c60af50a7181}{WavAudioFormat::IEEEFloat}})}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ addInt16ToFileData\ (fileData,\ 0);\ \textcolor{comment}{//\ extension\ size}}
+\DoxyCodeLine{00950\ \ \ \ \ }
+\DoxyCodeLine{00951\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00952\ \ \ \ \ \textcolor{comment}{//\ DATA\ CHUNK}}
+\DoxyCodeLine{00953\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}data"{}});}
+\DoxyCodeLine{00954\ \ \ \ \ addInt32ToFileData\ (fileData,\ dataChunkSize);}
+\DoxyCodeLine{00955\ \ \ \ \ }
+\DoxyCodeLine{00956\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ getNumSamplesPerChannel();\ i++)}
+\DoxyCodeLine{00957\ \ \ \ \ \{}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ channel\ =\ 0;\ channel\ <\ getNumChannels();\ channel++)}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 8)}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ \textcolor{keywordtype}{byte}\ =\ \mbox{\hyperlink{structAudioSampleConverter_a643baeb52a6262a7f7eaf475d30589f9}{AudioSampleConverter<T>::sampleToUnsignedByte}}\ (samples[channel][i]);}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 16)}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ sampleAsInt\ =\ \mbox{\hyperlink{structAudioSampleConverter_a415885a26e795b1d401430b6ed5a9578}{AudioSampleConverter<T>::sampleToSixteenBitInt}}\ (samples[channel][i]);}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addInt16ToFileData\ (fileData,\ sampleAsInt);}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 24)}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsIntAgain\ =\ \mbox{\hyperlink{structAudioSampleConverter_a1922d852ecde37f673b31f9f9d7b9644}{AudioSampleConverter<T>::sampleToTwentyFourBitInt}}\ (samples[channel][i]);}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ bytes[3];}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[2]\ =\ (uint8\_t)\ (sampleAsIntAgain\ >>\ 16)\ \&\ 0xFF;}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[1]\ =\ (uint8\_t)\ (sampleAsIntAgain\ >>\ \ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[0]\ =\ (uint8\_t)\ sampleAsIntAgain\ \&\ 0xFF;}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (bytes[0]);}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (bytes[1]);}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (bytes[2]);}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 32)}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsInt;}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (audioFormat\ ==\ \mbox{\hyperlink{AudioFile_8h_a24ed57f869bfefdef1bed0a033886d8eaf48e2c55df672bab9d55c60af50a7181}{WavAudioFormat::IEEEFloat}})}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleAsInt\ =\ (int32\_t)\ \textcolor{keyword}{reinterpret\_cast<}int32\_t\&\textcolor{keyword}{>}\ (samples[channel][i]);}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ assume\ PCM}}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sampleAsInt\ =\ \mbox{\hyperlink{structAudioSampleConverter_a074bca454263f09c838f21177debba95}{AudioSampleConverter<T>::sampleToThirtyTwoBitInt}}\ (samples[channel][i]);}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addInt32ToFileData\ (fileData,\ sampleAsInt,\ Endianness::LittleEndian);}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Trying\ to\ write\ a\ file\ with\ unsupported\ bit\ depth"{}});}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01000\ \ \ \ \ \}}
+\DoxyCodeLine{01001\ \ \ \ \ }
+\DoxyCodeLine{01002\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01003\ \ \ \ \ \textcolor{comment}{//\ iXML\ CHUNK}}
+\DoxyCodeLine{01004\ \ \ \ \ \textcolor{keywordflow}{if}\ (iXMLChunkSize\ >\ 0)\ }
+\DoxyCodeLine{01005\ \ \ \ \ \{}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}iXML"{}});}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ addInt32ToFileData\ (fileData,\ iXMLChunkSize);}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ addStringToFileData\ (fileData,\ iXMLChunk);}
+\DoxyCodeLine{01009\ \ \ \ \ \}}
+\DoxyCodeLine{01010\ \ \ \ \ }
+\DoxyCodeLine{01011\ \ \ \ \ \textcolor{comment}{//\ check\ that\ the\ various\ sizes\ we\ put\ in\ the\ metadata\ are\ correct}}
+\DoxyCodeLine{01012\ \ \ \ \ \textcolor{keywordflow}{if}\ (fileSizeInBytes\ !=\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (fileData.size()\ -\/\ 8)\ ||\ dataChunkSize\ !=\ (getNumSamplesPerChannel()\ *\ getNumChannels()\ *\ (bitDepth\ /\ 8)))}
+\DoxyCodeLine{01013\ \ \ \ \ \{}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ couldn't\ save\ file\ to\ "{}}\ +\ filePath);}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01016\ \ \ \ \ \}}
+\DoxyCodeLine{01017\ \ \ \ \ }
+\DoxyCodeLine{01018\ \ \ \ \ \textcolor{comment}{//\ try\ to\ write\ the\ file}}
+\DoxyCodeLine{01019\ \ \ \ \ \textcolor{keywordflow}{return}\ writeDataToFile\ (fileData,\ filePath);}
+\DoxyCodeLine{01020\ \}}
+\DoxyCodeLine{01021\ }
+\DoxyCodeLine{01022\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01023\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01024\ \textcolor{keywordtype}{bool}\ AudioFile<T>::saveToAiffFile\ (\textcolor{keyword}{const}\ std::string\&\ filePath)}
+\DoxyCodeLine{01025\ \{}
+\DoxyCodeLine{01026\ \ \ \ \ std::vector<uint8\_t>\ fileData;}
+\DoxyCodeLine{01027\ \ \ \ \ }
+\DoxyCodeLine{01028\ \ \ \ \ int32\_t\ numBytesPerSample\ =\ bitDepth\ /\ 8;}
+\DoxyCodeLine{01029\ \ \ \ \ int32\_t\ numBytesPerFrame\ =\ numBytesPerSample\ *\ getNumChannels();}
+\DoxyCodeLine{01030\ \ \ \ \ int32\_t\ totalNumAudioSampleBytes\ =\ getNumSamplesPerChannel()\ *\ numBytesPerFrame;}
+\DoxyCodeLine{01031\ \ \ \ \ int32\_t\ soundDataChunkSize\ =\ totalNumAudioSampleBytes\ +\ 8;}
+\DoxyCodeLine{01032\ \ \ \ \ int32\_t\ iXMLChunkSize\ =\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (iXMLChunk.size());}
+\DoxyCodeLine{01033\ \ \ \ \ }
+\DoxyCodeLine{01034\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01035\ \ \ \ \ \textcolor{comment}{//\ HEADER\ CHUNK}}
+\DoxyCodeLine{01036\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}FORM"{}});}
+\DoxyCodeLine{01037\ \ \ \ \ }
+\DoxyCodeLine{01038\ \ \ \ \ \textcolor{comment}{//\ The\ file\ size\ in\ bytes\ is\ the\ header\ chunk\ size\ (4,\ not\ counting\ FORM\ and\ AIFF)\ +\ the\ COMM}}
+\DoxyCodeLine{01039\ \ \ \ \ \textcolor{comment}{//\ chunk\ size\ (26)\ +\ the\ metadata\ part\ of\ the\ SSND\ chunk\ plus\ the\ actual\ data\ chunk\ size}}
+\DoxyCodeLine{01040\ \ \ \ \ int32\_t\ fileSizeInBytes\ =\ 4\ +\ 26\ +\ 16\ +\ totalNumAudioSampleBytes;}
+\DoxyCodeLine{01041\ \ \ \ \ \textcolor{keywordflow}{if}\ (iXMLChunkSize\ >\ 0)}
+\DoxyCodeLine{01042\ \ \ \ \ \{}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ fileSizeInBytes\ +=\ (8\ +\ iXMLChunkSize);}
+\DoxyCodeLine{01044\ \ \ \ \ \}}
+\DoxyCodeLine{01045\ }
+\DoxyCodeLine{01046\ \ \ \ \ addInt32ToFileData\ (fileData,\ fileSizeInBytes,\ Endianness::BigEndian);}
+\DoxyCodeLine{01047\ \ \ \ \ }
+\DoxyCodeLine{01048\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}AIFF"{}});}
+\DoxyCodeLine{01049\ \ \ \ \ }
+\DoxyCodeLine{01050\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01051\ \ \ \ \ \textcolor{comment}{//\ COMM\ CHUNK}}
+\DoxyCodeLine{01052\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}COMM"{}});}
+\DoxyCodeLine{01053\ \ \ \ \ addInt32ToFileData\ (fileData,\ 18,\ Endianness::BigEndian);\ \textcolor{comment}{//\ commChunkSize}}
+\DoxyCodeLine{01054\ \ \ \ \ addInt16ToFileData\ (fileData,\ getNumChannels(),\ Endianness::BigEndian);\ \textcolor{comment}{//\ num\ channels}}
+\DoxyCodeLine{01055\ \ \ \ \ addInt32ToFileData\ (fileData,\ getNumSamplesPerChannel(),\ Endianness::BigEndian);\ \textcolor{comment}{//\ num\ samples\ per\ channel}}
+\DoxyCodeLine{01056\ \ \ \ \ addInt16ToFileData\ (fileData,\ bitDepth,\ Endianness::BigEndian);\ \textcolor{comment}{//\ bit\ depth}}
+\DoxyCodeLine{01057\ \ \ \ \ addSampleRateToAiffData\ (fileData,\ sampleRate);}
+\DoxyCodeLine{01058\ \ \ \ \ }
+\DoxyCodeLine{01059\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01060\ \ \ \ \ \textcolor{comment}{//\ SSND\ CHUNK}}
+\DoxyCodeLine{01061\ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}SSND"{}});}
+\DoxyCodeLine{01062\ \ \ \ \ addInt32ToFileData\ (fileData,\ soundDataChunkSize,\ Endianness::BigEndian);}
+\DoxyCodeLine{01063\ \ \ \ \ addInt32ToFileData\ (fileData,\ 0,\ Endianness::BigEndian);\ \textcolor{comment}{//\ offset}}
+\DoxyCodeLine{01064\ \ \ \ \ addInt32ToFileData\ (fileData,\ 0,\ Endianness::BigEndian);\ \textcolor{comment}{//\ block\ size}}
+\DoxyCodeLine{01065\ \ \ \ \ }
+\DoxyCodeLine{01066\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ getNumSamplesPerChannel();\ i++)}
+\DoxyCodeLine{01067\ \ \ \ \ \{}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ channel\ =\ 0;\ channel\ <\ getNumChannels();\ channel++)}
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 8)}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ \textcolor{keywordtype}{byte}\ =\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_ad783f17dc9dbcbb18432ca4dfdd74c98}{AudioSampleConverter<T>::sampleToSignedByte}}\ (samples[channel][i]));}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 16)}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ sampleAsInt\ =\ \mbox{\hyperlink{structAudioSampleConverter_a415885a26e795b1d401430b6ed5a9578}{AudioSampleConverter<T>::sampleToSixteenBitInt}}\ (samples[channel][i]);}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addInt16ToFileData\ (fileData,\ sampleAsInt,\ Endianness::BigEndian);}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 24)}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsIntAgain\ =\ \mbox{\hyperlink{structAudioSampleConverter_a1922d852ecde37f673b31f9f9d7b9644}{AudioSampleConverter<T>::sampleToTwentyFourBitInt}}\ (samples[channel][i]);}
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ bytes[3];}
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[0]\ =\ (uint8\_t)\ (sampleAsIntAgain\ >>\ 16)\ \&\ 0xFF;}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[1]\ =\ (uint8\_t)\ (sampleAsIntAgain\ >>\ \ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[2]\ =\ (uint8\_t)\ sampleAsIntAgain\ \&\ 0xFF;}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (bytes[0]);}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (bytes[1]);}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileData.push\_back\ (bytes[2]);}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bitDepth\ ==\ 32)}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ samples\ as\ signed\ integers\ (no\ implementation\ yet\ for\ floating\ point,\ but\ looking\ at\ WAV\ implementation\ should\ help)}}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ sampleAsInt\ =\ \mbox{\hyperlink{structAudioSampleConverter_a074bca454263f09c838f21177debba95}{AudioSampleConverter<T>::sampleToThirtyTwoBitInt}}\ (samples[channel][i]);}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addInt32ToFileData\ (fileData,\ sampleAsInt,\ Endianness::BigEndian);}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Trying\ to\ write\ a\ file\ with\ unsupported\ bit\ depth"{}});}
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01105\ \ \ \ \ \}}
+\DoxyCodeLine{01106\ }
+\DoxyCodeLine{01107\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01108\ \ \ \ \ \textcolor{comment}{//\ iXML\ CHUNK}}
+\DoxyCodeLine{01109\ \ \ \ \ \textcolor{keywordflow}{if}\ (iXMLChunkSize\ >\ 0)}
+\DoxyCodeLine{01110\ \ \ \ \ \{}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ addStringToFileData\ (fileData,\ \textcolor{stringliteral}{"{}iXML"{}});}
+\DoxyCodeLine{01112\ \ \ \ \ \ \ \ \ addInt32ToFileData\ (fileData,\ iXMLChunkSize,\ Endianness::BigEndian);}
+\DoxyCodeLine{01113\ \ \ \ \ \ \ \ \ addStringToFileData\ (fileData,\ iXMLChunk);}
+\DoxyCodeLine{01114\ \ \ \ \ \}}
+\DoxyCodeLine{01115\ \ \ \ \ }
+\DoxyCodeLine{01116\ \ \ \ \ \textcolor{comment}{//\ check\ that\ the\ various\ sizes\ we\ put\ in\ the\ metadata\ are\ correct}}
+\DoxyCodeLine{01117\ \ \ \ \ \textcolor{keywordflow}{if}\ (fileSizeInBytes\ !=\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (fileData.size()\ -\/\ 8)\ ||\ soundDataChunkSize\ !=\ getNumSamplesPerChannel()\ *\ \ numBytesPerFrame\ +\ 8)}
+\DoxyCodeLine{01118\ \ \ \ \ \{}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \ \ reportError\ (\textcolor{stringliteral}{"{}ERROR:\ couldn't\ save\ file\ to\ "{}}\ +\ filePath);}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01121\ \ \ \ \ \}}
+\DoxyCodeLine{01122\ \ \ \ \ }
+\DoxyCodeLine{01123\ \ \ \ \ \textcolor{comment}{//\ try\ to\ write\ the\ file}}
+\DoxyCodeLine{01124\ \ \ \ \ \textcolor{keywordflow}{return}\ writeDataToFile\ (fileData,\ filePath);}
+\DoxyCodeLine{01125\ \}}
+\DoxyCodeLine{01126\ }
+\DoxyCodeLine{01127\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01128\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01129\ \textcolor{keywordtype}{bool}\ AudioFile<T>::writeDataToFile\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData,\ std::string\ filePath)}
+\DoxyCodeLine{01130\ \{}
+\DoxyCodeLine{01131\ \ \ \ \ std::ofstream\ outputFile\ (filePath,\ std::ios::binary);}
+\DoxyCodeLine{01132\ }
+\DoxyCodeLine{01133\ \ \ \ \ \textcolor{keywordflow}{if}\ (!outputFile.is\_open())}
+\DoxyCodeLine{01134\ \ \ \ \ \{}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01136\ \ \ \ \ \}}
+\DoxyCodeLine{01137\ }
+\DoxyCodeLine{01138\ \ \ \ \ outputFile.write\ ((\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)fileData.data(),\ fileData.size());}
+\DoxyCodeLine{01139\ \ \ \ \ outputFile.close();}
+\DoxyCodeLine{01140\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01141\ \}}
+\DoxyCodeLine{01142\ }
+\DoxyCodeLine{01143\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01144\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01145\ \textcolor{keywordtype}{void}\ AudioFile<T>::addStringToFileData\ (std::vector<uint8\_t>\&\ fileData,\ std::string\ s)}
+\DoxyCodeLine{01146\ \{}
+\DoxyCodeLine{01147\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ s.length();i++)}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ fileData.push\_back\ ((uint8\_t)\ s[i]);}
+\DoxyCodeLine{01149\ \}}
+\DoxyCodeLine{01150\ }
+\DoxyCodeLine{01151\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01152\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01153\ \textcolor{keywordtype}{void}\ AudioFile<T>::addInt32ToFileData\ (std::vector<uint8\_t>\&\ fileData,\ int32\_t\ i,\ Endianness\ endianness)}
+\DoxyCodeLine{01154\ \{}
+\DoxyCodeLine{01155\ \ \ \ \ uint8\_t\ bytes[4];}
+\DoxyCodeLine{01156\ \ \ \ \ }
+\DoxyCodeLine{01157\ \ \ \ \ \textcolor{keywordflow}{if}\ (endianness\ ==\ Endianness::LittleEndian)}
+\DoxyCodeLine{01158\ \ \ \ \ \{}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ bytes[3]\ =\ (i\ >>\ 24)\ \&\ 0xFF;}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ bytes[2]\ =\ (i\ >>\ 16)\ \&\ 0xFF;}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ bytes[1]\ =\ (i\ >>\ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{01162\ \ \ \ \ \ \ \ \ bytes[0]\ =\ i\ \&\ 0xFF;}
+\DoxyCodeLine{01163\ \ \ \ \ \}}
+\DoxyCodeLine{01164\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01165\ \ \ \ \ \{}
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ bytes[0]\ =\ (i\ >>\ 24)\ \&\ 0xFF;}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ bytes[1]\ =\ (i\ >>\ 16)\ \&\ 0xFF;}
+\DoxyCodeLine{01168\ \ \ \ \ \ \ \ \ bytes[2]\ =\ (i\ >>\ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{01169\ \ \ \ \ \ \ \ \ bytes[3]\ =\ i\ \&\ 0xFF;}
+\DoxyCodeLine{01170\ \ \ \ \ \}}
+\DoxyCodeLine{01171\ \ \ \ \ }
+\DoxyCodeLine{01172\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 4;\ j++)}
+\DoxyCodeLine{01173\ \ \ \ \ \ \ \ \ fileData.push\_back\ (bytes[j]);}
+\DoxyCodeLine{01174\ \}}
+\DoxyCodeLine{01175\ }
+\DoxyCodeLine{01176\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01177\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01178\ \textcolor{keywordtype}{void}\ AudioFile<T>::addInt16ToFileData\ (std::vector<uint8\_t>\&\ fileData,\ int16\_t\ i,\ Endianness\ endianness)}
+\DoxyCodeLine{01179\ \{}
+\DoxyCodeLine{01180\ \ \ \ \ uint8\_t\ bytes[2];}
+\DoxyCodeLine{01181\ \ \ \ \ }
+\DoxyCodeLine{01182\ \ \ \ \ \textcolor{keywordflow}{if}\ (endianness\ ==\ Endianness::LittleEndian)}
+\DoxyCodeLine{01183\ \ \ \ \ \{}
+\DoxyCodeLine{01184\ \ \ \ \ \ \ \ \ bytes[1]\ =\ (i\ >>\ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ bytes[0]\ =\ i\ \&\ 0xFF;}
+\DoxyCodeLine{01186\ \ \ \ \ \}}
+\DoxyCodeLine{01187\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01188\ \ \ \ \ \{}
+\DoxyCodeLine{01189\ \ \ \ \ \ \ \ \ bytes[0]\ =\ (i\ >>\ 8)\ \&\ 0xFF;}
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ bytes[1]\ =\ i\ \&\ 0xFF;}
+\DoxyCodeLine{01191\ \ \ \ \ \}}
+\DoxyCodeLine{01192\ \ \ \ \ }
+\DoxyCodeLine{01193\ \ \ \ \ fileData.push\_back\ (bytes[0]);}
+\DoxyCodeLine{01194\ \ \ \ \ fileData.push\_back\ (bytes[1]);}
+\DoxyCodeLine{01195\ \}}
+\DoxyCodeLine{01196\ }
+\DoxyCodeLine{01197\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01198\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01199\ \textcolor{keywordtype}{void}\ AudioFile<T>::clearAudioBuffer()}
+\DoxyCodeLine{01200\ \{}
+\DoxyCodeLine{01201\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ samples.size();i++)}
+\DoxyCodeLine{01202\ \ \ \ \ \{}
+\DoxyCodeLine{01203\ \ \ \ \ \ \ \ \ samples[i].clear();}
+\DoxyCodeLine{01204\ \ \ \ \ \}}
+\DoxyCodeLine{01205\ \ \ \ \ }
+\DoxyCodeLine{01206\ \ \ \ \ samples.clear();}
+\DoxyCodeLine{01207\ \}}
+\DoxyCodeLine{01208\ }
+\DoxyCodeLine{01209\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01210\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01211\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593f}{AudioFileFormat}}\ AudioFile<T>::determineAudioFileFormat\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ fileData)}
+\DoxyCodeLine{01212\ \{}
+\DoxyCodeLine{01213\ \ \ \ \ \textcolor{keywordflow}{if}\ (fileData.size()\ <\ 4)}
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fa902b0d55fddef6f8d651fe1035b7d4bd}{AudioFileFormat::Error}};}
+\DoxyCodeLine{01215\ \ \ \ \ }
+\DoxyCodeLine{01216\ \ \ \ \ std::string\ header\ (fileData.begin(),\ fileData.begin()\ +\ 4);}
+\DoxyCodeLine{01217\ \ \ \ \ }
+\DoxyCodeLine{01218\ \ \ \ \ \textcolor{keywordflow}{if}\ (header\ ==\ \textcolor{stringliteral}{"{}RIFF"{}})}
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fad911b34823c7674c292556dc56148c27}{AudioFileFormat::Wave}};}
+\DoxyCodeLine{01220\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (header\ ==\ \textcolor{stringliteral}{"{}FORM"{}})}
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fac2271ab764905d770a81d0920f8c6aaf}{AudioFileFormat::Aiff}};}
+\DoxyCodeLine{01222\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{AudioFile_8h_ad18559d169602e85d0ad68da6ef8593fa902b0d55fddef6f8d651fe1035b7d4bd}{AudioFileFormat::Error}};}
+\DoxyCodeLine{01224\ \}}
+\DoxyCodeLine{01225\ }
+\DoxyCodeLine{01226\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01227\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01228\ int32\_t\ AudioFile<T>::fourBytesToInt\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ source,\ \textcolor{keywordtype}{int}\ startIndex,\ Endianness\ endianness)}
+\DoxyCodeLine{01229\ \{}
+\DoxyCodeLine{01230\ \ \ \ \ \textcolor{keywordflow}{if}\ (source.size()\ >=\ (startIndex\ +\ 4))}
+\DoxyCodeLine{01231\ \ \ \ \ \{}
+\DoxyCodeLine{01232\ \ \ \ \ \ \ \ \ int32\_t\ result;}
+\DoxyCodeLine{01233\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (endianness\ ==\ Endianness::LittleEndian)}
+\DoxyCodeLine{01235\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ (source[startIndex\ +\ 3]\ <<\ 24)\ |\ (source[startIndex\ +\ 2]\ <<\ 16)\ |\ (source[startIndex\ +\ 1]\ <<\ 8)\ |\ source[startIndex];}
+\DoxyCodeLine{01236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01237\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ (source[startIndex]\ <<\ 24)\ |\ (source[startIndex\ +\ 1]\ <<\ 16)\ |\ (source[startIndex\ +\ 2]\ <<\ 8)\ |\ source[startIndex\ +\ 3];}
+\DoxyCodeLine{01238\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01240\ \ \ \ \ \}}
+\DoxyCodeLine{01241\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01242\ \ \ \ \ \{}
+\DoxyCodeLine{01243\ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Attempted\ to\ read\ four\ bytes\ from\ vector\ at\ position\ where\ out\ of\ bounds\ access\ would\ occur"{}});}
+\DoxyCodeLine{01244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ this\ is\ a\ dummy\ value\ as\ we\ don't\ have\ one\ to\ return}}
+\DoxyCodeLine{01245\ \ \ \ \ \}}
+\DoxyCodeLine{01246\ \}}
+\DoxyCodeLine{01247\ }
+\DoxyCodeLine{01248\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01249\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01250\ int16\_t\ AudioFile<T>::twoBytesToInt\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ source,\ \textcolor{keywordtype}{int}\ startIndex,\ Endianness\ endianness)}
+\DoxyCodeLine{01251\ \{}
+\DoxyCodeLine{01252\ \ \ \ \ int16\_t\ result;}
+\DoxyCodeLine{01253\ \ \ \ \ }
+\DoxyCodeLine{01254\ \ \ \ \ \textcolor{keywordflow}{if}\ (endianness\ ==\ Endianness::LittleEndian)}
+\DoxyCodeLine{01255\ \ \ \ \ \ \ \ \ result\ =\ (source[startIndex\ +\ 1]\ <<\ 8)\ |\ source[startIndex];}
+\DoxyCodeLine{01256\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01257\ \ \ \ \ \ \ \ \ result\ =\ (source[startIndex]\ <<\ 8)\ |\ source[startIndex\ +\ 1];}
+\DoxyCodeLine{01258\ \ \ \ \ }
+\DoxyCodeLine{01259\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01260\ \}}
+\DoxyCodeLine{01261\ }
+\DoxyCodeLine{01262\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01263\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01264\ \textcolor{keywordtype}{int}\ AudioFile<T>::getIndexOfChunk\ (\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ source,\ \textcolor{keyword}{const}\ std::string\&\ chunkHeaderID,\ \textcolor{keywordtype}{int}\ startIndex,\ Endianness\ endianness)}
+\DoxyCodeLine{01265\ \{}
+\DoxyCodeLine{01266\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ dataLen\ =\ 4;}
+\DoxyCodeLine{01267\ \ \ \ \ }
+\DoxyCodeLine{01268\ \ \ \ \ \textcolor{keywordflow}{if}\ (chunkHeaderID.size()\ !=\ dataLen)}
+\DoxyCodeLine{01269\ \ \ \ \ \{}
+\DoxyCodeLine{01270\ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Invalid\ chunk\ header\ ID\ string"{}});}
+\DoxyCodeLine{01271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{01272\ \ \ \ \ \}}
+\DoxyCodeLine{01273\ }
+\DoxyCodeLine{01274\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ startIndex;}
+\DoxyCodeLine{01275\ \ \ \ \ \textcolor{keywordflow}{while}\ (i\ <\ source.size()\ -\/\ dataLen)}
+\DoxyCodeLine{01276\ \ \ \ \ \{}
+\DoxyCodeLine{01277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (memcmp\ (\&source[i],\ chunkHeaderID.data(),\ dataLen)\ ==\ 0)}
+\DoxyCodeLine{01278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{01280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01281\ }
+\DoxyCodeLine{01282\ \ \ \ \ \ \ \ \ i\ +=\ dataLen;}
+\DoxyCodeLine{01283\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01284\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ somehow\ we\ don't\ have\ 4\ bytes\ left\ to\ read,\ then\ exit\ with\ -\/1}}
+\DoxyCodeLine{01285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ +\ 4)\ >=\ source.size())}
+\DoxyCodeLine{01286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{01287\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01288\ \ \ \ \ \ \ \ \ int32\_t\ chunkSize\ =\ fourBytesToInt\ (source,\ i,\ endianness);}
+\DoxyCodeLine{01289\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assume\ chunk\ size\ is\ invalid\ if\ it's\ greater\ than\ the\ number\ of\ bytes\ remaining\ in\ source}}
+\DoxyCodeLine{01290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chunkSize\ >\ (source.size()\ -\/\ i\ -\/\ dataLen)\ ||\ (chunkSize\ <\ 0))}
+\DoxyCodeLine{01291\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01292\ \ \ \ \ \ \ \ \ \ \ \ \ assert\ (\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}Invalid\ chunk\ size"{}});}
+\DoxyCodeLine{01293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{01294\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01295\ \ \ \ \ \ \ \ \ i\ +=\ (dataLen\ +\ chunkSize);}
+\DoxyCodeLine{01296\ \ \ \ \ \}}
+\DoxyCodeLine{01297\ }
+\DoxyCodeLine{01298\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{01299\ \}}
+\DoxyCodeLine{01300\ }
+\DoxyCodeLine{01301\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01302\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01303\ \textcolor{keywordtype}{void}\ AudioFile<T>::reportError\ (\textcolor{keyword}{const}\ std::string\&\ errorMessage)}
+\DoxyCodeLine{01304\ \{}
+\DoxyCodeLine{01305\ \ \ \ \ \textcolor{keywordflow}{if}\ (logErrorsToConsole)}
+\DoxyCodeLine{01306\ \ \ \ \ \ \ \ \ std::cerr\ <<\ errorMessage\ <<\ std::endl;}
+\DoxyCodeLine{01307\ \}}
+\DoxyCodeLine{01308\ }
+\DoxyCodeLine{01309\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01310\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SignedType>}
+\DoxyCodeLine{01311\ \textcolor{keyword}{typename}\ std::make\_unsigned<SignedType>::type\ \mbox{\hyperlink{AudioFile_8h_a1cdd96892e098ff5169f5d09282a2881}{convertSignedToUnsigned}}\ (SignedType\ signedValue)}
+\DoxyCodeLine{01312\ \{}
+\DoxyCodeLine{01313\ \ \ \ \ \textcolor{keyword}{static\_assert}\ (std::is\_signed<SignedType>::value,\ \textcolor{stringliteral}{"{}The\ input\ value\ must\ be\ signed"{}});}
+\DoxyCodeLine{01314\ \ \ \ \ }
+\DoxyCodeLine{01315\ \ \ \ \ \textcolor{keyword}{typename}\ std::make\_unsigned<SignedType>::type\ unsignedValue\ =\ \textcolor{keyword}{static\_cast<}typename\ std::make\_unsigned<SignedType>::type\textcolor{keyword}{>}\ (1)\ +\ std::numeric\_limits<SignedType>::max();}
+\DoxyCodeLine{01316\ \ \ \ \ }
+\DoxyCodeLine{01317\ \ \ \ \ unsignedValue\ +=\ signedValue;}
+\DoxyCodeLine{01318\ \ \ \ \ \textcolor{keywordflow}{return}\ unsignedValue;}
+\DoxyCodeLine{01319\ \}}
+\DoxyCodeLine{01320\ }
+\DoxyCodeLine{01321\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01322\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1}{SampleLimit}}}
+\DoxyCodeLine{01323\ \{}
+\DoxyCodeLine{01324\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a6f4a76291aaa384c93d034c0ec2199fb}{SignedInt16\_Min}}\ =\ -\/32768,}
+\DoxyCodeLine{01325\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a4c6a9af69354e63f25c50a8dc919e848}{SignedInt16\_Max}}\ =\ 32767,}
+\DoxyCodeLine{01326\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a633968253a8e680727c94bd288f346db}{UnsignedInt16\_Min}}\ =\ 0,}
+\DoxyCodeLine{01327\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a698b9683bf1870430934e724e7273dc9}{UnsignedInt16\_Max}}\ =\ 65535,}
+\DoxyCodeLine{01328\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1ac7bff7130c4190c2e41d38109fbf8f25}{SignedInt24\_Min}}\ =\ -\/8388608,}
+\DoxyCodeLine{01329\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1aea541229f3087d025dc1c2514c8a1c9b}{SignedInt24\_Max}}\ =\ 8388607,}
+\DoxyCodeLine{01330\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a2a0ca60bb71e74a1ff11bc05fd675f52}{UnsignedInt24\_Min}}\ =\ 0,}
+\DoxyCodeLine{01331\ \ \ \ \ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a9612ede29de120f073e3f40e3b18032b}{UnsignedInt24\_Max}}\ =\ 16777215}
+\DoxyCodeLine{01332\ \};}
+\DoxyCodeLine{01333\ }
+\DoxyCodeLine{01334\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01335\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01336\ T\ \mbox{\hyperlink{structAudioSampleConverter_a621f400c0c9c7fc9935aca1b8dde0334}{AudioSampleConverter<T>::thirtyTwoBitIntToSample}}\ (int32\_t\ sample)}
+\DoxyCodeLine{01337\ \{}
+\DoxyCodeLine{01338\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01339\ \ \ \ \ \{}
+\DoxyCodeLine{01340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample)\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (std::numeric\_limits<int32\_t>::max());}
+\DoxyCodeLine{01341\ \ \ \ \ \}}
+\DoxyCodeLine{01342\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::numeric\_limits<T>::is\_integer)}
+\DoxyCodeLine{01343\ \ \ \ \ \{}
+\DoxyCodeLine{01344\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample);}
+\DoxyCodeLine{01346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample\ +\ 2147483648),\ 0,\ 4294967295));}
+\DoxyCodeLine{01348\ \ \ \ \ \}}
+\DoxyCodeLine{01349\ \}}
+\DoxyCodeLine{01350\ }
+\DoxyCodeLine{01351\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01352\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01353\ int32\_t\ \mbox{\hyperlink{structAudioSampleConverter_a074bca454263f09c838f21177debba95}{AudioSampleConverter<T>::sampleToThirtyTwoBitInt}}\ (T\ sample)}
+\DoxyCodeLine{01354\ \{}
+\DoxyCodeLine{01355\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01356\ \ \ \ \ \{}
+\DoxyCodeLine{01357\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ multiplying\ a\ float\ by\ a\ the\ max\ int32\_t\ is\ problematic\ because}}
+\DoxyCodeLine{01358\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ of\ roundng\ errors\ which\ can\ cause\ wrong\ values\ to\ come\ out,\ so}}
+\DoxyCodeLine{01359\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ use\ a\ different\ implementation\ here\ compared\ to\ other\ types}}
+\DoxyCodeLine{01360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same\_v<T,\ float>)}
+\DoxyCodeLine{01361\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sample\ >=\ 1.f)}
+\DoxyCodeLine{01363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::numeric\_limits<int32\_t>::max();}
+\DoxyCodeLine{01364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sample\ <=\ -\/1.f)}
+\DoxyCodeLine{01365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::numeric\_limits<int32\_t>::lowest()\ +\ 1;\ \textcolor{comment}{//\ starting\ at\ 1\ preserves\ symmetry}}
+\DoxyCodeLine{01366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (sample\ *\ std::numeric\_limits<int32\_t>::max());}
+\DoxyCodeLine{01368\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01370\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/1.,\ 1.)\ *\ std::numeric\_limits<int32\_t>::max());}
+\DoxyCodeLine{01372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01373\ \ \ \ \ \}}
+\DoxyCodeLine{01374\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01375\ \ \ \ \ \{}
+\DoxyCodeLine{01376\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/2147483648LL,\ 2147483647LL));}
+\DoxyCodeLine{01378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ 0,\ 4294967295)\ -\/\ 2147483648);}
+\DoxyCodeLine{01380\ \ \ \ \ \}}
+\DoxyCodeLine{01381\ \}}
+\DoxyCodeLine{01382\ }
+\DoxyCodeLine{01383\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01384\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01385\ T\ \mbox{\hyperlink{structAudioSampleConverter_a853a3bb206c188934221f11e39d50f6c}{AudioSampleConverter<T>::twentyFourBitIntToSample}}\ (int32\_t\ sample)}
+\DoxyCodeLine{01386\ \{}
+\DoxyCodeLine{01387\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01388\ \ \ \ \ \{}
+\DoxyCodeLine{01389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample)\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (8388607.);}
+\DoxyCodeLine{01390\ \ \ \ \ \}}
+\DoxyCodeLine{01391\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::numeric\_limits<T>::is\_integer)}
+\DoxyCodeLine{01392\ \ \ \ \ \{}
+\DoxyCodeLine{01393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1ac7bff7130c4190c2e41d38109fbf8f25}{SignedInt24\_Min}},\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1aea541229f3087d025dc1c2514c8a1c9b}{SignedInt24\_Max}}));}
+\DoxyCodeLine{01395\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample\ +\ 8388608,\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a2a0ca60bb71e74a1ff11bc05fd675f52}{UnsignedInt24\_Min}},\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a9612ede29de120f073e3f40e3b18032b}{UnsignedInt24\_Max}}));}
+\DoxyCodeLine{01397\ \ \ \ \ \}}
+\DoxyCodeLine{01398\ \}}
+\DoxyCodeLine{01399\ }
+\DoxyCodeLine{01400\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01401\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01402\ int32\_t\ \mbox{\hyperlink{structAudioSampleConverter_a1922d852ecde37f673b31f9f9d7b9644}{AudioSampleConverter<T>::sampleToTwentyFourBitInt}}\ (T\ sample)}
+\DoxyCodeLine{01403\ \{}
+\DoxyCodeLine{01404\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01405\ \ \ \ \ \{}
+\DoxyCodeLine{01406\ \ \ \ \ \ \ \ \ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/1.,\ 1.);}
+\DoxyCodeLine{01407\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (sample\ *\ 8388607.);}
+\DoxyCodeLine{01408\ \ \ \ \ \}}
+\DoxyCodeLine{01409\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01410\ \ \ \ \ \{}
+\DoxyCodeLine{01411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1ac7bff7130c4190c2e41d38109fbf8f25}{SignedInt24\_Min}},\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1aea541229f3087d025dc1c2514c8a1c9b}{SignedInt24\_Max}}));}
+\DoxyCodeLine{01413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a2a0ca60bb71e74a1ff11bc05fd675f52}{UnsignedInt24\_Min}},\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a9612ede29de120f073e3f40e3b18032b}{UnsignedInt24\_Max}})\ +\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1ac7bff7130c4190c2e41d38109fbf8f25}{SignedInt24\_Min}});}
+\DoxyCodeLine{01415\ \ \ \ \ \}}
+\DoxyCodeLine{01416\ \}}
+\DoxyCodeLine{01417\ }
+\DoxyCodeLine{01418\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01419\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01420\ T\ \mbox{\hyperlink{structAudioSampleConverter_a0f752c6c037ee3803a311f4c943cdab9}{AudioSampleConverter<T>::sixteenBitIntToSample}}\ (int16\_t\ sample)}
+\DoxyCodeLine{01421\ \{}
+\DoxyCodeLine{01422\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01423\ \ \ \ \ \{}
+\DoxyCodeLine{01424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample)\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (32767.);}
+\DoxyCodeLine{01425\ \ \ \ \ \}}
+\DoxyCodeLine{01426\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::numeric\_limits<T>::is\_integer)}
+\DoxyCodeLine{01427\ \ \ \ \ \{}
+\DoxyCodeLine{01428\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01429\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample);}
+\DoxyCodeLine{01430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01431\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (\mbox{\hyperlink{AudioFile_8h_a1cdd96892e098ff5169f5d09282a2881}{convertSignedToUnsigned<int16\_t>}}\ (sample));}
+\DoxyCodeLine{01432\ \ \ \ \ \}}
+\DoxyCodeLine{01433\ \}}
+\DoxyCodeLine{01434\ }
+\DoxyCodeLine{01435\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01436\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01437\ int16\_t\ \mbox{\hyperlink{structAudioSampleConverter_a415885a26e795b1d401430b6ed5a9578}{AudioSampleConverter<T>::sampleToSixteenBitInt}}\ (T\ sample)}
+\DoxyCodeLine{01438\ \{}
+\DoxyCodeLine{01439\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01440\ \ \ \ \ \{}
+\DoxyCodeLine{01441\ \ \ \ \ \ \ \ \ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/1.,\ 1.);}
+\DoxyCodeLine{01442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int16\_t\textcolor{keyword}{>}\ (sample\ *\ 32767.);}
+\DoxyCodeLine{01443\ \ \ \ \ \}}
+\DoxyCodeLine{01444\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01445\ \ \ \ \ \{}
+\DoxyCodeLine{01446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int16\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a6f4a76291aaa384c93d034c0ec2199fb}{SignedInt16\_Min}},\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a4c6a9af69354e63f25c50a8dc919e848}{SignedInt16\_Max}}));}
+\DoxyCodeLine{01448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int16\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a633968253a8e680727c94bd288f346db}{UnsignedInt16\_Min}},\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a698b9683bf1870430934e724e7273dc9}{UnsignedInt16\_Max}})\ +\ \mbox{\hyperlink{AudioFile_8h_ad199620dc2fd05837fef34d93ea767c1a6f4a76291aaa384c93d034c0ec2199fb}{SignedInt16\_Min}});}
+\DoxyCodeLine{01450\ \ \ \ \ \}}
+\DoxyCodeLine{01451\ \}}
+\DoxyCodeLine{01452\ }
+\DoxyCodeLine{01453\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01454\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01455\ uint8\_t\ \mbox{\hyperlink{structAudioSampleConverter_a643baeb52a6262a7f7eaf475d30589f9}{AudioSampleConverter<T>::sampleToUnsignedByte}}\ (T\ sample)}
+\DoxyCodeLine{01456\ \{}
+\DoxyCodeLine{01457\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01458\ \ \ \ \ \{}
+\DoxyCodeLine{01459\ \ \ \ \ \ \ \ \ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/1.,\ 1.);}
+\DoxyCodeLine{01460\ \ \ \ \ \ \ \ \ sample\ =\ (sample\ +\ 1.)\ /\ 2.;}
+\DoxyCodeLine{01461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}\ (1\ +\ (sample\ *\ 254));}
+\DoxyCodeLine{01462\ \ \ \ \ \}}
+\DoxyCodeLine{01463\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01464\ \ \ \ \ \{}
+\DoxyCodeLine{01465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/128,\ 127)\ +\ 128);}
+\DoxyCodeLine{01467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ 0,\ 255));}
+\DoxyCodeLine{01469\ \ \ \ \ \}}
+\DoxyCodeLine{01470\ \}}
+\DoxyCodeLine{01471\ }
+\DoxyCodeLine{01472\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01473\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01474\ int8\_t\ \mbox{\hyperlink{structAudioSampleConverter_ad783f17dc9dbcbb18432ca4dfdd74c98}{AudioSampleConverter<T>::sampleToSignedByte}}\ (T\ sample)}
+\DoxyCodeLine{01475\ \{}
+\DoxyCodeLine{01476\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01477\ \ \ \ \ \{}
+\DoxyCodeLine{01478\ \ \ \ \ \ \ \ \ sample\ =\ \mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/1.,\ 1.);}
+\DoxyCodeLine{01479\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int8\_t\textcolor{keyword}{>}\ (sample\ *\ (T)0x7F);}
+\DoxyCodeLine{01480\ \ \ \ \ \}}
+\DoxyCodeLine{01481\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01482\ \ \ \ \ \{}
+\DoxyCodeLine{01483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01484\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int8\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ -\/128,\ 127));}
+\DoxyCodeLine{01485\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}int8\_t\textcolor{keyword}{>}\ (\mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{clamp}}\ (sample,\ 0,\ 255)\ -\/\ 128);}
+\DoxyCodeLine{01487\ \ \ \ \ \}}
+\DoxyCodeLine{01488\ \}}
+\DoxyCodeLine{01489\ }
+\DoxyCodeLine{01490\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01491\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01492\ T\ \mbox{\hyperlink{structAudioSampleConverter_abd0b6569174231ca8b20ca5a96240280}{AudioSampleConverter<T>::unsignedByteToSample}}\ (uint8\_t\ sample)}
+\DoxyCodeLine{01493\ \{}
+\DoxyCodeLine{01494\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01495\ \ \ \ \ \{}
+\DoxyCodeLine{01496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample\ -\/\ 128)\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (127.);}
+\DoxyCodeLine{01497\ \ \ \ \ \}}
+\DoxyCodeLine{01498\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (std::numeric\_limits<T>::is\_integer)}
+\DoxyCodeLine{01499\ \ \ \ \ \{}
+\DoxyCodeLine{01500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_unsigned\_v<T>)}
+\DoxyCodeLine{01501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample);}
+\DoxyCodeLine{01502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample\ -\/\ 128);}
+\DoxyCodeLine{01504\ \ \ \ \ \}}
+\DoxyCodeLine{01505\ \}}
+\DoxyCodeLine{01506\ }
+\DoxyCodeLine{01507\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01508\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01509\ T\ \mbox{\hyperlink{structAudioSampleConverter_a0b50615ff076475cac23d82e5076210f}{AudioSampleConverter<T>::signedByteToSample}}\ (int8\_t\ sample)}
+\DoxyCodeLine{01510\ \{}
+\DoxyCodeLine{01511\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_floating\_point<T>::value)}
+\DoxyCodeLine{01512\ \ \ \ \ \{}
+\DoxyCodeLine{01513\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample)\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (127.);}
+\DoxyCodeLine{01514\ \ \ \ \ \}}
+\DoxyCodeLine{01515\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::numeric\_limits<T>::is\_integer)}
+\DoxyCodeLine{01516\ \ \ \ \ \{}
+\DoxyCodeLine{01517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{01518\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (sample);}
+\DoxyCodeLine{01519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01520\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}\ (\mbox{\hyperlink{AudioFile_8h_a1cdd96892e098ff5169f5d09282a2881}{convertSignedToUnsigned<int8\_t>}}\ (sample));}
+\DoxyCodeLine{01521\ \ \ \ \ \}}
+\DoxyCodeLine{01522\ \}}
+\DoxyCodeLine{01523\ }
+\DoxyCodeLine{01524\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01525\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{01526\ T\ \mbox{\hyperlink{structAudioSampleConverter_a4400dc78004ab62bf939b8dc56fbb0f7}{AudioSampleConverter<T>::clamp}}\ (T\ value,\ T\ minValue,\ T\ maxValue)}
+\DoxyCodeLine{01527\ \{}
+\DoxyCodeLine{01528\ \ \ \ \ value\ =\ std::min\ (value,\ maxValue);}
+\DoxyCodeLine{01529\ \ \ \ \ value\ =\ std::max\ (value,\ minValue);}
+\DoxyCodeLine{01530\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{01531\ \}}
+\DoxyCodeLine{01532\ }
+\DoxyCodeLine{01533\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01534\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structAiffUtilities_ad9e479ef92796156dac5a98410b1835d}{AiffUtilities::decodeAiffSampleRate}}\ (\textcolor{keyword}{const}\ uint8\_t*\ bytes)}
+\DoxyCodeLine{01535\ \{}
+\DoxyCodeLine{01536\ \ \ \ \ \textcolor{comment}{//\ Note:\ Sample\ rate\ is\ 80\ bits\ made\ up\ of}}
+\DoxyCodeLine{01537\ \ \ \ \ \textcolor{comment}{//\ *\ 1\ sign\ bit}}
+\DoxyCodeLine{01538\ \ \ \ \ \textcolor{comment}{//\ *\ 15\ exponent\ bits}}
+\DoxyCodeLine{01539\ \ \ \ \ \textcolor{comment}{//\ *\ 64\ mantissa\ bits}}
+\DoxyCodeLine{01540\ \ \ \ \ }
+\DoxyCodeLine{01541\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01542\ \ \ \ \ \textcolor{comment}{//\ Sign}}
+\DoxyCodeLine{01543\ \ \ \ \ }
+\DoxyCodeLine{01544\ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ sign\ (most\ significant\ bit\ of\ byte\ 0)}}
+\DoxyCodeLine{01545\ \ \ \ \ \textcolor{keywordtype}{int}\ sign\ =\ (bytes[0]\ \&\ 0x80)\ ?\ -\/1\ :\ 1;}
+\DoxyCodeLine{01546\ \ \ \ \ }
+\DoxyCodeLine{01547\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01548\ \ \ \ \ \textcolor{comment}{//\ Exponent}}
+\DoxyCodeLine{01549\ \ \ \ \ }
+\DoxyCodeLine{01550\ \ \ \ \ \textcolor{comment}{//\ byte\ 0:\ ignore\ the\ sign\ and\ shift\ the\ most\ significant\ bits\ to\ the\ left\ by\ one\ byte}}
+\DoxyCodeLine{01551\ \ \ \ \ uint16\_t\ msbShifted\ =\ (\textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}\ (bytes[0]\ \&\ 0x7F)\ <<\ 8);}
+\DoxyCodeLine{01552\ \ \ \ \ }
+\DoxyCodeLine{01553\ \ \ \ \ \textcolor{comment}{//\ calculate\ exponent\ by\ combining\ byte\ 0\ and\ byte\ 1\ and\ subtract\ bias}}
+\DoxyCodeLine{01554\ \ \ \ \ uint16\_t\ exponent\ =\ (msbShifted\ |\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}\ (bytes[1]))\ -\/\ 16383;}
+\DoxyCodeLine{01555\ \ \ \ \ }
+\DoxyCodeLine{01556\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01557\ \ \ \ \ \textcolor{comment}{//\ Mantissa}}
+\DoxyCodeLine{01558\ \ \ \ \ }
+\DoxyCodeLine{01559\ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ mantissa\ (remaining\ 64\ bits)\ by\ looping\ over\ the\ remaining}}
+\DoxyCodeLine{01560\ \ \ \ \ \textcolor{comment}{//\ bytes\ and\ combining\ them\ while\ shifting\ the\ result\ to\ the\ left\ by}}
+\DoxyCodeLine{01561\ \ \ \ \ \textcolor{comment}{//\ 8\ bits\ each\ time}}
+\DoxyCodeLine{01562\ \ \ \ \ uint64\_t\ mantissa\ =\ 0;}
+\DoxyCodeLine{01563\ \ \ \ \ }
+\DoxyCodeLine{01564\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 2;\ i\ <\ 10;\ ++i)}
+\DoxyCodeLine{01565\ \ \ \ \ \ \ \ \ mantissa\ =\ (mantissa\ <<\ 8)\ |\ bytes[i];}
+\DoxyCodeLine{01566\ \ \ \ \ }
+\DoxyCodeLine{01567\ \ \ \ \ \textcolor{comment}{//\ Normalize\ the\ mantissa\ (implicit\ leading\ 1\ for\ normalized\ values)}}
+\DoxyCodeLine{01568\ \ \ \ \ \textcolor{keywordtype}{double}\ normalisedMantissa\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}\ (mantissa)\ /\ (1ULL\ <<\ 63);}
+\DoxyCodeLine{01569\ \ \ \ \ }
+\DoxyCodeLine{01570\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01571\ \ \ \ \ \textcolor{comment}{//\ Combine\ sign,\ exponent,\ and\ mantissa\ into\ a\ double}}
+\DoxyCodeLine{01572\ \ \ \ \ }
+\DoxyCodeLine{01573\ \ \ \ \ \textcolor{keywordflow}{return}\ sign\ *\ std::ldexp\ (normalisedMantissa,\ exponent);}
+\DoxyCodeLine{01574\ \}}
+\DoxyCodeLine{01575\ }
+\DoxyCodeLine{01576\ \textcolor{comment}{//=============================================================}}
+\DoxyCodeLine{01577\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structAiffUtilities_ad17328a19f54eabf710c04f64e678029}{AiffUtilities::encodeAiffSampleRate}}\ (\textcolor{keywordtype}{double}\ sampleRate,\ uint8\_t*\ bytes)}
+\DoxyCodeLine{01578\ \{}
+\DoxyCodeLine{01579\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ sign}}
+\DoxyCodeLine{01580\ \ \ \ \ \textcolor{keywordtype}{int}\ sign\ =\ (sampleRate\ <\ 0)\ ?\ -\/1\ :\ 1;}
+\DoxyCodeLine{01581\ \ \ \ \ }
+\DoxyCodeLine{01582\ \ \ \ \ \textcolor{keywordflow}{if}\ (sign\ ==\ -\/1)}
+\DoxyCodeLine{01583\ \ \ \ \ \ \ \ \ sampleRate\ =\ -\/sampleRate;}
+\DoxyCodeLine{01584\ \ \ \ \ }
+\DoxyCodeLine{01585\ \ \ \ \ \textcolor{comment}{//\ Set\ most\ significant\ bit\ of\ byte\ 0\ for\ the\ sign}}
+\DoxyCodeLine{01586\ \ \ \ \ bytes[0]\ =\ (sign\ ==\ -\/1)\ ?\ 0x80\ :\ 0x00;}
+\DoxyCodeLine{01587\ \ \ \ \ }
+\DoxyCodeLine{01588\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ exponent\ using\ logarithm\ (log\ base\ 2)}}
+\DoxyCodeLine{01589\ \ \ \ \ \textcolor{keywordtype}{int}\ exponent\ =\ (log\ (sampleRate)\ /\ log\ (2.0));}
+\DoxyCodeLine{01590\ \ \ \ \ }
+\DoxyCodeLine{01591\ \ \ \ \ \textcolor{comment}{//\ Add\ bias\ to\ exponent\ for\ AIFF}}
+\DoxyCodeLine{01592\ \ \ \ \ uint16\_t\ biasedExponent\ =\ \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}\ (exponent\ +\ 16383);}
+\DoxyCodeLine{01593\ \ \ \ \ }
+\DoxyCodeLine{01594\ \ \ \ \ \textcolor{comment}{//\ Normalize\ the\ sample\ rate}}
+\DoxyCodeLine{01595\ \ \ \ \ \textcolor{keywordtype}{double}\ normalizedSampleRate\ =\ sampleRate\ /\ pow\ (2.0,\ exponent);}
+\DoxyCodeLine{01596\ \ \ \ \ }
+\DoxyCodeLine{01597\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ mantissa}}
+\DoxyCodeLine{01598\ \ \ \ \ uint64\_t\ mantissa\ =\ \textcolor{keyword}{static\_cast<}uint64\_t\textcolor{keyword}{>}\ (normalizedSampleRate\ *\ (1ULL\ <<\ 63));}
+\DoxyCodeLine{01599\ \ \ \ \ }
+\DoxyCodeLine{01600\ \ \ \ \ \textcolor{comment}{//\ Pack\ the\ exponent\ into\ first\ two\ bytes\ of\ 10-\/byte\ AIFF\ format}}
+\DoxyCodeLine{01601\ \ \ \ \ bytes[0]\ |=\ (biasedExponent\ >>\ 8)\ \&\ 0x7F;\ \ \ \textcolor{comment}{//\ Upper\ 7\ bits\ of\ exponent}}
+\DoxyCodeLine{01602\ \ \ \ \ bytes[1]\ =\ biasedExponent\ \&\ 0xFF;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lower\ 8\ bits\ of\ exponent}}
+\DoxyCodeLine{01603\ \ \ \ \ }
+\DoxyCodeLine{01604\ \ \ \ \ \textcolor{comment}{//\ Put\ the\ mantissa\ into\ byte\ array}}
+\DoxyCodeLine{01605\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 8;\ ++i)}
+\DoxyCodeLine{01606\ \ \ \ \ \ \ \ \ bytes[2\ +\ i]\ =\ (mantissa\ >>\ (8\ *\ (7\ -\/\ i)))\ \&\ 0xFF;}
+\DoxyCodeLine{01607\ \}}
+\DoxyCodeLine{01608\ }
+\DoxyCodeLine{01609\ \textcolor{preprocessor}{\#if\ defined\ (\_MSC\_VER)}}
+\DoxyCodeLine{01610\ \ \ \ \ \_\_pragma(warning\ (pop))}
+\DoxyCodeLine{01611\ \textcolor{preprocessor}{\#elif\ defined\ (\_\_GNUC\_\_)}}
+\DoxyCodeLine{01612\ \ \ \ \ \_Pragma(\textcolor{stringliteral}{"{}GCC\ diagnostic\ pop"{}})}
+\DoxyCodeLine{01613\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01614\ }
+\DoxyCodeLine{01615\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ AudioFile\_h\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

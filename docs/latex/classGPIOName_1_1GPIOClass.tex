@@ -1,0 +1,125 @@
+\doxysection{GPIOName\+::GPIOClass Class Reference}
+\hypertarget{classGPIOName_1_1GPIOClass}{}\label{classGPIOName_1_1GPIOClass}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+
+
+{\ttfamily \#include $<$gpioevent.\+h$>$}
+
+
+
+Collaboration diagram for GPIOName\+::GPIOClass\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGPIOName_1_1GPIOClass_a2fb2cff516f7f7e28e2ad0b5cff44a80}{GPIOClass}} (const char \texorpdfstring{$\ast$}{*}chip\+Name, int Interrupt\+Pin, \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C}{icm20948\+::\+ICM20948\+\_\+\+I2C}} \&\mbox{\hyperlink{classGPIOName_1_1GPIOClass_abc011a6110cbf973b830173fc189137b}{sensor}}, \mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMaths\+Name\+::\+IMUMaths}} \&\mbox{\hyperlink{classGPIOName_1_1GPIOClass_ab9297efb08d93e8af45050a65cefcf9c}{Maths}})
+\item 
+void \mbox{\hyperlink{classGPIOName_1_1GPIOClass_ab70535378a603cb2a68d1bc019b53161}{Worker}} ()
+\begin{DoxyCompactList}\small\item\em Event driven worker reading data when HIGH seen on GPIO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a065edc82f2f8c16f807790122b5dfa2c}{Worker\+Data\+Collect}} ()
+\begin{DoxyCompactList}\small\item\em Event driven worker reading data when HIGH seen on GPIO and records data to a CSV. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a377d807ee01a8f22ecd6e3fdd2a2b6fe}{GPIOStop}} ()
+\begin{DoxyCompactList}\small\item\em Changes a boolean to end the worker. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a84bd48b1fe96f3b69c27573e73feb447}{Set\+Callback}} (\mbox{\hyperlink{namespaceGPIOName_a960040d4a679d0a92ddbaaf758588bf1}{GPIOCallback}} cb, void \texorpdfstring{$\ast$}{*}context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classGPIOName_1_1GPIOClass_aa56cd669b5e9991b5a8f41f7ee8df764}{IMUMaths\+Callback}} (void \texorpdfstring{$\ast$}{*}context, float X, float Y, float Z)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classicm20948_1_1ICM20948__I2C}{icm20948\+::\+ICM20948\+\_\+\+I2C}} \& \mbox{\hyperlink{classGPIOName_1_1GPIOClass_abc011a6110cbf973b830173fc189137b}{sensor}}
+\item 
+\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMaths\+Name\+::\+IMUMaths}} \& \mbox{\hyperlink{classGPIOName_1_1GPIOClass_ab9297efb08d93e8af45050a65cefcf9c}{Maths}}
+\item 
+\mbox{\hyperlink{namespaceGPIOName_a960040d4a679d0a92ddbaaf758588bf1}{GPIOCallback}} \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a3c7c97671903c54e66ece6a2dd5db2f2}{callback}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGPIOName_1_1GPIOClass_a432ba5be0d8077a7833cca8a13716d25}{Callback\+Function}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classGPIOName_1_1GPIOClass_a2fb2cff516f7f7e28e2ad0b5cff44a80}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!GPIOClass@{GPIOClass}}
+\index{GPIOClass@{GPIOClass}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{GPIOClass()}{GPIOClass()}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_a2fb2cff516f7f7e28e2ad0b5cff44a80} 
+GPIOName\+::\+GPIOClass\+::\+GPIOClass (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{chip\+Name}{, }\item[{int}]{Interrupt\+Pin}{, }\item[{\mbox{\hyperlink{classicm20948_1_1ICM20948__I2C}{icm20948\+::\+ICM20948\+\_\+\+I2C}} \&}]{sensor}{, }\item[{\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMaths\+Name\+::\+IMUMaths}} \&}]{Maths}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGPIOName_1_1GPIOClass_a377d807ee01a8f22ecd6e3fdd2a2b6fe}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!GPIOStop@{GPIOStop}}
+\index{GPIOStop@{GPIOStop}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{GPIOStop()}{GPIOStop()}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_a377d807ee01a8f22ecd6e3fdd2a2b6fe} 
+void GPIOName\+::\+GPIOClass\+::\+GPIOStop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Changes a boolean to end the worker. 
+
+\Hypertarget{classGPIOName_1_1GPIOClass_aa56cd669b5e9991b5a8f41f7ee8df764}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!IMUMathsCallback@{IMUMathsCallback}}
+\index{IMUMathsCallback@{IMUMathsCallback}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{IMUMathsCallback()}{IMUMathsCallback()}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_aa56cd669b5e9991b5a8f41f7ee8df764} 
+static void GPIOName\+::\+GPIOClass\+::\+IMUMaths\+Callback (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{float}]{X}{, }\item[{float}]{Y}{, }\item[{float}]{Z}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classGPIOName_1_1GPIOClass_a84bd48b1fe96f3b69c27573e73feb447}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!SetCallback@{SetCallback}}
+\index{SetCallback@{SetCallback}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{SetCallback()}{SetCallback()}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_a84bd48b1fe96f3b69c27573e73feb447} 
+void GPIOName\+::\+GPIOClass\+::\+Set\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceGPIOName_a960040d4a679d0a92ddbaaf758588bf1}{GPIOCallback}}}]{cb}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{context}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classGPIOName_1_1GPIOClass_ab70535378a603cb2a68d1bc019b53161}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!Worker@{Worker}}
+\index{Worker@{Worker}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{Worker()}{Worker()}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_ab70535378a603cb2a68d1bc019b53161} 
+void GPIOName\+::\+GPIOClass\+::\+Worker (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Event driven worker reading data when HIGH seen on GPIO. 
+
+This function is an event driven interrupt controlled by a GPIO pin. Once this GPIO pin reads HIGH the function will read the data registers using the Read\+Accel() callback from the IMU\textquotesingle{}s driver which is then fed into the IMU Maths object to be analysed. \Hypertarget{classGPIOName_1_1GPIOClass_a065edc82f2f8c16f807790122b5dfa2c}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!WorkerDataCollect@{WorkerDataCollect}}
+\index{WorkerDataCollect@{WorkerDataCollect}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{WorkerDataCollect()}{WorkerDataCollect()}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_a065edc82f2f8c16f807790122b5dfa2c} 
+void GPIOName\+::\+GPIOClass\+::\+Worker\+Data\+Collect (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Event driven worker reading data when HIGH seen on GPIO and records data to a CSV. 
+
+The function begins by initialising a csv file named by the user. This function then uses blocking interrupts controlled by a GPIO pin. Once this GPIO pin reads HIGH the function reads the data registers using the Read\+Accel() callback from the IMU\textquotesingle{}s driver and appends this data into the opened CSV file. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classGPIOName_1_1GPIOClass_a3c7c97671903c54e66ece6a2dd5db2f2}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!callback@{callback}}
+\index{callback@{callback}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{callback}{callback}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_a3c7c97671903c54e66ece6a2dd5db2f2} 
+\mbox{\hyperlink{namespaceGPIOName_a960040d4a679d0a92ddbaaf758588bf1}{GPIOCallback}} GPIOName\+::\+GPIOClass\+::callback}
+
+\Hypertarget{classGPIOName_1_1GPIOClass_a432ba5be0d8077a7833cca8a13716d25}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!CallbackFunction@{CallbackFunction}}
+\index{CallbackFunction@{CallbackFunction}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{CallbackFunction}{CallbackFunction}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_a432ba5be0d8077a7833cca8a13716d25} 
+void\texorpdfstring{$\ast$}{*} GPIOName\+::\+GPIOClass\+::\+Callback\+Function}
+
+\Hypertarget{classGPIOName_1_1GPIOClass_ab9297efb08d93e8af45050a65cefcf9c}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!Maths@{Maths}}
+\index{Maths@{Maths}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{Maths}{Maths}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_ab9297efb08d93e8af45050a65cefcf9c} 
+\mbox{\hyperlink{classIMUMathsName_1_1IMUMaths}{IMUMaths\+Name\+::\+IMUMaths}}\& GPIOName\+::\+GPIOClass\+::\+Maths}
+
+\Hypertarget{classGPIOName_1_1GPIOClass_abc011a6110cbf973b830173fc189137b}\index{GPIOName::GPIOClass@{GPIOName::GPIOClass}!sensor@{sensor}}
+\index{sensor@{sensor}!GPIOName::GPIOClass@{GPIOName::GPIOClass}}
+\doxysubsubsection{\texorpdfstring{sensor}{sensor}}
+{\footnotesize\ttfamily \label{classGPIOName_1_1GPIOClass_abc011a6110cbf973b830173fc189137b} 
+\mbox{\hyperlink{classicm20948_1_1ICM20948__I2C}{icm20948\+::\+ICM20948\+\_\+\+I2C}}\& GPIOName\+::\+GPIOClass\+::sensor}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+GPIO/include/\mbox{\hyperlink{gpioevent_8h}{gpioevent.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,22 @@
+digraph "src/libs/GPIO"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_87a455bccb09a92130c26a11a880c98a {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="libs", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_87a455bccb09a92130c26a11a880c98a.html",tooltip=""]
+  dir_c5b6cf1be5c03532ee49a19487970389 [label="I2C", fillcolor="#a2b4d6", color="red", style="filled", URL="dir_c5b6cf1be5c03532ee49a19487970389.html",tooltip=""];
+  dir_37f3b851e7f3627c6cc073500acabf35 [label="IMUMaths", fillcolor="#a2b4d6", color="red", style="filled", URL="dir_37f3b851e7f3627c6cc073500acabf35.html",tooltip=""];
+  dir_e307e3326747e0377b809c80d02de7ac [label="PlayAudio", fillcolor="#a2b4d6", color="red", style="filled", URL="dir_e307e3326747e0377b809c80d02de7ac.html",tooltip=""];
+  subgraph clusterdir_61ea28b2f7d74cc56af644925fc4e91f {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_61ea28b2f7d74cc56af644925fc4e91f.html",tooltip=""]
+    dir_61ea28b2f7d74cc56af644925fc4e91f [shape=plaintext, label="GPIO"];
+  dir_ecef972e7a1f5af413d9c4d986b2a28e [label="include", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_ecef972e7a1f5af413d9c4d986b2a28e.html",tooltip=""];
+  }
+  }
+  dir_ecef972e7a1f5af413d9c4d986b2a28e->dir_37f3b851e7f3627c6cc073500acabf35 [headlabel="1", labeldistance=1.5 headhref="dir_000007_000004.html" href="dir_000007_000004.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_ecef972e7a1f5af413d9c4d986b2a28e->dir_c5b6cf1be5c03532ee49a19487970389 [headlabel="2", labeldistance=1.5 headhref="dir_000007_000003.html" href="dir_000007_000003.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_ecef972e7a1f5af413d9c4d986b2a28e->dir_e307e3326747e0377b809c80d02de7ac [headlabel="1", labeldistance=1.5 headhref="dir_000007_000012.html" href="dir_000007_000012.html" color="steelblue1" fontcolor="steelblue1"];
+}

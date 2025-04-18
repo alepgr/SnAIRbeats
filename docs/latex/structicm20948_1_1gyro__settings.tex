@@ -1,0 +1,86 @@
+\doxysection{icm20948\+::gyro\+\_\+settings Struct Reference}
+\hypertarget{structicm20948_1_1gyro__settings}{}\label{structicm20948_1_1gyro__settings}\index{icm20948::gyro\_settings@{icm20948::gyro\_settings}}
+
+
+Configuration settings for a gyroscope sensor.  
+
+
+
+
+{\ttfamily \#include $<$icm20948\+\_\+utils.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structicm20948_1_1gyro__settings_aaab8efac19bdb29981862e97bf67ad8e}{gyro\+\_\+settings}} (uint8\+\_\+t \mbox{\hyperlink{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c}{sample\+\_\+rate\+\_\+div}}=0, \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale}} \mbox{\hyperlink{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285}{scale}}=\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950aabd72e9c7237ef6ac1483378c37db628}{GYRO\+\_\+250\+DPS}}, bool \mbox{\hyperlink{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1}{dlpf\+\_\+enable}}=true, \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config}} \mbox{\hyperlink{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a}{dlpf\+\_\+config}}=\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a3d4b8dc9e1511d7d42e031f4cc04fd44}{GYRO\+\_\+\+DLPF\+\_\+196\+\_\+6\+HZ}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c}{sample\+\_\+rate\+\_\+div}}
+\item 
+\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale}} \mbox{\hyperlink{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285}{scale}}
+\item 
+bool \mbox{\hyperlink{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1}{dlpf\+\_\+enable}}
+\item 
+\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config}} \mbox{\hyperlink{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a}{dlpf\+\_\+config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration settings for a gyroscope sensor. 
+
+This structure defines the configuration parameters for a gyroscope sensor, including the sample rate, full-\/scale range, and Digital Low-\/\+Pass Filter (DLPF) settings.
+
+Members\+:
+\begin{DoxyItemize}
+\item uint8\+\_\+t sample\+\_\+rate\+\_\+div\+: The sample rate divider, which determines the inner sample data rate of the gyroscope. The value should be in the range \mbox{[}0, 250\mbox{]}. The formula for calculating the inner sample rate is\+: 1.\+1k\+Hz / sample\+\_\+rate\+\_\+div
+\item \doxylink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale} scale\+: The full-\/scale range of the gyroscope measurements. This defines the maximum angular velocity (in degrees per second) that the sensor can measure. The available options are defined in the {\ttfamily \doxylink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale}} enumeration.
+\item bool dlpf\+\_\+enable\+: A flag indicating whether the Digital Low-\/\+Pass Filter (DLPF) is enabled. If true, the DLPF is active and the cutoff frequency is determined by {\ttfamily dlpf\+\_\+config}.
+\item \doxylink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config} dlpf\+\_\+config\+: The configuration settings for the DLPF, determining the filter\textquotesingle{}s cutoff frequency. The available options are defined in the {\ttfamily \doxylink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config}} enumeration.
+\end{DoxyItemize}
+
+Constructor\+:
+\begin{DoxyItemize}
+\item \doxylink{structicm20948_1_1gyro__settings}{gyro\+\_\+settings}(uint8\+\_\+t sample\+\_\+rate\+\_\+div = 0, \doxylink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale} scale = GYRO\+\_\+250\+DPS, bool dlpf\+\_\+enable = true, \doxylink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config} dlpf\+\_\+config = GYRO\+\_\+\+DLPF\+\_\+196\+\_\+6\+HZ) Initializes the structure with default values or specified parameters. 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structicm20948_1_1gyro__settings_aaab8efac19bdb29981862e97bf67ad8e}\index{icm20948::gyro\_settings@{icm20948::gyro\_settings}!gyro\_settings@{gyro\_settings}}
+\index{gyro\_settings@{gyro\_settings}!icm20948::gyro\_settings@{icm20948::gyro\_settings}}
+\doxysubsubsection{\texorpdfstring{gyro\_settings()}{gyro\_settings()}}
+{\footnotesize\ttfamily \label{structicm20948_1_1gyro__settings_aaab8efac19bdb29981862e97bf67ad8e} 
+icm20948\+::gyro\+\_\+settings\+::gyro\+\_\+settings (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sample\+\_\+rate\+\_\+div}{ = {\ttfamily 0}, }\item[{\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale}}}]{scale}{ = {\ttfamily \mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950aabd72e9c7237ef6ac1483378c37db628}{GYRO\+\_\+250\+DPS}}}, }\item[{bool}]{dlpf\+\_\+enable}{ = {\ttfamily true}, }\item[{\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config}}}]{dlpf\+\_\+config}{ = {\ttfamily \mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01a3d4b8dc9e1511d7d42e031f4cc04fd44}{GYRO\+\_\+\+DLPF\+\_\+196\+\_\+6\+HZ}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a}\index{icm20948::gyro\_settings@{icm20948::gyro\_settings}!dlpf\_config@{dlpf\_config}}
+\index{dlpf\_config@{dlpf\_config}!icm20948::gyro\_settings@{icm20948::gyro\_settings}}
+\doxysubsubsection{\texorpdfstring{dlpf\_config}{dlpf\_config}}
+{\footnotesize\ttfamily \label{structicm20948_1_1gyro__settings_a12430b9b2460efbb25ebeb8d691feb3a} 
+\mbox{\hyperlink{namespaceicm20948_ab21febc613fcda495faedf1fadf8da01}{gyro\+\_\+dlpf\+\_\+config}} icm20948\+::gyro\+\_\+settings\+::dlpf\+\_\+config}
+
+\Hypertarget{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1}\index{icm20948::gyro\_settings@{icm20948::gyro\_settings}!dlpf\_enable@{dlpf\_enable}}
+\index{dlpf\_enable@{dlpf\_enable}!icm20948::gyro\_settings@{icm20948::gyro\_settings}}
+\doxysubsubsection{\texorpdfstring{dlpf\_enable}{dlpf\_enable}}
+{\footnotesize\ttfamily \label{structicm20948_1_1gyro__settings_a97a692e938acb12c3202c790d0c3b9e1} 
+bool icm20948\+::gyro\+\_\+settings\+::dlpf\+\_\+enable}
+
+\Hypertarget{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c}\index{icm20948::gyro\_settings@{icm20948::gyro\_settings}!sample\_rate\_div@{sample\_rate\_div}}
+\index{sample\_rate\_div@{sample\_rate\_div}!icm20948::gyro\_settings@{icm20948::gyro\_settings}}
+\doxysubsubsection{\texorpdfstring{sample\_rate\_div}{sample\_rate\_div}}
+{\footnotesize\ttfamily \label{structicm20948_1_1gyro__settings_a2cf7df75b4a09485192659cd07bb594c} 
+uint8\+\_\+t icm20948\+::gyro\+\_\+settings\+::sample\+\_\+rate\+\_\+div}
+
+\Hypertarget{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285}\index{icm20948::gyro\_settings@{icm20948::gyro\_settings}!scale@{scale}}
+\index{scale@{scale}!icm20948::gyro\_settings@{icm20948::gyro\_settings}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily \label{structicm20948_1_1gyro__settings_a829959828518829a0a27879e520b3285} 
+\mbox{\hyperlink{namespaceicm20948_ab4ed127a0673926c94b3419379774950}{gyro\+\_\+scale}} icm20948\+::gyro\+\_\+settings\+::scale}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+I2\+C/include/\mbox{\hyperlink{icm20948__utils_8hpp}{icm20948\+\_\+utils.\+hpp}}\end{DoxyCompactItemize}

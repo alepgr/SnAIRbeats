@@ -1,0 +1,86 @@
+\doxysection{icm20948\+::accel\+\_\+settings Struct Reference}
+\hypertarget{structicm20948_1_1accel__settings}{}\label{structicm20948_1_1accel__settings}\index{icm20948::accel\_settings@{icm20948::accel\_settings}}
+
+
+Configuration settings for an accelerometer sensor.  
+
+
+
+
+{\ttfamily \#include $<$icm20948\+\_\+utils.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structicm20948_1_1accel__settings_a18d375204f26a158788ed59920e3ab52}{accel\+\_\+settings}} (uint16\+\_\+t \mbox{\hyperlink{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4}{sample\+\_\+rate\+\_\+div}}=0, \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale}} \mbox{\hyperlink{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7}{scale}}=\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a10962c0378d54e76d00fca0435c5eed5}{ACCEL\+\_\+2G}}, bool \mbox{\hyperlink{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac}{dlpf\+\_\+enable}}=true, \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config}} \mbox{\hyperlink{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201}{dlpf\+\_\+config}}=\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857ad576f91386994ed878db4b7dee32bcae}{ACCEL\+\_\+\+DLPF\+\_\+246\+HZ}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4}{sample\+\_\+rate\+\_\+div}}
+\item 
+\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale}} \mbox{\hyperlink{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7}{scale}}
+\item 
+bool \mbox{\hyperlink{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac}{dlpf\+\_\+enable}}
+\item 
+\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config}} \mbox{\hyperlink{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201}{dlpf\+\_\+config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration settings for an accelerometer sensor. 
+
+This structure defines the configuration parameters for the accelerometer, including the sample rate, full-\/scale range, and digital low-\/pass filter (DLPF) settings.
+
+Members\+:
+\begin{DoxyItemize}
+\item uint16\+\_\+t {\ttfamily sample\+\_\+rate\+\_\+div}\+: The sample rate divider, which determines the inner sample data rate of the accelerometer. The value should be in the range \mbox{[}0, 4095\mbox{]}. The formula for calculating the inner sample rate is\+: 1.\+125k\+Hz / sample\+\_\+rate\+\_\+div
+\item \doxylink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale} {\ttfamily scale}\+: The full-\/scale range of the accelerometer measurements. This defines the maximum acceleration (in g) that the sensor can measure. The available options are defined in the {\ttfamily \doxylink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale}} enumeration.
+\item bool {\ttfamily dlpf\+\_\+enable}\+: A flag indicating whether the Digital Low-\/\+Pass Filter (DLPF) is enabled. If true, the DLPF is active and the cutoff frequency is determined by {\ttfamily dlpf\+\_\+config}.
+\item \doxylink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config} {\ttfamily dlpf\+\_\+config}\+: The configuration settings for the DLPF, determining the filter\textquotesingle{}s cutoff frequency. The available options are defined in the {\ttfamily \doxylink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config}} enumeration.
+\end{DoxyItemize}
+
+Constructor\+:
+\begin{DoxyItemize}
+\item \doxylink{structicm20948_1_1accel__settings}{accel\+\_\+settings}(uint16\+\_\+t sample\+\_\+rate\+\_\+div = 0, \doxylink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale} scale = ACCEL\+\_\+2G, bool dlpf\+\_\+enable = true, \doxylink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config} dlpf\+\_\+config = ACCEL\+\_\+\+DLPF\+\_\+246\+HZ) Initializes the structure with default values or specified parameters. 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structicm20948_1_1accel__settings_a18d375204f26a158788ed59920e3ab52}\index{icm20948::accel\_settings@{icm20948::accel\_settings}!accel\_settings@{accel\_settings}}
+\index{accel\_settings@{accel\_settings}!icm20948::accel\_settings@{icm20948::accel\_settings}}
+\doxysubsubsection{\texorpdfstring{accel\_settings()}{accel\_settings()}}
+{\footnotesize\ttfamily \label{structicm20948_1_1accel__settings_a18d375204f26a158788ed59920e3ab52} 
+icm20948\+::accel\+\_\+settings\+::accel\+\_\+settings (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{sample\+\_\+rate\+\_\+div}{ = {\ttfamily 0}, }\item[{\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale}}}]{scale}{ = {\ttfamily \mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673a10962c0378d54e76d00fca0435c5eed5}{ACCEL\+\_\+2G}}}, }\item[{bool}]{dlpf\+\_\+enable}{ = {\ttfamily true}, }\item[{\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config}}}]{dlpf\+\_\+config}{ = {\ttfamily \mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857ad576f91386994ed878db4b7dee32bcae}{ACCEL\+\_\+\+DLPF\+\_\+246\+HZ}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201}\index{icm20948::accel\_settings@{icm20948::accel\_settings}!dlpf\_config@{dlpf\_config}}
+\index{dlpf\_config@{dlpf\_config}!icm20948::accel\_settings@{icm20948::accel\_settings}}
+\doxysubsubsection{\texorpdfstring{dlpf\_config}{dlpf\_config}}
+{\footnotesize\ttfamily \label{structicm20948_1_1accel__settings_a765cb2b3456544a528091f19babc1201} 
+\mbox{\hyperlink{namespaceicm20948_a11320e5ffc65dc1997d850a2747b1857}{accel\+\_\+dlpf\+\_\+config}} icm20948\+::accel\+\_\+settings\+::dlpf\+\_\+config}
+
+\Hypertarget{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac}\index{icm20948::accel\_settings@{icm20948::accel\_settings}!dlpf\_enable@{dlpf\_enable}}
+\index{dlpf\_enable@{dlpf\_enable}!icm20948::accel\_settings@{icm20948::accel\_settings}}
+\doxysubsubsection{\texorpdfstring{dlpf\_enable}{dlpf\_enable}}
+{\footnotesize\ttfamily \label{structicm20948_1_1accel__settings_aa421055550715ec1c62cb3305bd546ac} 
+bool icm20948\+::accel\+\_\+settings\+::dlpf\+\_\+enable}
+
+\Hypertarget{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4}\index{icm20948::accel\_settings@{icm20948::accel\_settings}!sample\_rate\_div@{sample\_rate\_div}}
+\index{sample\_rate\_div@{sample\_rate\_div}!icm20948::accel\_settings@{icm20948::accel\_settings}}
+\doxysubsubsection{\texorpdfstring{sample\_rate\_div}{sample\_rate\_div}}
+{\footnotesize\ttfamily \label{structicm20948_1_1accel__settings_a64dfd5b27e84b62d329e4408a4df23b4} 
+uint16\+\_\+t icm20948\+::accel\+\_\+settings\+::sample\+\_\+rate\+\_\+div}
+
+\Hypertarget{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7}\index{icm20948::accel\_settings@{icm20948::accel\_settings}!scale@{scale}}
+\index{scale@{scale}!icm20948::accel\_settings@{icm20948::accel\_settings}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily \label{structicm20948_1_1accel__settings_ad649bd2496bb26f58e3029b47c30cbd7} 
+\mbox{\hyperlink{namespaceicm20948_a270e710b092b62b0a289753093c2a673}{accel\+\_\+scale}} icm20948\+::accel\+\_\+settings\+::scale}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/libs/\+I2\+C/include/\mbox{\hyperlink{icm20948__utils_8hpp}{icm20948\+\_\+utils.\+hpp}}\end{DoxyCompactItemize}

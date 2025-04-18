@@ -1,0 +1,84 @@
+\doxysection{icm20948\+\_\+i2c.\+hpp}
+\hypertarget{icm20948__i2c_8hpp_source}{}\label{icm20948__i2c_8hpp_source}\index{src/libs/I2C/include/icm20948\_i2c.hpp@{src/libs/I2C/include/icm20948\_i2c.hpp}}
+\mbox{\hyperlink{icm20948__i2c_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ICM20948\_I2C\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ICM20948\_I2C\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}mraa/common.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}mraa/i2c.hpp"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{icm20948__defs_8hpp}{icm20948\_defs.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{icm20948__utils_8hpp}{icm20948\_utils.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceicm20948}{icm20948}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_aecf5833ce6285093115953195e3d0079}{ICM20948\_I2C}}}
+\DoxyCodeLine{00015\ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ mraa::I2c\ \_i2c;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \_i2c\_bus,\ \_i2c\_address;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ \_current\_bank;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \_accel\_scale\_factor,\ \_gyro\_scale\_factor,\ \_magn\_scale\_factor;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_write\_byte(\textcolor{keyword}{const}\ uint8\_t\ bank,\ \textcolor{keyword}{const}\ uint8\_t\ reg,\ \textcolor{keyword}{const}\ uint8\_t\ \textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_read\_byte(\textcolor{keyword}{const}\ uint8\_t\ bank,\ \textcolor{keyword}{const}\ uint8\_t\ reg,\ uint8\_t\ \&\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_write\_bit(\textcolor{keyword}{const}\ uint8\_t\ bank,\ \textcolor{keyword}{const}\ uint8\_t\ reg,\ \textcolor{keyword}{const}\ uint8\_t\ bit\_pos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ bit);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_read\_bit(\textcolor{keyword}{const}\ uint8\_t\ bank,\ \textcolor{keyword}{const}\ uint8\_t\ reg,\ \textcolor{keyword}{const}\ uint8\_t\ bit\_pos,\ \textcolor{keywordtype}{bool}\ \&bit);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_read\_block\_bytes(\textcolor{keyword}{const}\ uint8\_t\ bank,\ \textcolor{keyword}{const}\ uint8\_t\ start\_reg,\ uint8\_t\ *bytes,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ length);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_write\_mag\_byte(\textcolor{keyword}{const}\ uint8\_t\ mag\_reg,\ \textcolor{keyword}{const}\ uint8\_t\ \textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_read\_mag\_byte(\textcolor{keyword}{const}\ uint8\_t\ mag\_reg,\ uint8\_t\ \&\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_read\_int\_byte(\textcolor{keyword}{const}\ uint8\_t\ bank,\ \textcolor{keyword}{const}\ uint8\_t\ reg,\ uint8\_t\ \&\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_set\_bank(uint8\_t\ bank);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_set\_accel\_sample\_rate\_div();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_set\_accel\_range\_dlpf();}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_set\_gyro\_sample\_rate\_div();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_set\_gyro\_range\_dlpf();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_magnetometer\_init();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_magnetometer\_enable();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_magnetometer\_set\_mode();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_magnetometer\_configured();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_magnetometer\_set\_readout();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_chip\_i2c\_master\_reset();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Contains\ linear\ acceleration\ in\ m/s\string^2}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_af6e029b6c6a94da5496894c50daedb66}{accel}}[3];}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Contains\ angular\ velocities\ in\ rad/s}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_af72f1758c258827bbe3debca41260d9f}{gyro}}[3];}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Contains\ magnetic\ field\ strength\ in\ uTesla}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_addde200e41d649c72927102e67790105}{magn}}[3];}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sensor\ settings}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structicm20948_1_1settings}{icm20948::settings}}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a3eec16c908bc6a52a8d190cfdd66bf55}{settings}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_aecf5833ce6285093115953195e3d0079}{ICM20948\_I2C}}(\textcolor{keywordtype}{unsigned}\ i2c\_bus,\ \textcolor{keywordtype}{unsigned}\ i2c\_address\ =\ \mbox{\hyperlink{icm20948__defs_8hpp_ad2332082f2390f86f6d6ee09acf1e259}{ICM20948\_I2C\_ADDR}},\ \mbox{\hyperlink{structicm20948_1_1settings}{icm20948::settings}}\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{structicm20948_1_1settings}{icm20948::settings}}());}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a0ed48078a426d7d43d93aa8d0bd72b92}{init}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a9730db34affbddeb85298eaeb9322a6f}{reset}}();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a81ba652c5ec59a3e63d9883f8bc45e42}{wake}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_aac5f1f6373e9e965332b49f0bb2b3382}{set\_settings}}();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a02e447e84df4ef2512568139ea28ad07}{read\_accel\_gyro}}();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a3114b3923967a235e6011ec8cad01406}{read\_magn}}();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a8d2268b31d2b0b60da74e35a5854c970}{enable\_DRDY\_INT}}();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classicm20948_1_1ICM20948__I2C_a16f60f1416acbe9d214578467df09d35}{check\_DRDY\_INT}}();}
+\DoxyCodeLine{00171\ \ \ \ \ \};}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
