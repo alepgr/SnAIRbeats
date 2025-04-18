@@ -1,0 +1,16 @@
+@startuml
+actor IMU
+participant GPIO
+participant I2C
+participant Maths
+participant ALSA
+
+IMU -> GPIO : notifyDataReady()
+GPIO -> I2C : Read_Accel_Gyro()
+I2C -> GPIO : dataReady()
+GPIO -> Maths : SoundChecker(I2C data)
+Maths -> Maths : compare(I2C data)
+alt data > threshold
+    Maths -> ALSA : PlayAudio()
+end
+@enduml
