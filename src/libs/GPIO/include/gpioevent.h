@@ -21,22 +21,12 @@ namespace GPIOName {
 
     typedef void (*GPIOCallback)(void* context, float, float, float);
     class GPIOClass {
-    private:
-        gpiod_chip* chip;
-        gpiod_line* SensorLine;
-        gpiod_line* LEDLine;
-        int InterruptPin;
-        int Counter;
-        bool Pause = true;
-        int delay = 224;
-        std::atomic<bool> running{true};
-    
     public:
         icm20948::ICM20948_I2C& sensor;
         IMUMathsName::IMUMaths& Maths;
         
-        GPIOCallback callback;
-        void* CallbackFunction;
+        // GPIOCallback callback;
+        // void* CallbackFunction;
 
         // function added for testing
         bool IsRunning() const {
@@ -74,14 +64,47 @@ namespace GPIOName {
          */
         void GPIOStop();
 
-        
-        void SetCallback(GPIOCallback cb, void* context);
-        static void IMUMathsCallback(void* context, float X, float Y, float Z){
-            IMUMathsName::IMUMaths* maths = static_cast<IMUMathsName::IMUMaths*>(context);
-            maths->SoundChecker(X,Y,Z);
+        struct Callback{
+            virtual void MathsCallback(float X, float Y, float Z) = 0;
+            virtual ~Callback(){};
+        };
+
+        void RegisterCallback(Callback* cb){
+            callback = cb;
         }
         
+        // void SetCallback(GPIOCallback cb, void* context);
+        // static void IMUMathsCallback(void* context, float X, float Y, float Z){
+        //     IMUMathsName::IMUMaths* maths = static_cast<IMUMathsName::IMUMaths*>(context);
+        //     maths->SoundChecker(X,Y,Z);
+        // }
+
+
+
+        private:
+        gpiod_chip* chip;
+        gpiod_line* SensorLine;
+        gpiod_line* LEDLine;
+        int InterruptPin;
+        int Counter;
+        bool Pause = true;
+        
+        std::atomic<bool> running{true};
+        Callback* callback = nullptr;
+        
+    };
+
+    struct MathsCallbackStruct : GPIOName::GPIOClass::Callback{
+        IMUMathsName::IMUMaths& Maths;
+
+        MathsCallbackStruct(IMUMathsName::IMUMaths& maths) : Maths(maths) {}
+
+        virtual void MathsCallback(float X, float Y, float Z) override {
+            Maths.SoundChecker(X, Y, Z);
+        }
     };
 }
+
+
 
 #endif

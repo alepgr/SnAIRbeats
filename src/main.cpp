@@ -24,7 +24,7 @@ AudioPlayerName::AudioPlayer objALSA("plughw:CARD=UACDemoV10,DEV=0", 44100, 2, S
 IMUMathsName::IMUMaths objMaths(objALSA);
 
 //Object for GPIO operations
-//17 and 27 refer to GPIO pins on the raspberry pi
+//17 and 27 refer to GPIO pins on the raspberry pi (11 and 13)
 //Require access to the I2C objects and IMUMaths
 GPIOName::GPIOClass objGPIO("gpiochip0", 17, objI2C, objMaths);
 GPIOName::GPIOClass objGPIO_2("gpiochip0",27, objI2C_2,objMaths);
@@ -37,8 +37,8 @@ bool InitSnairBeat(){
     //1.125kHz / (1 + sample_rate_div)
 
     int SampleRateDivider = 44;
-    // 1125/45 = 25Hz
-    
+    // 1125/(44 + 1) = 25Hz
+
     objI2C.settings.accel.sample_rate_div = SampleRateDivider;
     objI2C.settings.gyro.sample_rate_div = SampleRateDivider;
     objI2C.settings.accel.scale = icm20948::ACCEL_16G;
@@ -89,6 +89,16 @@ int main() {
         std::cerr << "Something failed in initialisation - go fix it" << std::endl;
         return -1;
     }
+
+
+    //Register callback for Audio
+    IMUMathsName::AudioCallback Audio_Callback(objALSA);
+    objMaths.RegisterCallback(&Audio_Callback);
+
+    //Register callback for Maths in the GPIO objects
+    GPIOName::MathsCallbackStruct Maths_Callback(objMaths);
+    objGPIO.RegisterCallback(&Maths_Callback);
+    objGPIO_2.RegisterCallback(&Maths_Callback);
     
 
     //Thread for IMU workers 
@@ -111,11 +121,6 @@ int main() {
     if(gpioThread_2.joinable()){
         gpioThread_2.join();
         }
-    
-    //Closes the IMUMaths object which in turn closes the ALSA Audio device
-    //via the deconstructor
-    objMaths.~IMUMaths();
-
     std::cout << "Everything closed.\nExiting SnairBeat" << std::endl;
 
     return 0;
