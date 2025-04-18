@@ -32,18 +32,20 @@ GPIOName::GPIOClass objGPIO_2("gpiochip0",27, objI2C_2,objMaths);
 
 //All initialisation for SnairBeats
 bool InitSnairBeat(){
-    //Open speaker
-    //objALSA.open();
 
     //Sample rate is divided by these values
     //1.125kHz / (1 + sample_rate_div)
-    objI2C.settings.accel.sample_rate_div = 0;
-    objI2C.settings.gyro.sample_rate_div = 0;
+
+    int SampleRateDivider = 44;
+    // 1125/45 = 25Hz
+    
+    objI2C.settings.accel.sample_rate_div = SampleRateDivider;
+    objI2C.settings.gyro.sample_rate_div = SampleRateDivider;
     objI2C.settings.accel.scale = icm20948::ACCEL_16G;
     objI2C.settings.gyro.scale = icm20948::GYRO_2000DPS;
 
-    objI2C_2.settings.accel.sample_rate_div = 0;
-    objI2C_2.settings.gyro.sample_rate_div = 0;
+    objI2C_2.settings.accel.sample_rate_div = SampleRateDivider;
+    objI2C_2.settings.gyro.sample_rate_div = SampleRateDivider;
     objI2C_2.settings.accel.scale = icm20948::ACCEL_16G;
     objI2C_2.settings.gyro.scale = icm20948::GYRO_2000DPS;
     
@@ -84,7 +86,7 @@ int main() {
 
     success &= InitSnairBeat();
     if (!success){
-        std::cerr << "Something failed - go fix it" << std::endl;
+        std::cerr << "Something failed in initialisation - go fix it" << std::endl;
         return -1;
     }
     
@@ -110,9 +112,9 @@ int main() {
         gpioThread_2.join();
         }
     
+    //Closes the IMUMaths object which in turn closes the ALSA Audio device
+    //via the deconstructor
     objMaths.~IMUMaths();
-    //Close PCM object within ALSA
-    objALSA.close();
 
     std::cout << "Everything closed.\nExiting SnairBeat" << std::endl;
 

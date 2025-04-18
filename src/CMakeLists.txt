@@ -4,7 +4,7 @@
 add_subdirectory(libs/GPIO) 
 add_subdirectory(libs/I2C)
 add_subdirectory(libs/IMUMaths)
-add_subdirectory(libs/ALSAPlayer)
+#add_subdirectory(libs/ALSAPlayer)
 
 #Package finding module, helps to locate imported packages
 find_package(PkgConfig REQUIRED)
@@ -37,7 +37,6 @@ target_link_libraries(SnairBeat PRIVATE
     ${LIBGPIOD_LIBRARIES} 
     ${ALSA_LIBRARIES}
     yaml-cpp
-    IMUMATHS
-    ALSAPlayer)
+    IMUMATHS)
 
     

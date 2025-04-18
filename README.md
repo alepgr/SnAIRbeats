@@ -69,6 +69,12 @@ cd src/libs/ALSAPlayer/include
 ls
 ```
 
+## Maximum Latency
+The highest sampling rate the SEN 15335 IMUs can work at is 1.125kHz.  
+This value can be adjusted in the main.cpp file by altering the SampleRateDivider variable. This divides the sampling rate by 1+SampleRateDivider.  
+
+We have found that the maximum latency the sticks can be reliably played at is 25Hz (1125Hz/44+1). While decreasing the latency may improve the sensitivity of the sticks, the higher this value is the greater the power consumption will be.
+
 # Libraries
 Here is a small description of each of the libraries used within the project and what they are used for.
 
@@ -89,6 +95,7 @@ For each sensor used within the system, an object from this driver is built with
 
 ## IMUMaths
 This libary was written to threshold the data that came through from the GPIO worker and has two main goals. Firstly it reads the data passed through and checks whether any of the values correlate to a hit and then play the corresponding audio from the ALSAAudio object. It also contains a sample delay to stop multiple sounds being played from the same hit. This is achieved using a simple boolean that is turned true after a hit is detected and waits a set number of samples before the boolean flips back, allowing another hit to be detected.
+
 
 # Unit tests
 This project uses unit testing to validate the functionality of the key classes, including classes responsible for IMU data processing and audio playback.

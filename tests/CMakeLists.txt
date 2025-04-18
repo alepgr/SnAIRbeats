@@ -16,7 +16,6 @@ MathsTests.cpp
  ${ALSA_LIBRARIES}
  yaml-cpp
  IMUMATHS
- ALSAPlayer
  gtest     
  gtest_main 
  GTest::gmock

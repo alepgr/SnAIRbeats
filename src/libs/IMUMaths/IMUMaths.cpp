@@ -7,7 +7,7 @@
 
 
 //How many samples to wait before another sound trigger
-int delay = 40;
+int delay = 2;
 namespace IMUMathsName{
 
     //IMUMaths::IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio) {}
@@ -26,6 +26,8 @@ namespace IMUMathsName{
     }
     IMUMaths::~IMUMaths() {
         Audio.stopMixer();
+        Audio.close();
+        
     }
     void IMUMaths::SetPlayFileCallback(const std::function<void(const std::string&)>& cb){
         PlayFileCallback = cb;
@@ -34,7 +36,7 @@ namespace IMUMathsName{
 
     void IMUMaths::SoundChecker(float X, float Y, float Z){
         if (!Pause){
-            if (X <=-45 && X >=-60){
+            if (X <=-30){//} && X >=-60){
                 //Play snare drum on X
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/SnareDrum.wav");
@@ -45,7 +47,7 @@ namespace IMUMathsName{
                 Counter = 0;
                 LastFilePlayed = 1;
                 //std::cout << LastFilePlayed << std::endl;
-            } else if (Y <=-45 && Y >= -60){
+            } else if (Y <=-30){// && Y >= -60){
                 // Play high tom on Y
                 std::thread soundThread([this]() {
                     PlayFileCallback("src/libs/ALSAPlayer/include/HighTom.wav");
@@ -56,7 +58,7 @@ namespace IMUMathsName{
                 Counter = 0;
                 LastFilePlayed = 2;
                 //std::cout << LastFilePlayed << std::endl;
-            } else if (Z <=25 && Z >= 20){
+            } else if (Z >=12){//} && Z >= 20){
                 //Play crash cymbal on Z
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
                 std::thread soundThread([this]() {
