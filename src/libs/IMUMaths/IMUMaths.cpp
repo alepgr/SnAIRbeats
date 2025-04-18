@@ -56,7 +56,7 @@ namespace IMUMathsName{
                 Counter = 0;
                 LastFilePlayed = 2;
                 //std::cout << LastFilePlayed << std::endl;
-            } else if (Z <=25 && Z >= 20){
+            } else if (Z <=30 && Z >= 20){
                 //Play crash cymbal on Z
                 //std::thread soundThread(&PlayAudioName::PlayAudio::PlayCymbal);
                 std::thread soundThread([this]() {

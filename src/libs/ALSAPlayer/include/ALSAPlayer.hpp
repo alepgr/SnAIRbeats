@@ -16,11 +16,9 @@
 namespace AudioPlayerName{
     class AudioPlayer{
         public:
-        // std::vector<int32_t> audioBuffer;
-        std::unordered_map<std::string, std::vector<int32_t>> fileBuffers;
+        std::unordered_map<std::string, std::vector<int16_t>> fileBuffers;
 
         bool StopMixingThread = false;
-
 
         AudioPlayer(const std::string& device="default",
             unsigned int rate = 44100,
@@ -33,7 +31,6 @@ namespace AudioPlayerName{
         : deviceName(device), sampleRate(rate), channels(ch),
         format(fmt), framesPerPeriod(frames), handle(nullptr)
         {
-            //Convert files to audio buffers here I think
             if (!filesToConvert.empty()){
                 ConvertFiles(filesToConvert);
             }
@@ -56,7 +53,6 @@ namespace AudioPlayerName{
             unsigned int rate_near = sampleRate;
             snd_pcm_hw_params_set_rate_near(handle, params, &rate_near,0);
             
-            // framesPerPeriod = 128;
             rc = snd_pcm_hw_params_set_period_size_near(handle, params, &framesPerPeriod, 0);
             if (rc <0) {
                 std::cerr << "Unable to set HW parameters: " << snd_strerror(rc) << std::endl;
@@ -81,40 +77,9 @@ namespace AudioPlayerName{
             snd_pcm_hw_params_get_buffer_size(params, &bufferSize);
             std::cout << "[DEBUG] Final period size: " << framesPerPeriod << std::endl;
             std::cout << "[DEBUG] Final buffer size: " << bufferSize << std::endl;
-            
-            // // --------------------------------------------------------------------
-            // // (3) Set software parameters (start threshold, etc.)
-            // // --------------------------------------------------------------------
-            // snd_pcm_sw_params_t* swparams;
-            // snd_pcm_sw_params_alloca(&swparams);
-            // snd_pcm_sw_params_current(handle, swparams);
-
-            // // Make playback start when one period is in the buffer
-            // // Instead of waiting for the buffer to fill halfway or fully
-            // rc = snd_pcm_sw_params_set_start_threshold(handle, swparams, framesPerPeriod);
-            // if (rc < 0) {
-            //     std::cerr << "Unable to set start threshold: " << snd_strerror(rc) << std::endl;
-            //     return false;
-            // }
-
-            // // Make ALSA consider data “available” once we have one period's worth
-            // rc = snd_pcm_sw_params_set_avail_min(handle, swparams, framesPerPeriod);
-            // if (rc < 0) {
-            //     std::cerr << "Unable to set avail min: " << snd_strerror(rc) << std::endl;
-            //     return false;
-            // }
-
-            // rc = snd_pcm_sw_params(handle, swparams);
-            // if (rc < 0) {
-            //     std::cerr << "Unable to set software parameters: " << snd_strerror(rc) << std::endl;
-            //     return false;
-            // }
-
-
-            //snd_pcm_hw_params_get_period_size(params, &framesPerPeriod,0);
+        
             return true;
         }
-
 
 
         void startMixer() {
@@ -125,6 +90,7 @@ namespace AudioPlayerName{
             StopMixingThread = false;
             mixThread = std::thread(&AudioPlayer::mixerThreadLoop, this);
         }
+
 
         void stopMixer() {
             StopMixingThread = true;
@@ -154,65 +120,6 @@ namespace AudioPlayerName{
             return true;
         }
 
-        // bool playFile(const std::string& fileKey) {
-            
-        //     CancelPlayback = true;
-
-        //     if(handle) {
-        //         snd_pcm_drop(handle);
-        //         snd_pcm_prepare(handle);
-        //     }
-
-        //     CancelPlayback = false;
-
-        //     if (!handle) {
-        //         std::cerr << "Device not open. Call open() first.\n";
-        //         return false;
-        //     }
-        //     if (fileBuffers.find(fileKey) == fileBuffers.end()) {
-        //         std::cerr << "Audio buffer not found for file: " << fileKey << "\n";
-        //         return false;
-        //     }
-
-        //     const std::vector<int32_t>& buffer = fileBuffers[fileKey];
-        //     size_t totalFrames = buffer.size() / channels;
-        //     size_t offset = 0;
-        //     int rc = 0;
-
-        //     if (CancelPlayback){
-        //         std::cerr << "[DEBUG] Playback cancelled." << std::endl;
-        //         return false;
-        //     }
-
-
-        //     while (offset < totalFrames) {
-        //         snd_pcm_uframes_t framesToWrite = framesPerPeriod;
-        //         if (offset + framesPerPeriod > totalFrames)
-        //             framesToWrite = totalFrames - offset;
-        //         rc = snd_pcm_writei(handle, buffer.data() + offset * channels, framesToWrite);
-        //         if (rc == -EPIPE) {
-        //             std::cerr << "Underrun occurred\n";
-        //             snd_pcm_prepare(handle);
-        //         } else if (rc < 0) {
-        //             std::cerr << "Error from writei: " << snd_strerror(rc) << "\n";
-        //             return false;
-        //         } else if (static_cast<snd_pcm_uframes_t>(rc) != framesToWrite) {
-        //             std::cerr << "Short write, wrote " << rc << " frames\n";
-        //         } else {
-        //             offset += rc;
-        //         }
-        //     }
-        //     snd_pcm_drain(handle);
-        //     snd_pcm_prepare(handle);
-        //     return true;
-        // }
-
-
-
-        /**
-        * @brief Close PCM handle and free all associated resources
-        */
-
         void close() {
             stopMixer();
             if (handle) {
@@ -237,50 +144,37 @@ namespace AudioPlayerName{
 
         std::thread mixThread;
 
-        // std::condition_variable MixCV;
-        // std::mutex MixCVMutex;
-
         struct ActiveSound {
-            std::vector<int32_t>* buffer; 
+            std::vector<int16_t>* buffer; 
             size_t position;             
         };
 
         std::vector<ActiveSound> ActiveSounds;
         std::mutex ActiveMutex;
 
-
-        // template<typename T>
-        // void printVector(const std::vector<T>& vec) {
-        // for (const auto& el : vec) {
-        //     std::cout << el << " ";
-        // }
-        // std::cout << std::endl;
-        // }
-
         void mixerThreadLoop() {
             // Allocate a buffer for one period of audio
             const size_t periodSizeSamples = framesPerPeriod * channels;
-            std::vector<int32_t> mixBuffer(periodSizeSamples, 0);
+            std::vector<int16_t> mixBuffer(periodSizeSamples, 0);
 
             while (!StopMixingThread) {
-                // 1) Clear the mix buffer to 0 each iteration
+                // Clear the mix buffer each iteration
                 std::fill(mixBuffer.begin(), mixBuffer.end(), 0);
 
                 {
-                    // 2) Lock the active sounds list
+                    // Locks the active list ofsounds
                     std::lock_guard<std::mutex> lock(ActiveMutex);
 
-                    // We'll iterate over all active sounds, mixing them in.
-                    // We also remove any that are finished playing.
+                    // Mixes all of the activesounds and removes those that have finished
                     for (auto it = ActiveSounds.begin(); it != ActiveSounds.end(); ) {
                         ActiveSound& sound = *it;
                         const size_t totalFrames = sound.buffer->size() / channels;
                         size_t framesLeft = totalFrames - sound.position;
 
-                        // How many frames can we mix this period?
+                        // Callculate how may frakes are left to be mixed
                         size_t framesToMix = std::min<size_t>(framesPerPeriod, framesLeft);
 
-                        // 3) Mix the audio data from this sound into mixBuffer
+                        //Mix the audio data from this sound into the buffer
                         for (size_t f = 0; f < framesToMix; ++f) {
                             for (unsigned int c = 0; c < channels; ++c) {
                                 // Source index in the file buffer
@@ -288,15 +182,15 @@ namespace AudioPlayerName{
                                 // Destination index in the mix buffer
                                 size_t dstIndex = f * channels + c;
 
-                                // Accumulate (sum) the sample
+                                //Add up the sample
                                 mixBuffer[dstIndex] += (*sound.buffer)[srcIndex];
                             }
                         }
 
-                        // Advance this sound’s playback position
+                        // Advance playback position
                         sound.position += framesToMix;
 
-                        // If we've reached the end of the sound, remove it
+                        // If a sound has finished, remove it
                         if (sound.position >= totalFrames) {
                             it = ActiveSounds.erase(it);
                         } else {
@@ -305,35 +199,23 @@ namespace AudioPlayerName{
                     }
                 }
 
-                // 4) Write the mixed buffer to ALSA
-                // In a real system, you might want to handle partial writes, etc.
+                // Write the mixed buffer to ALSA
                 int rc = snd_pcm_writei(handle, mixBuffer.data(), framesPerPeriod);
                 if (rc == -EPIPE) {
                     std::cerr << "Underrun occurred\n";
                     snd_pcm_prepare(handle);
                 } else if (rc < 0) {
                     std::cerr << "Error from writei: " << snd_strerror(rc) << std::endl;
-                    // Depending on your needs, you might break or keep going
                 }
-
-                // 5) (Optional) Sleep or yield if desired
-                //    Usually ALSA blocks until framesPerPeriod are accepted,
-                //    so an explicit sleep might not be necessary. But you
-                //    might do std::this_thread::sleep_for(...) if you wish.
             }
         }
 
 
-        /**
-        * @brief Converts audio files to interleaved 32-bit int buffers for playback.
-        * @param filePaths Path to audio files.
-        */
-
         void ConvertFiles(const std::vector<std::string>& filePaths) {
-            std::vector<int32_t> result;
+            std::vector<int16_t> result;
 
             for (const auto& path : filePaths) {
-                AudioFile<int32_t> file;
+                AudioFile<int16_t> file;
                 if (!file.load(path)) {
                     std::cerr << "Error loading file: " << path << std::endl;
                     continue;
@@ -342,7 +224,7 @@ namespace AudioPlayerName{
                 int fileChannels = file.getNumChannels();
                 int ChannelSamples = file.getNumSamplesPerChannel();
 
-                std::vector<int32_t> interleaved;
+                std::vector<int16_t> interleaved;
                 interleaved.reserve(ChannelSamples * fileChannels);
                 for (int i=0; i < ChannelSamples; ++i){
                     for (int ch = 0; ch < fileChannels; ++ch){
@@ -352,7 +234,6 @@ namespace AudioPlayerName{
                     
                     
                 }
-                //printVector(interleaved);
                 fileBuffers[path] = std::move(interleaved);
 
             }
