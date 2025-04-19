@@ -10,6 +10,7 @@
 #include <fstream>
 #include <cstdint>
 #include <functional>
+#include <gtest/gtest.h>
 
 #include "../../I2C/include/icm20948_i2c.hpp"
 #include "../../I2C/include/icm20948_utils.hpp"
@@ -79,7 +80,21 @@ namespace GPIOName {
         //     maths->SoundChecker(X,Y,Z);
         // }
 
+        //Testing private stuff
+        #ifdef UNIT_TEST
+            bool GetRunning() const {
+                return running.load();
+            }
 
+            bool HasCallback() const {
+                return callback != nullptr;
+            }
+
+            Callback* GetCallback() const {
+                return callback;
+            }
+
+        #endif
 
         private:
         gpiod_chip* chip;

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdint>
 #include <functional>
+#include <gtest/gtest.h>
 
 #include "../I2C/include/icm20948_i2c.hpp"
 #include "../I2C/include/icm20948_utils.hpp"

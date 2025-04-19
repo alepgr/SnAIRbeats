@@ -49,6 +49,7 @@
 *.log
 
 docs/html
+*.cmake
 
 # Ignore CMake-generated files
 CMakeCache.txt

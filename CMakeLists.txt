@@ -11,6 +11,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 #Links the source directory and the tests directory the the project
 add_subdirectory(src)
-# add_subdirectory(tests)
+add_subdirectory(tests)
 
 enable_testing()

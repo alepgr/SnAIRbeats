@@ -26,3 +26,5 @@ add_test(NAME Test_all COMMAND ${CMAKE_BINARY_DIR}/run_tests)
 set_tests_properties(Test_all PROPERTIES
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
+
+target_compile_definitions(run_tests PRIVATE UNIT_TEST)
