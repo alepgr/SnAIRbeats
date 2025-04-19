@@ -53,9 +53,18 @@ namespace icm20948
             // Sensor settings
             icm20948::settings settings;
 
-            // Constructor
+            /** 
+             * @brief Constructor for ICM20948_I2C class.
+             * 
+             * @param i2c_bus The I2C bus number to which the sensor is connected.
+             * @param i2c_address The I2C address of the sensor (default is ICM20948_I2C_ADDR).
+             * @param settings The settings structure containing configuration parameters for the sensor.
+             *                 If not provided, default settings will be used - @see icm20948::settings (external).
+             */
             ICM20948_I2C(unsigned i2c_bus, unsigned i2c_address = ICM20948_I2C_ADDR, icm20948::settings 
                  = icm20948::settings());
+
+            /// @cond Do not include in documentation (copied from reference repository)
 
             /**
              * @brief Initializes the ICM20948 sensor over I2C.
@@ -145,6 +154,8 @@ namespace icm20948
              * @return bool Returns true if the magnetometer data was successfully read and processed. Returns false if the read operation fails.
              */
             bool read_magn();
+
+            /// @endcond 
 
             /**
              * @brief Enables the Data Ready Interrupt
