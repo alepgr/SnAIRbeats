@@ -69,5 +69,6 @@
         "variant": "cpp",
         "qlabel": "cpp",
         "any": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }

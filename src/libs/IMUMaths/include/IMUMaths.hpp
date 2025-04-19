@@ -67,6 +67,18 @@ namespace IMUMathsName {
             //std::cout << "[IMUMaths] Registered callback at address: " << callback << std::endl;
         }
 
+        //Access to private fo UNIT_TEST only
+        #ifdef UNIT_TEST 
+        
+        bool HasCallback() const {
+            return callback != nullptr;
+        }
+
+        Callback* GetCallback() const {
+            return callback;
+        }
+
+        #endif
 
 
         private:
