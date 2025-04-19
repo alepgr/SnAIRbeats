@@ -33,7 +33,14 @@ namespace GPIOName {
             return running.load();
         }
 
-        //Constructor
+        /** 
+         * @brief Constructor for GPIOClass.
+         * 
+         * @param chipName The name of the GPIO chip (e.g., "gpiochip0")
+         * @param InterruptPin The GPIO pin number for interrupts
+         * @param sensor access to ICM20948_I2C objects ( @see icm20948::ICM20948_I2C)
+         * @param Maths access to IMUMaths objects ( @see IMUMathsName::IMUMaths)
+         */
         GPIOClass(const char* chipName, int InterruptPin,
              icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths);
 
@@ -64,11 +71,19 @@ namespace GPIOName {
          */
         void GPIOStop();
 
+        /**
+         * @brief Callback using virtual void
+         */
         struct Callback{
             virtual void MathsCallback(float X, float Y, float Z) = 0;
             virtual ~Callback(){};
         };
 
+        /**
+         * @brief Registers a callback
+         * 
+         * @param cb callback to register
+         */
         void RegisterCallback(Callback* cb){
             callback = cb;
         }
