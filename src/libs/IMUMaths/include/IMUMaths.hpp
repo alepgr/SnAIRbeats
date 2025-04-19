@@ -17,15 +17,12 @@ namespace IMUMathsName {
         AudioPlayerName::AudioPlayer &Audio;
 
         /**
-         * @brief Constructs an object with access to the audio player  
+         * @brief Constructs an object with access to the audio player
          * 
-         * @param Audio used for playback ( @see AudioPlayerName::AudioPlayer )
+         * @param Audio used for playback
          */
         IMUMaths(AudioPlayerName::AudioPlayer &Audio);
 
-        /** 
-         * @brief Destructor 
-         */
         ~IMUMaths();   
 
 
@@ -60,19 +57,11 @@ namespace IMUMathsName {
         // Counter variable
         int Counter = 0;
 
-        /**
-         * @brief Callback using virtual void
-         */
         struct Callback{
             virtual void AudioTrigger(const std::string& FilePath) = 0;
             virtual ~Callback(){};
         };
-        
-        /**
-         * @brief Registers a callback
-         * 
-         * @param cb callback to register
-         */
+
         void RegisterCallback(Callback* cb){
             callback = cb;
             //std::cout << "[IMUMaths] Registered callback at address: " << callback << std::endl;
