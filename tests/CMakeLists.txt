@@ -3,6 +3,7 @@ find_package(GTest REQUIRED)
 add_executable(run_tests
 GPIOTests.cpp
 MathsTests.cpp
+AudioTests.cpp
 )
 
 
