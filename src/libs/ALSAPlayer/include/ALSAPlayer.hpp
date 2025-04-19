@@ -20,18 +20,6 @@ namespace AudioPlayerName{
 
         bool StopMixingThread = false;
 
-        /** 
-         * @brief Constructor for AudioPlayer class.
-         * 
-         * Handles audio file loading, conversion and playback.
-         * 
-         * @param device The name of the ALSA device to use.
-         * @param rate Sample rate in Hz.
-         * @param ch Number of channels.
-         * @param fmt Format of audio data.
-         * @param frames Number of frames per period.
-         * @param filesToConvert Sound files used.
-         */
         AudioPlayer(const std::string& device="default",
             unsigned int rate = 44100,
             unsigned int ch = 2,
@@ -48,16 +36,6 @@ namespace AudioPlayerName{
             }
         }
 
-        /** 
-         * @brief Open PCM device for playback.
-         * 
-         * It includes the following steps: 
-         * - open the PCM device
-         * - allocate hardware parameters object and fill it in with default values
-         * - set desired hardware parameters (set access type, format, number of channels, sample rate, period size)
-         * - write parameters to the driver
-         * - get period size
-         */
         bool open(){
             int rc = snd_pcm_open(&handle, deviceName.c_str(), SND_PCM_STREAM_PLAYBACK,0);
             if (rc < 0){
@@ -104,9 +82,6 @@ namespace AudioPlayerName{
         }
 
 
-        /** 
-         * @brief Start mixer thread
-        */
         void startMixer() {
             if (!handle) {
                 std::cerr << "ALSA device is not open. Call open() first." << std::endl;
@@ -117,9 +92,6 @@ namespace AudioPlayerName{
         }
 
 
-        /**
-         * @brief Stop mixer thread
-         */
         void stopMixer() {
             StopMixingThread = true;
             if (mixThread.joinable()) {
@@ -128,16 +100,6 @@ namespace AudioPlayerName{
         }
         
 
-        /** 
-         * @brief Add input sound to mixer and play it.
-         * 
-         * It includes the following steps: 
-         * - register detected sound in the mixer
-         * - add sound to buffer and remove sounds that have finished playing
-         * - play sound
-         * 
-         * @param fileKey Sound file key.
-         */
         bool addSoundToMixer(const std::string& fileKey) {
             std::lock_guard<std::mutex> lock(ActiveMutex);
 
@@ -160,9 +122,6 @@ namespace AudioPlayerName{
             return true;
         }
 
-        /** 
-         * @brief Close PCM handle and free all associated resources.
-         */
         void close() {
             stopMixer();
             if (handle) {
@@ -172,9 +131,6 @@ namespace AudioPlayerName{
             }
         }
 
-        /** 
-         * @brief Destructor 
-         */
         ~AudioPlayer() {
             close();
         }
