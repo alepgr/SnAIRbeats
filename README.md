@@ -1,9 +1,4 @@
 ![Snairbeats logo](./FIGURES/logo.png)
-<!-- 
-\latexonly
-\includegraphics[width=0.8\textwidth]{./FIGURES/logo.png}
-\endlatexonly
- -->
 
 # SnAIRbeats
 SnAirBeats is a next generation method to practice the drums, while reducing noise and space typically required to do so. The SnAirBeat set uses intertial measurement units (IMU) within the sticks to track their movement and play a corresponding drum, not requiring any physical hitting like modern electric drum sets need.
@@ -20,11 +15,6 @@ The circuit's wires should be at least 1m long to ensure comfortable movement wh
 A wiring guide can be seen below:
 
 ![Wiring guide](./FIGURES/WiringGuide.png)
-<!-- 
-\latexonly
-\includegraphics[width=0.5\textwidth]{./FIGURES/WiringGuide.png}
-\endlatexonly
- -->
 
 
 The drumsticks for the project need to be 3D printed via the [STLs](/STLs/) provided within this repository.
@@ -126,7 +116,7 @@ ctest
 Complete documentation for this project can be found in [documentation.pdf](./documentation.pdf).
 
 # Sponsorship and funding
-We are very grateful for RS Components for providing us with components that allowed us to complete this project.
+We are extremely grateful for RS Components for providing us with components that allowed us to complete this project. We are also very grateful to the ENG5220 Real Time Embedded Programming lecturers and teaching assistants for their guidance throughout the past three months.
 
 # Media
 * [Instagram](https://www.instagram.com/snairbeats/)
