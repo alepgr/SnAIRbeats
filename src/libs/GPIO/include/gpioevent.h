@@ -19,19 +19,8 @@
 
 
 namespace GPIOName {
-
-    typedef void (*GPIOCallback)(void* context, float, float, float);
     class GPIOClass {
     public:
-        icm20948::ICM20948_I2C& sensor;
-        
-        // GPIOCallback callback;
-        // void* CallbackFunction;
-
-        // function added for testing
-        bool IsRunning() const {
-            return running.load();
-        }
 
         /** 
          * @brief Constructor for GPIOClass.
@@ -40,8 +29,6 @@ namespace GPIOName {
          * @param InterruptPin The GPIO pin number for interrupts
          * @param sensor access to ICM20948_I2C objects 
          * @see icm20948::ICM20948_I2C
-         * @param Maths access to IMUMaths objects
-         * @see IMUMathsName::IMUMaths
          */
         GPIOClass(const char* chipName, int InterruptPin,
              icm20948::ICM20948_I2C& sensor);
@@ -57,24 +44,12 @@ namespace GPIOName {
         void Worker();
 
         /**
-         * @brief Event driven worker reading data when HIGH seen on GPIO and records data to a CSV
-         * 
-         * The function begins by initialising a csv file named by the user.
-         * This function then uses blocking interrupts controlled by a GPIO pin.
-         * Once this GPIO pin reads HIGH the function reads the data registers using
-         * the ReadAccel() callback from the IMU's driver and appends this data into the 
-         * opened CSV file.
-         * 
-         */
-        void WorkerDataCollect();
-
-        /**
          * @brief Changes a boolean to end the worker
          */
         void GPIOStop();
 
         /**
-         * @brief Callback using virtual void
+         * @brief Empty callback to later be filled. Includes destructor
          */
         struct Callback{
             virtual void MathsCallback(float X, float Y, float Z) = 0;
@@ -84,17 +59,13 @@ namespace GPIOName {
         /**
          * @brief Registers a callback
          * 
+         *  Overwrites the virtual void function within the class with a function taken in via this function
+         * 
          * @param cb callback to register
          */
         void RegisterCallback(Callback* cb){
             callback = cb;
         }
-        
-        // void SetCallback(GPIOCallback cb, void* context);
-        // static void IMUMathsCallback(void* context, float X, float Y, float Z){
-        //     IMUMathsName::IMUMaths* maths = static_cast<IMUMathsName::IMUMaths*>(context);
-        //     maths->SoundChecker(X,Y,Z);
-        // }
 
         //Testing private stuff
         #ifdef UNIT_TEST
@@ -115,10 +86,12 @@ namespace GPIOName {
         private:
         gpiod_chip* chip;
         gpiod_line* SensorLine;
-        gpiod_line* LEDLine;
         int InterruptPin;
         int Counter;
         bool Pause = true;
+
+        //Reference to IMU's driver
+        icm20948::ICM20948_I2C& sensor;
         
         std::atomic<bool> running{true};
         Callback* callback = nullptr;

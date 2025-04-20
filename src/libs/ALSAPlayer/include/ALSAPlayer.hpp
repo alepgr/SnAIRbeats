@@ -57,6 +57,8 @@ namespace AudioPlayerName{
          * - set desired hardware parameters (set access type, format, number of channels, sample rate, period size)
          * - write parameters to the driver
          * - get period size
+         * 
+         * @return Returns true is open was successful, but false if something went wrong
          */
         bool open(){
             int rc = snd_pcm_open(&handle, deviceName.c_str(), SND_PCM_STREAM_PLAYBACK,0);
@@ -106,6 +108,12 @@ namespace AudioPlayerName{
 
         /** 
          * @brief Start mixer thread
+         * 
+         * Ensures that a handle exists before opening the mixing thread and tells the user to open
+         * the device of not.
+         * Sets a boolean to false to control the thread and starts the mixer
+         * 
+         * @return Returns true if mixer thread started correctly, false if error
         */
         bool startMixer() {
             if (!handle) {
@@ -119,7 +127,7 @@ namespace AudioPlayerName{
         }
 
         /**
-         * @brief Stop mixer thread
+         * @brief Stop mixer thread, closes threda when called
          */
         void stopMixer() {
             StopMixingThread = true;

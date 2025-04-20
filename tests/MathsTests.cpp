@@ -41,7 +41,7 @@ TEST(MathsTests, TestSoundSnare) {
     IMUmaths.SoundChecker(x, y, z);
     EXPECT_EQ(IMUmaths.Pause, 1);
     EXPECT_EQ(IMUmaths.Counter, 0);
-    EXPECT_EQ(IMUmaths.LastFilePlayed, 1);
+    EXPECT_EQ(IMUmaths.LastFilePlayedTest(), 1);
 }
 
 TEST(MathsTests, TestSoundHighTom) {
@@ -52,7 +52,7 @@ TEST(MathsTests, TestSoundHighTom) {
     IMUmaths.SoundChecker(x, y, z);
     EXPECT_EQ(IMUmaths.Pause, 1);
     EXPECT_EQ(IMUmaths.Counter, 0);
-    EXPECT_EQ(IMUmaths.LastFilePlayed, 2);
+    EXPECT_EQ(IMUmaths.LastFilePlayedTest(), 2);
 }
 
 TEST(MathsTests, TestSoundCrash) {
@@ -63,5 +63,5 @@ TEST(MathsTests, TestSoundCrash) {
     IMUmaths.SoundChecker(x, y, z);
     EXPECT_EQ(IMUmaths.Pause, 1);
     EXPECT_EQ(IMUmaths.Counter, 0);
-    EXPECT_EQ(IMUmaths.LastFilePlayed, 3);
+    EXPECT_EQ(IMUmaths.LastFilePlayedTest(), 3);
 }

@@ -16,8 +16,7 @@ namespace GPIOName {
 
     GPIOClass::GPIOClass(const char* chipName, int InterruptPin,
          icm20948::ICM20948_I2C& sensor)
-        : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
-          InterruptPin(InterruptPin),
+        : chip(nullptr), SensorLine(nullptr), InterruptPin(InterruptPin),
           running(true), Counter(0), sensor(sensor)
     {
         chip = gpiod_chip_open_by_name(chipName);
@@ -31,8 +30,7 @@ namespace GPIOName {
         if (gpiod_line_request_both_edges_events(SensorLine, "sensor") < 0) {
             std::cerr << "[ERROR] Could not request events for sensor line - womp womp" << std::endl;
         }
-
-        //Registers the callback
+        
         std::cout << "GPIO Initialised" << std::endl;
 
     }

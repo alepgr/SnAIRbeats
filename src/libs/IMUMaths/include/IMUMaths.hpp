@@ -15,10 +15,6 @@ namespace IMUMathsName {
         
         public:
 
-        // For debugging: Identifier of the last audio file played
-
-        int LastFilePlayed;
-
         /**
          * @brief It measures each axis and sees if it falls within desired thresholds
          * 
@@ -30,15 +26,6 @@ namespace IMUMathsName {
          * @param Z acceleration along the Z-axis
          */
         void SoundChecker(float X, float Y, float Z);
-        
-        /**
-         * @brief Sets the callback
-         * 
-         * It registers a callback via the function input
-         * 
-         * @param cb
-         */
-        void SetPlayFileCallback(const std::function<void(const std::string&)>& cb);
 
         // Pauses
         bool Pause = false;
@@ -47,7 +34,7 @@ namespace IMUMathsName {
         int Counter = 0;
 
         /**
-         * @brief Callback using virtual void
+         * @brief Empty callback to later be filled. Includes destructor
          */
         struct Callback{
             virtual void AudioTrigger(const std::string& FilePath) = 0;
@@ -76,6 +63,10 @@ namespace IMUMathsName {
             return callback;
         }
 
+        int LastFilePlayedTest() const{
+            return LastFilePlayed;
+        }
+
         #endif
 
 
@@ -83,6 +74,10 @@ namespace IMUMathsName {
         
         Callback* callback = nullptr;
         std::function<void(const std::string&)> PlayFileCallback;
+
+        // For debugging: Identifier of the last audio file played
+
+        int LastFilePlayed;
 
 
     };
