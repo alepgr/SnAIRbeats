@@ -127,7 +127,7 @@ namespace AudioPlayerName{
         }
 
         /**
-         * @brief Stop mixer thread, closes threda when called
+         * @brief Stop mixer thread, closes thread when called
          */
         void stopMixer() {
             StopMixingThread = true;
@@ -145,6 +145,7 @@ namespace AudioPlayerName{
          * - play sound
          * 
          * @param fileKey Sound file key.
+         * @return Returns true if sound was added to mixer, false if error
          */
         bool addSoundToMixer(const std::string& fileKey) {
             std::lock_guard<std::mutex> lock(ActiveMutex);
