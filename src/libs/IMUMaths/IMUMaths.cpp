@@ -9,25 +9,12 @@
 //How many samples to wait before another sound trigger
 int delay = 2;
 
+//Shows the last file played... if you couldn't tell
+int LastFilePlayed = 0;
 
 namespace IMUMathsName{
     //IMUMaths::IMUMaths(PlayAudioName::PlayAudio* audio) : audioPtr(audio) {}
     //Constructor to bring Audio object in and play sounds using it
-    IMUMaths::IMUMaths(AudioPlayerName::AudioPlayer& Audio)
-        :Audio(Audio), LastFilePlayed(0)
-    {
-         if (!Audio.open()) {
-             std::cerr << "[IMUMaths] Warning: Failed to open ALSA device from IMUMaths constructor.\n";
-        }
-        
-        Audio.startMixer();
-    }
-
-
-    IMUMaths::~IMUMaths() {
-        Audio.stopMixer();
-        Audio.close();
-    }
 
 
     void IMUMaths::SoundChecker(float X, float Y, float Z){

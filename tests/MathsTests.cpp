@@ -9,7 +9,7 @@ class DummyAudioPlayer : public AudioPlayerName::AudioPlayer {
 
 TEST(MathsTests, SetCallback){
     AudioPlayerName::AudioPlayer audio;
-    IMUMathsName::IMUMaths IMUMaths(audio);
+    IMUMathsName::IMUMaths IMUMaths;
 
     class DummyCallback : public IMUMathsName::IMUMaths::Callback{
     public:
@@ -35,7 +35,7 @@ TEST(MathsTests, SetCallback){
 
 TEST(MathsTests, TestSoundSnare) {
     AudioPlayerName::AudioPlayer audio;
-    IMUMathsName::IMUMaths IMUmaths(audio);
+    IMUMathsName::IMUMaths IMUmaths;
 
     float x = -42.0f, y = 0.0f, z = 0.0f;
     IMUmaths.SoundChecker(x, y, z);
@@ -46,7 +46,7 @@ TEST(MathsTests, TestSoundSnare) {
 
 TEST(MathsTests, TestSoundHighTom) {
     AudioPlayerName::AudioPlayer audio;
-    IMUMathsName::IMUMaths IMUmaths(audio);
+    IMUMathsName::IMUMaths IMUmaths;
 
     float x = 0.0f, y = -42.0f, z = 0.0f;
     IMUmaths.SoundChecker(x, y, z);
@@ -57,7 +57,7 @@ TEST(MathsTests, TestSoundHighTom) {
 
 TEST(MathsTests, TestSoundCrash) {
     AudioPlayerName::AudioPlayer audio;
-    IMUMathsName::IMUMaths IMUmaths(audio); 
+    IMUMathsName::IMUMaths IMUmaths; 
 
     float x = 0.0f, y = 0.0f, z = 17.0f;
     IMUmaths.SoundChecker(x, y, z);

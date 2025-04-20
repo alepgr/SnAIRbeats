@@ -14,21 +14,6 @@ namespace IMUMathsName {
     class IMUMaths{
         
         public:
-        AudioPlayerName::AudioPlayer &Audio;
-
-        /**
-         * @brief Constructs an object with access to the audio player
-         * 
-         * @param Audio used for playback 
-         * @see AudioPlayerName::AudioPlayer
-         */
-        IMUMaths(AudioPlayerName::AudioPlayer &Audio);
-        
-        /** 
-         * @brief Destructor 
-         */
-        ~IMUMaths();   
-
 
         // For debugging: Identifier of the last audio file played
 
