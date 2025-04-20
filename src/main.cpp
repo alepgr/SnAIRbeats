@@ -20,14 +20,14 @@ icm20948::ICM20948_I2C objI2C_2(1,0x68);
 //Object for ALSA Audio Player
 AudioPlayerName::AudioPlayer objALSA("plughw:CARD=UACDemoV10,DEV=0", 44100, 2, SND_PCM_FORMAT_S16_LE, 128);
 
-//Object for Maths operations, requires access to ALSA object
-IMUMathsName::IMUMaths objMaths(objALSA);
+//Object for Maths operations
+IMUMathsName::IMUMaths objMaths;
 
 //Object for GPIO operations
 //17 and 27 refer to GPIO pins on the raspberry pi (11 and 13)
-//Require access to the I2C objects and IMUMaths
-GPIOName::GPIOClass objGPIO("gpiochip0", 17, objI2C, objMaths);
-GPIOName::GPIOClass objGPIO_2("gpiochip0",27, objI2C_2,objMaths);
+//Require access the IMU's I2C driver for access to registers
+GPIOName::GPIOClass objGPIO("gpiochip0", 17, objI2C);
+GPIOName::GPIOClass objGPIO_2("gpiochip0",27, objI2C_2);
 
 
 //All initialisation for SnairBeats
@@ -75,6 +75,16 @@ bool InitSnairBeat(){
         std::cout << "Womp Womp - No worky in Object 2" << std::endl;
         return -1;
     }
+
+    if (!objALSA.open()) {
+        std::cerr << "[ALSAPlayer] Warning: Failed to open ALSA device.\n";
+    }
+
+    if (!objALSA.startMixer()){
+        std::cerr << "[ALSAPlayer] Warning: Failed to start mixing thread\n";
+
+    }
+
     return 1;
 }
 
@@ -89,6 +99,7 @@ int main() {
         std::cerr << "Something failed in initialisation - go fix it" << std::endl;
         return -1;
     }
+    
 
 
     //Register callback for Audio
@@ -121,6 +132,9 @@ int main() {
     if(gpioThread_2.joinable()){
         gpioThread_2.join();
         }
+
+    objALSA.stopMixer();
+    
     std::cout << "Everything closed.\nExiting SnairBeat" << std::endl;
 
     return 0;

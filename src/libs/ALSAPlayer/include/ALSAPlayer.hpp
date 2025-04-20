@@ -107,13 +107,15 @@ namespace AudioPlayerName{
         /** 
          * @brief Start mixer thread
         */
-        void startMixer() {
+        bool startMixer() {
             if (!handle) {
                 std::cerr << "ALSA device is not open. Call open() first." << std::endl;
-                return;
+                return false;
             }
             StopMixingThread = false;
             mixThread = std::thread(&AudioPlayer::mixerThreadLoop, this);
+
+            return true;
         }
 
         /**

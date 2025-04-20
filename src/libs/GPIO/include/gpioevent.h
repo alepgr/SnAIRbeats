@@ -24,7 +24,6 @@ namespace GPIOName {
     class GPIOClass {
     public:
         icm20948::ICM20948_I2C& sensor;
-        IMUMathsName::IMUMaths& Maths;
         
         // GPIOCallback callback;
         // void* CallbackFunction;
@@ -45,7 +44,7 @@ namespace GPIOName {
          * @see IMUMathsName::IMUMaths
          */
         GPIOClass(const char* chipName, int InterruptPin,
-             icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths);
+             icm20948::ICM20948_I2C& sensor);
 
         /**
          * @brief Event driven worker reading data when HIGH seen on GPIO

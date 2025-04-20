@@ -15,10 +15,10 @@
 namespace GPIOName {
 
     GPIOClass::GPIOClass(const char* chipName, int InterruptPin,
-         icm20948::ICM20948_I2C& sensor, IMUMathsName::IMUMaths& Maths)
+         icm20948::ICM20948_I2C& sensor)
         : chip(nullptr), SensorLine(nullptr), LEDLine(nullptr),
           InterruptPin(InterruptPin),
-          running(true), Counter(0), sensor(sensor), Maths(Maths)
+          running(true), Counter(0), sensor(sensor)
     {
         chip = gpiod_chip_open_by_name(chipName);
         if (!chip) {

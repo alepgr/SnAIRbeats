@@ -7,11 +7,11 @@
 TEST(GPIOTests, SetCallback) {
     // Create required dependencies
     AudioPlayerName::AudioPlayer audioPlayer;
-    IMUMathsName::IMUMaths maths(audioPlayer);
+    IMUMathsName::IMUMaths maths;
     icm20948::ICM20948_I2C sensor(1, 0x69);
 
     // Create GPIOClass instance
-    GPIOName::GPIOClass gpio("gpiochip0", 17, sensor, maths);
+    GPIOName::GPIOClass gpio("gpiochip0", 17, sensor);
 
     class DummyCallback : public GPIOName::GPIOClass::Callback{
     public:
@@ -35,10 +35,10 @@ TEST(GPIOTests, SetCallback) {
 
 TEST(GPIOTests, GPIORunning) {
     AudioPlayerName::AudioPlayer audioPlayer;
-    IMUMathsName::IMUMaths maths(audioPlayer);
+    IMUMathsName::IMUMaths maths;
     icm20948::ICM20948_I2C sensor(1, 0x69);
 
-    GPIOName::GPIOClass gpio("gpiochip0", 17, sensor, maths);
+    GPIOName::GPIOClass gpio("gpiochip0", 17, sensor);
 
     // Check that initially it's running
     EXPECT_TRUE(gpio.GetRunning());
