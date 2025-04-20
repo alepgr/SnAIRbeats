@@ -134,6 +134,7 @@ int main() {
         }
 
     objALSA.stopMixer();
+    objALSA.close();
     
     std::cout << "Everything closed.\nExiting SnairBeat" << std::endl;
 
